@@ -1,0 +1,17 @@
+<h3>GC-SEAMS</h3>
+
+<div>
+    <h1>Log in to GC-SEAMS</h1>
+
+    <form [formGroup]='profileForm'>
+        <label for="email">GC Domain Email: </label>
+        <input id="email" type="email" formControlName="email" required>
+        <br>
+        <label for="password">Password: </label>
+        <input id="password" type="password" formControlName="password" required>
+        <br>
+        <button id="submit_button" type="submit" (click)='login()' [routerLink]="['/homescreen']">Login</button>
+        <button id="submit_button" type="submit" (click)='register()' [routerLink]="['/register']">Register</button>
+    </form>
+</div>
+
