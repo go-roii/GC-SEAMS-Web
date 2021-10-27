@@ -18,6 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'homescreen',
+    redirectTo: 'homescreen/home',
+  },
+  {
+    path: 'homescreen',
     component: HomescreenComponent,
     children: [
       {
