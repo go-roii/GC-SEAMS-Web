@@ -1,1 +1,40 @@
-<p>register works!</p>
+<h3>GC-SEAMS</h3>
+
+<div>
+    <form [formGroup]='profileForm'>
+        <label for="firstname">First Name: </label>
+        <input id="firstname" type="text" formControlName="firstname" required>
+        <br>
+        <label for="middlename">Middle Name: </label>
+        <input id="middlename" type="text" formControlName="middlename" required>
+        <br>
+        <label for="lastname">Last Name: </label>
+        <input id="lastname" type="text" formControlName="lastname" required>
+        <br>
+        <label for="year">Year: </label>
+        <select id="year" required>
+            <option>1</option>    
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+        <label for="course">Course: </label>
+        <select id="course" required>
+            <option>BSCS</option>    
+            <option>BSIT</option>
+            <option>ACT</option>
+        </select>
+        <br>
+        <br>
+        <label for="email">Email: </label>
+        <input id="email" type="email" formControlName="email" required>
+        <br>
+        <label for="password">Password: </label>
+        <input id="password" type="password" formControlName="password" required>
+        <br>
+        <label for="password_confirmation">Confirm Password: </label>
+        <input id="password_confirmation" type="password" formControlName="password_confirmation" required>
+        <br>
+        <button id="submit_button" type="submit" (click)='register()'>Register</button>
+    </form>
+</div>

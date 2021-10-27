@@ -1,25 +1,27 @@
 <div class="container" style="display: flexbox;">
-    <div class="sidenav" style="background-color: red;">
-      sidenav
-      <ul>
-        <li>
-          <a [routerLink]="['../home']">
-            Home
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['../create-event']">
-            Create Event
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['../dashboard']">
-            Dashboard
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="content" style="background-color: green;">
-      <router-outlet></router-outlet>
-    </div>
+  <div class="sidenav" style="background-color: red;">
+    sidenav
+    <ul>
+      <li>
+        <a [routerLink]="['home']">
+          Home
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['create-event']">
+          Create Event
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['dashboard']">
+          Dashboard
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="content" style="background-color: green;">
+    <div style="background-color: pink; height: 48px">GC-SEAMS</div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
+

@@ -12,7 +12,8 @@ import { RegisterComponent } from './register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomescreenComponent } from './homescreen/homescreen.component';
-import { HomescreenModule } from './homescreen/homescreen.module';
+import { EventCardComponent } from './event-card/event-card.component';
+import { NewEventCardComponent } from './new-event-card/new-event-card.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,13 @@ import { HomescreenModule } from './homescreen/homescreen.module';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    HomescreenComponent
+    HomescreenComponent,
+    EventCardComponent,
+    NewEventCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomescreenModule,
     ReactiveFormsModule,
     MaterialModule
   ],

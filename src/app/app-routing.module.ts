@@ -16,17 +16,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  // {
-  //   path: 'homescreen',
-  //   component: HomescreenComponent,
-  // },
   {
     path: 'homescreen',
+    component: HomescreenComponent,
     children: [
-      {
-        path: '',
-        component: HomescreenComponent,
-      },
       {
         path: 'home',
         component: HomeComponent
