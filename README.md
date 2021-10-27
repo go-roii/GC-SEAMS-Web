@@ -1,2 +1,2 @@
-# gc-seams-web
+# GC-SEAMS Web
  
