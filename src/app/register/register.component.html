@@ -7,7 +7,7 @@
 
     <div class="register-container container">
         <main class="form-register">
-            <h1 class="mb-4">Register to GC-SEAMS</h1>
+            <h1 class="mb-5">Register to GC-SEAMS</h1>
 
             <form [formGroup]='profileForm'>
 
@@ -21,26 +21,25 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="firstname" class="form-label">Year & Course</label>
+                    <label for="firstname" class="form-label">Course & Year</label>
                     <div class="input-group">
+                        <select id="course" class="form-select" required>
+                            <option>BSCS</option>    
+                            <option>BSIT</option>
+                            <option>ACT</option>
+                        </select>
                         <select id="year" class="form-select" required>
                             <option>1</option>    
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                         </select>
-
-                        <select id="course" class="form-select" required>
-                            <option>BSCS</option>    
-                            <option>BSIT</option>
-                            <option>ACT</option>
-                        </select>
                     </div>
                 </div>
     
                 <div class="mb-3">
                     <label for="email" class="form-label">GC Domain Email</label>
-                    <input id="email" type="email" class="form-control" formControlName="email" required>
+                    <input id="email" type="email" class="form-control" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
                 </div>
 
                 <div class="mb-3">
