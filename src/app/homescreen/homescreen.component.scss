@@ -11,10 +11,45 @@
   background-color: gray;
 }
 
-.sidenav {
-  min-width: 200px;
-}
+// .sidenav {
+//   min-width: 200px;
+// }
 
 .content {
+  background-color: white;
+  color: black;
   flex: 1;
 }
+
+
+.sidenav {
+  background-color: #f8f8f8;
+  align-items: center;
+}
+
+.sidenav-btn {
+  text-align: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  margin: 3px 0;
+}
+
+.sidenav .nav-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+// .bi {
+//   vertical-align: -.125em;
+//   pointer-events: none;
+//   fill: currentColor;
+// }
+
+// .dropdown-toggle { outline: 0; }
+
+// .nav-flush .nav-link {
+//   border-radius: 0;
+// }

@@ -1,27 +1,42 @@
 <div class="my-container" style="display: flexbox;">
-  <div class="sidenav" style="background-color: red;">
-    sidenav
-    <ul>
-      <li>
-        <a [routerLink]="['home']">
-          Home
+  <div class="sidenav d-flex flex-column" style="width: 64px;">
+    <ul class="nav nav-pills nav-flush flex-column text-center">
+      <a class="sidenav-btn nav-link"title="Menu" data-bs-toggle="tooltip" data-bs-placement="right">
+        <i class="bi bi-list"></i>
+      </a>
+      <li class="nav-item">
+        <a [routerLink]="['home']" class="sidenav-btn nav-link active" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
+          <i class="bi bi-house"></i>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['create-event']">
-          Create Event
+      <li class="nav-item">
+        <a [routerLink]="['create-event']" class="sidenav-btn nav-link" title="Create Event" data-bs-toggle="tooltip" data-bs-placement="right">
+          <i class="bi bi-plus-square align-top"></i>
         </a>
       </li>
-      <li>
-        <a [routerLink]="['dashboard']">
-          Dashboard
+      <li class="nav-item">
+        <a [routerLink]="['dashboard']" class="sidenav-btn nav-link" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
+          <i class="bi bi-bar-chart"></i>
         </a>
       </li>
     </ul>
+    <!-- <div class="dropdown border-top">
+      <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div> -->
   </div>
-  <div class="content" style="background-color: green;">
+
+  <div class="content">
     <!-- As a link -->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light">
       <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['home']">GC-SEAMS</a>
       </div>
