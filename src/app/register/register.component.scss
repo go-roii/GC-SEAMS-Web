@@ -1,0 +1,25 @@
+.register-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    position: absolute;
+}
+
+.register-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.form-register {
+    margin: 0 auto;
+    width: 40%;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 36px;
+}

@@ -1,40 +1,62 @@
-<h3>GC-SEAMS</h3>
+<div class="register-body">
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" [routerLink]="['home']">GC-SEAMS</a>
+        </div>
+    </nav>
 
-<div>
-    <form [formGroup]='profileForm'>
-        <label for="firstname">First Name: </label>
-        <input id="firstname" type="text" formControlName="firstname" required>
-        <br>
-        <label for="middlename">Middle Name: </label>
-        <input id="middlename" type="text" formControlName="middlename" required>
-        <br>
-        <label for="lastname">Last Name: </label>
-        <input id="lastname" type="text" formControlName="lastname" required>
-        <br>
-        <label for="year">Year: </label>
-        <select id="year" required>
-            <option>1</option>    
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-        </select>
-        <label for="course">Course: </label>
-        <select id="course" required>
-            <option>BSCS</option>    
-            <option>BSIT</option>
-            <option>ACT</option>
-        </select>
-        <br>
-        <br>
-        <label for="email">Email: </label>
-        <input id="email" type="email" formControlName="email" required>
-        <br>
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password" required>
-        <br>
-        <label for="password_confirmation">Confirm Password: </label>
-        <input id="password_confirmation" type="password" formControlName="password_confirmation" required>
-        <br>
-        <button id="submit_button" type="submit" (click)='register()'>Register</button>
-    </form>
+    <div class="register-container container">
+        <main class="form-register">
+            <h1 class="mb-4">Register to GC-SEAMS</h1>
+
+            <form [formGroup]='profileForm'>
+
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Full Name</label>
+                    <div class="input-group">
+                        <input id="firstname" type="text" class="form-control" formControlName="firstname" placeholder="First name" required>
+                        <input id="middlename" type="text" class="form-control" formControlName="middlename" placeholder="Middle name" required>
+                        <input id="lastname" type="text" class="form-control" formControlName="lastname" placeholder="Last name" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Year & Course</label>
+                    <div class="input-group">
+                        <select id="year" class="form-select" required>
+                            <option>1</option>    
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+
+                        <select id="course" class="form-select" required>
+                            <option>BSCS</option>    
+                            <option>BSIT</option>
+                            <option>ACT</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" type="email" class="form-control" formControlName="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" class="form-control" formControlName="password" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input id="password_confirmation" type="password" class="form-control" formControlName="password_confirmation" required>
+                </div>    
+
+                <div class="d-grid">
+                    <button id="submit_button" type="submit" class="btn-lg btn-secondary" (click)='register()'>Register</button>
+                </div>
+            </form>
+        </main>
+    </div>
 </div>
