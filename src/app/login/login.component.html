@@ -1,7 +1,7 @@
 <div class="login-body">
     <nav class="navbar navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" [routerLink]="['home']">GC-SEAMS</a>
+            <a class="navbar-brand" [routerLink]="['']">GC-SEAMS</a>
         </div>
     </nav>
     
@@ -11,8 +11,8 @@
 
             <form [formGroup]='profileForm'>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="student_id@gordoncollege.edu.ph" required>
+                    <label for="email" class="form-label">GC Domain Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
                 </div>
 
                 <div class="mb-4">
@@ -21,8 +21,8 @@
                 </div>
 
                 <div class="d-grid gap-3">
-                    <button type="submit" class="btn-lg btn-primary" type="submit" (click)='login()' [routerLink]="['/homescreen']">Login</button>
-                    <button type="button" class="btn-lg btn-secondary" (click)='register()' [routerLink]="['/register']">Register</button>
+                    <button type="submit" class="btn btn-lg btn-primary" type="submit" (click)='login()' [routerLink]="['/homescreen']">Login</button>
+                    <button type="button" class="btn btn-lg btn-secondary" (click)='register()' [routerLink]="['/register']">Register</button>
                 </div>
             </form>
         </main>
