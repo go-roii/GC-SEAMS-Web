@@ -1,4 +1,4 @@
-<div class="container" style="display: flexbox;">
+<div class="my-container" style="display: flexbox;">
   <div class="sidenav" style="background-color: red;">
     sidenav
     <ul>
@@ -20,7 +20,12 @@
     </ul>
   </div>
   <div class="content" style="background-color: green;">
-    <div style="background-color: pink; height: 48px">GC-SEAMS</div>
+    <!-- As a link -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['home']">GC-SEAMS</a>
+      </div>
+    </nav>
     <router-outlet></router-outlet>
   </div>
 </div>

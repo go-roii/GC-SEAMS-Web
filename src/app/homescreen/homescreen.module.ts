@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { NewEventCardComponent } from './new-event-card/new-event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
 
 
 
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HomescreenRoutingModule,
-    ReactiveFormsModule
-  ]
+    MaterialModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomescreenModule { }
