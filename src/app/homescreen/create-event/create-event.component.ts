@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-create-event',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEventComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding('className') componentClass: string;
+
+  constructor() {
+    this.componentClass = 'container-fluid';
+   }
 
   ngOnInit(): void {
   }
