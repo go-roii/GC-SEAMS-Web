@@ -1,5 +1,5 @@
-<div class="my-container" style="display: flexbox;">
-  <div class="sidenav d-flex flex-column" style="width: 64px;">
+<div class="homescreen-container">
+  <div class="sidenav d-flex flex-column">
     <ul class="nav nav-pills nav-flush flex-column text-center">
       <a class="sidenav-btn nav-link"title="Menu" data-bs-toggle="tooltip" data-bs-placement="right">
         <i class="bi bi-list"></i>
@@ -34,14 +34,15 @@
     </div> -->
   </div>
 
-  <div class="content">
-    <!-- As a link -->
+  <div class="main-content container-fluid">
     <nav class="navbar">
       <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['home']">GC-SEAMS</a>
       </div>
     </nav>
-    <router-outlet></router-outlet>
+    <div class="content container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 

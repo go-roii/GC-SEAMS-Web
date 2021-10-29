@@ -1,28 +1,26 @@
+$sidenav-width: 64px;
+
 :host {
   color: white;
 }
 
-.my-container {
+.homescreen-container {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
   height: 100%;
-  width: 100%;
-  background-color: gray;
+  // width: calc(100% - $sidenav-width);
 }
 
-// .sidenav {
-//   min-width: 200px;
-// }
-
-.content {
+.main-content {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   color: black;
-  flex: 1;
+  padding: 0;
 }
 
-
 .sidenav {
+  min-width: $sidenav-width;
   background-color: #f8f8f8;
   align-items: center;
 }
@@ -40,6 +38,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.content {
+  display: flex;
+  flex: 1;
+  background-color: red;
+}
+
+
+
+
 
 
 // .bi {

@@ -3,7 +3,8 @@
 $navbar-height: 64px;
 
 html, body { 
-    height: 100vh;
+    height: 100%;
+    // overflow: hidden;
 }
 
 body { 
@@ -14,7 +15,7 @@ body {
 .navbar {
     background-color: white;
     height: $navbar-height;
-    padding: 0 12px;
+    padding: 8px 16px 0 16px;
 }
 
 .navbar-brand {
