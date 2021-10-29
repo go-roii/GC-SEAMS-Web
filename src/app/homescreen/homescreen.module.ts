@@ -7,14 +7,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventCardComponent } from './create-event/event-card/event-card.component';
 import { NewEventCardComponent } from './create-event/new-event-card/new-event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { EventsComponent } from './events/events.component';
 
 
 
 @NgModule({
   declarations: [
     HomescreenComponent,
-    HomeComponent,
+    EventsComponent,
     CreateEventComponent,
     DashboardComponent,
     EventCardComponent,

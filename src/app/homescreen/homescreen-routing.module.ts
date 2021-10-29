@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
+import { EventsComponent } from './events/events.component';
 import { HomescreenComponent } from './homescreen.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'events',
   },
   {
     path: '',
     component: HomescreenComponent,
     children: [
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'events',
+        component: EventsComponent
       },
       {
         path: 'create-event',
