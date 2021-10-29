@@ -14,7 +14,7 @@ body {
 
 .navbar {
     background-color: white;
-    height: $navbar-height;
+    min-height: $navbar-height;
     padding: 8px 16px 0 16px;
 }
 
