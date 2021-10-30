@@ -11,10 +11,10 @@ import { FormGroup } from '@angular/forms';
 })
 export class EventCardComponent implements OnInit {
 
-  @HostBinding('className') componentClass: string;
+  // @HostBinding('className') componentClass: string;
 
   constructor() {
-    this.componentClass = 'card-container';
+    // this.componentClass = 'card-container';
    }
 
   ngOnInit(): void {

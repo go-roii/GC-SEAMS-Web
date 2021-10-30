@@ -10,10 +10,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 })
 export class NewEventCardComponent implements OnInit {
 
-  @HostBinding('className') componentClass: string;
+  // @HostBinding('className') componentClass: string;
 
   constructor() {
-    this.componentClass = 'card-container';
+    // this.componentClass = 'card-container';
    }
 
   ngOnInit(): void {
