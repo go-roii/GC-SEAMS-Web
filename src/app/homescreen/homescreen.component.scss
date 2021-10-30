@@ -8,24 +8,17 @@ $sidenav-width: 64px;
   display: flex;
   flex-direction: row;
   height: 100%;
-  // width: calc(100% - $sidenav-width);
 }
 
 .main-content {
-  width: calc(100% - 64px);
-  // display: flex;
-  // flex-direction: column;
+  width: calc(100% - $sidenav-width);
   background-color: white;
   color: black;
   padding: 0;
-  // overflow-y: auto;
 }
 
 .navbar {
   width: 100%;
-  // position: fixed; /* Set the navbar to fixed position */
-  // top: 0;
-  // z-index: 8;
 }
 
 .sidenav {
