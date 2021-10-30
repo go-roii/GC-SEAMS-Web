@@ -12,10 +12,38 @@ body {
     font-family: Rubik,"Helvetica Neue", sans-serif;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 96px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+h3 {
+    font-size: 48px;
+}
+
+h4 {
+    font-size: 34px;
+}
+
+h5 {
+    font-size: 24px;
+}
+
+h6 {
+    font-size: 20px;
+}
+
 .navbar {
     background-color: white;
     min-height: $navbar-height;
-    padding: 8px 16px 0 16px;
+    padding: 8px 16px;
 }
 
 .navbar-brand {

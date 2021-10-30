@@ -12,6 +12,7 @@ $sidenav-width: 64px;
 }
 
 .main-content {
+  width: calc(100% - 64px);
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -42,7 +43,7 @@ $sidenav-width: 64px;
 .content {
   display: flex;
   flex: 1;
-  background-color: red;
+  padding: 0;
 }
 
 
