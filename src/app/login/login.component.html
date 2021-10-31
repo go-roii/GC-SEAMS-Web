@@ -17,13 +17,12 @@
                     <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">
                       <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
                       <span *ngIf="email?.errors?.required">
-                        email is required
+                        Email is required
                       </span>
                       <span *ngIf="email?.errors?.email">
-                        invalid email
+                        Invalid email
                       </span>
                     </span>
-
                 </div>
 
                 <div class="mb-4">
@@ -33,10 +32,10 @@
                     <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
                       <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
                       <span *ngIf="password?.errors?.minLength">
-                        password must at least be 8 characters
+                        Password must contain at least 8 characters
                       </span>
                       <span *ngIf="password?.errors?.required">
-                        password is required
+                        Password is required
                       </span>
                     </span>
                 </div>
