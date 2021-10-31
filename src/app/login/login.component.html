@@ -16,12 +16,12 @@
 
                     <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">
                       <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-                      <span *ngIf="email?.errors?.required">
+                      <div *ngIf="email?.errors?.required" class="text-danger text-helper mt-1">
                         Email is required
-                      </span>
-                      <span *ngIf="email?.errors?.email">
+                      </div>
+                      <div *ngIf="email?.errors?.email" class="text-danger text-helper mt-1">
                         Invalid email
-                      </span>
+                      </div>
                     </span>
                 </div>
 
@@ -31,12 +31,12 @@
 
                     <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
                       <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-                      <span *ngIf="password?.errors?.minLength">
+                      <div *ngIf="password?.errors?.minLength" class="text-danger text-helper mt-1">
                         Password must contain at least 8 characters
-                      </span>
-                      <span *ngIf="password?.errors?.required">
+                      </div >
+                      <div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">
                         Password is required
-                      </span>
+                      </div>
                     </span>
                 </div>
 
