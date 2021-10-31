@@ -9,19 +9,40 @@
         <main class="form-login">
             <h1 class="mb-5">Log in to GC-SEAMS</h1>
 
-            <form [formGroup]='profileForm'>
+            <form [formGroup]='credentialsForm'>
                 <div class="mb-3">
                     <label for="email" class="form-label">GC Domain Email</label>
                     <input type="email" class="form-control" id="email" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
+
+                    <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">
+                      <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+                      <span *ngIf="email?.errors?.required">
+                        email is required
+                      </span>
+                      <span *ngIf="email?.errors?.email">
+                        invalid email
+                      </span>
+                    </span>
+
                 </div>
 
                 <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" formControlName="password" required>
+
+                    <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
+                      <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+                      <span *ngIf="password?.errors?.minLength">
+                        password must at least be 8 characters
+                      </span>
+                      <span *ngIf="password?.errors?.required">
+                        password is required
+                      </span>
+                    </span>
                 </div>
 
                 <div class="d-grid gap-3">
-                    <button type="submit" class="btn btn-lg btn-primary" type="submit" (click)='login()' [routerLink]="['/homescreen']">Login</button>
+                    <button type="submit" class="btn btn-lg btn-primary" type="submit" [disabled]="credentialsForm.invalid" (click)='login()' [routerLink]="['/homescreen']">Login</button>
                     <button type="button" class="btn btn-lg btn-secondary" [routerLink]="['/register']">Register</button>
                 </div>
             </form>

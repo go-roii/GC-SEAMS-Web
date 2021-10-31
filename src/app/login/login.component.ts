@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Credentials } from '../models/Credential';
 import { UserService } from '../services/user.service';
 
@@ -17,16 +17,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  profileForm = new FormGroup({
-    email:new FormControl(''),
-    password:new FormControl(''),
+  credentialsForm = new FormGroup({
+    email:new FormControl('',[Validators.required,Validators.email]),
+    password:new FormControl('',[ Validators.minLength(8), Validators.required]),
   });
 
-  get email() { return this.profileForm.get('email'); }
+  get email() { return this.credentialsForm.get('email'); }
+  get password() { return this.credentialsForm.get('password'); }
 
   credentials: Credentials={
-    email: this.profileForm.controls['email'].value,
-    password: this.profileForm.controls['password'].value
+    email: this.credentialsForm.controls['email'].value,
+    password: this.credentialsForm.controls['password'].value
   }
 
   login(): void {
