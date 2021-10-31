@@ -23,3 +23,7 @@ h1 {
     font-weight: 500;
     font-size: 36px;
 }
+
+.ng-invalid.ng-touched:not(form){
+  border: 1px solid red; /* red */
+}
