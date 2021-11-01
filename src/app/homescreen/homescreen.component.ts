@@ -10,20 +10,29 @@ import { NavigationStart, Router } from '@angular/router';
 
 export class HomescreenComponent implements OnInit {
 
-  currentPage: string = this.router.url;
+	isExpanded: boolean = false;
 
-  constructor(private router : Router) { }
+	currentPage: string = this.router.url;
 
-  ngOnInit(): void {
-    this.router.events.subscribe(event =>{
-      if (event instanceof NavigationStart){
-         this.routerChangeMethod(event.url);
-      }
-   })
-  }
+	constructor(private router : Router) { }
 
-  routerChangeMethod(url: string){
-    this.currentPage = url;
-  }
+	ngOnInit(): void {
+		this.router.events.subscribe(event => {
+			if (event instanceof NavigationStart) {
+				this.routerChangeMethod(event.url);
+			}
+		})	
+	}
+
+	routerChangeMethod(url: string) {
+		this.currentPage = url;
+	}
+
+	sidenav_status() {
+		if(this.isExpanded) 
+            this.isExpanded = false;
+        else 
+            this.isExpanded = true;
+	}	
 
 }
