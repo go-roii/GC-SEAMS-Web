@@ -1,5 +1,14 @@
-<div class="text-header">
+<div class="text-header d-flex">
     <h4>Create Event</h4>
+	<div class="header-buttons">
+		<select id="invite" class="form-select" formControlName="invite" required>
+			<option value="" selected disabled hidden>Invite Courses</option>
+			<option>BSCS</option>
+			<option>BSIT</option>
+			<option>ACT</option>
+		</select>
+		<button id="create-button" class="btn btn-primary">Create</button>
+	</div>
 </div>
 
 <div class="cards-list-container">

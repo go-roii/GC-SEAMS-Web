@@ -8,8 +8,30 @@
 }
 
 .text-header {
+	display: flex;
     padding: 0 0 32px;
 }
+
+.text-header h4 {
+	flex: 1;
+}
+
+.text-header .header-buttons {
+	display: flex;
+	align-items: center;
+
+	& * {
+		display: inline;
+		width: initial;
+		// height: 36px;
+	}
+
+	& *:not(:last-child) {
+		margin-right: 12px;
+	}
+}
+
+
 
 .cards-list-container {
 
