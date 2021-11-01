@@ -18,9 +18,17 @@ $sidenav-expanded-width: 250px;
   padding: 0;
 }
 
-.navbar {
-  width: 100%;
+// .navbar {
+//   width: 100%;
+// }
+
+#profile {
+	width: 36px;
+	height: 36px;
+	background-color: violet;
+	border-radius: 50%;
 }
+
 
 .sidenav {
   min-width: $sidenav-width;
