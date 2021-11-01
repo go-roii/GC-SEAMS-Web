@@ -1,101 +1,101 @@
 <div class="register-body">
-  <nav class="navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['']">GC-SEAMS</a>
-    </div>
-  </nav>
+	<nav class="navbar">
+		<div class="container-fluid">
+			<a class="navbar-brand" [routerLink]="['']">GC-SEAMS</a>
+		</div>
+	</nav>
 
-  <div class="register-container container">
-    <main class="form-register">
-      <h1 class="mb-5">Register to GC-SEAMS</h1>
+	<div class="register-container container">
+		<main class="form-register">
+			<h1 class="mb-5">Register to GC-SEAMS</h1>
 
-      <form [formGroup]='profileForm'>
+			<form [formGroup]='profileForm'>
 
-        <div class="mb-3">
-          <label for="firstname" class="form-label">Full Name</label>
-          <div class="input-group">
-            <input id="firstname" type="text" class="form-control" formControlName="firstName" placeholder="First name" required>
-            <input id="middlename" type="text" class="form-control" formControlName="middleName" placeholder="Middle name">
-            <input id="lastname" type="text" class="form-control" formControlName="lastName" placeholder="Last name" required>
-          </div>
-          <div>
-            <!-- validator for firstName & lastName -->
-          <span *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched) " class="validation-error">
-            <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-            <div *ngIf="firstName?.errors?.required" class="text-danger text-helper mt-1">
-              First name is required.
-            </div>
-          </span>
-          <span *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="validation-error">
-            <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-            <div *ngIf="lastName?.errors?.required" class="text-danger text-helper mt-1">
-              Last name is required.
-            </div>
-          </span>
-          </div>
-        </div>
+				<div class="mb-3">
+					<label for="firstname" class="form-label">Full Name</label>
+					<div class="input-group">
+						<input id="firstname" type="text" class="form-control" formControlName="firstName" placeholder="First name" required>
+						<input id="middlename" type="text" class="form-control" formControlName="middleName" placeholder="Middle name">
+						<input id="lastname" type="text" class="form-control" formControlName="lastName" placeholder="Last name" required>
+					</div>
+					<div>
+						<!-- validator for firstName & lastName -->
+						<span *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched) " class="validation-error">
+							<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+							<div *ngIf="firstName?.errors?.required" class="text-danger text-helper mt-1">
+								First name is required.
+							</div>
+						</span>
+						<span *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="validation-error">
+							<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+							<div *ngIf="lastName?.errors?.required" class="text-danger text-helper mt-1">
+								Last name is required.
+							</div>
+						</span>
+					</div>
+				</div>
 
-        <div class="mb-3">
-          <div class="input-group">
-            <select id="course" class="form-select" formControlName="course"required>
-              <option value="" selected disabled hidden>Course</option>
-              <option>BSCS</option>
-              <option>BSIT</option>
-              <option>ACT</option>
-            </select>
-            <select id="year" class="form-select" formControlName="level" required>
-              <option value="" selected disabled hidden>Year</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-        </div>
-		
-        <div class="mb-3">
-          <label for="email" class="form-label">GC Domain Email</label>
-          <input id="email" type="email" class="form-control" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
-          <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">
-            <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-            <div *ngIf="email?.errors?.required" class="text-danger text-helper mt-1">
-              Email is required
-            </div>
-            <div *ngIf="email?.errors?.email" class="text-danger text-helper mt-1">
-              Invalid Email
-            </div>
-          </span>
-        </div>
+				<div class="mb-3">
+					<div class="input-group">
+						<select id="course" class="form-select" formControlName="course"required>
+							<option value="" selected disabled hidden>Course</option>
+							<option>BSCS</option>
+							<option>BSIT</option>
+							<option>ACT</option>
+						</select>
+						<select id="year" class="form-select" formControlName="level" required>
+							<option value="" selected disabled hidden>Year</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="email" class="form-label">GC Domain Email</label>
+					<input id="email" type="email" class="form-control" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
+					<span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">
+						<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+						<div *ngIf="email?.errors?.required" class="text-danger text-helper mt-1">
+							Email is required
+						</div>
+						<div *ngIf="email?.errors?.email" class="text-danger text-helper mt-1">
+							Invalid Email
+						</div>
+					</span>
+				</div>
 
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input id="password" type="password" class="form-control" formControlName="password" required>
-          <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
-            <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-            <div *ngIf="password?.errors?.minLength" class="text-danger text-helper mt-1">
-              Password must contain at least 8 characters
-            </div>
-            <div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">
-              Password is required
-            </div>
-          </span>
-        </div>
+				<div class="mb-3">
+					<label for="password" class="form-label">Password</label>
+					<input id="password" type="password" class="form-control" formControlName="password" required>
+					<span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
+						<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+						<div *ngIf="password?.errors?.minLength" class="text-danger text-helper mt-1">
+							Password must contain at least 8 characters
+						</div>
+						<div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">
+							Password is required
+						</div>
+					</span>
+				</div>
 
-        <div class="mb-4">
-          <label for="password_confirmation" class="form-label">Confirm Password</label>
-          <input id="password_confirmation" type="password" class="form-control" formControlName="passwordConfirmation" required>
-          <span *ngIf="passwordConfirmation?.invalid && (passwordConfirmation?.dirty || passwordConfirmation?.touched)" class="validation-error">
-            <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-            <span *ngIf="passwordConfirmation?.errors?.required" class="text-danger text-helper mt-1">
-              Password confirmation is required
-            </span>
-          </span>
-        </div>
+				<div class="mb-4">
+					<label for="password_confirmation" class="form-label">Confirm Password</label>
+					<input id="password_confirmation" type="password" class="form-control" formControlName="passwordConfirmation" required>
+					<span *ngIf="passwordConfirmation?.invalid && (passwordConfirmation?.dirty || passwordConfirmation?.touched)" class="validation-error">
+						<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+						<span *ngIf="passwordConfirmation?.errors?.required" class="text-danger text-helper mt-1">
+							Password confirmation is required
+						</span>
+					</span>
+				</div>
 
-        <div class="d-grid">
-          <button id="submit_button" type="submit" class="btn btn-lg btn-secondary" [disabled]="profileForm.invalid" (click)='register()'>Register</button>
-        </div>
-      </form>
-    </main>
-  </div>
+				<div class="d-grid">
+					<button id="submit_button" type="submit" class="btn btn-lg btn-secondary" [disabled]="profileForm.invalid" (click)='register()'>Register</button>
+				</div>
+			</form>
+		</main>
+	</div>
 </div>
