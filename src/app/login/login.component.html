@@ -28,12 +28,12 @@
 				<div class="mb-4">
 					<label for="password" class="form-label">Password</label>
 					<input type="password" class="form-control" id="password" formControlName="password" required>
-                    <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
-                      <!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
-                      <div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">
-                        Password is required
-                      </div>
-                    </span>
+					<span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">
+						<!-- you can change the border color of the field cuguro kung pwede para di masira ang ui :)-->
+						<div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">
+							Password is required
+						</div>
+					</span>
         </div>
 
 				<div class="d-grid gap-3">
@@ -41,7 +41,7 @@
 					<button type="button" class="btn btn-lg btn-secondary" [routerLink]="['/register']">Register</button>
 				</div>
 			</form>
-      	</main>
-    </div>
+		</main>
+	</div>
 </div>
 

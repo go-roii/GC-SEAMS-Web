@@ -1,0 +1,21 @@
+.tabs {
+	
+	& .nav {
+		display: flex;
+		gap: 24px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	}
+
+	& .nav-item a {
+		color: rgba(0, 0, 0, 0.60);
+		background-color: transparent;
+		padding: 8px 4px;
+	}
+
+	& .nav-item a.active {
+		color: violet;
+		border-bottom: 2px solid violet;
+		box-shadow: 0 1px 0 0 violet;
+	}
+
+}

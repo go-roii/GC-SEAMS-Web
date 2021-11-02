@@ -1,5 +1,4 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Events } from 'src/app/models/Events';
 import { EventCardComponent } from './event-card/event-card.component';
 
 @Component({
@@ -31,7 +30,7 @@ export class CreateEventComponent implements OnInit {
   printInputs(): void{
     this.events.forEach(event => {
       console.log(event.eventName)
-      console.log('hello nigga')
+      console.log('hello bobo')
     });
   }
 
