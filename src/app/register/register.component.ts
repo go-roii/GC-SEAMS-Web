@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //create form group and form controls for fields
   profileForm=new FormGroup({
     firstName:new FormControl('',[Validators.required,]),
     middleName:new FormControl(''),
@@ -57,6 +58,8 @@ export class RegisterComponent implements OnInit {
     console.log('level: '+newUser.level)
     console.log('password: '+newUser.password)
     console.log('passwordConfirmation: '+newUser.passwordConfirmation)
+
+    this.profileForm.reset();
   }
 
 }

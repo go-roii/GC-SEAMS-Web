@@ -18,10 +18,11 @@ export class LoginComponent implements OnInit {
   }
 
   credentialsForm = new FormGroup({
-    email:new FormControl('',[Validators.required,Validators.email]),
-    password:new FormControl('',[ Validators.minLength(8), Validators.required]),
+    email:new FormControl('gc_seams@gordoncollege.edu.ph',[Validators.required,Validators.email]),
+    password:new FormControl('gc_seams_like_hell',[ Validators.required]),
   });
 
+  //getters for the fields' validation
   get email() { return this.credentialsForm.get('email'); }
   get password() { return this.credentialsForm.get('password'); }
 
@@ -31,8 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.setUserData(this.credentials);
-    this.userService.setLoginState();
+    // this.userService.setUserData(this.credentials);
+    // this.userService.setLoginState();
+    this.credentialsForm.reset()
   }
 
 }
