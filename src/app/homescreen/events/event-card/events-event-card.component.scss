@@ -1,8 +1,36 @@
 .card {
+	position: relative;
 	// width: 300px;
 	height: 325px;
+	border-radius: 6px;
+
+	& .card-body {
+		padding: 24px;
+		overflow: hidden;
+		white-space: normal;
+	}
+
+	& .card-text {
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 6; /* number of lines to show */
+		line-clamp: 6;
+		-webkit-box-orient: vertical;
+	}
 
 	& .card-link {
 		margin-top: auto;
+	}
+
+	& .event-time {
+		position: absolute;
+		bottom: 0;
+		color: white;
+		background-color: var(--primary-color);
+		font-size: 12px;
+		border-radius: 12px;
+		padding: 3px 8px;
 	}
 }

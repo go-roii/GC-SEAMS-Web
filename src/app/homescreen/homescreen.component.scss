@@ -21,6 +21,7 @@ $sidenav-expanded-width: 250px;
   
 	& .nav-item {
 	  white-space: nowrap;
+		overflow: hidden;
 	}
   
 	& .nav-item a {
