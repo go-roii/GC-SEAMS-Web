@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'events-event-card',
@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsEventCardComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding('className') componentClass: string;
+
+  constructor() {
+    this.componentClass = 'col-xl-3 col-lg-4 col-md-6 col-sm-12';
+   }
 
   ngOnInit(): void {
   }
