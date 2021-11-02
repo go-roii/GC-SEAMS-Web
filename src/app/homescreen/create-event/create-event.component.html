@@ -1,28 +1,27 @@
 <div class="text-header d-flex">
     <h4>Create Event</h4>
 	<div class="header-buttons">
-		<select id="invite" class="form-select" required>
+		<select id="invite" class="form-select">
 			<option value="" selected disabled hidden>Invite Courses</option>
 			<option>BSCS</option>
 			<option>BSIT</option>
 			<option>ACT</option>
 		</select>
-		<button id="create-button" class="btn btn-primary">Create</button>
+		<button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
 	</div>
 </div>
 
 <div class="cards-list-container">
   <div></div>
-	<app-event-card *ngFor="let event of events" ></app-event-card>
+	<app-event-card [count]='count' *ngFor="let event of events" ></app-event-card>
 
   <div class="event-container new-event-container" (click)='addCard()'>
-    <h5>Day 2</h5>
-
+    <h5>Day {{count+1}}</h5>
     <div style="font-size: 64px; text-align: center; margin: auto;">
         <i class="bi bi-plus-square-fill"></i>
     </div>
   </div>
-  
+
 </div>
 
 

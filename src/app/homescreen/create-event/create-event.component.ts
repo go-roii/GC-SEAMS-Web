@@ -8,6 +8,8 @@ import { EventCardComponent } from './event-card/event-card.component';
   styleUrls: ['./create-event.component.scss']
 })
 export class CreateEventComponent implements OnInit {
+
+  count = 0;
   events: EventCardComponent[] = []
 
     // @HostBinding('className') componentClass: string;
@@ -17,13 +19,20 @@ export class CreateEventComponent implements OnInit {
    }
 
    addCard(){
+    this.count=this.count+1
     const newCard= new EventCardComponent();
-
     this.events.push(newCard)
    }
 
   ngOnInit(): void {
     this.addCard();
+  }
+
+  printInputs(): void{
+    this.events.forEach(event => {
+      console.log(event.eventName)
+      console.log('hello nigga')
+    });
   }
 
 }

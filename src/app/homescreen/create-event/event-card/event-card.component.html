@@ -1,37 +1,41 @@
 <div class="event-container">
-    <h5 class="mb-4">Day </h5>
+    <h5 class="mb-4">Day {{event.id}}</h5>
 
     <form [formGroup]='eventForm'>
         <div class="mb-3">
             <label for="event-name" class="form-label">Event Name</label>
-            <input id="event-name" class="form-control form-control-sm" type="text" formControlName="eventName" required>
+            <input id="event-name" class="form-control form-control-sm" [(ngModel)]='event.eventName' type="text" formControlName="eventName" required>
         </div>
 
         <div class="mb-3">
             <label for="event-details" class="form-label">Event Details</label>
-            <textarea id="event-details" class="form-control form-control-sm" type="text" formControlName="eventDetails" rows="2" required></textarea>
+            <textarea id="event-details" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="2" required></textarea>
         </div>
 
         <div class="mb-3">
-            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate" required>
+            <input id="date" class="form-control form-control-sm" type="date" [(ngModel)]='event.eventDate' formControlName="eventDate" required>
         </div>
 
         <div class="mb-3">
             <div class="input-group">
-                <input id="from-time" class="form-control form-control-sm" type="time" formControlName="eventStartTime" required>
-                <input id="to-time" class="form-control form-control-sm" type="time" formControlName="eventEndTime" required>
+                <input id="from-time" class="form-control form-control-sm" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+                <input id="to-time" class="form-control form-control-sm" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
         </div>
 
         <div class="mb-3">
             <label for="speakers" class="form-label">Speakers</label>
-            <input id="speakers" class="form-control form-control-sm" type="text" formControlName="eventSpeakers" required>
+            <input id="speakers" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
         </div>
 
         <div class="mb-3">
             <label for="registration-form" class="form-label">Registration Form</label>
-            <input id="registration-form" class="form-control form-control-sm" type="text" formControlName="eventRegistrationForm" required>
+            <input id="registration-form" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventRegistrationForm' formControlName="eventRegistrationForm" required>
         </div>
+
+        <div class="mb-3">
+          <button type="button" (click)='printInputs()'>Print</button>
+      </div>
 
     </form>
 </div>

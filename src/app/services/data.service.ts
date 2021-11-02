@@ -12,10 +12,10 @@ export class DataService {
     let result: any
     switch(sw){
       case 1:
-        result = this.http.get(this.baseURL+endpoint)
+        result = this.http.get(this.baseURL+endpoint);
       break;
       case 2:
-        result = this.http.post(this.baseURL+endpoint, JSON.stringify(data))
+        result = this.http.post(this.baseURL+endpoint, JSON.stringify(data));
       break;
       default:
       break;

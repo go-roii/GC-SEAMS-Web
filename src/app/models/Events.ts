@@ -23,13 +23,22 @@ export class Events{
 
   }
 
+  public set ID(id: number){this.id=id;}
+  public set Eventname(eventName: string){this.eventName=eventName;}
+  public set EventDetails(eventDetails: string){this.eventDetails=eventDetails;}
+  public set EventDate(eventDate: Date){this.eventDate=eventDate;}
+  public set EventStartTime(eventStartTime){this.eventStartTime=eventStartTime;}
+  public set EventEndTime(eventEndTime){this.eventEndTime=eventEndTime;}
+  public set EventSpeakers(eventSpeakers){this.eventSpeakers=eventSpeakers;}
+  public set EventRegistrationForm(eventRegistrationForm){this.eventRegistrationForm=eventRegistrationForm;}
+
   public get ID(){return this.id;}
   public get Eventname(){return this.eventName}
-  public get EventDetails(){return this.eventName}
-  public get EventDate(){return this.eventName}
-  public get EventStartTime(){return this.eventName}
-  public get EventEndTime(){return this.eventName}
-  public get EventSpeakers(){return this.eventName}
-  public get EventRegistrationForm(){return this.eventName}
+  public get EventDetails(){return this.eventDetails}
+  public get EventDate(){return this.eventDate}
+  public get EventStartTime(){return this.eventStartTime}
+  public get EventEndTime(){return this.eventEndTime}
+  public get EventSpeakers(){return this.eventSpeakers}
+  public get EventRegistrationForm(){return this.eventRegistrationForm}
 
 }

@@ -12,20 +12,21 @@ import { Events } from 'src/app/models/Events';
 })
 export class EventCardComponent implements OnInit {
 
-  @Input() count!: Number;
+  @Input() count!: Number
   @Input() event: Events = new Events()
 
   // @HostBinding('className') componentClass: string;
 
   //create form group and form controls for its fields
+
   eventForm = new FormGroup({
-    eventName:new FormControl(this.event.eventName,[Validators.required,]),
-    eventDetails:new FormControl(this.event.eventDetails,Validators.required,),
-    eventDate:new FormControl(this.event.eventDate,[Validators.required,]),
-    eventStartTime:new FormControl(this.event.EventStartTime,[Validators.required,]),
-    eventEndTime:new FormControl(this.event.EventEndTime,[Validators.required,]),
-    eventSpeakers:new FormControl(this.event.eventSpeakers,[Validators.required,]),
-    eventRegistrationForm:new FormControl(this.event.EventRegistrationForm,[Validators.required]),
+    eventName:new FormControl('',[Validators.required,]),
+    eventDetails:new FormControl('',Validators.required,),
+    eventDate:new FormControl('',[Validators.required,]),
+    eventStartTime:new FormControl('',[Validators.required,]),
+    eventEndTime:new FormControl('',[Validators.required,]),
+    eventSpeakers:new FormControl('',[Validators.required,]),
+    eventRegistrationForm:new FormControl('',[Validators.required]),
   });
 
   //Getters for validation of the fields
@@ -42,6 +43,12 @@ export class EventCardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  printInputs(){
+    console.log(this.event.eventName)
+    console.log(this.event.eventDetails)
+
   }
 
 }
