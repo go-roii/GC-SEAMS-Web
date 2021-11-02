@@ -30,12 +30,17 @@ $sidenav-expanded-width: 250px;
 	}
   
 	& .nav-item p {
-      visibility: hidden;
+		color: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
 	  position: absolute;
 	  left: 56px;
 	  font-size: 14px;
 	  margin: 0;
 	  transition: visibility 300ms;
+	}
+
+	& .nav-item .active p {
+		color: white;
 	}
 }
   
@@ -43,7 +48,7 @@ $sidenav-expanded-width: 250px;
 	min-width: $sidenav-expanded-width;
 
 	& .nav-item p {
-	visibility: visible;
+		visibility: visible;
 	}
 }
   
