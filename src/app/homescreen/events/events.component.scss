@@ -7,15 +7,15 @@
 	}
 
 	& .nav-item a {
-		color: rgba(0, 0, 0, 0.60);
+		color: rgba(0, 0, 0, 0.48);
 		background-color: transparent;
 		padding: 8px 4px;
 	}
 
 	& .nav-item a.active {
-		color: violet;
-		border-bottom: 2px solid violet;
-		box-shadow: 0 1px 0 0 violet;
+		color: var(--primary-color);
+		border-bottom: 2px solid var(--primary-color);
+		box-shadow: 0 1px 0 0 var(--primary-color);
 	}
 
 }
