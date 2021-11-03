@@ -18,6 +18,7 @@ export class HomescreenComponent implements OnInit {
 	constructor(private router : Router) { }
 
 	ngOnInit(): void {
+		this.router.navigate(['homescreen/events/ongoing'])
 		// this.router.events.subscribe(event => {
 		// 	if (event instanceof NavigationStart) {
 		// 		this.routerChangeMethod(event.url);
