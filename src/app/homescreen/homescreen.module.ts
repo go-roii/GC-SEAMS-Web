@@ -9,6 +9,9 @@ import { EventCardComponent } from './create-event/event-card/event-card.compone
 import { NewEventCardComponent } from './create-event/new-event-card/new-event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventsComponent } from './events/events.component';
+import { OngoingComponent } from './events/ongoing/ongoing.component';
+import { PendingComponent } from './events/pending/pending.component';
+import { EndedComponent } from './events/ended/ended.component';
 
 
 
@@ -21,6 +24,9 @@ import { EventsComponent } from './events/events.component';
 		EventsEventCardComponent,
     EventCardComponent,
     NewEventCardComponent,
+    OngoingComponent,
+    PendingComponent,
+    EndedComponent,
   ],
   imports: [
     CommonModule,
