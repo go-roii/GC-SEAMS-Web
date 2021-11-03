@@ -12,20 +12,26 @@ export class HomescreenComponent implements OnInit {
 
 	isExpanded: boolean = false;
 
-	currentPage: string = this.router.url;
+	// currentPage: string = this.router.url;
+	currentPage: string = 'events';
 
 	constructor(private router : Router) { }
 
 	ngOnInit(): void {
-		this.router.events.subscribe(event => {
-			if (event instanceof NavigationStart) {
-				this.routerChangeMethod(event.url);
-			}
-		})	
+		// this.router.events.subscribe(event => {
+		// 	if (event instanceof NavigationStart) {
+		// 		this.routerChangeMethod(event.url);
+		// 	}
+		// })	
 	}
 
-	routerChangeMethod(url: string) {
-		this.currentPage = url;
+	// routerChangeMethod(url: string) {
+	// 	this.currentPage = url;
+	// }
+
+	activePage(page: string) {
+		console.log(page);
+		this.currentPage = page;
 	}
 
 	sidenav_status() {

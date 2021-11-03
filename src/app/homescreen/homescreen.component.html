@@ -10,7 +10,8 @@
 			</li>
 			<li class="nav-item">
 				<a [routerLink]="['events']" 
-				[ngClass]="{'active': currentPage === '/homescreen/events'}"    
+				[ngClass]="{'active': currentPage === 'events'}"
+				(click)="activePage('events')"
 				class="sidenav-btn nav-link active" title="Events" data-bs-toggle="tooltip" data-bs-placement="right">
 					<i class="bi bi-house"></i>
 					<p>Events</p>
@@ -18,7 +19,8 @@
 			</li>
 			<li class="nav-item">
 				<a [routerLink]="['create-event']" 
-				[ngClass]="{'active': currentPage === '/homescreen/create-event'}"  
+				[ngClass]="{'active': currentPage === 'create-event'}" 
+				(click)="activePage('create-event')" 
 				class="sidenav-btn nav-link" title="Create Event" data-bs-toggle="tooltip" data-bs-placement="right">
 					<i class="bi bi-plus-square align-top"></i>
 					<p>Create Event</p>
@@ -26,7 +28,8 @@
 			</li>
 			<li class="nav-item">
 				<a [routerLink]="['dashboard']"
-				[ngClass]="{'active': currentPage === '/homescreen/dashboard'}"  
+				[ngClass]="{'active': currentPage === 'dashboard'}"  
+				(click)="activePage('dashboard')"
 				class="sidenav-btn nav-link" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
 					<i class="bi bi-bar-chart"></i>
 					<p>Dashboard</p>
