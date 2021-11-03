@@ -107,6 +107,7 @@ $sidenav-expanded-width: 250px;
 
 .content {
   overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
   height: calc(100vh - 64px);
   padding: 32px 64px;
 }
