@@ -1,13 +1,22 @@
 <div class="tabs">
 	<ul class="nav">
 		<li class="nav-item">
-			<a [routerLink]="['ongoing']" class="nav-link active" aria-current="page">Ongoing Events</a>
+			<a [routerLink]="['ongoing']"
+			[ngClass]="{'active': currentPage === 'ongoing'}"
+			(click)="activePage('ongoing')" 
+			class="nav-link active">Ongoing Events</a>
 		</li>
 		<li class="nav-item">
-			<a [routerLink]="['pending']" class="nav-link">Pending Events</a>
+			<a [routerLink]="['pending']"
+			[ngClass]="{'active': currentPage === 'pending'}"
+			(click)="activePage('pending')" 
+			class="nav-link">Pending Events</a>
 		</li>
 		<li class="nav-item">
-			<a [routerLink]="['ended']" class="nav-link">Ended Events</a>
+			<a [routerLink]="['ended']"
+			[ngClass]="{'active': currentPage === 'ended'}"
+			(click)="activePage('ended')" 
+			class="nav-link">Ended Events</a>
 		</li>
 	</ul>
 </div>

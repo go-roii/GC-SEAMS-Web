@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
+  currentPage: string = 'ongoing';
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  activePage(page: string) {
+		console.log(page);
+		this.currentPage = page;
+	}
 
 }
