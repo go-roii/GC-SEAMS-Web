@@ -19,6 +19,10 @@ const routes: Routes = [
     children: [
       {
         path: 'events',
+        redirectTo: 'events/ongoing',
+      },
+      {
+        path: 'events',
         component: EventsComponent,
         children: [
           {
