@@ -8,11 +8,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 export class EndedComponent implements OnInit {
 
   @HostBinding('className') componentClass: string;
-  @HostBinding('attr.id') componentId: string;
+  currentItem = 'ended';
 
   constructor() {
     this.componentClass = 'row gy-4';
-    this.componentId = 'ended';
    }
 
   ngOnInit(): void {

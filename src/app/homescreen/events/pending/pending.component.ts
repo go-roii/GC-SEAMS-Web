@@ -8,6 +8,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 export class PendingComponent implements OnInit {
 
   @HostBinding('className') componentClass: string;
+  currentItem = 'pending';
 
   constructor() {
     this.componentClass = 'row gy-4';

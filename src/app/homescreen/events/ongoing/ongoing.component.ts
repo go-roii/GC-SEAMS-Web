@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ongoing',
@@ -8,7 +8,8 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 export class OngoingComponent implements OnInit {
 
   @HostBinding('className') componentClass: string;
-
+  currentItem = 'ongoing';
+  
   constructor() {
     this.componentClass = 'row gy-4';
    }

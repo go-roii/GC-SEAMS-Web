@@ -7,16 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-  currentPage: string = 'ongoing';
+  currentTab: string = 'ongoing';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  activePage(page: string) {
-		console.log(page);
-		this.currentPage = page;
+  activePage(tab: string) {
+		this.currentTab = tab;
 	}
 
 }

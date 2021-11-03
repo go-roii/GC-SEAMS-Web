@@ -2,19 +2,19 @@
 	<ul class="nav">
 		<li class="nav-item">
 			<a [routerLink]="['ongoing']"
-			[ngClass]="{'active': currentPage === 'ongoing'}"
+			[ngClass]="{'active': currentTab === 'ongoing'}"
 			(click)="activePage('ongoing')" 
 			class="nav-link active">Ongoing Events</a>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['pending']"
-			[ngClass]="{'active': currentPage === 'pending'}"
+			[ngClass]="{'active': currentTab === 'pending'}"
 			(click)="activePage('pending')" 
 			class="nav-link">Pending Events</a>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['ended']"
-			[ngClass]="{'active': currentPage === 'ended'}"
+			[ngClass]="{'active': currentTab === 'ended'}"
 			(click)="activePage('ended')" 
 			class="nav-link">Ended Events</a>
 		</li>

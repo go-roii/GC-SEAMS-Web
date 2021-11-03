@@ -1,3 +1,29 @@
+:host {
+	&.ongoing .card {
+		background-color: #f8f8f8;
+		border: 1px solid transparent;
+	}
+
+	&.pending .card {
+		& .event-time {
+			color: var(--primary-color);
+			background-color: transparent;
+			box-shadow: inset 0 0 0 1px var(--primary-color);
+		}
+	}
+
+	&.ended .card {
+		background-color: #f8f8f8;
+		border: 1px solid transparent;
+
+		& .event-time {
+			color: var(--primary-color);
+			background-color: transparent;
+			box-shadow: inset 0 0 0 1px var(--primary-color);
+		}
+	}
+}
+
 .card {
 	position: relative;
 	height: 325px;
