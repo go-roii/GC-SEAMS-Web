@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Credentials } from '../models/Credential';
+import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
-  providers:[UserService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
   }

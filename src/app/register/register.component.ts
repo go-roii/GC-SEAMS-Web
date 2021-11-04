@@ -1,17 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserProfile } from '../models/UserProfile';
+import { Courses } from '../models/Courses';
+import { RequestParams } from '../models/RequestParams';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers:[
+    DataService
+  ],
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  courses: Courses[]=[]
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getCourses();
+    console.log(this.courses)
+  }
+
+  getCourses(){
+    const coursesParams= new RequestParams();
+    coursesParams.EndPoint="/courses";
+    coursesParams.RequestType=1;
+
+    console.log(this.dataService.httprequest(coursesParams)
+    .subscribe((data: Courses[]) => this.courses = { ...data }));
+
   }
 
   //create form group and form controls for fields

@@ -39,9 +39,7 @@
 					<div class="input-group">
 						<select id="course" class="form-select" formControlName="course" required>
 							<option value="" selected disabled hidden>Course</option>
-							<option>BSCS</option>
-							<option>BSIT</option>
-							<option>ACT</option>
+							<option *ngFor="let course of courses">{{course.course_code}}</option>
 						</select>
 						<select id="year" class="form-select" formControlName="level" required>
 							<option value="" selected disabled hidden>Year</option>
@@ -52,7 +50,7 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="mb-3">
 					<label for="email" class="form-label">GC Domain Email</label>
 					<input id="email" type="email" class="form-control" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>

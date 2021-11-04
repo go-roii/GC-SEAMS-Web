@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Events } from 'src/app/models/Events';
-import { EventsComponent } from '../events/events.component';
 import { EventCardComponent } from './event-card/event-card.component';
 
 @Component({
@@ -15,9 +15,10 @@ export class CreateEventComponent implements OnInit {
   events: EventCardComponent[]=[];
   eventData: Events[] = []
 
+
     // @HostBinding('className') componentClass: string;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   addEventData(newEvent: Events) {
@@ -37,12 +38,6 @@ export class CreateEventComponent implements OnInit {
 
   printInputs(): void{
     console.log(this.eventData)
-    this.resetEventData();
-  }
-
-  resetEventData(): void{
-    this.eventData=[]
-    this.events=[]
   }
 
 }
