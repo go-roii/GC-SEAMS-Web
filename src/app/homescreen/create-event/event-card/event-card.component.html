@@ -13,19 +13,33 @@
         </div>
 
         <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
             <input id="date" class="form-control form-control-sm" type="date" [(ngModel)]='event.eventDate' formControlName="eventDate" required>
         </div>
 
         <div class="mb-3">
-            <div class="input-group">
-                <input id="from-time" class="form-control form-control-sm" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
-                <input id="to-time" class="form-control form-control-sm" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+            <label for="time" class="form-label">Time</label>
+            <div class="input-group input-group-sm">
+                <span class="input-group-text" id="basic-addon3">From</span>
+                <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+                <span class="input-group-text" id="basic-addon3">To</span>
+                <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
         </div>
 
         <div class="mb-3">
             <label for="speakers" class="form-label">Speakers</label>
-            <input id="speakers" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
+            <div class="input-group input-group-sm"> 
+                <input id="speakers" class="form-control" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add Speaker</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="mb-3">
