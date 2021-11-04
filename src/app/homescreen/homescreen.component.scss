@@ -27,7 +27,7 @@ $sidenav-expanded-width: 250px;
 	& .nav-item a {
 	  display: flex;
 	  align-items: center;
-	  justify-content: flex-start;
+	//   justify-content: flex-start;
 	}
   
 	& .nav-item p {
@@ -98,10 +98,11 @@ $sidenav-expanded-width: 250px;
 //   width: 100%;
 // }
 
-#profile {
+#profileButton {
 	width: 36px;
 	height: 36px;
 	background-color: var(--primary-color);
+	border: none;
 	border-radius: 50%;
 }
 
