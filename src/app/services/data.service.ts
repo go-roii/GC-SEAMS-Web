@@ -18,12 +18,11 @@ export class DataService {
         result = this.http.get(this.baseURL+requestParams.EndPoint);
       break;
       case 2:
-        result = this.http.post(this.baseURL+requestParams.EndPoint, JSON.stringify(requestParams.Body));
+        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
       break;
       default:
       break;
     }
-    console.log(result);
     return result;
   }
 }

@@ -1,10 +1,8 @@
 export interface UserProfile{
-  firstName:string;
-  middleName:string;
-  lastName:string;
-  email:string;
-  course: string;
-  level: string;
+  email_address:string;
   password: string;
-  passwordConfirmation: string;
+  first_name:string;
+  middle_name:string;
+  last_name:string;
+  course_id: number;
 }
