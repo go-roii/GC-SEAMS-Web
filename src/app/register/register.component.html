@@ -35,18 +35,19 @@
 					</div>
 				</div>
 
+        <div class='mb-3'>
+
+        </div>
+
 				<div class="mb-3">
 					<div class="input-group">
+            <select id="department" class="form-select" formControlName="department" required>
+              <option value="" selected disabled hidden>select department</option>
+              <option *ngFor="let department of departments">{{department.department_name}}</option>
+            </select>
 						<select id="course" class="form-select" formControlName="course" required>
-							<option value="" selected disabled hidden>Course</option>
+							<option value="" selected disabled hidden>select course</option>
 							<option *ngFor="let course of courses">{{course.course_code}}</option>
-						</select>
-						<select id="year" class="form-select" formControlName="level" required>
-							<option value="" selected disabled hidden>Year</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
 						</select>
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Courses } from '../models/Courses';
+import { Departments } from '../models/Departments';
 import { RequestParams } from '../models/RequestParams';
 import { DataService } from '../services/data.service';
 
@@ -15,23 +16,34 @@ import { DataService } from '../services/data.service';
 export class RegisterComponent implements OnInit {
 
   courses: Courses[]=[]
+  departments: Departments[]=[]
+
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getDepartments();
     this.getCourses();
-    console.log(this.courses)
+  }
+
+  getDepartments(){
+    const coursesParams= new RequestParams();
+    coursesParams.EndPoint="departments";
+    coursesParams.RequestType=1;
+
+    this.dataService.httprequest(coursesParams)
+    .subscribe((data: Departments[]) => this.departments = data);
   }
 
   getCourses(){
     const coursesParams= new RequestParams();
-    coursesParams.EndPoint="/courses";
+    coursesParams.EndPoint="courses";
     coursesParams.RequestType=1;
 
-    console.log(this.dataService.httprequest(coursesParams)
-    .subscribe((data: Courses[]) => this.courses = { ...data }));
-
+    this.dataService.httprequest(coursesParams)
+    .subscribe((data: Courses[]) => this.courses = data);
   }
+
 
   //create form group and form controls for fields
   profileForm=new FormGroup({
@@ -39,6 +51,7 @@ export class RegisterComponent implements OnInit {
     middleName:new FormControl(''),
     lastName:new FormControl('',[Validators.required,]),
     email:new FormControl('',[Validators.required,Validators.email]),
+    department:new FormControl('',[Validators.required,]),
     course:new FormControl('',[Validators.required,]),
     level:new FormControl('',[Validators.required,]),
     password:new FormControl('',[ Validators.minLength(8), Validators.required]),
@@ -80,5 +93,4 @@ export class RegisterComponent implements OnInit {
 
     this.profileForm.reset();
   }
-
 }
