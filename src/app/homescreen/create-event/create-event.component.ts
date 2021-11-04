@@ -1,4 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Events } from 'src/app/models/Events';
+import { EventsComponent } from '../events/events.component';
 import { EventCardComponent } from './event-card/event-card.component';
 
 @Component({
@@ -9,13 +12,18 @@ import { EventCardComponent } from './event-card/event-card.component';
 export class CreateEventComponent implements OnInit {
 
   count = 0;
-  events: EventCardComponent[] = []
+  events: EventCardComponent[]=[];
+  eventData: Events[] = []
 
     // @HostBinding('className') componentClass: string;
 
   constructor() {
-    // this.componentClass = 'container-fluid';
-   }
+  }
+
+  addEventData(newEvent: Events) {
+    newEvent.id=this.count
+    this.eventData.push(newEvent);
+  }
 
    addCard(){
     this.count=this.count+1
@@ -28,10 +36,13 @@ export class CreateEventComponent implements OnInit {
   }
 
   printInputs(): void{
-    this.events.forEach(event => {
-      console.log(event.eventName)
-      console.log('hello bobo')
-    });
+    console.log(this.eventData)
+    this.resetEventData();
+  }
+
+  resetEventData(): void{
+    this.eventData=[]
+    this.events=[]
   }
 
 }
