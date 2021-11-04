@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HomescreenComponent implements OnInit {
 	// currentPage: string = this.router.url;
 	currentPage: string = 'events';
 
-	constructor(private router : Router) { }
+	constructor(private router : Router, private userService: UserService) { }
 
 	ngOnInit(): void {
 		this.router.navigate(['homescreen/events/ongoing'])
@@ -23,7 +24,7 @@ export class HomescreenComponent implements OnInit {
 		// 	if (event instanceof NavigationStart) {
 		// 		this.routerChangeMethod(event.url);
 		// 	}
-		// })	
+		// })
 	}
 
 	// routerChangeMethod(url: string) {
@@ -36,10 +37,14 @@ export class HomescreenComponent implements OnInit {
 	}
 
 	sidenav_status() {
-		if(this.isExpanded) 
+		if(this.isExpanded)
             this.isExpanded = false;
-        else 
+        else
             this.isExpanded = true;
-	}	
+	}
+
+  logout(){
+    this.userService.logOut();
+  }
 
 }
