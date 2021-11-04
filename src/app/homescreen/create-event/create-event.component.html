@@ -16,17 +16,19 @@
 	</div>
 </div>
 
-<div class="cards-list-container">
-	<app-event-card
-  *ngFor="let event of events"
-  (eventData)="addEventData($event)"
-  ></app-event-card>
-  <div class="event-container new-event-container" (click)='addCard()'>
-    <h5>Day {{count+1}}</h5>
-    <div style="font-size: 64px; text-align: center; margin: auto;">
-        <i class="bi bi-plus-square-fill"></i>
-    </div>
-  </div>
+<div class="cards-list-container row g-4">
+	<app-event-card	
+	*ngFor="let event of events"
+	(eventData)="addEventData($event)">
+	</app-event-card>
+	<div class="d-flex col-lg-6 col-md-12" (click)='addCard()'>
+		<div class="event-container new-event-container">
+			<h5>Day {{count+1}}</h5>
+			<div style="font-size: 64px; text-align: center; margin: auto;">
+				<i class="bi bi-plus-square-fill"></i>
+			</div>
+		</div>
+	</div>
 </div>
 
 

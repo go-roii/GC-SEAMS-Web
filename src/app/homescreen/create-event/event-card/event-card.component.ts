@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Events } from 'src/app/models/Events';
@@ -15,11 +15,13 @@ import { Events } from 'src/app/models/Events';
 
 export class EventCardComponent implements OnInit {
 
+  @HostBinding('className') componentClass = '';
   eventForm!: FormGroup;
   @Output() eventData = new EventEmitter<Events>();
   event: Events=new Events()
 
   addNewEvent() {
+    this.componentClass = 'col-lg-6 col-md-12';
     this.event.eventName=this.eventForm.controls['eventName'].value;
     this.eventData.emit(this.event);
   }

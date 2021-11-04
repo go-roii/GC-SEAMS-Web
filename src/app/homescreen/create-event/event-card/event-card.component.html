@@ -9,21 +9,24 @@
 
         <div class="mb-3">
             <label for="event-details" class="form-label">Event Details</label>
-            <textarea id="event-details" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="2" required></textarea>
+            <textarea id="event-details" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
         </div>
 
         <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input id="date" class="form-control form-control-sm" type="date" [(ngModel)]='event.eventDate' formControlName="eventDate" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="time" class="form-label">Time</label>
-            <div class="input-group input-group-sm">
-                <span class="input-group-text" id="basic-addon3">From</span>
-                <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
-                <span class="input-group-text" id="basic-addon3">To</span>
-                <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+            <div class="row">
+                <div class="col-4">
+                    <label for="date" class="form-label">Date</label>
+                    <input id="date" class="form-control form-control-sm" type="date" [(ngModel)]='event.eventDate' formControlName="eventDate" required>
+                </div>
+                <div class="col-8">
+                    <label for="time" class="form-label">Time</label>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text" id="basic-addon3">From</span>
+                        <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+                        <span class="input-group-text" id="basic-addon3">To</span>
+                        <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+                    </div>
+                </div>
             </div>
         </div>
 

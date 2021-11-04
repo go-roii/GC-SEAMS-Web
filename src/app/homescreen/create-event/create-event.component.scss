@@ -1,9 +1,5 @@
-:host {
-    padding: 0;
-}
-
 #create-event-container {
-    overflow-y: auto;
+    // overflow-x: auto;
     height: calc(100vh - 64px);
 }
 
@@ -34,19 +30,22 @@
 
 
 .cards-list-container {
-
+    // overflow-x: auto;
 }
 
 .event-container { 
+    // display: inline-block;
+    // width: 500px;
+    height: 563px;
     background-color: white;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 12px;
     padding: 36px;
-    margin-bottom: 32px;
 }
 
 .new-event-container {
+    flex: 1;
     color: rgba(0, 0, 0, 0.3);
     border: 2px dashed rgba(0, 0, 0, 0.3);
     cursor: pointer;
