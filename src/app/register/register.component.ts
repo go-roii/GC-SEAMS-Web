@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Courses } from '../models/Courses';
 import { Departments } from '../models/Departments';
 import { RequestParams } from '../models/RequestParams';
+import { UserProfile } from '../models/UserProfile';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { DataService } from '../services/data.service';
     DataService
   ],
 })
+
 export class RegisterComponent implements OnInit {
 
   courses: Courses[]=[]
@@ -69,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
 
-    const newUser={
+    const newUser: UserProfile={
       email_address : this.profileForm.controls['email'].value,
       password : this.profileForm.controls['password'].value,
       first_name : this.profileForm.controls['firstName'].value,
@@ -83,7 +85,7 @@ export class RegisterComponent implements OnInit {
     registrationParams.Body=newUser;
     registrationParams.RequestType=2;
 
-    console.log(JSON.stringify(registrationParams.Body))
+    console.log(registrationParams.Body)
 
     this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
       const data = await res.payload

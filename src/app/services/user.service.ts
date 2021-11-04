@@ -10,7 +10,7 @@ export class UserService {
 
   setLoginState(){
     sessionStorage.setItem('loginstate', 'true')
-    this.router.navigateByUrl('home')
+    this.router.navigateByUrl('/homescreen')
   }
 
   getLoginState(){ return sessionStorage.getItem('loginstate') }
