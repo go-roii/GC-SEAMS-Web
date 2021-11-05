@@ -54,13 +54,20 @@
 		<nav class="navbar">
 			<div class="container-fluid">
 				<a class="navbar-brand" [routerLink]="['/homescreen/events']">GC-SEAMS</a>
-				<div class="btn-group">
-					<button id="profileButton" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-					<ul class="dropdown-menu dropdown-menu-end">
-					  <li><a class="dropdown-item" href="#">Profile</a></li>
-					  <li><hr class="dropdown-divider"></li>
-					  <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
-					</ul>
+				
+				<div class="d-flex">
+					<div id="user-info">
+						<p id="username">Roy F. Gopez Jr.</p>
+						<p id="gc-email">202100001@gordoncollege.edu.ph</p>
+					</div>
+					<div class="btn-group">
+						<button id="profile-button" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="#">Profile</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>

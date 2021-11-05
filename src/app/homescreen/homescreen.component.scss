@@ -98,14 +98,6 @@ $sidenav-expanded-width: 250px;
 //   width: 100%;
 // }
 
-#profileButton {
-	width: 36px;
-	height: 36px;
-	background-color: var(--primary-color);
-	border: none;
-	border-radius: 50%;
-}
-
 .content {
   overflow-y: auto;
   scrollbar-gutter: stable both-edges;
@@ -113,6 +105,34 @@ $sidenav-expanded-width: 250px;
   padding: 32px 64px;
 }
 
+#user-info {
+	margin: 0 16px;
+	text-align: right;
+
+	& p {
+		margin: 0;
+	}
+
+	& #username {
+		font-weight: 500;
+		margin-bottom: -2px;
+	}
+
+	& #gc-email {
+		color: var(--primary-color);
+		font-size: 12px;
+	}
+	
+}
+
+#profile-button {
+	width: 36px;
+	height: 36px;
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 50%;
+	margin: auto 0;
+}
 
 
 
