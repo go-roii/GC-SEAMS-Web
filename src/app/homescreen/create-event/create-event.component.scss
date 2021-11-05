@@ -23,7 +23,7 @@
 	}
 
 	& *:not(:last-child) {
-		margin-right: 12px;
+		margin-right: 6px;
 	}
 }
 
@@ -49,6 +49,7 @@
     color: rgba(0, 0, 0, 0.3);
     border: 2px dashed rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    padding: 35px;
     
     &:hover {
         background-color: #f0f0f0;
