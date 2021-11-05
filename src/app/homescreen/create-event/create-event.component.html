@@ -10,11 +10,11 @@
       <select id="invite" class="form-select" formControlName='courseOrDepartment'>
         <ng-container *ngIf="byCourse==true">
           <option value="" selected disabled hidden>Invite Courses</option>
-          <option *ngFor="let course of courses">{{course.course_code}}</option>
+          <option *ngFor="let course of courses" value={{course.course_id}}>{{course.course_code}}</option>
         </ng-container>
         <ng-container *ngIf="byCourse==false">
           <option value="" selected disabled hidden>Invite Departments</option>
-          <option *ngFor="let department of departments">{{department.department_code}}</option>
+          <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_code}}</option>
         </ng-container>
       </select>
       <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
