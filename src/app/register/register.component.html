@@ -39,9 +39,9 @@
 
 				<div class="mb-3">
 					<div class="input-group">
-            <select id="department" class="form-select" formControlName="department" required>
+            <select id="department" class="form-select" formControlName="department" (change)="departmentSelectionChanged()" required>
               <option value="" selected disabled hidden>select department</option>
-              <option *ngFor="let department of departments">{{department.department_name}}  </option>
+              <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_name}}</option>
             </select>
 						<select id="course" class="form-select" formControlName="course" required>
 							<option value="" selected disabled hidden>select course</option>

@@ -1,6 +1,6 @@
 export class RequestParams{
   endPoint: string;
-  body: object;
+  body: any;
   requestType: number;
 
   constructor(){
@@ -13,7 +13,7 @@ export class RequestParams{
     this.endPoint=endPoint;
   }
 
-  public set Body(body: object){
+  public set Body(body: any){
     this.body=body;
   }
 

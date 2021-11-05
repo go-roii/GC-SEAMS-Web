@@ -17,14 +17,19 @@ import { DataService } from '../services/data.service';
 
 export class RegisterComponent implements OnInit {
 
-  courses: Courses[]=[]
-  departments: Departments[]=[]
+  courses: Courses[]=[];
+  departments: Departments[]=[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getDepartments();
-    this.getCourses();
+  }
+
+  departmentSelectionChanged(){
+      const departmentId = this.profileForm.controls['department'].value
+    //console.log(department)
+    this.getCoursesByDepartmentID(departmentId);
   }
 
   getDepartments(){
@@ -36,10 +41,11 @@ export class RegisterComponent implements OnInit {
     .subscribe((data: Departments[]) => this.departments = data);
   }
 
-  getCourses(){
+  getCoursesByDepartmentID(departmentID: number){
     const coursesParams= new RequestParams();
-    coursesParams.EndPoint="courses";
+    coursesParams.EndPoint="courses/"+departmentID;
     coursesParams.RequestType=1;
+    console.log(departmentID)
 
     this.dataService.httprequest(coursesParams)
     .subscribe((data: Courses[]) => this.courses = data);
@@ -53,7 +59,7 @@ export class RegisterComponent implements OnInit {
     lastName:new FormControl('',[Validators.required,]),
     email:new FormControl('',[Validators.required,Validators.email]),
     department:new FormControl('',[Validators.required,]),
-    course:new FormControl('',[Validators.required,]),
+    course:new FormControl('select course',[Validators.required,]),
     password:new FormControl('',[ Validators.minLength(8), Validators.required]),
     passwordConfirmation:new FormControl('',[Validators.required])
   });
@@ -79,6 +85,7 @@ export class RegisterComponent implements OnInit {
       last_name : this.profileForm.controls['lastName'].value,
       course_id : this.profileForm.controls['course'].value,
     }
+
 
     const registrationParams= new RequestParams();
     registrationParams.EndPoint="register";
