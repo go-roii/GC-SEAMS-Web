@@ -1,14 +1,15 @@
 .card-text-header{
     display: flex;
     justify-content: space-between;
+}
 
-    & .header-buttons {
-        & .btn {
-            background-color: rgba(0, 0, 0, 0.06);
-        }
+.header-buttons {
+    & .btn {
+        background-color: rgba(0, 0, 0, 0.06);
+        border-radius: 4px;
     }
 
     & *:not(:last-child) {
-		margin-right: 6px;
-	}
+        margin-right: 6px;
+    }
 }
