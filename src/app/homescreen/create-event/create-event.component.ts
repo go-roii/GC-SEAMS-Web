@@ -45,9 +45,9 @@ export class CreateEventComponent implements OnInit {
     this.sortBy=this.invitationForm.controls['choice'].value;
 
     switch(this.sortBy){
-      case 'course': this.byCourse=true;
+      case 'Course': this.byCourse=true;
       break;
-      case 'department': this.byCourse=false;
+      case 'Department': this.byCourse=false;
       break;
     }
   }

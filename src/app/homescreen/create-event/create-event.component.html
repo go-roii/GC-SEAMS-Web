@@ -1,12 +1,14 @@
 <div class="text-header d-flex">
-    <h4>Create Event</h4>
+  <h4>Create Event</h4>
+
 	<div class="header-buttons">
     <form [formGroup]="invitationForm">
       <select id="invite" class="form-select" (change)="selectionChanged()" formControlName='choice'>
         <option value="" selected disabled hidden>Invite by</option>
-        <option>course</option>
-        <option>department</option>
+        <option>Course</option>
+        <option>Department</option>
       </select>
+
       <select id="invite" class="form-select" formControlName='courseOrDepartment'>
         <ng-container *ngIf="byCourse==true">
           <option value="" selected disabled hidden>Invite Courses</option>
@@ -17,6 +19,7 @@
           <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_code}}</option>
         </ng-container>
       </select>
+
       <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
     </form>
 	</div>
