@@ -1,5 +1,16 @@
 <div class="event-container">
-    <h5 class="mb-4">Day {{event.ID}} : {{event.Eventname}}</h5>
+    <div class="card-text-header mb-4">
+        <h5>Day {{event.ID}} : {{event.Eventname}}</h5>
+
+        <div class="header-buttons">
+            <button type="button" class="btn btn-sm">
+                <i class="bi bi-trash"></i>
+            </button>
+            <button type="button" class="btn btn-sm">
+                <i class="bi bi-square"></i>
+            </button>
+        </div>
+    </div>
 
     <form [formGroup]='eventForm'>
         <div class="mb-3">
