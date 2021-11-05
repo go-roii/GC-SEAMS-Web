@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
-
 @Component({
   selector: 'app-homescreen',
   templateUrl: './homescreen.component.html',
@@ -25,6 +24,7 @@ export class HomescreenComponent implements OnInit {
 		// 		this.routerChangeMethod(event.url);
 		// 	}
 		// })
+    console.log(this.userService.getLoginState());
 	}
 
 	// routerChangeMethod(url: string) {
@@ -45,6 +45,7 @@ export class HomescreenComponent implements OnInit {
 
   logout(){
     this.userService.logOut();
+    console.log(this.userService.getLoginState());
   }
 
 }

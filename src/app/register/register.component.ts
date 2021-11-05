@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getDepartments(){
-    const coursesParams= new RequestParams();
-    coursesParams.EndPoint="departments";
-    coursesParams.RequestType=1;
+    const departmentParams= new RequestParams();
+    departmentParams.EndPoint="departments";
+    departmentParams.RequestType=1;
 
-    this.dataService.httprequest(coursesParams)
+    this.dataService.httprequest(departmentParams)
     .subscribe((data: Departments[]) => this.departments = data);
   }
 
@@ -92,8 +92,6 @@ export class RegisterComponent implements OnInit {
       //await this.user.setUserData(data)
       //await this.user.setLoginState()
     });
-
-    this.profileForm.reset();
 
     console.log
   }

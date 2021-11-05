@@ -1,23 +1,29 @@
 <div class="text-header d-flex">
     <h4>Create Event</h4>
 	<div class="header-buttons">
-    <select id="invite" class="form-select">
-			<option value="" selected disabled hidden>Invite by</option>
-			<option>Course</option>
-			<option>Department</option>
-		</select>
-		<select id="invite" class="form-select">
-			<option value="" selected disabled hidden>Invite Courses</option>
-			<option>BSCS</option>
-			<option>BSIT</option>
-			<option>ACT</option>
-		</select>
-		<button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
+    <form [formGroup]="invitationForm">
+      <select id="invite" class="form-select" (change)="selectionChanged()" formControlName='choice'>
+        <option value="" selected disabled hidden>Invite by</option>
+        <option>course</option>
+        <option>department</option>
+      </select>
+      <select id="invite" class="form-select" formControlName='courseOrDepartment'>
+        <ng-container *ngIf="byCourse==true">
+          <option value="" selected disabled hidden>Invite Courses</option>
+          <option *ngFor="let course of courses">{{course.course_code}}</option>
+        </ng-container>
+        <ng-container *ngIf="byCourse==false">
+          <option value="" selected disabled hidden>Invite Departments</option>
+          <option *ngFor="let department of departments">{{department.department_code}}</option>
+        </ng-container>
+      </select>
+      <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
+    </form>
 	</div>
 </div>
 
 <div class="cards-list-container row g-4">
-	<app-event-card	
+	<app-event-card
 	*ngFor="let event of events"
 	(eventData)="addEventData($event)">
 	</app-event-card>

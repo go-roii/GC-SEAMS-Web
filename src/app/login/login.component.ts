@@ -52,8 +52,6 @@ export class LoginComponent implements OnInit {
       //await this.userService.setUserData(data)
       await this.userService.setLoginState()
     });
-
-    this.credentialsForm.reset()
   }
 
 }
