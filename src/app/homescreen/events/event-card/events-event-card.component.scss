@@ -6,9 +6,11 @@
 
 	&.pending .card {
 		& .event-time {
-			color: #FF9800;
-			background-color: transparent;
-			box-shadow: inset 0 0 0 1px #FF9800;
+			color: #FF6F00;
+			background-color: #FFF8E1;
+			box-shadow: inset 0 0 0 1px #FFA000;
+			// color: rgba(0, 0, 0, 0.87);
+			// background-color: #FFC107;
 		}
 	}
 
