@@ -28,8 +28,9 @@
 
 .card {
 	position: relative;
-	height: 325px;
+	height: 350px;
 	border-radius: 6px;
+	overflow: hidden;
 
 	& .card-body {
 		padding: 24px;
@@ -42,8 +43,8 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 6; /* number of lines to show */
-		line-clamp: 6;
+		-webkit-line-clamp: 7; /* number of lines to show */
+		line-clamp: 7;
 		-webkit-box-orient: vertical;
 	}
 
@@ -53,11 +54,30 @@
 
 	& .event-time {
 		position: absolute;
-		bottom: 0;
+		bottom: 8px;
 		color: white;
 		background-color: var(--primary-color);
 		font-size: 12px;
 		border-radius: 12px;
 		padding: 3px 8px;
 	}
+}
+
+.event-progress-bar {
+	display: flex;
+	flex-direction: row;
+}
+
+.progress-bar-day {
+	height: 4px;
+	flex: 1;
+	background-color: var(--primary-color);
+
+	&:not(:last-child) {
+		margin-right: 2px;
+	}
+}
+
+.d-day {
+	flex: 2;
 }
