@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <form [formGroup]='eventForm'>
+    <form [formGroup]='eventForm' autocomplete="off">
         <div class="mb-3">
             <label for="event-name" class="form-label">Event Name</label>
             <input id="event-name" class="form-control form-control-sm" [(ngModel)]='event.eventName' type="text" formControlName="eventName" required>
