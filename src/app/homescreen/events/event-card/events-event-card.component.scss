@@ -64,20 +64,13 @@
 }
 
 .event-progress-bar {
+	height: 4px;
 	display: flex;
 	flex-direction: row;
 }
 
 .progress-bar-day {
-	height: 4px;
-	flex: 1;
+	width: 50%;
+	// flex: 1;
 	background-color: var(--primary-color);
-
-	&:not(:last-child) {
-		margin-right: 2px;
-	}
-}
-
-.d-day {
-	flex: 2;
 }
