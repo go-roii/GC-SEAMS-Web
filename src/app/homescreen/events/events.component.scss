@@ -1,9 +1,15 @@
+:host-context(.content-compact) {
+	.events-container {
+			padding-top: 30px;
+	}
+}
+
 .events-container {
 	padding: 36px 0 24px;
+	transition: padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
 .tabs {
-	
 	& .nav {
 		display: flex;
 		gap: 24px;
@@ -21,5 +27,4 @@
 		border-bottom: 2px solid var(--primary-color);
 		box-shadow: 0 1px 0 0 var(--primary-color);
 	}
-
 }
