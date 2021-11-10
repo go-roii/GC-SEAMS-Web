@@ -1,0 +1,90 @@
+<div class="text-header d-flex">
+    <h4>Edit Event</h4>
+
+    <!-- <div class="header-buttons">
+    <form [formGroup]="invitationForm">
+    <select id="invite" class="form-select" (change)="selectionChanged()" formControlName='choice'>
+        <option value="" selected disabled hidden>Invite by</option>
+        <option>Course</option>
+        <option>Department</option>
+    </select>
+
+    <select id="invite" class="form-select" formControlName='courseOrDepartment'>
+        <ng-container *ngIf="byCourse==true">
+        <option value="" selected disabled hidden>Invite Courses</option>
+        <option *ngFor="let course of courses" value={{course.course_id}}>{{course.course_code}}</option>
+        </ng-container>
+        <ng-container *ngIf="byCourse==false">
+        <option value="" selected disabled hidden>Invite Departments</option>
+        <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_code}}</option>
+        </ng-container>
+    </select>
+
+    <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
+    </form>
+    </div> -->
+</div>
+
+<div class="event-container">
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card-text-header mb-4">
+                <h5>Day 1 : Event Name</h5>
+            </div>
+
+            <form autocomplete="off">
+                <div class="mb-3">
+                    <label for="event-name" class="form-label">Event Name</label>
+                    <input id="event-name" class="form-control form-control-sm" type="text" formControlName="eventName" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="event-details" class="form-label">Event Details</label>
+                    <textarea id="event-details" class="form-control form-control-sm" type="text" style="resize: none;" formControlName="eventDetails" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="date" class="form-label">Date</label>
+                            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate" required>
+                        </div>
+                        <div class="col-8">
+                            <label for="time" class="form-label">Time</label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text" id="basic-addon3">From</span>
+                                <input id="from-time" class="form-control" type="time" formControlName="eventStartTime" required>
+                                <span class="input-group-text" id="basic-addon3">To</span>
+                                <input id="to-time" class="form-control" type="time" formControlName="eventEndTime" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="speakers" class="form-label">Speakers</label>
+                    <div class="input-group input-group-sm"> 
+                        <input id="speakers" class="form-control" type="text" formControlName="eventSpeakers" required>
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add Speaker</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="registration-form" class="form-label">Registration Form</label>
+                    <input id="registration-form" class="form-control form-control-sm" type="text" formControlName="eventRegistrationForm" required>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-6">
+            
+        </div>
+    </div>
+</div>

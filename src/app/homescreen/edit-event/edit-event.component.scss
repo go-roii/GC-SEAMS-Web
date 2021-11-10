@@ -24,7 +24,6 @@
 
 
 .event-container { 
-    height: 563px;
     background-color: white;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.10);
     border: 1px solid rgba(0, 0, 0, 0.12);
@@ -39,14 +38,24 @@
     }
 }
 
-.new-event-container {
-    flex: 1;
-    color: rgba(0, 0, 0, 0.3);
-    border: 2px dashed rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    padding: 37px 35px;
-    
-    &:hover {
-        background-color: #f0f0f0;
-    }
+.card-text-header {
+    height: 35px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-buttons {
+	& i.far {
+		margin: 4px 0 5px;
+	}
+
+	& .btn {
+		background-color: rgba(0, 0, 0, 0.06);
+		border-radius: 4px;
+	}
+
+	& *:not(:last-child) {
+		margin-right: 6px;
+	}
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 import { EndedComponent } from './events/ended/ended.component';
 import { EventsComponent } from './events/events.component';
 import { OngoingComponent } from './events/ongoing/ongoing.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'create-event',
         component: CreateEventComponent
+      },
+      {
+        path: 'edit-event',
+        component: EditEventComponent
       },
       {
         path: 'dashboard',
