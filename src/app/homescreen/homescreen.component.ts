@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 
 export class HomescreenComponent implements OnInit {
 
-	isExpanded: boolean = false;
+	isExpanded: boolean = true;
 
 	// currentPage: string = this.router.url;
 	currentPage: string = 'events';
