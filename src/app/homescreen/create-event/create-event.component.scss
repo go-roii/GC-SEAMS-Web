@@ -40,15 +40,15 @@
 .event-container { 
     height: 563px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 12px;
     padding: 36px;
     transition: border-color ease-out 100ms, box-shadow ease-out 100ms;
 
     &:focus-within {
         border-color: var(--primary-color);
-        box-shadow: 0 8px 12px 0 rgba(103, 58, 183, 0.16);
+        // box-shadow: 0 8px 12px 0 rgba(103, 58, 183, 0.16);
         transition: border-color ease-in 100ms, box-shadow ease-in 100ms;
     }
 }
