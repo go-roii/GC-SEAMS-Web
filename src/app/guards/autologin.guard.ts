@@ -12,7 +12,7 @@ export class AutologinGuard implements CanLoad {
 
   canLoad() {
     if(this.user.getLoginState() === 'true'){
-      this.router.navigateByUrl('\homescreen')
+      this.router.navigateByUrl('homescreen')
     }
     return true
   }

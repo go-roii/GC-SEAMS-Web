@@ -23,6 +23,7 @@ export class UserService {
   setUserData(data: any) {
     sessionStorage.setItem('userdata', data)
   }
+
   getUserData() { return sessionStorage.getItem('userdata') }
 
 }

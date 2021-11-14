@@ -9,16 +9,14 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  providers:[
-    DataService
-  ],
+  styleUrls: ['./register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
 
   courses: Courses[]=[];
   departments: Departments[]=[];
+
 
   constructor(private dataService: DataService) { }
 
@@ -50,7 +48,6 @@ export class RegisterComponent implements OnInit {
     this.dataService.httprequest(coursesParams)
     .subscribe((data: Courses[]) => this.courses = data);
   }
-
 
   //create form group and form controls for fields
   profileForm=new FormGroup({

@@ -6,6 +6,7 @@ import { Courses } from 'src/app/models/Courses';
 import { Departments } from 'src/app/models/Departments';
 import { Events } from 'src/app/models/Events';
 import { RequestParams } from 'src/app/models/RequestParams';
+import { UserData } from 'src/app/models/UserData';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
 import { EventCardComponent } from './event-card/event-card.component';
@@ -14,7 +15,8 @@ import { EventCardComponent } from './event-card/event-card.component';
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.scss'],
-  providers: [DataService]
+  providers: [DataService, UserService
+  ]
 })
 export class CreateEventComponent implements OnInit {
 
@@ -29,7 +31,7 @@ export class CreateEventComponent implements OnInit {
 
     // @HostBinding('className') componentClass: string;
 
-  constructor(private router: Router, private  dataService: DataService) {
+  constructor(private router: Router, private  dataService: DataService, private userService: UserService) {
   }
 
   //create form group and form controls for fields
@@ -40,6 +42,10 @@ export class CreateEventComponent implements OnInit {
 
   get choice() { return this.invitationForm.get('firstName'); }
   get courseOrDepartment() { return this.invitationForm.get('middleName'); }
+
+  removeCard(){
+
+  }
 
   selectionChanged(){
     this.sortBy=this.invitationForm.controls['choice'].value;
@@ -75,7 +81,8 @@ export class CreateEventComponent implements OnInit {
     this.eventData.push(newEvent);
   }
 
-   addCard(){
+
+  addCard(){
     this.count=this.count+1
     const newCard= new EventCardComponent();
     this.events.push(newCard)
@@ -85,6 +92,7 @@ export class CreateEventComponent implements OnInit {
     this.addCard();
     this.getCourses();
     this.getDepartments();
+    console.log(this.userService.getUserData());
   }
 
   printInputs(): void{
