@@ -1,6 +1,5 @@
 <div class="homescreen-container">
-	<!-- d-flex flex-column -->
-	<div class="sidenav    " [ngClass]="{'sidenav-expanded' : isExpanded}">
+	<div class="sidenav" [ngClass]="{'sidenav-expanded' : isSidenavExpanded}">
 		<ul class="nav nav-pills nav-flush flex-column text-center">
 			<li class="nav-item">
 				<a id="sidenav-menu-btn" class="sidenav-btn nav-link" (click)='sidenav_status()'
@@ -72,7 +71,7 @@
 			</div>
 		</nav>
 
-		<div class="content container-fluid" [ngClass]="{'content-compact' : isExpanded}">
+		<div class="content container-fluid" [ngClass]="{'content-compact' : isSidenavExpanded}">
 			<router-outlet></router-outlet>
 		</div>
 	</div>

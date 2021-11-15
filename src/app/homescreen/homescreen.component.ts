@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { SidenavExpandService } from '../services/sidenav-expand.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,12 +11,16 @@ import { UserService } from '../services/user.service';
 
 export class HomescreenComponent implements OnInit {
 
-	isExpanded: boolean = true;
+	isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
 
 	// currentPage: string = this.router.url;
 	currentPage: string = 'events';
 
-	constructor(private router : Router, private userService: UserService) { }
+	constructor(private router : Router, private userService: UserService, private sidedenavExpandService: SidenavExpandService) {
+    this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
+      this.isSidenavExpanded = value;
+    });
+  }
 
 	ngOnInit(): void {
 		// this.router.navigate(['homescreen/events/ongoing'])
@@ -37,10 +42,9 @@ export class HomescreenComponent implements OnInit {
 	}
 
 	sidenav_status() {
-		if(this.isExpanded)
-            this.isExpanded = false;
-        else
-            this.isExpanded = true;
+    console.log(this.isSidenavExpanded);
+
+    this.sidedenavExpandService.toggleSidebarExpand()
 	}
 
   logout(){
