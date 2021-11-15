@@ -1,12 +1,12 @@
 <div class="event-container">
     <div class="card-text-header mb-4">
-        <h5>Day {{event.ID}} : {{event.Eventname}}</h5>
+        <h5>Day {{event.ID}}</h5>
 
         <div class="header-buttons">
             <button type="button" class="btn btn-sm">
                 <i class="far fa-clone"></i>
             </button>
-            <button type="button" class="btn btn-sm">
+            <button type="button" class="btn btn-sm" (click)='deleteEvent()'>
                 <i class="bi bi-trash"></i>
             </button>
         </div>
@@ -43,7 +43,7 @@
 
         <div class="mb-3">
             <label for="speakers" class="form-label">Speakers</label>
-            <div class="input-group input-group-sm"> 
+            <div class="input-group input-group-sm">
                 <input id="speakers" class="form-control" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add Speaker</button>
                 <ul class="dropdown-menu">

@@ -14,9 +14,7 @@ import { EventCardComponent } from './event-card/event-card.component';
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.scss'],
-  providers: [DataService, UserService
-  ]
+  styleUrls: ['./create-event.component.scss']
 })
 export class CreateEventComponent implements OnInit {
 
@@ -42,10 +40,6 @@ export class CreateEventComponent implements OnInit {
 
   get choice() { return this.invitationForm.get('firstName'); }
   get courseOrDepartment() { return this.invitationForm.get('middleName'); }
-
-  removeCard(){
-
-  }
 
   selectionChanged(){
     this.sortBy=this.invitationForm.controls['choice'].value;
@@ -81,9 +75,50 @@ export class CreateEventComponent implements OnInit {
     this.eventData.push(newEvent);
   }
 
+  deleteEvent(event: Events){
+    const id=event.ID;
+    const index=this.getIndex(id);
+    this.eventData.splice(index, 1)
+    this.shrinkEventDataId(id)
+    console.log("event id to delete: "+id)
+    console.log("index to delete: "+index);
+  }
+
+  deleteCard(event: Events){
+    const index=this.getIndex(event.ID);
+    this.events.splice(index, 1);
+    this.count=this.getMaxEventDataId();
+    console.log("component id to delete: "+event.id)
+    console.log("index to delete: "+index);
+  }
+
+  getMaxEventDataId(){
+    let max: number = 0;
+    this.eventData.forEach(element => {
+      max=element.ID;
+    });
+    return max;
+  }
+
+  shrinkEventDataId(startIndex: number){
+    //this.count-=1;
+    this.eventData.forEach(element => {
+      if(element.ID>startIndex){
+        element.ID-=1;
+      }
+    });
+  }
+
+  getIndex(id: number){
+    let count=0;
+    while(count<id){
+      count++;
+    }
+    return count-1;
+  }
 
   addCard(){
-    this.count=this.count+1
+    this.count+=1
     const newCard= new EventCardComponent();
     this.events.push(newCard)
    }
