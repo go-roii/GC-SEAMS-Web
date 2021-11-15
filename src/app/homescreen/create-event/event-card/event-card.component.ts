@@ -1,11 +1,10 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Events } from 'src/app/models/Events';
 
 @Component({
   selector: 'app-event-card',
-  providers:[Events],
   templateUrl: './event-card.component.html',
   styleUrls: [
     './event-card.component.scss',
@@ -13,17 +12,22 @@ import { Events } from 'src/app/models/Events';
   ]
 })
 
-export class EventCardComponent implements OnInit {
+export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = '';
   eventForm!: FormGroup;
+
+  //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
+  @Output() eventDataToDelete = new EventEmitter<Events>();
   event: Events=new Events()
 
   addNewEvent() {
-    this.componentClass = 'col-lg-6 col-md-12';
-    this.event.eventName=this.eventForm.controls['eventName'].value;
     this.eventData.emit(this.event);
+  }
+
+  deleteEvent() {
+    this.eventDataToDelete.emit(this.event);
   }
 
   // @HostBinding('className') componentClass: string;
@@ -41,6 +45,7 @@ export class EventCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.componentClass = 'col-lg-6 col-md-12';
     this.eventForm = new FormGroup({
       eventName:new FormControl('',[Validators.required,]),
       eventDetails:new FormControl('',Validators.required,),
@@ -52,6 +57,10 @@ export class EventCardComponent implements OnInit {
     });
 
     this.addNewEvent();
+  }
+
+  ngOnDestroy(): void {
+    this.deleteEvent();
   }
 
   printInputs(){
