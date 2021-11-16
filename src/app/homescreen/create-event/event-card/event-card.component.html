@@ -51,16 +51,27 @@
 
     <div class="mb-3">
       <label for="speakers" class="form-label">Speakers</label>
-      <div class="input-group input-group-sm">
+      <div class="input-group input-group-sm dropup">
         <input id="speakers" class="form-control" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add Speaker</button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#speaker-modal" aria-expanded="false">Add Speakers</button>
+
+        <div class="modal fade" id="speaker-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
