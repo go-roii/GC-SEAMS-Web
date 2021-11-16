@@ -3,7 +3,7 @@
 
 	<div class="header-buttons">
     <form [formGroup]="invitationForm">
-      <select id="invite" class="form-select" (change)="selectionChanged()" formControlName='choice'>
+      <!-- <select id="invite" class="form-select" (change)="selectionChanged()" formControlName='choice'>
         <option value="" selected disabled hidden>Invite by</option>
         <option>Course</option>
         <option>Department</option>
@@ -18,7 +18,7 @@
           <option value="" selected disabled hidden>Invite Departments</option>
           <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_code}}</option>
         </ng-container>
-      </select>
+      </select> -->
 
       <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
     </form>

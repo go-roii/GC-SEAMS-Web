@@ -10,3 +10,10 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+
+
+  // HOW TO BUILD PROJECT
+
+  // ng build --prod --base-href "https://go-roii.github.io/GC-SEAMS-Web/"
+  // ngh --dir dist/gc-seams-web

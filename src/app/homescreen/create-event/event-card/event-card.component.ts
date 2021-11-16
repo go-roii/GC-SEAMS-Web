@@ -2,6 +2,9 @@ import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Events } from 'src/app/models/Events';
+import { RequestParams } from 'src/app/models/RequestParams';
+import { DataService } from 'src/app/services/data.service';
+import { Departments } from 'src/app/models/Departments';
 
 @Component({
   selector: 'app-event-card',
