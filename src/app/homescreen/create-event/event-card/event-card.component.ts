@@ -5,6 +5,7 @@ import { Events } from 'src/app/models/Events';
 import { RequestParams } from 'src/app/models/RequestParams';
 import { DataService } from 'src/app/services/data.service';
 import { Departments } from 'src/app/models/Departments';
+import {DepartmentService} from "../../../services/department.service";
 
 @Component({
   selector: 'app-event-card',
@@ -24,6 +25,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   @Output() eventData = new EventEmitter<Events>();
   @Output() eventDataToDelete = new EventEmitter<Events>();
   event: Events=new Events()
+  departments: Departments[]=[];
 
   addNewEvent() {
     this.eventData.emit(this.event);
@@ -44,7 +46,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get eventSpeakers() { return this.eventForm.get('eventSpeakers'); }
   get eventRegistrationForm() { return this.eventForm.get('eventRegistrationForm'); }
 
-  constructor() {
+  constructor(private dataService: DataService, private departmentService: DepartmentService) {
   }
 
   ngOnInit(): void {
@@ -59,11 +61,28 @@ export class EventCardComponent implements OnInit, OnDestroy{
       eventRegistrationForm:new FormControl('',[Validators.required])
     });
 
+
+    if(!this.departmentService.isLoaded){
+      this.fetchDepartments()
+      this.departmentService.isLoaded=true;
+    }
+
+    this.departments=this.departmentService.departments
     this.addNewEvent();
+
   }
 
   ngOnDestroy(): void {
     this.deleteEvent();
+  }
+
+  fetchDepartments(){
+    const departmentParams= new RequestParams();
+    departmentParams.EndPoint="departments";
+    departmentParams.RequestType=1;
+
+    this.dataService.httprequest(departmentParams)
+      .subscribe((data: Departments[]) => this.departmentService.departments = data);
   }
 
   printInputs(){

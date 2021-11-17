@@ -45,7 +45,7 @@
       <label for="invite" class="form-label">Invite</label>
       <select id="invite" class="form-select form-select-sm">
         <option value="" selected disabled hidden>Select Department</option>
-        <option></option>
+        <option *ngFor="let department of departments">{{department.department_code}}</option>
       </select>
     </div>
 
