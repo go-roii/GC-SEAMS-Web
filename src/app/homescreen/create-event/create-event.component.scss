@@ -59,9 +59,18 @@
   color: rgba(0, 0, 0, 0.3);
   border: 2px dashed rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  padding: 37px 35px;
+  padding: 39px 35px;
   
   &:hover {
     background-color: #f0f0f0;
   }
 }
+
+#profile-pic {
+	width: 32px;
+	height: 32px;
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 50%;
+}
+
