@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import {UserProfile} from "../models/UserProfile";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private router: Router) { }
+  private activeUser!: UserProfile;
+
+  constructor(private router: Router) {
+  }
 
   setLoginState(){
     sessionStorage.setItem('loginstate', 'true')
@@ -20,10 +24,18 @@ export class UserService {
     this.router.navigateByUrl('')
   }
 
-  setUserData(data: any) {
-    sessionStorage.setItem('userdata', data)
+  public set ActiveUser(val: UserProfile){
+    this.activeUser=val;
   }
 
-  getUserData() { return sessionStorage.getItem('userdata') }
+  public get ActiveUser(){
+    return this.activeUser;
+  }
+
+  // setUserData(data: any) {
+  //   sessionStorage.setItem('userdata', data)
+  // }
+  //
+  // getUserData() { return sessionStorage.getItem('userdata') }
 
 }

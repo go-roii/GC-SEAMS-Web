@@ -62,6 +62,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     });
 
 
+
     if(!this.departmentService.isLoaded){
       this.fetchDepartments()
       this.departmentService.isLoaded=true;
@@ -69,6 +70,8 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
     this.departments=this.departmentService.departments
     this.addNewEvent();
+
+    this.event.departments=this.departments;
 
   }
 

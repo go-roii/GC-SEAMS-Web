@@ -128,7 +128,7 @@ export class CreateEventComponent implements OnInit {
     this.addCard();
     //this.getCourses();
     //this.getDepartments();
-    console.log(this.userService.getUserData());
+    //console.log(this.userService.getUserData());
   }
 
   printInputs(): void{

@@ -5,6 +5,7 @@ import { Credentials } from '../models/Credential';
 import { RequestParams } from '../models/RequestParams';
 import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
+import {UserProfile} from "../models/UserProfile";
 
 @Component({
   selector: 'app-login',
@@ -42,11 +43,21 @@ export class LoginComponent implements OnInit {
     loginParams.RequestType=2;
 
     console.log(loginParams)
+    const user: UserProfile = {
+      email_address:"gcseams@gordoncollege.edu.ph",
+      password: "roy_idol_nakin",
+      first_name:"GC",
+      middle_name:"",
+      last_name:"SEAMS",
+      course_id: 1
+    }
 
-    this.dataService.httprequest(loginParams).subscribe( async (res: any)=>{
+    this.userService.ActiveUser=user;
+
+    this.dataService.httprequest(loginParams).subscribe( async (res: UserProfile)=>{
       const data = await res
-      await this.userService.setUserData(data)
-      await this.userService.setLoginState()
+      //this.userService.ActiveUser=data;
+      await this.userService.setLoginState();
     });
   }
 

@@ -43,7 +43,7 @@
 
     <div class="mb-3">
       <label for="invite" class="form-label">Invite</label>
-      <select id="invite" class="form-select form-select-sm">
+      <select id="invite" class="form-select form-select-sm" [(ngModel)]='event.departments'>
         <option value="" selected disabled hidden>Select Department</option>
         <option *ngFor="let department of departments">{{department.department_code}}</option>
       </select>

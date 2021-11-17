@@ -13,6 +13,9 @@ export class HomescreenComponent implements OnInit {
 
 	isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
 
+  fullName!: string;
+  email!: string;
+
 	// currentPage: string = this.router.url;
 	currentPage: string = 'events';
 
@@ -23,6 +26,10 @@ export class HomescreenComponent implements OnInit {
   }
 
 	ngOnInit(): void {
+    const firstName: string = this.userService.ActiveUser.first_name;
+    const lastName: string = this.userService.ActiveUser.last_name;
+    this.fullName=firstName+" "+lastName;
+    this.email=this.userService.ActiveUser.email_address;
 		// this.router.navigate(['homescreen/events/ongoing'])
 		// this.router.events.subscribe(event => {
 		// 	if (event instanceof NavigationStart) {
@@ -30,6 +37,7 @@ export class HomescreenComponent implements OnInit {
 		// 	}
 		// })
     console.log(this.userService.getLoginState());
+    console.log(this.userService.ActiveUser)
 	}
 
 	// routerChangeMethod(url: string) {
