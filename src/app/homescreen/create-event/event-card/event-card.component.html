@@ -41,12 +41,26 @@
       </div>
     </div>
 
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="invite" class="form-label">Invite</label>
       <select id="invite" class="form-select form-select-sm" [(ngModel)]='event.departments'>
         <option value="" selected disabled hidden>Select Department</option>
         <option *ngFor="let department of departments">{{department.department_code}}</option>
       </select>
+    </div> -->
+
+    <div class="mb-3">
+      <div class="d-grid btn-group"> 
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Invite Department
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
+            <label>{{department.department_code}}</label>
+            <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="...">
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="mb-3">
