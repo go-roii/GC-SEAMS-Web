@@ -1,4 +1,6 @@
 import { Time } from "@angular/common";
+import {Speaker} from "./Speaker";
+import {Departments} from "./Departments";
 
 export class Events{
   id: number;
@@ -7,8 +9,9 @@ export class Events{
   eventDate: Date;
   eventStartTime!: Time;
   eventEndTime!: Time;
-  eventSpeakers: Array<string>;
   eventRegistrationForm: string;
+  eventSpeakers: Array<Speaker>;
+  departments: Array<Departments>
 
   constructor() {
 
@@ -19,26 +22,28 @@ export class Events{
     this.eventStartTime;
     this.eventEndTime;
     this.eventSpeakers=[];
+    this.departments=[];
     this.eventRegistrationForm='';
-
   }
 
   public set ID(id: number){this.id=id;}
-  public set Eventname(eventName: string){this.eventName=eventName;}
+  public set EventName(eventName: string){this.eventName=eventName;}
   public set EventDetails(eventDetails: string){this.eventDetails=eventDetails;}
   public set EventDate(eventDate: Date){this.eventDate=eventDate;}
   public set EventStartTime(eventStartTime){this.eventStartTime=eventStartTime;}
   public set EventEndTime(eventEndTime){this.eventEndTime=eventEndTime;}
-  public set EventSpeakers(eventSpeakers){this.eventSpeakers=eventSpeakers;}
+  public set EventSpeakers(eventSpeakers: Array<Speaker>){this.eventSpeakers=eventSpeakers;}
+  public set Departments(departments: Array<Departments>){this.departments=departments;}
   public set EventRegistrationForm(eventRegistrationForm){this.eventRegistrationForm=eventRegistrationForm;}
 
   public get ID(){return this.id;}
-  public get Eventname(){return this.eventName}
+  public get EventName(){return this.eventName}
   public get EventDetails(){return this.eventDetails}
   public get EventDate(){return this.eventDate}
   public get EventStartTime(){return this.eventStartTime}
   public get EventEndTime(){return this.eventEndTime}
   public get EventSpeakers(){return this.eventSpeakers}
+  public get Departments(){return this.departments}
   public get EventRegistrationForm(){return this.eventRegistrationForm}
 
 }
