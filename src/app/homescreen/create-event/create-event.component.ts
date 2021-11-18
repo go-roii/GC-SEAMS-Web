@@ -112,10 +112,16 @@ export class CreateEventComponent implements OnInit {
 
   getIndex(id: number){
     let count=0;
-    while(count<id){
-      count++;
+    for(let event of this.eventData){
+      if(event.ID!=id){
+        count++;
+      }
+      if(event.ID==id){
+        break;
+      }
     }
-    return count-1;
+
+    return count;
   }
 
   addCard(){

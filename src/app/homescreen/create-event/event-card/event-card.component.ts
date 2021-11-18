@@ -26,6 +26,47 @@ export class EventCardComponent implements OnInit, OnDestroy{
   @Output() eventDataToDelete = new EventEmitter<Events>();
   event: Events=new Events()
   departments: Departments[]=[];
+  chosenDepartments: Departments[]=[];
+
+  onNativeChange(e: any, department: Departments) {
+    if(e.target.checked){
+      console.log("added "+department.department_id);
+      this.addChosenDepartment(department)
+    }
+    if(!(e.target.checked)){
+      console.log("removed "+department.department_id);
+      this.removeDepartmentFromChosen(department);
+    }
+
+    this.printChosenDepartment();
+  }
+
+  printChosenDepartment(){
+    console.log(this.chosenDepartments)
+  }
+
+  removeDepartmentFromChosen(department: Departments){
+    const index=this.getDepartmentIndex(department.department_id)
+    this.chosenDepartments.splice(index, 1)
+  }
+
+  getDepartmentIndex(id:number){
+    let count=0;
+    for(let department of this.chosenDepartments){
+      if(department.department_id!=id){
+        count++;
+      }
+      if(department.department_id==id){
+        break;
+      }
+    }
+
+    return count;
+  }
+
+  addChosenDepartment(department: Departments){
+    this.chosenDepartments.push(department);
+  }
 
   addNewEvent() {
     this.eventData.emit(this.event);
@@ -88,6 +129,4 @@ export class EventCardComponent implements OnInit, OnDestroy{
       .subscribe((data: Departments[]) => this.departmentService.departments = data);
   }
 
-  printInputs(){
-  }
 }
