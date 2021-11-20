@@ -2,11 +2,17 @@ export class RequestParams{
   endPoint: string;
   body: any;
   requestType: number;
+  authToken: string;
 
   constructor(){
     this.endPoint='';
     this.body={};
     this.requestType=0;
+    this.authToken="";
+  }
+
+  public set AuthToken(token: string){
+    this.authToken=token;
   }
 
   public set EndPoint(endPoint: string){
@@ -21,6 +27,10 @@ export class RequestParams{
     this.requestType=requestType;
   }
 
+  public get AuthToken(){
+    return this.authToken;
+  }
+
   public get EndPoint(){
     return this.endPoint;
   }
@@ -32,4 +42,5 @@ export class RequestParams{
   public get RequestType(){
     return this.requestType;
   }
+
 }

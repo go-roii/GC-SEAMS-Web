@@ -12,7 +12,6 @@ import { UserService } from '../services/user.service';
 export class HomescreenComponent implements OnInit {
 
 	isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
-
   fullName!: string;
   email!: string;
 
@@ -36,6 +35,8 @@ export class HomescreenComponent implements OnInit {
 		// 		this.routerChangeMethod(event.url);
 		// 	}
 		// })
+    console.log("refresh token: "+this.userService.RefreshToken.refresh_token);
+    console.log("access token: "+this.userService.AuthHeader)
     console.log(this.userService.getLoginState());
     console.log(this.userService.ActiveUser)
 	}

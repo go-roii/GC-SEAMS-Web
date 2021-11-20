@@ -6,6 +6,8 @@ import { RequestParams } from '../models/RequestParams';
 import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
 import {UserProfile} from "../models/UserProfile";
+import {RefreshTokens} from "../models/RefreshTokens";
+import {AuthHeader} from "../models/AuthHeader";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,7 @@ import {UserProfile} from "../models/UserProfile";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  private headers!: string[];
 
   constructor(private userService: UserService, private dataService: DataService) {}
 
@@ -28,10 +31,7 @@ export class LoginComponent implements OnInit {
   get email() { return this.credentialsForm.get('email'); }
   get password() { return this.credentialsForm.get('password'); }
 
-
-
   login(): void {
-
     const credentials: Credentials={
       email_address: this.credentialsForm.controls['email'].value,
       password: this.credentialsForm.controls['password'].value
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     const loginParams= new RequestParams();
     loginParams.EndPoint="login";
     loginParams.Body=credentials;
-    loginParams.RequestType=2;
+    loginParams.RequestType=3;
 
     console.log(loginParams)
     const user: UserProfile = {
@@ -54,11 +54,34 @@ export class LoginComponent implements OnInit {
 
     this.userService.ActiveUser=user;
 
-    this.dataService.httprequest(loginParams).subscribe( async (res: UserProfile)=>{
-      const data = await res
-      //this.userService.ActiveUser=data;
-      await this.userService.setLoginState();
-    });
+    this.dataService.getConfigResponse(loginParams.EndPoint, loginParams.body)
+      // resp is of type `HttpResponse<RefreshTokens>`
+      .subscribe(resp => {
+        // display its headers
+        const keys = resp.headers.keys();
+
+        this.headers = keys.map(key =>
+          `${key}: ${resp.headers.get(key)}`);
+
+        // access the body directly, which is typed as `RefreshTokens`.
+        this.userService.RefreshToken = { ...resp.body! };
+        this.userService.AuthHeader = this.headers[0];
+        this.userService.start();
+
+        this.userService.setLoginState();
+
+        //console.log(this.headers);
+        //console.log(this.config);
+      });
+
+    // this.dataService.httprequest(loginParams).subscribe( async (res: RefreshTokens)=>{
+    //   const data = await res
+    //   const keys = res.headers.keys();
+    //   this.headers = keys.map(key =>
+    //     `${key}: ${resp.headers.get(key)}`);
+    //   this.userService.AuthToken=data;
+    //   await this.userService.setLoginState();
+    // });
   }
 
 }
