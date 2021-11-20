@@ -66,6 +66,8 @@ export class LoginComponent implements OnInit {
         // access the body directly, which is typed as `RefreshTokens`.
         this.userService.RefreshToken = { ...resp.body! };
         this.userService.AuthHeader = this.headers[0];
+        const trim=this.userService.AuthHeader.split(':');
+        console.log("trimmed header: "+trim[1])
         this.userService.start();
 
         this.userService.setLoginState();

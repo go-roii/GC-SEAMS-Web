@@ -77,6 +77,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+
+                  <input type="text" class="form-control" [(ngModel)]="newSpeaker.SpeakerName" placeholder="full name" aria-label="full name">
+                  <input type="email" class="form-control" [(ngModel)]="newSpeaker.SpeakerEmail" placeholder="email address" aria-label="email address">
+                  <input type="text" class="form-control" [(ngModel)]="newSpeaker.SpeakerDescription" placeholder="description" aria-label="description">
+                  <button class="btn btn-primary" type="button" (click)="addNewSpeaker()">Save Speaker</button>
+
                 <div class="input-group input-group-sm mb-3">
                   <input type="text" class="form-control" placeholder="Search speaker..." aria-label="Search speaker">
                   <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>

@@ -1,17 +1,19 @@
+
+
 export class RequestParams{
   endPoint: string;
   body: any;
   requestType: number;
-  authToken: string;
+  authToken: any;
 
   constructor(){
     this.endPoint='';
     this.body={};
     this.requestType=0;
-    this.authToken="";
+    this.authToken='';
   }
 
-  public set AuthToken(token: string){
+  public set AuthToken(token: any){
     this.authToken=token;
   }
 

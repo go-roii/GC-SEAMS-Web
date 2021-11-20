@@ -6,6 +6,9 @@ import { RequestParams } from 'src/app/models/RequestParams';
 import { DataService } from 'src/app/services/data.service';
 import { Departments } from 'src/app/models/Departments';
 import {DepartmentService} from "../../../services/department.service";
+import {Speaker} from "../../../models/Speaker";
+import {UserService} from "../../../services/user.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-event-card',
@@ -24,9 +27,15 @@ export class EventCardComponent implements OnInit, OnDestroy{
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
   @Output() eventDataToDelete = new EventEmitter<Events>();
-  event: Events=new Events()
+  event: Events=new Events();
   departments: Departments[]=[];
   chosenDepartments: Departments[]=[];
+  newSpeaker: Speaker=new Speaker();
+
+  constructor(private dataService: DataService,
+              private departmentService: DepartmentService,
+              private userService: UserService) {
+  }
 
   onNativeChange(e: any, department: Departments) {
     if(e.target.checked){
@@ -68,6 +77,38 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.chosenDepartments.push(department);
   }
 
+
+  addNewSpeaker(){
+
+    const trimmedHeader=this.userService.AuthHeader.split(':');
+
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+
+    this.newSpeaker.SpeakerName="Mark Jason Margallo";
+    this.newSpeaker.SpeakerEmail="mark@gmail.com"
+    this.newSpeaker.SpeakerDescription="Spokener"
+
+    const params=new RequestParams();
+    params.Body=this.newSpeaker;
+    params.EndPoint="speaker";
+    params.requestType=4;
+    params.authToken=httpOptions;
+
+    console.log(httpOptions);
+
+
+    this.dataService.httprequest(params)
+      .subscribe((data: Speaker) => this.newSpeaker = data);
+    console.log(this.newSpeaker)
+
+  }
+
   addNewEvent() {
     this.eventData.emit(this.event);
   }
@@ -87,8 +128,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get eventSpeakers() { return this.eventForm.get('eventSpeakers'); }
   get eventRegistrationForm() { return this.eventForm.get('eventRegistrationForm'); }
 
-  constructor(private dataService: DataService, private departmentService: DepartmentService) {
-  }
+
 
   ngOnInit(): void {
     this.componentClass = 'col-lg-6 col-md-12';

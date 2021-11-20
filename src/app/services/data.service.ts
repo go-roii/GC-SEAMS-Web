@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http'
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http'
 import { RequestParams } from '../models/RequestParams';
 import { Courses } from '../models/Courses';
 import {Observable, throwError} from 'rxjs';
 import {RefreshTokens} from "../models/RefreshTokens";
+import {UserService} from "./user.service";
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
   constructor(private http: HttpClient) {}
@@ -28,6 +30,8 @@ export class DataService {
 
   httprequest(requestParams: RequestParams){
 
+
+
     let result: any
     switch(requestParams.RequestType){
 
@@ -43,19 +47,18 @@ export class DataService {
 
       //post data to get the access token from the header and the refresh token from the body.
       case 3:
-        result = result=this.getConfigResponse(requestParams.endPoint, requestParams.body);
+        result=this.getConfigResponse(requestParams.endPoint, requestParams.body);
         break;
 
       //post data with authentication header
       case 4:
-        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
+        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body, requestParams.AuthToken);
         break;
       default:
       break;
     }
     return result;
   }
-
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

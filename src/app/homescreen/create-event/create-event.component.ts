@@ -126,7 +126,7 @@ export class CreateEventComponent implements OnInit {
 
   addCard(){
     this.count+=1
-    const newCard= new EventCardComponent(this.dataService, this.departmentService);
+    const newCard= new EventCardComponent(this.dataService, this.departmentService, this.userService);
     this.events.push(newCard)
    }
 

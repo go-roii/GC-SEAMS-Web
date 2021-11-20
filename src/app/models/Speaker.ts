@@ -4,11 +4,11 @@ export class Speaker{
   private speaker_email: string;
   private speaker_description: string;
 
-  constructor(SpeakerID: number, SpeakerName: string, SpeakerEmail: string, SpeakerDescription: string) {
-    this.speaker_id = SpeakerID;
-    this.speaker_name = SpeakerName;
-    this.speaker_email = SpeakerEmail;
-    this.speaker_description = SpeakerDescription;
+  constructor() {
+    this.speaker_id = 0;
+    this.speaker_name = '';
+    this.speaker_email = '';
+    this.speaker_description = '';
   }
 
   set SpeakerID(value: number) {

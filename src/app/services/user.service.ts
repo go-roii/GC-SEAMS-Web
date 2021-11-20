@@ -1,11 +1,11 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import {UserProfile} from "../models/UserProfile";
 import {RefreshTokens} from "../models/RefreshTokens";
 import { interval, Subscription } from 'rxjs';
 import {DataService} from "./data.service";
-import {Credentials} from "../models/Credential";
 import {RequestParams} from "../models/RequestParams";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +14,39 @@ import {RequestParams} from "../models/RequestParams";
 export class UserService{
 
   private subscription!: Subscription;
-  private intervalId!: number;
   private headers!: string[];
   private activeUser!: UserProfile;
   private refreshToken!: RefreshTokens;
   private authHeader! :string;
-
+  private httpOptions!: HttpHeaders
   constructor(private router: Router, private dataService: DataService) {
   }
 
+  public get HttpOptions(){
+
+    const trimmedHeader=this.AuthHeader.split(':');
+
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+
+    return httpOptions;
+
+  }
+
   setLoginState(){
-    sessionStorage.setItem('loginstate', 'true')
-    this.router.navigateByUrl('/homescreen')
+    sessionStorage.setItem('loginstate', 'true');
+    this.router.navigateByUrl('/homescreen');
   }
 
   getLoginState(){ return sessionStorage.getItem('loginstate') }
 
   logOut(){
+    this.stopTimer();
     sessionStorage.clear()
     this.router.navigateByUrl('')
   }
@@ -61,13 +77,12 @@ export class UserService{
 
   start(){
 
-    const source = interval(240000); //this is equivalent to 4 minutes
+    const source = interval(240000); //this interval is equivalent to 4 minutes
     const text = 'The access-token is expired';
-    //this.subscription = source.subscribe(val => this.opensnack(text));
     this.subscription = source.subscribe(val => this.refreshAccessToken());
   }
 
-  opensnack(text: string) {
+  openSnack(text: string) {
     // I've just commented this so that you're not bombarded with an alert.
     alert(text);
     console.log(text);
@@ -96,7 +111,8 @@ export class UserService{
 
         // access the body directly, which is typed as `RefreshTokens`.
         this.AuthHeader = this.headers[0];
-        console.log("new access-token: "+this.AuthHeader)
+        const trimmedHeader=this.authHeader.split(':')
+        console.log("new access-token: "+trimmedHeader[1])
 
         //this.start();
         //this.setLoginState();
