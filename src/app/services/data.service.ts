@@ -16,20 +16,39 @@ export class DataService {
 
     return this.http.post<RefreshTokens>(
       this.baseURL+"/"+endpoint, body, { observe: 'response' });
+
+  }
+
+  getNewAccessToken(endpoint: string, body: RefreshTokens): Observable<HttpResponse<RefreshTokens>> {
+
+    return this.http.post<RefreshTokens>(
+      this.baseURL+"/"+endpoint, body, { observe: 'response' })
+
   }
 
   httprequest(requestParams: RequestParams){
 
     let result: any
     switch(requestParams.RequestType){
+
+      //get data without authentication header
       case 1:
         result = this.http.get(this.baseURL+requestParams.EndPoint);
-        break;
+        break
+
+      //post data without authentication header;
       case 2:
         result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
         break;
+
+      //post data to get the access token from the header and the refresh token from the body.
       case 3:
         result = result=this.getConfigResponse(requestParams.endPoint, requestParams.body);
+        break;
+
+      //post data with authentication header
+      case 4:
+        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
         break;
       default:
       break;

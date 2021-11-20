@@ -3,21 +3,24 @@ import { Router } from '@angular/router';
 import {UserProfile} from "../models/UserProfile";
 import {RefreshTokens} from "../models/RefreshTokens";
 import { interval, Subscription } from 'rxjs';
+import {DataService} from "./data.service";
+import {Credentials} from "../models/Credential";
+import {RequestParams} from "../models/RequestParams";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService implements OnDestroy{
+export class UserService{
 
-  subscription!: Subscription;
-  intervalId!: number;
-
+  private subscription!: Subscription;
+  private intervalId!: number;
+  private headers!: string[];
   private activeUser!: UserProfile;
   private refreshToken!: RefreshTokens;
   private authHeader! :string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private dataService: DataService) {
   }
 
   setLoginState(){
@@ -58,10 +61,10 @@ export class UserService implements OnDestroy{
 
   start(){
 
-    // This is METHOD 1
-    const source = interval(270000);
+    const source = interval(240000); //this is equivalent to 4 minutes
     const text = 'The access-token is expired';
-    this.subscription = source.subscribe(val => this.opensnack(text));
+    //this.subscription = source.subscribe(val => this.opensnack(text));
+    this.subscription = source.subscribe(val => this.refreshAccessToken());
   }
 
   opensnack(text: string) {
@@ -69,15 +72,43 @@ export class UserService implements OnDestroy{
     alert(text);
     console.log(text);
     this.logOut();
-    this.ngOnDestroy();
+    this.stopTimer();
   }
 
-  ngOnDestroy(): void {
+  refreshAccessToken(){
+
+    const refreshToken: RefreshTokens = this.RefreshToken;
+
+    const loginParams= new RequestParams();
+    loginParams.EndPoint="/token/refresh";
+    loginParams.Body=refreshToken;
+    loginParams.RequestType=3;
+
+
+    this.dataService.getNewAccessToken(loginParams.EndPoint, loginParams.body)
+      // resp is of type `HttpResponse<RefreshTokens>`
+      .subscribe(resp => {
+        // display its headers
+        const keys = resp.headers.keys();
+
+        this.headers = keys.map(key =>
+          `${key}: ${resp.headers.get(key)}`);
+
+        // access the body directly, which is typed as `RefreshTokens`.
+        this.AuthHeader = this.headers[0];
+        console.log("new access-token: "+this.AuthHeader)
+
+        //this.start();
+        //this.setLoginState();
+        //console.log(this.headers);
+        //console.log(this.config);
+      });
+  }
+
+  stopTimer(){
     // For method 1
     this.subscription && this.subscription.unsubscribe();
   }
-
-
 
 
   // setUserData(data: any) {
