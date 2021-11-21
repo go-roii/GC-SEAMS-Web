@@ -12,6 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 import { EventCardComponent } from './event-card/event-card.component';
 import {DepartmentService} from "../../services/department.service";
 import {SpeakersService} from "../../services/speakers.service";
+import {EventsToAdd} from "../../models/EventsToAdd";
+import {Speaker} from "../../models/Speaker";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-create-event',
@@ -26,6 +29,7 @@ export class CreateEventComponent implements OnInit {
   courses: Courses[] = [];
   departments: Departments[]=[];
 
+
   byCourse!: boolean;
   sortBy: string='';
 
@@ -37,6 +41,35 @@ export class CreateEventComponent implements OnInit {
               private departmentService: DepartmentService,
               private speakerService: SpeakersService
   ) {
+  }
+
+  //process the Event Data to follow the request object format
+  private processEventData(){
+
+    let eventDataToAdd: EventsToAdd[]=[];
+    let departmentToAdd: Array<number>=[];
+    let speakersToAdd: Array<number> =[];
+
+
+
+    for(let event of this.eventData){
+
+      const data: EventsToAdd = {
+        event_title: event.eventName,
+        event_description: event.eventDetails,
+        event_start_date: event.eventDate+'T'+event.eventStartTime+':00',
+        event_end_date: event.eventDate+'T'+event.eventEndTime+':00',
+        timezone_id: 'Asia/Manila',
+        registration_link: event.eventRegistrationForm,
+        departments: event.departments,
+        speakers: event.eventSpeakers
+      }
+
+      eventDataToAdd.push(data);
+
+    }
+
+    return eventDataToAdd;
   }
 
   //create form group and form controls for fields
@@ -142,7 +175,37 @@ export class CreateEventComponent implements OnInit {
     //console.log(this.userService.getUserData());
   }
 
+  getHttpOptions(){
+
+    const trimmedHeader=this.userService.getAuthHeader().split(':');
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+    return httpOptions;
+  }
+
+  saveEvents(){
+
+    this.printInputs();
+
+    const eventParams: RequestParams=new RequestParams();
+    eventParams.EndPoint="event";
+    eventParams.body=this.processEventData()[0];
+    eventParams.requestType= 4 ;
+    eventParams.AuthToken=this.getHttpOptions();
+
+    this.dataService.httprequest(eventParams)
+      .subscribe(async (data: string) =>{
+        await console.log(data);
+      });
+  }
+
   printInputs(): void{
     console.log(this.eventData)
+    console.log(this.processEventData()[0]);
   }
 }
