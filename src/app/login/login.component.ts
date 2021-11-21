@@ -76,58 +76,18 @@ export class LoginComponent implements OnInit {
 
         // access the body directly, which is typed as `RefreshTokens`.
         this.userService.setRefreshToken({ ...resp.body!});
+
+        //set auth header on user service equals to the first index in headers array property
         this.userService.setAuthHeader(this.headers[0]);
+
+        //trim the header to remove the "authorization:" at the beginning
         const trim=this.userService.getAuthHeader().split(':');
         console.log("trimmed header: "+trim[1])
-        this.userService.start();
 
+        this.userService.start();
         this.userService.setLoginState();
 
       });
-
-    //department service will be loaded if not yet
-    if(!this.departmentService.isLoaded){
-      this.fetchDepartments()
-      this.departmentService.isLoaded=true;
-    }
-
-    //speakers service will be loaded in not yet
-    if(!this.speakersService.IsLoaded){
-      this.fetchSpeakers();
-    }
-  }
-
-  getHttpOptions(){
-
-    const trimmedHeader=this.userService.getAuthHeader().split(':');
-    const httpOptions = {
-
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        Authorization: trimmedHeader[1]
-      })
-    };
-
-    return httpOptions;
-  }
-
-  fetchDepartments(){
-    const departmentParams= new RequestParams();
-    departmentParams.EndPoint="departments";
-    departmentParams.RequestType=1;
-
-    this.dataService.httprequest(departmentParams)
-      .subscribe((data: Departments[]) => this.departmentService.setDepartments(data));
-  }
-
-  fetchSpeakers(){
-    const speakerParams= new RequestParams();
-    speakerParams.EndPoint="speakers";
-    speakerParams.RequestType=5;
-    speakerParams.AuthToken=this.getHttpOptions();
-
-    this.dataService.httprequest(speakerParams)
-      .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
   }
 
 }

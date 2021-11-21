@@ -29,4 +29,10 @@ export class SpeakersService {
   public getSpeakers(){
     return JSON.parse(<string>sessionStorage.getItem('speakers'))
   }
+
+  public updateSpeakers(speakers: string){
+    sessionStorage.removeItem('speakers');
+    sessionStorage.setItem('speakers', speakers);
+  }
+
 }

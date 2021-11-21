@@ -10,6 +10,8 @@ import {Speaker} from "../../../models/Speaker";
 import {UserService} from "../../../services/user.service";
 import {HttpHeaders} from "@angular/common/http";
 import {SpeakersService} from "../../../services/speakers.service";
+import {UserProfile} from "../../../models/UserProfile";
+import {connectableObservableDescriptor} from "rxjs/internal/observable/ConnectableObservable";
 
 @Component({
   selector: 'app-event-card',
@@ -31,15 +33,22 @@ export class EventCardComponent implements OnInit, OnDestroy{
   event: Events=new Events();
   departments: Departments[]=[];
   chosenDepartments: Departments[]=[];
-  newSpeaker: Speaker=new Speaker();
   speakers: Speaker[]=[];
   chosenSpeaker: Speaker[]=[];
+
+  speaker!: Speaker;
 
   constructor(private dataService: DataService,
               private departmentService: DepartmentService,
               private userService: UserService,
               private speakersService: SpeakersService) {
   }
+
+  speakerForm: FormGroup = new FormGroup({
+    speakerName:new FormControl('',[Validators.required,]),
+    speakerEmail:new FormControl('',[Validators.required,Validators.email]),
+    speakerDescription:new FormControl('',[Validators.required,]),
+  })
 
   addSpeaker(value: Speaker){
     this.chosenSpeaker.push(value);
@@ -96,18 +105,18 @@ export class EventCardComponent implements OnInit, OnDestroy{
         Authorization: trimmedHeader[1]
       })
     };
-
     return httpOptions;
   }
 
   addNewSpeaker(){
 
-    this.newSpeaker.SpeakerName="Everly Bayog";
-    this.newSpeaker.SpeakerEmail="EverlyG@gmail.com"
-    this.newSpeaker.SpeakerDescription="evslangsakalam"
+    const newSpeaker: Speaker = new Speaker();
+      newSpeaker.speaker_name=this.speakerForm.controls['speakerName'].value;
+      newSpeaker.speaker_email=this.speakerForm.controls['speakerEmail'].value;
+      newSpeaker.speaker_description=this.speakerForm.controls['speakerDescription'].value;
 
     const params=new RequestParams();
-    params.Body=this.newSpeaker;
+    params.Body=newSpeaker;
     params.EndPoint="speaker";
     params.requestType=4;
     params.authToken=this.getHttpOptions();
@@ -115,9 +124,13 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log(this.getHttpOptions());
 
     this.dataService.httprequest(params)
-      .subscribe((data: Speaker) => this.newSpeaker = data);
-    console.log(this.newSpeaker)
+      .subscribe(async (data: Speaker) =>{
+        this.speaker = data
+        await this.updateSpeakers();
+      });
 
+    this.speakers=this.speakersService.getSpeakers();
+    this.speakerForm.reset()
   }
 
   addNewEvent() {
@@ -139,6 +152,10 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get eventSpeakers() { return this.eventForm.get('eventSpeakers'); }
   get eventRegistrationForm() { return this.eventForm.get('eventRegistrationForm'); }
 
+  get speakerName() { return this.speakerForm.get('speakerName'); }
+  get speakerEmail() { return this.speakerForm.get('speakerEmail'); }
+  get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
+
   ngOnInit(): void {
 
     this.componentClass = 'col-lg-6 col-md-12';
@@ -152,17 +169,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
       eventRegistrationForm:new FormControl('',[Validators.required])
     });
 
-    //department service will be loaded if not yet
-    if(!this.departmentService.isLoaded){
-      this.fetchDepartments()
-      this.departmentService.isLoaded=true;
-    }
-
-    if(!this.speakersService.IsLoaded){
-      this.fetchSpeakers();
-      this.speakersService.IsLoaded=true;
-    }
-
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
     this.addNewEvent();
@@ -173,26 +179,25 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.event.eventSpeakers=this.chosenSpeaker;
   }
 
-  ngOnDestroy(): void {
-    this.deleteEvent();
-  }
-
-  fetchDepartments(){
-    const departmentParams= new RequestParams();
-    departmentParams.EndPoint="departments";
-    departmentParams.RequestType=1;
-
-    this.dataService.httprequest(departmentParams)
-      .subscribe((data: Departments[]) => this.departmentService.setDepartments(data));
-  }
-
-  fetchSpeakers(){
+  public updateSpeakers(){
     const speakerParams= new RequestParams();
     speakerParams.EndPoint="speakers";
     speakerParams.RequestType=5;
     speakerParams.AuthToken=this.getHttpOptions();
 
     this.dataService.httprequest(speakerParams)
-      .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
+      .subscribe((data: any) =>{
+        this.speakersService.updateSpeakers(JSON.stringify(data));
+        console.log(data)
+      });
+
+    //this.speakers=this.speakersService.getSpeakers();
+
+    console.log(this.speakers)
   }
+
+  ngOnDestroy(): void {
+    this.deleteEvent();
+  }
+
 }
