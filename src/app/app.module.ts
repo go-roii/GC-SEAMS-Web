@@ -9,12 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { QRCodeComponent } from './qr-code/qr-code.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    QRCodeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['']">GC-SEAMS</a>
+  </div>
+</nav>
+
+<div class="p-5" style="margin: auto">
+  <div id="qr-code-container" class="container text-center mb-5">
+    <p class="mb-4" style="font-size: 18px;">Please use the GC-SEAMS mobile app to scan this QR code for your attendace</p>
+
+    <div id="qr-code-background">
+      <div class="mb-4">
+        <img id="qr-code-img" src="../../assets/qr_code.png" alt="QR Code for attendance" width=250 height=250>
+      </div>
+      <h6 style="color: rgba(255, 255, 255, 0.87)">BSCS Programming</h6>
+    </div>
+  </div>
+
+  <div class="container text-center">
+    <p class="mb-1" style="font-size: 18px;">If you cannot scan the QR code, type in the code below in the app instead.</p>
+    <h5 id="alt-code" style="color: var(--primary-color); font-weight: bold">ABC-DEF-GHI</h5>
+  </div>
+</div>

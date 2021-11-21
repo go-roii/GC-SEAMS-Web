@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AutologinGuard } from './guards/autologin.guard';
+import { QRCodeComponent } from './qr-code/qr-code.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,12 @@ const routes: Routes = [
     path: 'homescreen', // username
     loadChildren: () => import('./homescreen/homescreen.module').then(m => m.HomescreenModule),
     canLoad: [AuthGuard]
-  }
+  },
+  {
+    path: 'qr-code',
+    component: QRCodeComponent,
+    canLoad: [AutologinGuard]
+  },
 ];
 
 @NgModule({
