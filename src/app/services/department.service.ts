@@ -6,8 +6,7 @@ import {Departments} from "../models/Departments";
 })
 export class DepartmentService {
 
-  private _isLoaded: boolean=false;
-  private _departments: Departments[]=[];
+  private _isLoaded: boolean = false;
 
   constructor() { }
 
@@ -19,11 +18,12 @@ export class DepartmentService {
     this._isLoaded = value;
   }
 
-  public get departments(): Departments[] {
-    return this._departments;
+  public setDepartments(value: Departments[]){
+    sessionStorage.setItem('departments', JSON.stringify(value));
+    this.isLoaded=true;
   }
 
-  public set departments(value: Departments[]) {
-    this._departments = value;
+  public getDepartments(){
+    return JSON.parse(<string>sessionStorage.getItem('departments'))
   }
 }

@@ -57,7 +57,7 @@
         <ul class="dropdown-menu">
           <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
             <label>{{department.department_code}}</label>
-            <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)">
+            <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)" (click)="fetchDepartments()">
           </li>
         </ul>
       </div>
@@ -66,7 +66,7 @@
     <div class="mb-3">
       <label for="speakers" class="form-label">Speakers</label>
       <div class="input-group input-group-sm">
-        <input id="speakers" class="form-control" type="text" [(ngModel)]='event.eventSpeakers' formControlName="eventSpeakers" required>
+        <input id="speakers" class="form-control" type="text" formControlName="eventSpeakers" required>
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#speaker-modal" aria-expanded="false">Add Speakers</button>
 
         <div class="modal fade" id="speaker-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -78,109 +78,25 @@
               </div>
               <div class="modal-body">
 
-                  <input type="text" class="form-control" [(ngModel)]="newSpeaker.SpeakerName" placeholder="full name" aria-label="full name">
-                  <input type="email" class="form-control" [(ngModel)]="newSpeaker.SpeakerEmail" placeholder="email address" aria-label="email address">
-                  <input type="text" class="form-control" [(ngModel)]="newSpeaker.SpeakerDescription" placeholder="description" aria-label="description">
+                  <input type="text" class="form-control"  placeholder="full name" aria-label="full name">
+                  <input type="email" class="form-control"  placeholder="email address" aria-label="email address">
+                  <input type="text" class="form-control"  placeholder="description" aria-label="description">
                   <button class="btn btn-primary" type="button" (click)="addNewSpeaker()">Save Speaker</button>
 
                 <div class="input-group input-group-sm mb-3">
                   <input type="text" class="form-control" placeholder="Search speaker..." aria-label="Search speaker">
                   <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
                 </div>
-                <ul class="list-group">
+                <ul class="list-group" *ngFor="let speaker of speakers" >
                   <li class="list-group-item">
                     <div class="d-flex align-items-center">
                       <div id="profile-pic"></div>
                       <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Roy F. Gopez Jr.</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100001@gordoncollege.edu.ph</p>
+                        <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
+                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
                       </div>
                       <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Jezreel Joshua Martin</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100002@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Mark Jason Margallo</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100003@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Everly Stecel Roa Bayog</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100004@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Fernand Fermin</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100005@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">John Angelo Philip Vergel</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100006@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Haidee Hidocos</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100007@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                      <div id="profile-pic"></div>
-                      <div class="mx-3">
-                        <p class="mb-0" style="font-size: 14px;">Dan Sedrick Reyes</p>
-                        <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100008@gordoncollege.edu.ph</p>
-                      </div>
-                      <div style="margin-left: auto;">
-                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." (change)="addSpeaker(speaker)">
                       </div>
                     </div>
                   </li>

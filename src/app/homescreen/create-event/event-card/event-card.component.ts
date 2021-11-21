@@ -9,6 +9,7 @@ import {DepartmentService} from "../../../services/department.service";
 import {Speaker} from "../../../models/Speaker";
 import {UserService} from "../../../services/user.service";
 import {HttpHeaders} from "@angular/common/http";
+import {SpeakersService} from "../../../services/speakers.service";
 
 @Component({
   selector: 'app-event-card',
@@ -31,10 +32,18 @@ export class EventCardComponent implements OnInit, OnDestroy{
   departments: Departments[]=[];
   chosenDepartments: Departments[]=[];
   newSpeaker: Speaker=new Speaker();
+  speakers: Speaker[]=[];
+  chosenSpeaker: Speaker[]=[];
 
   constructor(private dataService: DataService,
               private departmentService: DepartmentService,
-              private userService: UserService) {
+              private userService: UserService,
+              private speakersService: SpeakersService) {
+  }
+
+  addSpeaker(value: Speaker){
+    this.chosenSpeaker.push(value);
+    console.log(this.chosenSpeaker);
   }
 
   onNativeChange(e: any, department: Departments) {
@@ -77,11 +86,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.chosenDepartments.push(department);
   }
 
+  getHttpOptions(){
 
-  addNewSpeaker(){
-
-    const trimmedHeader=this.userService.AuthHeader.split(':');
-
+    const trimmedHeader=this.userService.getAuthHeader().split(':');
     const httpOptions = {
 
       headers: new HttpHeaders({
@@ -90,18 +97,22 @@ export class EventCardComponent implements OnInit, OnDestroy{
       })
     };
 
-    this.newSpeaker.SpeakerName="Mark Jason Margallo";
-    this.newSpeaker.SpeakerEmail="mark@gmail.com"
-    this.newSpeaker.SpeakerDescription="Spokener"
+    return httpOptions;
+  }
+
+  addNewSpeaker(){
+
+    this.newSpeaker.SpeakerName="Everly Bayog";
+    this.newSpeaker.SpeakerEmail="EverlyG@gmail.com"
+    this.newSpeaker.SpeakerDescription="evslangsakalam"
 
     const params=new RequestParams();
     params.Body=this.newSpeaker;
     params.EndPoint="speaker";
     params.requestType=4;
-    params.authToken=httpOptions;
+    params.authToken=this.getHttpOptions();
 
-    console.log(httpOptions);
-
+    console.log(this.getHttpOptions());
 
     this.dataService.httprequest(params)
       .subscribe((data: Speaker) => this.newSpeaker = data);
@@ -128,9 +139,8 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get eventSpeakers() { return this.eventForm.get('eventSpeakers'); }
   get eventRegistrationForm() { return this.eventForm.get('eventRegistrationForm'); }
 
-
-
   ngOnInit(): void {
+
     this.componentClass = 'col-lg-6 col-md-12';
     this.eventForm = new FormGroup({
       eventName:new FormControl('',[Validators.required,]),
@@ -142,18 +152,25 @@ export class EventCardComponent implements OnInit, OnDestroy{
       eventRegistrationForm:new FormControl('',[Validators.required])
     });
 
-
-
+    //department service will be loaded if not yet
     if(!this.departmentService.isLoaded){
       this.fetchDepartments()
       this.departmentService.isLoaded=true;
     }
 
-    this.departments=this.departmentService.departments
+    if(!this.speakersService.IsLoaded){
+      this.fetchSpeakers();
+      this.speakersService.IsLoaded=true;
+    }
+
+    this.speakers=this.speakersService.getSpeakers();
+    this.departments=this.departmentService.getDepartments();
     this.addNewEvent();
 
-    this.event.departments=this.departments;
-
+    console.log("departments: "+this.departments)
+    console.log("speakers: "+this.speakers)
+    this.event.departments=this.chosenDepartments;
+    this.event.eventSpeakers=this.chosenSpeaker;
   }
 
   ngOnDestroy(): void {
@@ -166,7 +183,16 @@ export class EventCardComponent implements OnInit, OnDestroy{
     departmentParams.RequestType=1;
 
     this.dataService.httprequest(departmentParams)
-      .subscribe((data: Departments[]) => this.departmentService.departments = data);
+      .subscribe((data: Departments[]) => this.departmentService.setDepartments(data));
   }
 
+  fetchSpeakers(){
+    const speakerParams= new RequestParams();
+    speakerParams.EndPoint="speakers";
+    speakerParams.RequestType=5;
+    speakerParams.AuthToken=this.getHttpOptions();
+
+    this.dataService.httprequest(speakerParams)
+      .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
+  }
 }

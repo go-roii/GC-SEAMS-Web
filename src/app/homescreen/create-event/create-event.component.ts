@@ -11,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
 import { EventCardComponent } from './event-card/event-card.component';
 import {DepartmentService} from "../../services/department.service";
+import {SpeakersService} from "../../services/speakers.service";
 
 @Component({
   selector: 'app-create-event',
@@ -30,7 +31,12 @@ export class CreateEventComponent implements OnInit {
 
     // @HostBinding('className') componentClass: string;
 
-  constructor(private router: Router, private  dataService: DataService, private userService: UserService, private departmentService: DepartmentService) {
+  constructor(private router: Router,
+              private  dataService: DataService,
+              private userService: UserService,
+              private departmentService: DepartmentService,
+              private speakerService: SpeakersService
+  ) {
   }
 
   //create form group and form controls for fields
@@ -126,7 +132,7 @@ export class CreateEventComponent implements OnInit {
 
   addCard(){
     this.count+=1
-    const newCard= new EventCardComponent(this.dataService, this.departmentService, this.userService);
+    const newCard= new EventCardComponent(this.dataService, this.departmentService, this.userService, this.speakerService);
     this.events.push(newCard)
    }
 

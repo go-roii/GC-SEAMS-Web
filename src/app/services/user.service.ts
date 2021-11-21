@@ -6,6 +6,9 @@ import { interval, Subscription } from 'rxjs';
 import {DataService} from "./data.service";
 import {RequestParams} from "../models/RequestParams";
 import {HttpHeaders} from "@angular/common/http";
+import {Token} from "@angular/compiler";
+import {SpeakersService} from "./speakers.service";
+import {DepartmentService} from "./department.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +16,28 @@ import {HttpHeaders} from "@angular/common/http";
 
 export class UserService{
 
+  private timerIsStarted: boolean=false;
   private subscription!: Subscription;
   private headers!: string[];
-  private activeUser!: UserProfile;
-  private refreshToken!: RefreshTokens;
   private authHeader! :string;
-  private httpOptions!: HttpHeaders
-  constructor(private router: Router, private dataService: DataService) {
+  constructor(private router: Router,
+              private dataService: DataService,
+              private speakersService: SpeakersService,
+              private departmentService: DepartmentService
+  ) {
+  }
+
+  private TimerIsStarted(){
+    this.timerIsStarted=true;
+  }
+
+  public getTimerIsStarted(){
+    return this.timerIsStarted;
   }
 
   public get HttpOptions(){
 
-    const trimmedHeader=this.AuthHeader.split(':');
+    const trimmedHeader=this.getAuthHeader().split(':');
 
     const httpOptions = {
 
@@ -35,7 +48,6 @@ export class UserService{
     };
 
     return httpOptions;
-
   }
 
   setLoginState(){
@@ -43,42 +55,52 @@ export class UserService{
     this.router.navigateByUrl('/homescreen');
   }
 
-  getLoginState(){ return sessionStorage.getItem('loginstate') }
+  getLoginState(){
+    return sessionStorage.getItem('loginstate')
+  }
 
   logOut(){
     this.stopTimer();
     sessionStorage.clear()
     this.router.navigateByUrl('')
+    this.speakersService.IsLoaded=false;
+    this.departmentService.isLoaded=false;
   }
 
-  public set AuthHeader(header: string){
-    this.authHeader=header
+  public setRefreshToken(token: RefreshTokens){
+    sessionStorage.setItem('session-storage', JSON.stringify(token))
   }
 
-  public get AuthHeader(){
-    return this.authHeader;
+  public getRefreshToken(){
+    return JSON.parse(<string>sessionStorage.getItem('session-storage'))
   }
 
-  public set RefreshToken(token: RefreshTokens){
-    this.refreshToken=token;
+  public setAuthHeader(header: string){
+    sessionStorage.setItem('auth-header', header)
   }
 
-  public get RefreshToken(){
-    return this.refreshToken;
+  public updateAuthHeader(header: string){
+    sessionStorage.removeItem('auth-header');
+    sessionStorage.setItem('auth-header', header);
   }
 
-  public set ActiveUser(val: UserProfile){
-    this.activeUser=val;
+  public getAuthHeader(){
+    const header: any = sessionStorage.getItem('auth-header');
+    return header;
   }
 
-  public get ActiveUser(){
-    return this.activeUser;
+
+  public setActiveUser(user: UserProfile){
+    sessionStorage.setItem('active-user', JSON.stringify(user))
+  }
+
+  public getActiveUser(){
+    return JSON.parse(<string>sessionStorage.getItem('active-user'))
   }
 
   start(){
-
+    this.TimerIsStarted();
     const source = interval(240000); //this interval is equivalent to 4 minutes
-    const text = 'The access-token is expired';
     this.subscription = source.subscribe(val => this.refreshAccessToken());
   }
 
@@ -92,15 +114,14 @@ export class UserService{
 
   refreshAccessToken(){
 
-    const refreshToken: RefreshTokens = this.RefreshToken;
+    const refreshToken: RefreshTokens = this.getRefreshToken();
 
-    const loginParams= new RequestParams();
-    loginParams.EndPoint="/token/refresh";
-    loginParams.Body=refreshToken;
-    loginParams.RequestType=3;
+    const refreshParams= new RequestParams();
+    refreshParams.EndPoint="/token/refresh";
+    refreshParams.Body=refreshToken;
+    refreshParams.RequestType=3;
 
-
-    this.dataService.getNewAccessToken(loginParams.EndPoint, loginParams.body)
+    this.dataService.getNewAccessToken(refreshParams.EndPoint, refreshParams.body)
       // resp is of type `HttpResponse<RefreshTokens>`
       .subscribe(resp => {
         // display its headers
@@ -110,26 +131,16 @@ export class UserService{
           `${key}: ${resp.headers.get(key)}`);
 
         // access the body directly, which is typed as `RefreshTokens`.
-        this.AuthHeader = this.headers[0];
-        const trimmedHeader=this.authHeader.split(':')
+        this.updateAuthHeader(this.headers[0])
+        //this.setAuthHeader(this.headers[0]);
+        const trimmedHeader=this.getAuthHeader().split(':');
         console.log("new access-token: "+trimmedHeader[1])
 
-        //this.start();
-        //this.setLoginState();
-        //console.log(this.headers);
-        //console.log(this.config);
       });
   }
 
   stopTimer(){
-    // For method 1
+    // stop the timed refresh
     this.subscription && this.subscription.unsubscribe();
   }
-
-
-  // setUserData(data: any) {
-  //   sessionStorage.setItem('userdata', data)
-  // }
-  //
-  // getUserData() { return sessionStorage.getItem('userdata') }
 }

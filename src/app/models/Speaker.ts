@@ -1,14 +1,16 @@
 export class Speaker{
-  private speaker_id:number;
-  private speaker_name: string;
-  private speaker_email: string;
-  private speaker_description: string;
+  speaker_id:number;
+  speaker_name: string;
+  speaker_email: string;
+  speaker_description: string;
+  speaker_chosen: boolean;
 
   constructor() {
     this.speaker_id = 0;
     this.speaker_name = '';
     this.speaker_email = '';
     this.speaker_description = '';
+    this.speaker_chosen=false;
   }
 
   set SpeakerID(value: number) {

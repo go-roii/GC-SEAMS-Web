@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SidenavExpandService } from '../services/sidenav-expand.service';
 import { UserService } from '../services/user.service';
+import {DepartmentService} from "../services/department.service";
+import {RequestParams} from "../models/RequestParams";
+import {Departments} from "../models/Departments";
+import {Speaker} from "../models/Speaker";
+import {DataService} from "../services/data.service";
+import {HttpHeaders} from "@angular/common/http";
+import {SpeakersService} from "../services/speakers.service";
 
 @Component({
   selector: 'app-homescreen',
@@ -18,27 +25,52 @@ export class HomescreenComponent implements OnInit {
 	// currentPage: string = this.router.url;
 	currentPage: string = 'events';
 
-	constructor(private router : Router, private userService: UserService, private sidedenavExpandService: SidenavExpandService) {
+	constructor(private router : Router,
+              private userService: UserService,
+              private sidedenavExpandService: SidenavExpandService,
+              private departmentService: DepartmentService,
+              private speakersService: SpeakersService,
+              private dataService: DataService
+  ) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
     });
   }
 
 	ngOnInit(): void {
-    const firstName: string = this.userService.ActiveUser.first_name;
-    const lastName: string = this.userService.ActiveUser.last_name;
+
+    //department service will be loaded if not yet
+    if(!this.departmentService.isLoaded){
+      this.fetchDepartments()
+      this.departmentService.isLoaded=true;
+    }
+
+    //speakers service will be loaded in not yet
+    if(!this.speakersService.IsLoaded){
+      this.fetchSpeakers();
+    }
+
+    //refresh timer will be started if not yet
+    if(!this.userService.getTimerIsStarted()){
+      this.userService.start();
+    }
+
+    const firstName: string = this.userService.getActiveUser().first_name;
+    const lastName: string = this.userService.getActiveUser().last_name;
     this.fullName=firstName+" "+lastName;
-    this.email=this.userService.ActiveUser.email_address;
+    this.email=this.userService.getActiveUser().email_address;
+
 		// this.router.navigate(['homescreen/events/ongoing'])
 		// this.router.events.subscribe(event => {
 		// 	if (event instanceof NavigationStart) {
 		// 		this.routerChangeMethod(event.url);
 		// 	}
 		// })
-    console.log("refresh token: "+this.userService.RefreshToken.refresh_token);
-    console.log("access token: "+this.userService.AuthHeader)
+
+    console.log("refresh token: "+this.userService.getRefreshToken().refresh_token);
+    console.log("access token: "+this.userService.getAuthHeader())
     console.log(this.userService.getLoginState());
-    console.log(this.userService.ActiveUser)
+    console.log(this.userService.getActiveUser())
 	}
 
 	// routerChangeMethod(url: string) {
@@ -59,6 +91,39 @@ export class HomescreenComponent implements OnInit {
   logout(){
     this.userService.logOut();
     console.log(this.userService.getLoginState());
+  }
+
+  getHttpOptions(){
+
+    const trimmedHeader=this.userService.getAuthHeader().split(':');
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+
+    return httpOptions;
+  }
+
+  public fetchDepartments(){
+    const departmentParams= new RequestParams();
+    departmentParams.EndPoint="departments";
+    departmentParams.RequestType=1;
+
+    this.dataService.httprequest(departmentParams)
+      .subscribe((data: Departments[]) => this.departmentService.setDepartments(data));
+  }
+
+  public fetchSpeakers(){
+    const speakerParams= new RequestParams();
+    speakerParams.EndPoint="speakers";
+    speakerParams.RequestType=5;
+    speakerParams.AuthToken=this.getHttpOptions();
+
+    this.dataService.httprequest(speakerParams)
+      .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
   }
 
 }

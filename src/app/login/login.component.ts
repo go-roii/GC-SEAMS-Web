@@ -8,6 +8,11 @@ import { UserService } from '../services/user.service';
 import {UserProfile} from "../models/UserProfile";
 import {RefreshTokens} from "../models/RefreshTokens";
 import {AuthHeader} from "../models/AuthHeader";
+import {Departments} from "../models/Departments";
+import {Speaker} from "../models/Speaker";
+import {HttpHeaders} from "@angular/common/http";
+import {DepartmentService} from "../services/department.service";
+import {SpeakersService} from "../services/speakers.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +22,11 @@ import {AuthHeader} from "../models/AuthHeader";
 export class LoginComponent implements OnInit {
   private headers!: string[];
 
-  constructor(private userService: UserService, private dataService: DataService) {}
+  constructor(private userService: UserService,
+              private dataService: DataService,
+              private departmentService: DepartmentService,
+              private speakersService: SpeakersService
+  ) {}
 
   ngOnInit(): void {
   }
@@ -32,6 +41,7 @@ export class LoginComponent implements OnInit {
   get password() { return this.credentialsForm.get('password'); }
 
   login(): void {
+
     const credentials: Credentials={
       email_address: this.credentialsForm.controls['email'].value,
       password: this.credentialsForm.controls['password'].value
@@ -52,7 +62,7 @@ export class LoginComponent implements OnInit {
       course_id: 1
     }
 
-    this.userService.ActiveUser=user;
+    this.userService.setActiveUser(user);
 
     this.dataService.getConfigResponse(loginParams.EndPoint, loginParams.body)
       // resp is of type `HttpResponse<RefreshTokens>`
@@ -60,30 +70,64 @@ export class LoginComponent implements OnInit {
         // display its headers
         const keys = resp.headers.keys();
 
+        //store headers to headers[] property
         this.headers = keys.map(key =>
           `${key}: ${resp.headers.get(key)}`);
 
         // access the body directly, which is typed as `RefreshTokens`.
-        this.userService.RefreshToken = { ...resp.body! };
-        this.userService.AuthHeader = this.headers[0];
-        const trim=this.userService.AuthHeader.split(':');
+        this.userService.setRefreshToken({ ...resp.body!});
+        this.userService.setAuthHeader(this.headers[0]);
+        const trim=this.userService.getAuthHeader().split(':');
         console.log("trimmed header: "+trim[1])
         this.userService.start();
 
         this.userService.setLoginState();
 
-        //console.log(this.headers);
-        //console.log(this.config);
       });
 
-    // this.dataService.httprequest(loginParams).subscribe( async (res: RefreshTokens)=>{
-    //   const data = await res
-    //   const keys = res.headers.keys();
-    //   this.headers = keys.map(key =>
-    //     `${key}: ${resp.headers.get(key)}`);
-    //   this.userService.AuthToken=data;
-    //   await this.userService.setLoginState();
-    // });
+    //department service will be loaded if not yet
+    if(!this.departmentService.isLoaded){
+      this.fetchDepartments()
+      this.departmentService.isLoaded=true;
+    }
+
+    //speakers service will be loaded in not yet
+    if(!this.speakersService.IsLoaded){
+      this.fetchSpeakers();
+    }
+  }
+
+  getHttpOptions(){
+
+    const trimmedHeader=this.userService.getAuthHeader().split(':');
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+
+    return httpOptions;
+  }
+
+  fetchDepartments(){
+    const departmentParams= new RequestParams();
+    departmentParams.EndPoint="departments";
+    departmentParams.RequestType=1;
+
+    this.dataService.httprequest(departmentParams)
+      .subscribe((data: Departments[]) => this.departmentService.setDepartments(data));
+  }
+
+  fetchSpeakers(){
+    const speakerParams= new RequestParams();
+    speakerParams.EndPoint="speakers";
+    speakerParams.RequestType=5;
+    speakerParams.AuthToken=this.getHttpOptions();
+
+    this.dataService.httprequest(speakerParams)
+      .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
   }
 
 }

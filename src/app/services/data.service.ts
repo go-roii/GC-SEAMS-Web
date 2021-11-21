@@ -30,8 +30,6 @@ export class DataService {
 
   httprequest(requestParams: RequestParams){
 
-
-
     let result: any
     switch(requestParams.RequestType){
 
@@ -45,7 +43,7 @@ export class DataService {
         result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
         break;
 
-      //post data to get the access token from the header and the refresh token from the body.
+      //post data and get the access token from the header and the refresh token from the body.
       case 3:
         result=this.getConfigResponse(requestParams.endPoint, requestParams.body);
         break;
@@ -54,9 +52,15 @@ export class DataService {
       case 4:
         result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body, requestParams.AuthToken);
         break;
+
+      //get data with authentication header
+      case 5:
+        result = this.http.get(this.baseURL+requestParams.EndPoint, requestParams.AuthToken);
+        break
       default:
       break;
     }
+
     return result;
   }
 
