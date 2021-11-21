@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   credentialsForm = new FormGroup({
-    email:new FormControl('gc_seams@gordoncollege.edu.ph',[Validators.required,Validators.email]),
+    email:new FormControl('gcseams@gordoncollege.edu.ph',[Validators.required,Validators.email]),
     password:new FormControl('roy_idol_nakin',[ Validators.required]),
   });
 

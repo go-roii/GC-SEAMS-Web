@@ -126,7 +126,6 @@ export class CreateEventComponent implements OnInit {
         break;
       }
     }
-
     return count;
   }
 
