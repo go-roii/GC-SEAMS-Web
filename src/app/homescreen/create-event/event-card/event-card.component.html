@@ -91,32 +91,43 @@
 
         <!--form group for add speaker functionality-->
         <form [formGroup]='speakerForm' autocomplete="off">
-          <input type="text" class="form-control"  formControlName="speakerName"  placeholder="full name" aria-label="full name" required>
-          <div *ngIf="speakerName?.errors?.required && speakerName?.touched" class="text-danger text-helper mt-1">
-            Password is required
+          <div class="mb-2">
+            <input type="text" class="form-control form-control-sm"  formControlName="speakerName"  placeholder="Full name" aria-label="full name" required>
+            <div *ngIf="speakerName?.errors?.required && speakerName?.touched" class="text-danger text-helper mt-1">
+              Full name is required
+            </div>
           </div>
-          <input type="email" class="form-control"  formControlName="speakerEmail" placeholder="email address" aria-label="email address" required>
-          <span *ngIf="speakerEmail?.invalid && (speakerEmail?.dirty || speakerEmail?.touched)" class="validation-error">
-						<div *ngIf="speakerEmail?.errors?.required" class="text-danger text-helper mt-1">
-							Email is required
-						</div>
-						<div *ngIf="speakerEmail?.errors?.email" class="text-danger text-helper mt-1">
-							Invalid Email
-						</div>
-					</span>
-          <input type="text" class="form-control" formControlName="speakerDescription"  placeholder="description" aria-label="description" required>
-          <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
-            Password is required
+          
+          <div class="mb-2">
+            <input type="email" class="form-control form-control-sm"  formControlName="speakerEmail" placeholder="Email address" aria-label="email address" required>
+            <span *ngIf="speakerEmail?.invalid && (speakerEmail?.dirty || speakerEmail?.touched)" class="validation-error">
+              <div *ngIf="speakerEmail?.errors?.required" class="text-danger text-helper mt-1">
+                Email is required
+              </div>
+              <div *ngIf="speakerEmail?.errors?.email" class="text-danger text-helper mt-1">
+                Invalid Email
+              </div>
+            </span>
           </div>
-          <button class="btn btn-primary" type="button" [disabled]="speakerForm.invalid" (click)="addNewSpeaker()">Save Speaker</button>
+
+          <div class="mb-2">
+            <input type="text" class="form-control form-control-sm" formControlName="speakerDescription"  placeholder="Description" aria-label="description" required>
+            <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
+              Description is required
+            </div>
+          </div>
+
+          <div class="d-grid mb-2">
+            <button class="btn btn-sm btn-primary" type="button" [disabled]="speakerForm.invalid" (click)="addNewSpeaker()">Save Speaker</button>
+          </div>
         </form>
 
         <div class="input-group input-group-sm mb-3">
           <input type="text" class="form-control" placeholder="Search speaker..." aria-label="Search speaker">
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
-        <ul class="list-group" *ngFor="let speaker of speakers" >
-          <li class="list-group-item">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let speaker of speakers">
             <div class="d-flex align-items-center">
               <div id="profile-pic"></div>
               <div class="mx-3">

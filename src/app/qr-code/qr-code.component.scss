@@ -1,0 +1,15 @@
+#qr-code-container {
+  width: min-content;
+}
+
+#qr-code-background {
+  background-color: var(--primary-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(103, 58, 183, 0.36);
+  padding: 36px 48px 0;
+}
+
+#qr-code-img {
+  border: 24px solid white;
+  border-radius: 6px;
+}
