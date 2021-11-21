@@ -194,14 +194,18 @@ export class CreateEventComponent implements OnInit {
 
     const eventParams: RequestParams=new RequestParams();
     eventParams.EndPoint="event";
-    eventParams.body=this.processEventData()[0];
     eventParams.requestType= 4 ;
     eventParams.AuthToken=this.getHttpOptions();
 
-    this.dataService.httprequest(eventParams)
-      .subscribe(async (data: string) =>{
-        await console.log(data);
-      });
+    for(let data of this.processEventData()){
+
+      eventParams.body=data;
+      this.dataService.httprequest(eventParams)
+        .subscribe(async (data: string) =>{
+          await console.log(data);
+        });
+    }
+
   }
 
   printInputs(): void{
