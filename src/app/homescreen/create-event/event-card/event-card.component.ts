@@ -25,7 +25,6 @@ import {connectableObservableDescriptor} from "rxjs/internal/observable/Connecta
 export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = '';
-  eventForm!: FormGroup;
 
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
@@ -38,17 +37,27 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
   speaker!: Speaker;
 
-  constructor(private dataService: DataService,
-              private departmentService: DepartmentService,
-              private userService: UserService,
-              private speakersService: SpeakersService) {
-  }
+  eventForm: FormGroup=new FormGroup({
+    eventName:new FormControl('',[Validators.required,]),
+    eventDetails:new FormControl('',Validators.required,),
+    eventDate:new FormControl('',[Validators.required,]),
+    eventStartTime:new FormControl('',[Validators.required,]),
+    eventEndTime:new FormControl('',[Validators.required,]),
+    eventSpeakers:new FormControl('',[Validators.required,]),
+    eventRegistrationForm:new FormControl('',[Validators.required])
+  });
 
   speakerForm: FormGroup = new FormGroup({
     speakerName:new FormControl('',[Validators.required,]),
     speakerEmail:new FormControl('',[Validators.required,Validators.email]),
     speakerDescription:new FormControl('',[Validators.required,]),
   })
+
+  constructor(private dataService: DataService,
+              private departmentService: DepartmentService,
+              private userService: UserService,
+              private speakersService: SpeakersService) {
+  }
 
   addSpeaker(value: Speaker){
     this.chosenSpeaker.push(value);
@@ -157,17 +166,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
   ngOnInit(): void {
-
     this.componentClass = 'col-lg-6 col-md-12';
-    this.eventForm = new FormGroup({
-      eventName:new FormControl('',[Validators.required,]),
-      eventDetails:new FormControl('',Validators.required,),
-      eventDate:new FormControl('',[Validators.required,]),
-      eventStartTime:new FormControl('',[Validators.required,]),
-      eventEndTime:new FormControl('',[Validators.required,]),
-      eventSpeakers:new FormControl('',[Validators.required,]),
-      eventRegistrationForm:new FormControl('',[Validators.required])
-    });
 
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
