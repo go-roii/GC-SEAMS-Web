@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QRCodeComponent implements OnInit {
 
-  constructor() { }
+  public myAngularxQrCode!: string
+
+  constructor () {
+    // assign a value
+    this.myAngularxQrCode = 'the quick brown fox jumps over the lazy dog.';
+  }
 
   ngOnInit(): void {
   }

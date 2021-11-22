@@ -205,7 +205,6 @@ export class CreateEventComponent implements OnInit {
           await console.log(data);
         });
     }
-
   }
 
   printInputs(): void{

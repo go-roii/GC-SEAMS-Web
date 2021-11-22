@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { QRCodeComponent } from './qr-code/qr-code.component';
+import {QrCodeModule} from "ng-qrcode";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { QRCodeComponent } from './qr-code/qr-code.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QrCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

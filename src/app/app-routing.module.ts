@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'qr-code',
     component: QRCodeComponent,
-    canLoad: [AutologinGuard]
+    canLoad: [AuthGuard]
   },
 ];
 
