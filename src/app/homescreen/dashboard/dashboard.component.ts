@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open_analytics_page() {
+    console.log('test')
+  }
+
 }
