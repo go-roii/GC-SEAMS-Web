@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateEventComponent } from './create-event/create-event.component';
 import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
-import { EndedComponent } from './events/ended/ended.component';
-import { EventsComponent } from './events/events.component';
-import { OngoingComponent } from './events/ongoing/ongoing.component';
-import { PendingComponent } from './events/pending/pending.component';
 import { HomescreenComponent } from './homescreen.component';
 
 const routes: Routes = [
@@ -25,33 +19,19 @@ const routes: Routes = [
       },
       {
         path: 'events',
-        component: EventsComponent,
-        children: [
-          {
-            path: 'ongoing',
-            component: OngoingComponent
-          },
-          {
-            path: 'pending',
-            component: PendingComponent
-          },
-          {
-            path: 'ended',
-            component: EndedComponent
-          }
-        ]
+        loadChildren: () => import('./events/events.module').then(m => m.EventsModule),
       },
       {
         path: 'create-event',
-        component: CreateEventComponent
+        loadChildren: () => import('./create-event/create-event.module').then(m => m.CreateEventModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       },
       {
         path: 'edit-event',
         component: EditEventComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
       },
       {
         path: 'dashboard/analytics',
