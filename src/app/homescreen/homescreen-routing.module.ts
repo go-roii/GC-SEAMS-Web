@@ -36,7 +36,11 @@ const routes: Routes = [
       {
         path: 'dashboard/analytics',
         component: AnalyticsComponent
-      }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule),
+      },
     ]
   }
 ];
