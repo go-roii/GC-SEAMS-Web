@@ -143,4 +143,5 @@ export class UserService{
     // stop the timed refresh
     this.subscription && this.subscription.unsubscribe();
   }
+
 }

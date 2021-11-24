@@ -105,7 +105,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
   }
 
   getHttpOptions(){
-
     const trimmedHeader=this.userService.getAuthHeader().split(':');
     const httpOptions = {
 
@@ -130,19 +129,22 @@ export class EventCardComponent implements OnInit, OnDestroy{
     params.requestType=4;
     params.authToken=this.getHttpOptions();
 
-    console.log(this.getHttpOptions());
-
     this.dataService.httprequest(params)
       .subscribe(async (data: Speaker) =>{
         this.speaker = data
         await this.updateSpeakers();
+        await this.setSpeakers();
       });
 
-    this.speakers=this.speakersService.getSpeakers();
+    this.setSpeakers();
     this.speakerForm.reset()
   }
 
-  addNewEvent() {
+  setSpeakers(){
+    this.speakers=this.speakersService.getSpeakers();
+  }
+
+    addNewEvent() {
     this.eventData.emit(this.event);
   }
 
@@ -185,12 +187,11 @@ export class EventCardComponent implements OnInit, OnDestroy{
     speakerParams.AuthToken=this.getHttpOptions();
 
     this.dataService.httprequest(speakerParams)
-      .subscribe((data: any) =>{
-        this.speakersService.updateSpeakers(JSON.stringify(data));
-        console.log(data)
+      .subscribe(async (data: Speaker[]) =>{
+        this.speakers = data;
+        await this.speakersService.updateSpeakers(JSON.stringify(data));
+        console.log(data);
       });
-
-    //this.speakers=this.speakersService.getSpeakers();
 
     console.log(this.speakers)
   }
