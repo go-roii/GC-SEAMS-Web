@@ -13,6 +13,7 @@ import { OngoingComponent } from './events/ongoing/ongoing.component';
 import { PendingComponent } from './events/pending/pending.component';
 import { EndedComponent } from './events/ended/ended.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 
 
 
@@ -29,6 +30,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     PendingComponent,
     EndedComponent,
     EditEventComponent,
+    AnalyticsComponent,
   ],
     imports: [
         CommonModule,

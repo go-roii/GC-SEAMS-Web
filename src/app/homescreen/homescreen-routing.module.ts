@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { EndedComponent } from './events/ended/ended.component';
@@ -50,7 +51,11 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+      },
+      {
+        path: 'dashboard/analytics',
+        component: AnalyticsComponent
       }
     ]
   }
