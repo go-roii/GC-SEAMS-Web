@@ -94,7 +94,6 @@ export class HomescreenComponent implements OnInit {
   }
 
   getHttpOptions(){
-
     const trimmedHeader=this.userService.getAuthHeader().split(':');
     const httpOptions = {
 
@@ -103,9 +102,9 @@ export class HomescreenComponent implements OnInit {
         Authorization: trimmedHeader[1]
       })
     };
-
     return httpOptions;
   }
+
 
   public fetchDepartments(){
     const departmentParams= new RequestParams();

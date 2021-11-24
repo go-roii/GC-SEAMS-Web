@@ -55,6 +55,8 @@ export class CreateEventComponent implements OnInit {
     for(let event of this.eventData){
 
       const data: EventsToAdd = {
+        event_id: 0,
+        event_uuid: '',
         event_title: event.eventName,
         event_description: event.eventDetails,
         event_start_date: event.eventDate+'T'+event.eventStartTime+':00',
@@ -197,14 +199,14 @@ export class CreateEventComponent implements OnInit {
     eventParams.requestType= 4 ;
     eventParams.AuthToken=this.getHttpOptions();
 
-    // for(let data of this.processEventData()){
-    //
-    //   eventParams.body=data;
-    //   this.dataService.httprequest(eventParams)
-    //     .subscribe(async (data: string) =>{
-    //       await console.log(data);
-    //     });
-    // }
+    for(let data of this.processEventData()){
+
+      eventParams.body=data;
+      this.dataService.httprequest(eventParams)
+        .subscribe(async (data: string) =>{
+          await console.log(data);
+        });
+    }
   }
 
   printInputs(): void{

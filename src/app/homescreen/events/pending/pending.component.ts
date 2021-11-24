@@ -9,10 +9,10 @@ import { SidenavExpandService } from 'src/app/services/sidenav-expand.service';
 
 export class PendingComponent implements OnInit {
 
-  currentItem = 'pending';
+  //currentItem = 'pending';
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
   @HostBinding('className') componentClass: string = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
-  
+
   constructor(private sidedenavExpandService: SidenavExpandService) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
