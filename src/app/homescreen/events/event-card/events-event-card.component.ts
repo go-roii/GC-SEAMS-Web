@@ -13,6 +13,11 @@ export class EventsEventCardComponent implements OnInit {
   eventDate!: Date;
   eventEndDate!: Date;
 
+  currentDate = new Date;
+  eventDurationTime!: number;
+  eventCurrentTime!: number;
+  currentProgress!: number;
+
   constructor() {}
 
 
@@ -27,6 +32,13 @@ export class EventsEventCardComponent implements OnInit {
     this.eventDate=new Date(zonedDateTimeString);
 
     this.eventEndDate=new Date(zonedEndDateTimeString);
+
+    this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
+    this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
+    this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+
+    console.log('event duration: ' + this.eventDurationTime + 'min')
+    console.log('event progress: ' + this.currentProgress + '%')
   }
 
 }

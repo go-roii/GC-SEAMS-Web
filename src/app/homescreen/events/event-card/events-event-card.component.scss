@@ -2,10 +2,6 @@
 	&.ongoing .card {
 		background-color: #f8f8f8;
 		border: 1px solid rgba(0, 0, 0, .08);
-		
-		& .progress-bar-day {
-			width: 50%;
-		}
 	}
 
 	&.pending .card {
@@ -15,10 +11,6 @@
 			box-shadow: inset 0 0 0 1px #FFA000;
 			// color: rgba(0, 0, 0, 0.87);
 			// background-color: #FFC107;
-		}
-
-		& .event-progress-bar {
-			display: none;
 		}
 	}
 
@@ -30,10 +22,6 @@
 			color: var(--primary-color);
 			background-color: transparent;
 			box-shadow: inset 0 0 0 1px var(--primary-color);
-		}
-
-		& .progress-bar-day {
-			width: 100%;
 		}
 	}
 }
@@ -77,10 +65,8 @@
 
 .event-progress-bar {
 	height: 4px;
-	display: flex;
-	flex-direction: row;
 }
 
-.progress-bar-day {
-	background-color: var(--primary-color);
+.progress-bar {
+  background-color: var(--primary-color);
 }

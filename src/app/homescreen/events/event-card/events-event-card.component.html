@@ -5,7 +5,11 @@
 		<p class="card-text">{{item.event_description}}</p>
 		<p class="event-time">{{eventDate |  date:'h:mm a'}} - {{eventEndDate |  date:'h:mm a'}}</p>
 	</div>
-	<div class="event-progress-bar">
-		<div class="progress-bar-day"></div>
+	<div class="progress event-progress-bar">
+		<!-- <div class="progress-bar-day"></div> -->
+    <div class="progress-bar"
+      [ngClass]="{'progress-bar-animated progress-bar-striped': currentProgress < 100}"
+      [style.width]="currentProgress+'%'"
+      role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
 </div>
