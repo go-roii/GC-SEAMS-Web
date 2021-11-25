@@ -9,10 +9,16 @@ import {Time} from "@angular/common";
 })
 export class EventsEventCardComponent implements OnInit {
 
-  @HostBinding('className') componentClass = '';
   @Input() item!: EventsToAdd;
   eventDate!: Date;
   eventEndDate!: Date;
+
+  currentDate = new Date;
+  eventDurationTime!: number;
+  eventCurrentTime!: number;
+  currentProgress!: number;
+
+  seminarHours!: string;
 
   constructor() {}
 
@@ -28,7 +34,42 @@ export class EventsEventCardComponent implements OnInit {
     this.eventDate=new Date(zonedDateTimeString);
 
     this.eventEndDate=new Date(zonedEndDateTimeString);
-    this.componentClass = `col-xl-3 col-lg-4 col-md-6 col-sm-12 ${this.item}`;
+
+    this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
+    this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
+
+    if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100) 
+      this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+    else if(Math.trunc(this.eventCurrentTime * 100) < 0)
+      this.currentProgress = 0
+    else
+      this.currentProgress = 100
+
+    this.seminarHours = this.getSeminarHours(this.eventDurationTime)
+
+    // if(this.currentProgress > 0 && this.currentProgress != 100)
+    //   setInterval(() => {
+    //     this.currentDate = new Date;
+
+    //     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
+    //     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
+
+    //     if(Math.trunc(this.eventCurrentTime * 100) < 100) 
+    //       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+    //     else 
+    //       this.currentProgress = 100
+
+    //     console.log(this.currentProgress)
+    //   }, 60000);
+
+    console.log('event duration: ' + this.eventDurationTime + 'min')
+    console.log('event progress: ' + this.currentProgress + '%')
+  }
+
+  getSeminarHours(num: number) {
+    var hours = (num / 60)
+
+    return (num / 60).toFixed(1) + ' hr'
   }
 
 }

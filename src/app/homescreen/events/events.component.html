@@ -3,26 +3,23 @@
 		<li class="nav-item">
 			<a [routerLink]="['ongoing']"
 			[ngClass]="{'active': currentTab === 'ongoing'}"
-			(click)="activePage('ongoing')" 
 			class="nav-link active">Ongoing Events</a>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['pending']"
 			[ngClass]="{'active': currentTab === 'pending'}"
-			(click)="activePage('pending')" 
 			class="nav-link">Pending Events</a>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['ended']"
 			[ngClass]="{'active': currentTab === 'ended'}"
-			(click)="activePage('ended')" 
 			class="nav-link">Ended Events</a>
 		</li>
 	</ul>
 </div>
 
 <div class="events-container">
-	<router-outlet></router-outlet>
+	<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
 	<!-- <div class="row gy-4">
     	<events-event-card></events-event-card>
 		<events-event-card></events-event-card>
