@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { multi } from './data';
+import {Component} from '@angular/core';
+import {multi} from './data';
+import {Color, LegendPosition, ScaleType} from "@swimlane/ngx-charts";
+
 
 
 @Component({
@@ -10,7 +12,7 @@ import { multi } from './data';
 export class GroupedVerticalBarChartComponent{
 
   multi!: any[];
-  view: any = [1100, 400];
+  view: any = [1150, 350];
 
 
   // options
@@ -22,10 +24,26 @@ export class GroupedVerticalBarChartComponent{
   xAxisLabel: string = 'Departments';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Number of Students';
-  legendTitle: string = 'Action';
+  legendTitle: string = 'Actions';
+  legendPosition= LegendPosition.Below
 
-  colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
+  colorScheme: Color = {
+    //domain: ['#5AA454', '#C7B42C', '#AAAAAA'], group: ScaleType.Ordinal, name: "sample", selectable: false,
+    name: 'vivid',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: [
+      '#647c8a',
+      '#3f51b5',
+      '#2196f3',
+      '#00b862',
+      '#afdf0a',
+      '#a7b61a',
+      '#f3e562',
+      '#ff9800',
+      '#ff5722',
+      '#ff4514'
+    ]
   };
 
 

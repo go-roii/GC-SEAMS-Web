@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { GroupedVerticalBarChartComponent } from './grouped-vertical-bar-chart/grouped-vertical-bar-chart.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { PieChartGridComponent } from './pie-chart-grid/pie-chart-grid.component';
 
 
 
@@ -12,7 +13,8 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
   declarations: [
     DashboardComponent,
     AnalyticsComponent,
-    GroupedVerticalBarChartComponent
+    GroupedVerticalBarChartComponent,
+    PieChartGridComponent
   ],
   exports: [
     GroupedVerticalBarChartComponent

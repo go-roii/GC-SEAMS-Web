@@ -16,7 +16,6 @@ export var multi = [
       }
     ]
   },
-
   {
     "name": "CEAS",
     "series": [
@@ -34,7 +33,6 @@ export var multi = [
       }
     ]
   },
-
   {
     "name": "CHTM",
     "series": [
@@ -52,7 +50,6 @@ export var multi = [
       }
     ]
   },
-
   {
     "name": "CAHS",
     "series": [
@@ -70,7 +67,6 @@ export var multi = [
       }
     ]
   },
-
   {
       "name": "CBA",
     "series": [
