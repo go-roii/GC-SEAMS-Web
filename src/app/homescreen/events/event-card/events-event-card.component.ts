@@ -18,6 +18,8 @@ export class EventsEventCardComponent implements OnInit {
   eventCurrentTime!: number;
   currentProgress!: number;
 
+  seminarHours!: string;
+
   constructor() {}
 
 
@@ -43,6 +45,8 @@ export class EventsEventCardComponent implements OnInit {
     else
       this.currentProgress = 100
 
+    this.seminarHours = this.getSeminarHours(this.eventDurationTime)
+
     // if(this.currentProgress > 0 && this.currentProgress != 100)
     //   setInterval(() => {
     //     this.currentDate = new Date;
@@ -60,6 +64,12 @@ export class EventsEventCardComponent implements OnInit {
 
     console.log('event duration: ' + this.eventDurationTime + 'min')
     console.log('event progress: ' + this.currentProgress + '%')
+  }
+
+  getSeminarHours(num: number) {
+    var hours = (num / 60)
+
+    return (num / 60).toFixed(1) + ' hr'
   }
 
 }
