@@ -9,6 +9,9 @@ import {Speaker} from "../models/Speaker";
 import {DataService} from "../services/data.service";
 import {HttpHeaders} from "@angular/common/http";
 import {SpeakersService} from "../services/speakers.service";
+import { EventsComponent } from './events/events.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-homescreen',
@@ -78,26 +81,14 @@ export class HomescreenComponent implements OnInit {
 	// }
 
   public onRouterOutletActivate(event : any) {
-    console.log(event.constructor.name);
+    console.log(event);
 
-    switch(event.constructor.name) {
-      case 'EventsComponent': {
-        this.currentPage = 'events'
-        break
-      }
-      case 'CreateEventComponent': {
-        this.currentPage = 'create-event'
-        break
-      }
-      case 'DashboardComponent': {
-        this.currentPage = 'dashboard';
-        break
-      }
-      // case 'AnalyticsComponent': {
-      //   this.currentPage = 'dashboard';
-      //   break
-      // }
-    }
+    if(event instanceof EventsComponent)
+      this.currentPage = 'events'
+    else if(event instanceof CreateEventComponent)
+      this.currentPage = 'create-event'
+    else if(event instanceof DashboardComponent)
+      this.currentPage = 'dashboard';
   }
 
 	sidenav_status() {
