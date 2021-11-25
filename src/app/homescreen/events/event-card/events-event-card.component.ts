@@ -36,10 +36,27 @@ export class EventsEventCardComponent implements OnInit {
     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
 
-    if(Math.trunc(this.eventCurrentTime * 100) < 100)
+    if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100) 
       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
-    else 
+    else if(Math.trunc(this.eventCurrentTime * 100) < 0)
+      this.currentProgress = 0
+    else
       this.currentProgress = 100
+
+    // if(this.currentProgress > 0 && this.currentProgress != 100)
+    //   setInterval(() => {
+    //     this.currentDate = new Date;
+
+    //     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
+    //     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
+
+    //     if(Math.trunc(this.eventCurrentTime * 100) < 100) 
+    //       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+    //     else 
+    //       this.currentProgress = 100
+
+    //     console.log(this.currentProgress)
+    //   }, 60000);
 
     console.log('event duration: ' + this.eventDurationTime + 'min')
     console.log('event progress: ' + this.currentProgress + '%')
