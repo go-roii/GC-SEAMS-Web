@@ -23,7 +23,7 @@ export class HomescreenComponent implements OnInit {
   email!: string;
 
 	// currentPage: string = this.router.url;
-	currentPage: string = 'events';
+	currentPage: string = '';
 
 	constructor(private router : Router,
               private userService: UserService,
@@ -77,10 +77,28 @@ export class HomescreenComponent implements OnInit {
 	// 	this.currentPage = url;
 	// }
 
-	activePage(page: string) {
-		console.log(page);
-		this.currentPage = page;
-	}
+  public onRouterOutletActivate(event : any) {
+    console.log(event.constructor.name);
+
+    switch(event.constructor.name) {
+      case 'EventsComponent': {
+        this.currentPage = 'events'
+        break
+      }
+      case 'CreateEventComponent': {
+        this.currentPage = 'create-event'
+        break
+      }
+      case 'DashboardComponent': {
+        this.currentPage = 'dashboard';
+        break
+      }
+      // case 'AnalyticsComponent': {
+      //   this.currentPage = 'dashboard';
+      //   break
+      // }
+    }
+  }
 
 	sidenav_status() {
     console.log(this.isSidenavExpanded);
