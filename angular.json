@@ -24,7 +24,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "qrcode"
+              "qrcode", "clone-deep"
             ],
             "outputPath": "dist/gc-seams-web",
             "index": "src/index.html",

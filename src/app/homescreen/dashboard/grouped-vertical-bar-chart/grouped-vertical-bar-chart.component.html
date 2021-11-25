@@ -1,1 +1,18 @@
-<p>grouped-vertical-bar-chart works!</p>
+<ngx-charts-bar-vertical-2d
+
+  [view]="view"
+  [results]="multi"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [legendTitle]="legendTitle"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)">
+</ngx-charts-bar-vertical-2d>
+
+<!--[gradient]="gradient"-->

@@ -5,6 +5,7 @@ import { HomescreenComponent } from './homescreen.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
+import {DashboardModule} from "./dashboard/dashboard.module";
 
 
 
@@ -14,11 +15,12 @@ import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
     EditEventComponent,
     AnalyticsComponent,
   ],
-  imports: [
-    CommonModule,
-    HomescreenRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        HomescreenRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DashboardModule,
+    ],
 })
 export class HomescreenModule { }
