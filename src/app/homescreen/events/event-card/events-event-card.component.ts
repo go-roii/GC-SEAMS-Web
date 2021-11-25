@@ -35,7 +35,11 @@ export class EventsEventCardComponent implements OnInit {
 
     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
-    this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+
+    if(Math.trunc(this.eventCurrentTime * 100) < 100)
+      this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+    else 
+      this.currentProgress = 100
 
     console.log('event duration: ' + this.eventDurationTime + 'min')
     console.log('event progress: ' + this.currentProgress + '%')
