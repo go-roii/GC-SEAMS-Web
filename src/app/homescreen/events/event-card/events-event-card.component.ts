@@ -9,7 +9,6 @@ import {Time} from "@angular/common";
 })
 export class EventsEventCardComponent implements OnInit {
 
-  @HostBinding('className') componentClass = '';
   @Input() item!: EventsToAdd;
   eventDate!: Date;
   eventEndDate!: Date;
@@ -28,7 +27,6 @@ export class EventsEventCardComponent implements OnInit {
     this.eventDate=new Date(zonedDateTimeString);
 
     this.eventEndDate=new Date(zonedEndDateTimeString);
-    this.componentClass = `col-xl-3 col-lg-4 col-md-6 col-sm-12 ${this.item}`;
   }
 
 }
