@@ -12,6 +12,8 @@ import {SpeakersService} from "../services/speakers.service";
 import { EventsComponent } from './events/events.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 
 @Component({
   selector: 'app-homescreen',
@@ -85,10 +87,14 @@ export class HomescreenComponent implements OnInit {
 
     if(event instanceof EventsComponent)
       this.currentPage = 'events'
+    else if(event instanceof EventDetailsComponent)
+      this.currentPage = 'events'
     else if(event instanceof CreateEventComponent)
       this.currentPage = 'create-event'
     else if(event instanceof DashboardComponent)
-      this.currentPage = 'dashboard';
+      this.currentPage = 'dashboard'
+    else if(event instanceof AnalyticsComponent)
+      this.currentPage = 'dashboard'
   }
 
 	sidenav_status() {

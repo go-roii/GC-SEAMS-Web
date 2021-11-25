@@ -39,18 +39,18 @@
 
 
 .event-container { 
-    background-color: white;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.10);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    padding: 36px;
-    transition: border-color ease-out 100ms, box-shadow ease-out 100ms;
+  height: min-content;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+  padding: 36px;
+  transition: border-color ease-out 100ms, box-shadow ease-out 100ms;
 
-    &:focus-within {
-        border-color: var(--primary-color);
-        box-shadow: 0 12px 24px 0 rgba(103, 58, 183, 0.24);
-        transition: border-color ease-in 100ms, box-shadow ease-in 100ms;
-    }
+  &:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px 0 rgba(103, 58, 183, 0.36);
+    transition: border-color ease-in 100ms, box-shadow ease-in 100ms;
+  }
 }
 
 .card-text-header {
