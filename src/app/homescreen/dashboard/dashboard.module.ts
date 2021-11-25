@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { GroupedVerticalBarChartComponent } from './grouped-vertical-bar-chart/grouped-vertical-bar-chart.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 
@@ -10,6 +11,7 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
 @NgModule({
   declarations: [
     DashboardComponent,
+    AnalyticsComponent,
     GroupedVerticalBarChartComponent
   ],
   exports: [

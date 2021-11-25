@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
-import { EditEventComponent } from './edit-event/edit-event.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { HomescreenComponent } from './homescreen.component';
 
 const routes: Routes = [
@@ -30,8 +30,8 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       },
       {
-        path: 'edit-event',
-        component: EditEventComponent
+        path: 'event-details',
+        component: EventDetailsComponent
       },
       {
         path: 'dashboard/analytics',

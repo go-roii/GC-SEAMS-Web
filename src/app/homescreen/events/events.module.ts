@@ -6,6 +6,7 @@ import { EventsEventCardComponent } from './event-card/events-event-card.compone
 import { OngoingComponent } from './ongoing/ongoing.component';
 import { PendingComponent } from './pending/pending.component';
 import { EventsRoutingModule } from './events-routing.module';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 
@@ -13,6 +14,7 @@ import { EventsRoutingModule } from './events-routing.module';
   declarations: [
     EventsComponent,
 		EventsEventCardComponent,
+    EventDetailsComponent,
     OngoingComponent,
     PendingComponent,
     EndedComponent,
