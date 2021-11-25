@@ -30,7 +30,7 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       },
       {
-        path: 'event-details',
+        path: 'events/event-details',
         component: EventDetailsComponent
       },
       {

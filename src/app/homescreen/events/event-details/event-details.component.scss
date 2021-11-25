@@ -38,22 +38,27 @@
 }
 
 .event-container { 
-  height: 633px;
+  height: min-content;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 12px;
   padding: 36px;
   transition: border-color ease-out 100ms, box-shadow ease-out 100ms;
+  overflow: hidden;
 
   &:focus-within {
     border-color: var(--primary-color);
     box-shadow: 0 0 6px 0 rgba(103, 58, 183, 0.36);
     transition: border-color ease-in 100ms, box-shadow ease-in 100ms;
   }
+
+  & .list-group-flush {
+    margin-right: -36px;
+  }
 }
 
 .card-text-header {
-    height: 35px;
+  height: 35px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

@@ -5,7 +5,7 @@
 		<p class="card-text">{{item.event_description}}</p>
 		<p class="event-time">{{eventDate |  date:'h:mm a'}} - {{eventEndDate |  date:'h:mm a'}} &nbsp;●&nbsp; {{seminarHours}}</p>
 
-    <a [routerLink]="['/homescreen/event-details']" class="stretched-link" style="color: transparent;">Go somewhere</a>
+    <a [routerLink]="['/homescreen/events/event-details']" class="stretched-link" style="color: transparent;"></a>
 	</div>
 	<div class="progress event-progress-bar">
 		<!-- <div class="progress-bar-day"></div> -->
