@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditEventComponent } from './edit-event.component';
+import { PieChartGridComponent } from './pie-chart-grid.component';
 
-describe('EditEventComponent', () => {
-  let component: EditEventComponent;
-  let fixture: ComponentFixture<EditEventComponent>;
+describe('PieChartGridComponent', () => {
+  let component: PieChartGridComponent;
+  let fixture: ComponentFixture<PieChartGridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditEventComponent ]
+      declarations: [ PieChartGridComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditEventComponent);
+    fixture = TestBed.createComponent(PieChartGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

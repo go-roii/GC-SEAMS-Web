@@ -14,7 +14,6 @@ export class GroupedVerticalBarChartComponent{
   multi!: any[];
   view: any = [1150, 350];
 
-
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
@@ -24,11 +23,10 @@ export class GroupedVerticalBarChartComponent{
   xAxisLabel: string = 'Departments';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Number of Students';
-  legendTitle: string = 'Actions';
+  legendTitle: string = 'Legend';
   legendPosition= LegendPosition.Below
 
   colorScheme: Color = {
-    //domain: ['#5AA454', '#C7B42C', '#AAAAAA'], group: ScaleType.Ordinal, name: "sample", selectable: false,
     name: 'vivid',
     selectable: true,
     group: ScaleType.Ordinal,
@@ -45,7 +43,6 @@ export class GroupedVerticalBarChartComponent{
       '#ff4514'
     ]
   };
-
 
   constructor() {
     Object.assign(this, { multi })
