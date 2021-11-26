@@ -101,6 +101,33 @@
   }
 }
 
+.status-filter {
+  font-size: 12px;
+  border: 1px solid;
+  border-radius: 100px;
+  padding: 3px 10px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+		margin-right: 6px;
+	}
+
+  &.sf-present {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  &.sf-absent {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  &.sf-not-registered {
+    border-color: var(--yellow-orange);
+    color: var(--yellow-orange-darker);
+  }
+}
+
 #profile-pic {
 	width: 32px;
 	height: 32px;
