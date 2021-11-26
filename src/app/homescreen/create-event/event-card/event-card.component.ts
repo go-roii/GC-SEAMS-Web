@@ -53,6 +53,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
     speakerDescription:new FormControl('',[Validators.required,]),
   })
 
+  chosenDepartmentsList: string[] = [];
+  chosenDepartmentsList2: string = '';
+
   constructor(private dataService: DataService,
               private departmentService: DepartmentService,
               private userService: UserService,
@@ -72,6 +75,15 @@ export class EventCardComponent implements OnInit, OnDestroy{
     if(!(e.target.checked)){
       console.log("removed "+department.department_id);
       this.removeDepartmentFromChosen(department);
+    }
+
+    // show selected departments in field
+    this.chosenDepartmentsList = []
+    for (var k in this.chosenDepartments) {
+      if (this.chosenDepartments.hasOwnProperty(k)) {
+        this.chosenDepartmentsList.push(this.chosenDepartments[k].department_code);
+        this.chosenDepartmentsList2 = this.chosenDepartmentsList.join(', ');
+      }
     }
 
     this.printChosenDepartment();

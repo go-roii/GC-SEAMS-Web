@@ -65,14 +65,20 @@
           <label for="" class="form-label">Invitation</label>
           <div class="input-group input-group-sm">
             <input id="" class="form-control" type="text" readonly required>
-            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Invite Department
             </button>
             <ul class="dropdown-menu">
-              <li class="dropdown-item d-flex justify-content-between align-items-center">
-                <label>BSCS</label>
-                <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="...">
-              </li>
+              <!-- <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
+                <label>{{department.department_code}}</label>
+                <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)">
+              </li> -->
+              <label style="display: block; cursor: pointer;">
+                <li class="dropdown-item d-flex justify-content-between align-items-center">
+                  BSCS
+                  <input class="form-check-input me-1 mt-0" type="checkbox" value="" aria-label="...">
+                </li>
+              </label>
             </ul>
           </div>
         </div>
@@ -92,7 +98,7 @@
 
         <div>
           <label for="qr-code-link" class="form-label">QR Code Link</label>
-          <input id="qr-code-link" class="form-control form-control-sm" type="text" disabled>
+          <input id="qr-code-link" class="form-control form-control-sm" type="text" readonly>
         </div>
       </form>
     </div>

@@ -11,7 +11,7 @@
 				<a [routerLink]="['events']"
 				[ngClass]="{'active': currentPage === 'events'}"
 				class="sidenav-btn nav-link active" title="Events" data-bs-toggle="tooltip" data-bs-placement="right">
-					<i class="bi bi-house"></i>
+					<i class="bi" [ngClass]="currentPage === 'events' ? 'bi-house-fill' : 'bi-house'"></i>
 					<p>Events</p>
 				</a>
 			</li>
@@ -19,7 +19,7 @@
 				<a [routerLink]="['create-event']"
 				[ngClass]="{'active': currentPage === 'create-event'}"
 				class="sidenav-btn nav-link" title="Create Event" data-bs-toggle="tooltip" data-bs-placement="right">
-					<i class="bi bi-plus-square"></i>
+					<i class="bi" [ngClass]="currentPage === 'create-event' ? 'bi-plus-square-fill' : 'bi-plus-square'"></i>
 					<p>Create Event</p>
 				</a>
 			</li>
@@ -27,7 +27,7 @@
 				<a [routerLink]="['dashboard']"
 				[ngClass]="{'active': currentPage === 'dashboard'}"
 				class="sidenav-btn nav-link" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-					<i class="bi bi-bar-chart"></i>
+					<i class="bi" [ngClass]="currentPage === 'dashboard' ? 'bi-bar-chart-fill' : 'bi-bar-chart'"></i>
 					<p>Dashboard</p>
 				</a>
 			</li>

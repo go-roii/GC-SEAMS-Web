@@ -50,15 +50,21 @@
     <div class="mb-3">
       <label for="" class="form-label">Invitation</label>
       <div class="input-group input-group-sm">
-        <input id="" class="form-control" type="text" readonly required>
-        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <input id="" class="form-control" type="text" [value]="chosenDepartmentsList2" readonly required>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Invite Department
         </button>
         <ul class="dropdown-menu">
-          <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
+          <!-- <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
             <label>{{department.department_code}}</label>
             <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)">
-          </li>
+          </li> -->
+          <label *ngFor="let department of departments" style="display: block; cursor: pointer;">
+            <li class="dropdown-item d-flex justify-content-between align-items-center">
+              {{department.department_code}}
+              <input class="form-check-input me-1 mt-0" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)">
+            </li>
+          </label>
         </ul>
       </div>
     </div>
