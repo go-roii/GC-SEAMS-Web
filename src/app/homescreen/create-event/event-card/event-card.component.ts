@@ -53,8 +53,8 @@ export class EventCardComponent implements OnInit, OnDestroy{
     speakerDescription:new FormControl('',[Validators.required,]),
   })
 
-  chosenDepartmentsList: string[] = [];
-  chosenDepartmentsList2: string = '';
+  chosenDepartmentsList: string = '';
+  chosenSpeakersList: string = '';
 
   constructor(private dataService: DataService,
               private departmentService: DepartmentService,
@@ -65,6 +65,17 @@ export class EventCardComponent implements OnInit, OnDestroy{
   addSpeaker(value: Speaker){
     this.chosenSpeaker.push(value);
     console.log(this.chosenSpeaker);
+
+    // show selected speakers in field
+    var chosenSpeakersArray = [];
+    this.chosenSpeakersList = '';
+
+    for (var k in this.chosenSpeaker) {
+      if (this.chosenSpeaker.hasOwnProperty(k)) {
+        chosenSpeakersArray.push(this.chosenSpeaker[k].speaker_name);
+        this.chosenSpeakersList = chosenSpeakersArray.join(', ');
+      }
+    }
   }
 
   onNativeChange(e: any, department: Departments) {
@@ -78,12 +89,13 @@ export class EventCardComponent implements OnInit, OnDestroy{
     }
 
     // show selected departments in field
-    this.chosenDepartmentsList = [];
-    this.chosenDepartmentsList2 = '';
+    var chosenDepartmentsArray = [];
+    this.chosenDepartmentsList = '';
+
     for (var k in this.chosenDepartments) {
       if (this.chosenDepartments.hasOwnProperty(k)) {
-        this.chosenDepartmentsList.push(this.chosenDepartments[k].department_code);
-        this.chosenDepartmentsList2 = this.chosenDepartmentsList.join(', ');
+        chosenDepartmentsArray.push(this.chosenDepartments[k].department_code);
+        this.chosenDepartmentsList = chosenDepartmentsArray.join(', ');
       }
     }
 

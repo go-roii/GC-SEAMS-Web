@@ -50,7 +50,7 @@
     <div class="mb-3">
       <label for="" class="form-label">Invitation</label>
       <div class="input-group input-group-sm">
-        <input id="" class="form-control" type="text" [value]="chosenDepartmentsList2" readonly required>
+        <input id="" class="form-control" type="text" [value]="chosenDepartmentsList" readonly required>
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Invite Department
         </button>
@@ -72,7 +72,7 @@
     <div class="mb-3">
       <label for="speakers" class="form-label">Speakers</label>
       <div class="input-group input-group-sm">
-        <input id="speakers" class="form-control" type="text" formControlName="eventSpeakers" required>
+        <input id="speakers" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#speaker-modal" aria-expanded="false">Add Speakers</button>
       </div>
     </div>
