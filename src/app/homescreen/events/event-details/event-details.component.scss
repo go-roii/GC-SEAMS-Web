@@ -79,6 +79,28 @@
 	}
 }
 
+.status-pill {
+  float: right;
+  font-size: 12px;
+  border-radius: 100px;
+  padding: 3px 10px;
+
+  &.sp-present {
+    background-color: var(--green);
+    color: white;
+  }
+
+  &.sp-absent {
+    background-color: var(--red);
+    color: white;
+  }
+
+  &.sp-not-registered {
+    background-color: var(--yellow-orange);
+    color: black;
+  }
+}
+
 #profile-pic {
 	width: 32px;
 	height: 32px;

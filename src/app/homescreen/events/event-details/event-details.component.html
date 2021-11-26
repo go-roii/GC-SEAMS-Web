@@ -19,10 +19,10 @@
       <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_code}}</option>
       </ng-container>
   </select>
-
-  <button id="create-button" class="btn btn-primary" (click)='printInputs()'>Create</button>
   </form>
   </div> -->
+
+  <button id="save-button" class="btn btn-primary">Save</button>
 </div>
 
 <div class="event-container">
@@ -96,9 +96,9 @@
       <h5>Attendees - 10</h5>
 
       <ul class="list-group list-group-flush mt-3" style="overflow-y: auto; min-height: 0; flex: 1">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">An item <span class="status-pill sp-present">Present</span></li>
+        <li class="list-group-item">A second item <span class="status-pill sp-absent">Absent</span></li>
+        <li class="list-group-item">A third item <span class="status-pill sp-not-registered">Not Registered</span></li>
         <li class="list-group-item">A fourth item</li>
         <li class="list-group-item">And a fifth one</li>
         <li class="list-group-item">An item</li>
