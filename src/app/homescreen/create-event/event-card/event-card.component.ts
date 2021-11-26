@@ -78,7 +78,8 @@ export class EventCardComponent implements OnInit, OnDestroy{
     }
 
     // show selected departments in field
-    this.chosenDepartmentsList = []
+    this.chosenDepartmentsList = [];
+    this.chosenDepartmentsList2 = '';
     for (var k in this.chosenDepartments) {
       if (this.chosenDepartments.hasOwnProperty(k)) {
         this.chosenDepartmentsList.push(this.chosenDepartments[k].department_code);
