@@ -1,69 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-	--primary-color: #673ab7;
+	--primary-color: #673AB7;
+  --primary-color-darker: #512DA8;
   --red: #DC3545;
   --green: #28A745;
   --yellow-orange: #FFC107;
   --yellow-orange-darker: #FFA000;
-    // --primary-color-rgb: rgb(103, 58, 183);
+
+  // --primary-color-rgb: rgb(103, 58, 183);
 }
 
 $navbar-height: 64px;
 
 html, body { 
-    height: 100%;
-    // overflow: hidden;
+  height: 100%;
+  // overflow: hidden;
 }
 
 body { 
-    margin: 0;
-    font-family: Rubik,"Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Rubik,"Helvetica Neue", sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    margin: 0;
+  margin: 0;
 }
 
 h1 {
-    font-size: 96px;
+  font-size: 96px;
 }
 
 h2 {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 h3 {
-    font-size: 48px;
+  font-size: 48px;
 }
 
 h4 {
-    font-size: 34px;
+  font-size: 34px;
 }
 
 h5 {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 h6 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 i.bi {
-    vertical-align: -.125em;
+  vertical-align: -.125em;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-darker);
+  border-color: var(--primary-color-darker);
+}
+
+.btn-check:active+.btn-primary,
+.btn-check:checked+.btn-primary,
+.btn-primary.active, .btn-primary:active,
+.show>.btn-primary.dropdown-toggle {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-check:active+.btn-primary:focus,
+.btn-check:checked+.btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgb(81 45 168 / 50%);
+}
+
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+  background-color: var(--primary-color-darker);
+  border-color: var(--primary-color-darker);
+  box-shadow: 0 0 0 0.25rem rgb(81 45 168 / 50%);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .navbar {
-    background-color: white;
-    min-height: $navbar-height;
-    padding: 8px 16px;
+  background-color: white;
+  min-height: $navbar-height;
+  padding: 8px 16px;
 }
 
 .navbar-brand {
-    color: black;
-    font-weight: 500;
+  color: black;
+  font-weight: 500;
 }
 
 .text-helper {
-    font-size: .8em;
+  font-size: .8em;
 }
