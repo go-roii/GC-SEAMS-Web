@@ -40,7 +40,7 @@ export class EventsEventCardComponent implements OnInit {
 
     if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100) 
       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
-    else if(Math.trunc(this.eventCurrentTime * 100) < 0)
+    else if(Math.trunc(this.eventCurrentTime * 100) <= 0)
       this.currentProgress = 0
     else
       this.currentProgress = 100
