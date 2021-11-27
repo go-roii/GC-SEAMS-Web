@@ -5,6 +5,7 @@ import { Courses } from '../models/Courses';
 import {Observable, throwError} from 'rxjs';
 import {RefreshTokens} from "../models/RefreshTokens";
 import {UserService} from "./user.service";
+import {retry} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,14 +18,18 @@ export class DataService {
   getConfigResponse(endpoint: string, body: Credential): Observable<HttpResponse<RefreshTokens>> {
 
     return this.http.post<RefreshTokens>(
-      this.baseURL+"/"+endpoint, body, { observe: 'response' });
+      this.baseURL+"/"+endpoint, body, { observe: 'response' })
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+      );
 
   }
 
   getNewAccessToken(endpoint: string, body: RefreshTokens): Observable<HttpResponse<RefreshTokens>> {
-
-    return this.http.post<RefreshTokens>(
-      this.baseURL+"/"+endpoint, body, { observe: 'response' })
+    return this.http.post<RefreshTokens>(this.baseURL+"/"+endpoint, body, { observe: 'response' })
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+      );
 
   }
 
@@ -40,7 +45,7 @@ export class DataService {
 
       //post data without authentication header;
       case 2:
-        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body);
+        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body)
         break;
 
       //post data and get the access token from the header and the refresh token from the body.
@@ -50,12 +55,12 @@ export class DataService {
 
       //post data with authentication header
       case 4:
-        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body, requestParams.AuthToken);
+        result = this.http.post(this.baseURL+requestParams.EndPoint, requestParams.Body, requestParams.AuthToken)
         break;
 
       //get data with authentication header
       case 5:
-        result = this.http.get(this.baseURL+requestParams.EndPoint, requestParams.AuthToken);
+        result = this.http.get(this.baseURL+requestParams.EndPoint, requestParams.AuthToken)
         break
       default:
       break;
@@ -64,11 +69,16 @@ export class DataService {
     return result;
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
+  public handleError(error: HttpErrorResponse) {
+    if (error.status === 404) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
+      alert('User not found.')
+    }else if(error.status === 401){
+      alert('Password is incorrect')
+    }else if(error.status === 400){
+      alert('Something went wrong with the server')
+    }
+    else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(

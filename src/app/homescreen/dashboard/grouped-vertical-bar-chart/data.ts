@@ -3,15 +3,19 @@ export var multi = [
     "name": "CCS",
     "series": [
       {
-        "name": "viewed",
+        "name": "Invited",
+        "value": 600
+      },
+      {
+        "name": "Viewed",
         "value": 500
       },
       {
-        "name": "registered",
+        "name": "Registered",
         "value": 350
       },
       {
-        "name": "attended",
+        "name": "Attended",
         "value": 200
       }
     ]
@@ -20,15 +24,19 @@ export var multi = [
     "name": "CEAS",
     "series": [
       {
-        "name": "viewed",
+        "name": "Invited",
+        "value": 500
+      },
+      {
+        "name": "Viewed",
         "value": 400
       },
       {
-        "name": "registered",
+        "name": "Registered",
         "value": 350
       },
       {
-        "name": "attended",
+        "name": "Attended",
         "value": 320
       }
     ]
@@ -37,15 +45,19 @@ export var multi = [
     "name": "CHTM",
     "series": [
       {
-        "name": "viewed",
+        "name": "Invited",
+        "value": 700
+      },
+      {
+        "name": "Viewed",
         "value": 600
       },
       {
-        "name": "registered",
+        "name": "Registered",
         "value": 400
       },
       {
-        "name": "attended",
+        "name": "Attended",
         "value": 250
       }
     ]
@@ -54,15 +66,19 @@ export var multi = [
     "name": "CAHS",
     "series": [
       {
-        "name": "viewed",
+        "name": "Invited",
+        "value": 750
+      },
+      {
+        "name": "Viewed",
         "value": 700
       },
       {
-        "name": "registered",
+        "name": "Registered",
         "value": 500
       },
       {
-        "name": "attended",
+        "name": "Attended",
         "value": 450
       }
     ]
@@ -71,15 +87,19 @@ export var multi = [
       "name": "CBA",
     "series": [
       {
-        "name": "viewed",
+        "name": "Invited",
+        "value": 650
+      },
+      {
+        "name": "Viewed",
         "value": 601
       },
       {
-        "name": "registered",
+        "name": "Registered",
         "value": 320
       },
       {
-        "name": "attended",
+        "name": "Attended",
         "value": 280
       }
     ]

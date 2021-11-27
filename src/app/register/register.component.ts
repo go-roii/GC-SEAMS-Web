@@ -5,6 +5,7 @@ import { Departments } from '../models/Departments';
 import { RequestParams } from '../models/RequestParams';
 import { UserProfile } from '../models/UserProfile';
 import { DataService } from '../services/data.service';
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-register',
@@ -92,11 +93,10 @@ export class RegisterComponent implements OnInit {
     console.log(registrationParams.Body)
 
     this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
+      catchError(this.dataService.handleError)
       const data = await res.payload
       //await this.user.setUserData(data)
       //await this.user.setLoginState()
     });
-
-    console.log
   }
 }

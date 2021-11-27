@@ -24,7 +24,7 @@ export class GroupedVerticalBarChartComponent{
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Number of Students';
   legendTitle: string = 'Legend';
-  legendPosition= LegendPosition.Below
+  legendPosition= LegendPosition.Right
 
   colorScheme: Color = {
     name: 'vivid',

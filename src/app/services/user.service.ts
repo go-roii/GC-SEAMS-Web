@@ -19,13 +19,13 @@ export class UserService{
   private timerIsStarted: boolean=false;
   private subscription!: Subscription;
   private headers!: string[];
-  private authHeader! :string;
   constructor(private router: Router,
               private dataService: DataService,
               private speakersService: SpeakersService,
               private departmentService: DepartmentService
   ) {
   }
+
 
   private TimerIsStarted(){
     this.timerIsStarted=true;
@@ -136,7 +136,11 @@ export class UserService{
         const trimmedHeader=this.getAuthHeader().split(':');
         console.log("new access-token: "+trimmedHeader[1])
 
-      });
+      },
+        er => {
+          this.dataService.handleError(er);
+          this.logOut();
+        });
   }
 
   stopTimer(){

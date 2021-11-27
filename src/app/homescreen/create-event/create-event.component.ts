@@ -191,7 +191,6 @@ export class CreateEventComponent implements OnInit {
   }
 
   saveEvents(){
-
     this.printInputs();
 
     const eventParams: RequestParams=new RequestParams();
@@ -205,8 +204,18 @@ export class CreateEventComponent implements OnInit {
       this.dataService.httprequest(eventParams)
         .subscribe(async (data: string) =>{
           await console.log(data);
+          await alert("Event/s created successfully");
         });
     }
+
+    this.clearEventData();
+    this.addCard();
+
+  }
+
+  clearEventData(){
+    this.events=[];
+    this.eventData=[];
   }
 
   printInputs(): void{
