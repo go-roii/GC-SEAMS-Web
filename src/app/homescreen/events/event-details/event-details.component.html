@@ -179,24 +179,53 @@
           <input type="text" class="form-control" placeholder="Search speaker..." aria-label="Search speaker">
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="d-flex align-items-center">
-              <div class="profile-pic"></div>
-              <div class="mx-3">
-                <p class="mb-0" style="font-size: 14px;">Roy F. Gopez Jr.</p>
-                <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">202100001@gordoncollege.edu.ph</p>
-              </div>
-              <div style="margin-left: auto;">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-              </div>
-            </div>
-          </li>
-        </ul>
+
+        <div class="mb-3">
+          <p class="mb-2">Chosen Speakers - 0</p>
+
+          <ul class="list-group" [style.display]="'none'">
+            <ng-container>
+              <li class="list-group-item">
+                <div class="d-flex align-items-center">
+                  <div class="profile-pic"></div>
+                  <div class="mx-3">
+                    <p class="mb-0" style="font-size: 14px;"></p>
+                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)"></p>
+                  </div>
+                  <div style="margin-left: auto;">
+                    <button class="btn btn-sm btn-danger" type="button">Remove</button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+
+        <div class="mb-3">
+          <p class="mb-2">Available Speakers - 1</p>
+
+          <ul class="list-group" [style.display]="'block'">
+            <ng-container>
+              <li class="list-group-item">
+                <div  class="d-flex align-items-center">
+                  <div class="profile-pic"></div>
+                  <div class="mx-3">
+                    <p class="mb-0" style="font-size: 14px;">Roy F. Gopez Jr.</p>
+                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">royfgopez80@gmail.com</p>
+                  </div>
+                  <div style="margin-left: auto;">
+                    <button class="btn btn-sm btn-primary" type="button">Add</button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>  
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm">Save</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save</button>
       </div>
     </div>
   </div>

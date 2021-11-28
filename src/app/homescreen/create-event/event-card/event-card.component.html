@@ -89,8 +89,8 @@
         <h6 class="modal-title" id="staticBackdropLabel">Add Speakers</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
 
+      <div class="modal-body">
         <!--form group for add speaker functionality-->
         <form [formGroup]='speakerForm' autocomplete="off">
           <div class="mb-2">
@@ -128,45 +128,53 @@
           <input type="text" class="form-control" placeholder="Search speaker..." [(ngModel)]="searchText" aria-label="Search speaker">
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
-        <ul class="list-group">
 
-          <p>Chosen Speakers
-            
-          <li class="list-group-item" *ngFor="let speaker of speakers">
+        <div class="mb-3">
+          <p class="mb-2">Chosen Speakers - {{chosenSpeaker.length}}</p>
 
-            <div *ngIf="speaker.speaker_chosen" class="d-flex align-items-center">
-              <div id="profile-pic"></div>
-              <div class="mx-3">
-                <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-              </div>
-              <div style="margin-left: auto;">
-                <button *ngIf="!speaker.speaker_chosen" type="button" (click)="addSpeaker(speaker)">Add</button>
-                <button *ngIf="speaker.speaker_chosen" type="button" (click)="removeSpeakerFromChosen(speaker)">Remove</button>
-              </div>
-            </div>
-          </li>
+          <ul class="list-group" [style.display]="chosenSpeaker.length >= 1 ? 'block' : 'none'">
+            <ng-container *ngFor="let speaker of speakers">
+              <li class="list-group-item" *ngIf="speaker.speaker_chosen">
+                <div class="d-flex align-items-center">
+                  <div class="profile-pic"></div>
+                  <div class="mx-3">
+                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
+                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
+                  </div>
+                  <div style="margin-left: auto;">
+                    <button class="btn btn-sm btn-danger" type="button" (click)="removeSpeakerFromChosen(speaker)">Remove</button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
 
-          <p>Available Speakers</p>
+        <div class="mb-3">
+          <p class="mb-2">Available Speakers - {{speakers.length - chosenSpeaker.length}}</p>
 
-          <li class="list-group-item" *ngFor="let speaker of speakers | filter:searchText">
-            <div *ngIf="!speaker.speaker_chosen" class="d-flex align-items-center">
-              <div id="profile-pic"></div>
-              <div class="mx-3">
-                <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-              </div>
-              <div style="margin-left: auto;">
-                <button *ngIf="!speaker.speaker_chosen" type="button" (click)="addSpeaker(speaker)">Add</button>
-                <button *ngIf="speaker.speaker_chosen" type="button" (click)="removeSpeakerFromChosen(speaker)">Remove</button>
-              </div>
-            </div>
-        </ul>
-
+          <ul class="list-group" [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
+            <ng-container *ngFor="let speaker of speakers | filter:searchText">
+              <li class="list-group-item" *ngIf="!speaker.speaker_chosen">
+                <div  class="d-flex align-items-center">
+                  <div class="profile-pic"></div>
+                  <div class="mx-3">
+                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
+                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
+                  </div>
+                  <div style="margin-left: auto;">
+                    <button class="btn btn-sm btn-primary" type="button" (click)="addSpeaker(speaker)">Add</button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>  
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm" (click)="saveSpeaker()">Save</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" (click)="saveSpeaker()">Save</button>
       </div>
     </div>
   </div>
