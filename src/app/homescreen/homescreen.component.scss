@@ -82,11 +82,12 @@ $sidenav-expanded-width: 240px;
 }
 
 .main-content {
-  width: calc(100% - $sidenav-width);
+  // width: calc(100vw - $sidenav-width);
   background-color: white;
   color: black;
   padding: 0;
   z-index: 1;
+  transition: width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
 .content {
@@ -187,7 +188,7 @@ $sidenav-expanded-width: 240px;
   border-radius: 12px;
   padding: 36px;
   transition: border-color ease-out 100ms, box-shadow ease-out 100ms;
-  overflow: hidden;
+  overflow: auto hidden;
 
   &:focus-within {
     border-color: var(--primary-color);
@@ -233,7 +234,7 @@ $sidenav-expanded-width: 240px;
 
 @media (max-width: 576px) {
   .content {
-    padding: 12px 24px;
+    padding: 24px;
   }
 
   // .sidenav {

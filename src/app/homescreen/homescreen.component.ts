@@ -24,6 +24,7 @@ import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 export class HomescreenComponent implements OnInit {
 
 	isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
+  sidenavWidth: number = this.sidedenavExpandService.sidenavWidth;
   fullName!: string;
   email!: string;
 
@@ -39,6 +40,10 @@ export class HomescreenComponent implements OnInit {
   ) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
+    });
+
+    this.sidedenavExpandService.sidenavWidthChange.subscribe((value) => {
+      this.sidenavWidth = value;
     });
   }
 
