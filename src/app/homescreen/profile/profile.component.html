@@ -1,5 +1,10 @@
-<div class="container">
+<div class="profile-container container py-3 ms-0">
   <form>
+    <div class="mb-3 d-flex flex-column align-items-center">
+      <div class="profile-pic mb-3"></div>
+      <p>Change profile picture</p>
+    </div>
+
     <div class="mb-3">
       <label for="firstname" class="form-label">Full Name</label>
       <div class="input-group">
@@ -33,6 +38,10 @@
     <div class="mb-4">
       <label for="password_confirmation" class="form-label" required>Confirm Password</label>
       <input id="password_confirmation" type="password" class="form-control">
+    </div>
+
+    <div class="d-grid gap-3">
+      <button type="submit" class="btn btn-lg btn-primary" type="submit">Save Changes</button>
     </div>
   </form>
 </div>
