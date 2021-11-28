@@ -46,7 +46,8 @@
 	</div> -->
 	</div>
 
-	<div class="main-content" [style.width]="'calc(100vw - ' + sidenavWidth + 'px)'">
+	<div class="main-content" [ngClass]="{'main-content-compact' : isSidenavExpanded}"
+    [style.width]="'calc(100vw - ' + sidenavWidth + 'px)'">
 		<nav class="navbar">
 			<div class="container-fluid">
 				<a class="navbar-brand" [routerLink]="['/homescreen/events']">GC-SEAMS</a>
@@ -68,7 +69,7 @@
 			</div>
 		</nav>
 
-		<div class="content" [ngClass]="{'content-compact' : isSidenavExpanded}">
+		<div class="content">
 			<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
 		</div>
 	</div>
