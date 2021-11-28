@@ -63,10 +63,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
               private speakersService: SpeakersService) {
   }
 
-  searchSpeaker(speaker: Speaker){
-
-  }
-
   addSpeaker(value: Speaker){
     value.speaker_chosen=true;
     this.chosenSpeaker.push(value)
@@ -176,7 +172,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
         await this.setSpeakers();
       });
 
-    this.setSpeakers();
     this.speakerForm.reset()
   }
 
