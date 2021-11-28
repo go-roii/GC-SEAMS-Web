@@ -1,10 +1,6 @@
 $sidenav-width: 64px;
 $sidenav-expanded-width: 240px;
 
-// :host {
-//   color: white;
-// }
-
 .homescreen-container {
   display: flex;
   flex-direction: row;
@@ -144,8 +140,6 @@ $sidenav-expanded-width: 240px;
 
 
 
-
-
 :host-context(.content-compact) {
   .text-header {
     padding-bottom: 24px;
@@ -230,4 +224,19 @@ $sidenav-expanded-width: 240px;
 	background-color: var(--primary-color);
 	border: none;
 	border-radius: 50%;
+}
+
+
+
+
+
+
+@media (max-width: 576px) {
+  .content {
+    padding: 12px 24px;
+  }
+
+  // .sidenav {
+  //   display: none;
+  // }
 }

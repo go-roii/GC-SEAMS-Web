@@ -95,6 +95,8 @@ export class HomescreenComponent implements OnInit {
       this.currentPage = 'dashboard'
     else if(event instanceof AnalyticsComponent)
       this.currentPage = 'dashboard'
+    else
+      this.currentPage = ''
   }
 
 	sidenav_status() {

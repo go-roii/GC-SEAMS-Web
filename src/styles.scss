@@ -56,6 +56,31 @@ input[type=number]::-webkit-outer-spin-button {
    opacity: 1;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  // background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 9999px;
+  border: solid 3px transparent;
+  background-clip: content-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+  border: solid 3px transparent;
+  background-clip: content-box;
+}
+
 i.bi {
   vertical-align: -.125em;
 }
@@ -82,6 +107,10 @@ i.bi {
 // RECOLOR
 
 // BUTTONS
+
+.btn-check:focus+.btn, .btn:focus {
+  box-shadow: 0 0 0 0.25rem rgb(81 45 168 / 50%);
+}
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -118,6 +147,10 @@ i.bi {
 .btn-primary.disabled, .btn-primary:disabled {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
+}
+
+.btn-close:focus {
+  box-shadow: 0 0 0 0.25rem rgb(81 45 168 / 50%);
 }
 
 // MENU ITEM
