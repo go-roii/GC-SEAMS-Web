@@ -15,8 +15,9 @@ import {SpeakersService} from "../../../services/speakers.service";
   selector: 'app-event-card',
   templateUrl: './event-card.component.html',
   styleUrls: [
-    './event-card.component.scss',
-    '../create-event.component.scss'
+    '../../homescreen.component.scss',
+    '../create-event.component.scss',
+    './event-card.component.scss'
   ]
 })
 

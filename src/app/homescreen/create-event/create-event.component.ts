@@ -19,7 +19,9 @@ import {HttpHeaders} from "@angular/common/http";
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.scss']
+  styleUrls: [
+    '../homescreen.component.scss',
+    './create-event.component.scss']
 })
 export class CreateEventComponent implements OnInit {
 
