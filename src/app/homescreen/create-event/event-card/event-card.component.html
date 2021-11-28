@@ -99,7 +99,7 @@
               Full name is required
             </div>
           </div>
-          
+
           <div class="mb-2">
             <input type="email" class="form-control form-control-sm"  formControlName="speakerEmail" placeholder="Email address" aria-label="email address" required>
             <span *ngIf="speakerEmail?.invalid && (speakerEmail?.dirty || speakerEmail?.touched)" class="validation-error">
@@ -125,27 +125,48 @@
         </form>
 
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" placeholder="Search speaker..." aria-label="Search speaker">
+          <input type="text" class="form-control" placeholder="Search speaker..." [(ngModel)]="searchText" aria-label="Search speaker">
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
         <ul class="list-group">
+
+          <p>Chosen Speakers
+            
           <li class="list-group-item" *ngFor="let speaker of speakers">
-            <div class="d-flex align-items-center">
+
+            <div *ngIf="speaker.speaker_chosen" class="d-flex align-items-center">
               <div id="profile-pic"></div>
               <div class="mx-3">
                 <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
                 <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
               </div>
               <div style="margin-left: auto;">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." (change)="addSpeaker(speaker)">
+                <button *ngIf="!speaker.speaker_chosen" type="button" (click)="addSpeaker(speaker)">Add</button>
+                <button *ngIf="speaker.speaker_chosen" type="button" (click)="removeSpeakerFromChosen(speaker)">Remove</button>
               </div>
             </div>
           </li>
+
+          <p>Available Speakers</p>
+
+          <li class="list-group-item" *ngFor="let speaker of speakers | filter:searchText">
+            <div *ngIf="!speaker.speaker_chosen" class="d-flex align-items-center">
+              <div id="profile-pic"></div>
+              <div class="mx-3">
+                <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
+                <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
+              </div>
+              <div style="margin-left: auto;">
+                <button *ngIf="!speaker.speaker_chosen" type="button" (click)="addSpeaker(speaker)">Add</button>
+                <button *ngIf="speaker.speaker_chosen" type="button" (click)="removeSpeakerFromChosen(speaker)">Remove</button>
+              </div>
+            </div>
         </ul>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm">Save</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="saveSpeaker()">Save</button>
       </div>
     </div>
   </div>

@@ -10,8 +10,6 @@ import {Speaker} from "../../../models/Speaker";
 import {UserService} from "../../../services/user.service";
 import {HttpHeaders} from "@angular/common/http";
 import {SpeakersService} from "../../../services/speakers.service";
-import {UserProfile} from "../../../models/UserProfile";
-import {connectableObservableDescriptor} from "rxjs/internal/observable/ConnectableObservable";
 
 @Component({
   selector: 'app-event-card',
@@ -29,12 +27,14 @@ export class EventCardComponent implements OnInit, OnDestroy{
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
   @Output() eventDataToDelete = new EventEmitter<Events>();
+
+  searchText: string='';
+
   event: Events=new Events();
   departments: Departments[]=[];
   chosenDepartments: Departments[]=[];
   speakers: Speaker[]=[];
   chosenSpeaker: Speaker[]=[];
-
   speaker!: Speaker;
 
   eventForm: FormGroup=new FormGroup({
@@ -62,20 +62,34 @@ export class EventCardComponent implements OnInit, OnDestroy{
               private speakersService: SpeakersService) {
   }
 
+  searchSpeaker(speaker: Speaker){
+
+  }
+
   addSpeaker(value: Speaker){
-    this.chosenSpeaker.push(value);
+    value.speaker_chosen=true;
+    this.chosenSpeaker.push(value)
     console.log(this.chosenSpeaker);
+  }
 
-    // show selected speakers in field
-    var chosenSpeakersArray = [];
-    this.chosenSpeakersList = '';
-
-    for (var k in this.chosenSpeaker) {
-      if (this.chosenSpeaker.hasOwnProperty(k)) {
-        chosenSpeakersArray.push(this.chosenSpeaker[k].speaker_name);
-        this.chosenSpeakersList = chosenSpeakersArray.join(', ');
+  getSpeakerIndex(id:number){
+    let count=0;
+    for(let speaker of this.chosenSpeaker){
+      if(speaker.speaker_id!=id){
+        count++;
+      }
+      if(speaker.speaker_id==id){
+        break;
       }
     }
+
+    return count;
+  }
+
+  removeSpeakerFromChosen(speaker: Speaker){
+    speaker.speaker_chosen=false;
+    const index=this.getSpeakerIndex(speaker.speaker_id)
+    this.chosenSpeaker.splice(index, 1)
   }
 
   onNativeChange(e: any, department: Departments) {
@@ -165,11 +179,26 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.speakerForm.reset()
   }
 
+  saveSpeaker(){
+    this.event.eventSpeakers=this.chosenSpeaker;
+
+    // show selected speakers in field
+    let chosenSpeakersArray = [];
+    this.chosenSpeakersList = '';
+
+    for (let k in this.chosenSpeaker) {
+      if (this.chosenSpeaker.hasOwnProperty(k)) {
+        chosenSpeakersArray.push(this.chosenSpeaker[k].speaker_name);
+        this.chosenSpeakersList = chosenSpeakersArray.join(', ');
+      }
+    }
+  }
+
   setSpeakers(){
     this.speakers=this.speakersService.getSpeakers();
   }
 
-    addNewEvent() {
+  addNewEvent() {
     this.eventData.emit(this.event);
   }
 
@@ -202,7 +231,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log("departments: "+this.departments)
     console.log("speakers: "+this.speakers)
     this.event.departments=this.chosenDepartments;
-    this.event.eventSpeakers=this.chosenSpeaker;
   }
 
   public updateSpeakers(){

@@ -34,6 +34,7 @@
     "d3-time-format": "^4.0.0",
     "d3-transition": "^3.0.1",
     "ng-qrcode": "^5.2.0",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"

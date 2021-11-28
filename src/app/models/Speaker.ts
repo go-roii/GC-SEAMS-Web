@@ -1,5 +1,5 @@
 export class Speaker{
-  speaker_id:number;
+  speaker_id:number
   speaker_name: string;
   speaker_email: string;
   speaker_description: string;
