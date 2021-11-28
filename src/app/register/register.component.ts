@@ -6,6 +6,7 @@ import { RequestParams } from '../models/RequestParams';
 import { UserProfile } from '../models/UserProfile';
 import { DataService } from '../services/data.service';
 import {catchError} from "rxjs/operators";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ import {catchError} from "rxjs/operators";
 
 export class RegisterComponent implements OnInit {
 
+  confirmationIsValid!: boolean;
   courses: Courses[]=[];
   departments: Departments[]=[];
 
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartments();
+    this.confirmationIsValid=true;
   }
 
   departmentSelectionChanged(){
@@ -60,8 +63,7 @@ export class RegisterComponent implements OnInit {
     course:new FormControl('select course',[Validators.required,]),
     password:new FormControl('',[ Validators.minLength(8), Validators.required]),
     passwordConfirmation:new FormControl('',[Validators.required])
-  });
-
+   });
 
   //Getters for validation of the fields
   get firstName() { return this.profileForm.get('firstName'); }
@@ -84,19 +86,25 @@ export class RegisterComponent implements OnInit {
       course_id : this.profileForm.controls['course'].value,
     }
 
+    if(newUser.password==this.profileForm.controls['passwordConfirmation'].value){
+      const registrationParams= new RequestParams();
+      registrationParams.EndPoint="register";
+      registrationParams.Body=newUser;
+      registrationParams.RequestType=2;
 
-    const registrationParams= new RequestParams();
-    registrationParams.EndPoint="register";
-    registrationParams.Body=newUser;
-    registrationParams.RequestType=2;
+      console.log(registrationParams.Body)
 
-    console.log(registrationParams.Body)
-
-    this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
-      catchError(this.dataService.handleError)
-      const data = await res.payload
-      //await this.user.setUserData(data)
-      //await this.user.setLoginState()
-    });
+      this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
+        catchError(this.dataService.handleError)
+        const data = await res.payload
+        //await this.user.setUserData(data)
+        //await this.user.setLoginState()
+      });
+    }else{
+      alert('Passwords does not match');
+    }
   }
 }
+
+
+
