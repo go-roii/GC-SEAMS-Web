@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Events } from 'src/app/models/Events';
@@ -65,7 +65,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
   addSpeaker(value: Speaker){
     value.speaker_chosen=true;
-    this.chosenSpeaker.push(value)
+    this.chosenSpeaker.push(value);
     console.log(this.chosenSpeaker);
   }
 
@@ -224,9 +224,10 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.departments=this.departmentService.getDepartments();
     this.addNewEvent();
 
-    console.log("departments: "+this.departments)
-    console.log("speakers: "+this.speakers)
+    console.log("departments: "+this.departments);
+    console.log("speakers: "+this.speakers);
     this.event.departments=this.chosenDepartments;
+    this.event.eventSpeakers=this.chosenSpeaker;
   }
 
   public updateSpeakers(){

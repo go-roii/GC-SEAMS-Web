@@ -70,7 +70,7 @@
       <label for="speakers" class="form-label">Speakers</label>
       <div class="input-group input-group-sm">
         <input id="speakers" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
-        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#speaker-modal" aria-expanded="false">Add Speakers</button>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal"[attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">Add Speakers</button>
       </div>
     </div>
 
@@ -82,7 +82,7 @@
 </div>
 
 <!--MODAL-->
-<div class="modal fade" id="speaker-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'speaker-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -130,11 +130,11 @@
         </div>
 
         <div class="mb-3">
-          <p class="mb-2">Chosen Speakers - {{chosenSpeaker.length}}</p>
+          <p class="mb-2">Chosen Speakers: {{this.chosenSpeaker.length}}</p>
 
-          <ul class="list-group" [style.display]="chosenSpeaker.length >= 1 ? 'block' : 'none'">
-            <ng-container *ngFor="let speaker of speakers">
-              <li class="list-group-item" *ngIf="speaker.speaker_chosen">
+          <ul class="list-group" [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
+            <ng-container *ngFor="let speaker of chosenSpeaker">
+              <li class="list-group-item">
                 <div class="d-flex align-items-center">
                   <div class="profile-pic"></div>
                   <div class="mx-3">
@@ -151,7 +151,7 @@
         </div>
 
         <div>
-          <p class="mb-2">Available Speakers - {{speakers.length - chosenSpeaker.length}}</p>
+          <p class="mb-2">Available Speakers: {{speakers.length - chosenSpeaker.length}}</p>
 
           <ul class="list-group" [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
             <ng-container *ngFor="let speaker of speakers | filter:searchText">
@@ -179,4 +179,3 @@
     </div>
   </div>
 </div>
-
