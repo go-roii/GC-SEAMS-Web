@@ -1,19 +1,22 @@
-<div class="tabs">
+<div class="tabs mb-3">
 	<ul class="nav">
 		<li class="nav-item">
 			<a [routerLink]="['ongoing']"
 			[ngClass]="{'active': currentTab === 'ongoing'}"
 			class="nav-link active">Ongoing Events</a>
+      <div class="active-tab-indicator"></div>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['pending']"
 			[ngClass]="{'active': currentTab === 'pending'}"
 			class="nav-link">Pending Events</a>
+      <div class="active-tab-indicator"></div>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['ended']"
 			[ngClass]="{'active': currentTab === 'ended'}"
 			class="nav-link">Ended Events</a>
+      <div class="active-tab-indicator"></div>
 		</li>
 	</ul>
 </div>

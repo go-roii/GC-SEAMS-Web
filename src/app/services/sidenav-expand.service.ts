@@ -23,6 +23,6 @@ export class SidenavExpandService {
 
   toggleSidebarExpand() {
     this.sidenavExpandChange.next(!this.isSidenavExpanded);
-    this.sidenavWidthChange.next(this.isSidenavExpanded ? this.sidenavWidth = 240 : this.sidenavWidth = 64);
+    this.sidenavWidthChange.next(this.isSidenavExpanded ? this.sidenavWidth = 248 : this.sidenavWidth = 72);
   }
 }

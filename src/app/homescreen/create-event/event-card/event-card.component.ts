@@ -24,6 +24,7 @@ import {SpeakersService} from "../../../services/speakers.service";
 export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = '';
+  minDate: string =  new Date().toISOString().split('T')[0]
 
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();

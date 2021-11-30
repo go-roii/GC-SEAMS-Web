@@ -1,5 +1,5 @@
-$sidenav-width: 64px;
-$sidenav-expanded-width: 240px;
+$sidenav-width: 72px;
+$sidenav-expanded-width: 248px;
 
 .homescreen-container {
   display: flex;
@@ -10,8 +10,8 @@ $sidenav-expanded-width: 240px;
 .sidenav {
 	width: $sidenav-width;
   min-width: $sidenav-width;
-	background-color: #f8f8f8;
-	padding: 4px 8px 8px;
+	background-color: var(--background);
+	padding: 4px 12px 12px;
 	transition: width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
               min-width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
 							padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
@@ -50,7 +50,7 @@ $sidenav-expanded-width: 240px;
 .sidenav-expanded {
 	width: $sidenav-expanded-width;
   min-width: $sidenav-expanded-width;
-	padding: 4px 12px 8px;
+	padding: 4px 16px 8px;
 
 	& .nav-item p {
 		visibility: visible;
@@ -61,7 +61,7 @@ $sidenav-expanded-width: 240px;
 	color: var(--primary-color);
 	width: 100%;
 	height: 48px;
-	border-radius: 8px;
+	border-radius: 12px;
 	margin: 3px 0;
 	cursor: pointer;
 	position: relative;
@@ -103,7 +103,7 @@ $sidenav-expanded-width: 240px;
 
 .navbar {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.03);
   padding-left: 64px;
   padding-right: 64px; 
   transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
@@ -183,7 +183,7 @@ $sidenav-expanded-width: 240px;
 
   &:focus-within {
     border-color: var(--primary-color);
-    box-shadow: 0 0 6px 0 rgba(103, 58, 183, 0.36);
+    box-shadow: 0 0 6px 0 rgba(110, 60, 188, 0.36);
     transition: border-color ease-in 100ms, box-shadow ease-in 100ms;
   }
 }
