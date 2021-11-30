@@ -14,7 +14,7 @@ import {DepartmentService} from "../../services/department.service";
 import {SpeakersService} from "../../services/speakers.service";
 import {EventsToAdd} from "../../models/EventsToAdd";
 import {Speaker} from "../../models/Speaker";
-import {HttpHeaders} from "@angular/common/http";
+import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-create-event',
@@ -26,19 +26,19 @@ import {HttpHeaders} from "@angular/common/http";
 export class CreateEventComponent implements OnInit {
 
   count = 0;
-  events: EventCardComponent[]=[];
+  events: EventCardComponent[] = [];
   eventData: Events[] = [];
   courses: Courses[] = [];
-  departments: Departments[]=[];
+  departments: Departments[] = [];
 
 
   byCourse!: boolean;
-  sortBy: string='';
+  sortBy: string = '';
 
-    // @HostBinding('className') componentClass: string;
+  // @HostBinding('className') componentClass: string;
 
   constructor(private router: Router,
-              private  dataService: DataService,
+              private dataService: DataService,
               private userService: UserService,
               private departmentService: DepartmentService,
               private speakerService: SpeakersService
@@ -46,23 +46,22 @@ export class CreateEventComponent implements OnInit {
   }
 
   //process the Event Data to follow the request object format
-  private processEventData(){
+  private processEventData() {
 
-    let eventDataToAdd: EventsToAdd[]=[];
-    let departmentToAdd: Array<number>=[];
-    let speakersToAdd: Array<number> =[];
+    let eventDataToAdd: EventsToAdd[] = [];
+    let departmentToAdd: Array<number> = [];
+    let speakersToAdd: Array<number> = [];
 
 
-
-    for(let event of this.eventData){
+    for (let event of this.eventData) {
 
       const data: EventsToAdd = {
         event_id: 0,
         event_uuid: '',
         event_title: event.eventName,
         event_description: event.eventDetails,
-        event_start_date: event.eventDate+'T'+event.eventStartTime+':00',
-        event_end_date: event.eventDate+'T'+event.eventEndTime+':00',
+        event_start_date: event.eventDate + 'T' + event.eventStartTime + ':00',
+        event_end_date: event.eventDate + 'T' + event.eventEndTime + ':00',
         timezone_id: 'Asia/Manila',
         registration_link: event.eventRegistrationForm,
         departments: event.departments,
@@ -77,100 +76,107 @@ export class CreateEventComponent implements OnInit {
   }
 
   //create form group and form controls for fields
-  invitationForm=new FormGroup({
-    choice:new FormControl(''),
-    courseOrDepartment:new FormControl(''),
+  invitationForm = new FormGroup({
+    choice: new FormControl(''),
+    courseOrDepartment: new FormControl(''),
   });
 
-  get choice() { return this.invitationForm.get('firstName'); }
-  get courseOrDepartment() { return this.invitationForm.get('middleName'); }
+  get choice() {
+    return this.invitationForm.get('firstName');
+  }
 
-  selectionChanged(){
-    this.sortBy=this.invitationForm.controls['choice'].value;
+  get courseOrDepartment() {
+    return this.invitationForm.get('middleName');
+  }
 
-    switch(this.sortBy){
-      case 'Course': this.byCourse=true;
-      break;
-      case 'Department': this.byCourse=false;
-      break;
+  selectionChanged() {
+    this.sortBy = this.invitationForm.controls['choice'].value;
+
+    switch (this.sortBy) {
+      case 'Course':
+        this.byCourse = true;
+        break;
+      case 'Department':
+        this.byCourse = false;
+        break;
     }
   }
 
-  getDepartments(){
-    const departmentParams= new RequestParams();
-    departmentParams.EndPoint="departments";
-    departmentParams.RequestType=1;
+  getDepartments() {
+    const departmentParams = new RequestParams();
+    departmentParams.EndPoint = "departments";
+    departmentParams.RequestType = 1;
 
     this.dataService.httprequest(departmentParams)
-    .subscribe((data: Departments[]) => this.departments = data);
+      .subscribe((data: Departments[]) => this.departments = data);
   }
 
-  getCourses(){
-    const coursesParams= new RequestParams();
-    coursesParams.EndPoint="courses";
-    coursesParams.RequestType=1;
+  getCourses() {
+    const coursesParams = new RequestParams();
+    coursesParams.EndPoint = "courses";
+    coursesParams.RequestType = 1;
 
     this.dataService.httprequest(coursesParams)
-    .subscribe((data: Courses[]) => this.courses = data);
+      .subscribe((data: Courses[]) => this.courses = data);
   }
 
   addEventData(newEvent: Events) {
-    newEvent.id=this.count
+    newEvent.id = this.count
     this.eventData.push(newEvent);
   }
 
-  deleteEvent(event: Events){
-    const id=event.ID;
-    const index=this.getIndex(id);
+  deleteEvent(event: Events) {
+    const id = event.ID;
+    const index = this.getIndex(id);
     this.eventData.splice(index, 1)
     this.shrinkEventDataId(id)
-    console.log("event id to delete: "+id)
-    console.log("index to delete: "+index);
+    console.log("event id to delete: " + id)
+    console.log("index to delete: " + index);
   }
 
-  deleteCard(event: Events){
-    const index=this.getIndex(event.ID);
+  deleteCard(event: Events) {
+    const index = this.getIndex(event.ID);
     this.events.splice(index, 1);
-    this.count=this.getMaxEventDataId();
-    console.log("component id to delete: "+event.id)
-    console.log("index to delete: "+index);
+    this.count = this.getMaxEventDataId();
+    console.log("component id to delete: " + event.id)
+    console.log("index to delete: " + index);
   }
 
-  getMaxEventDataId(){
+  getMaxEventDataId() {
     let max: number = 0;
     this.eventData.forEach(element => {
-      max=element.ID;
+      max = element.ID;
     });
     return max;
   }
 
-  shrinkEventDataId(startIndex: number){
+  shrinkEventDataId(startIndex: number) {
     //this.count-=1;
     this.eventData.forEach(element => {
-      if(element.ID>startIndex){
-        element.ID-=1;
+      if (element.ID > startIndex) {
+        element.ID -= 1;
       }
     });
   }
 
-  getIndex(id: number){
-    let count=0;
-    for(let event of this.eventData){
-      if(event.ID!=id){
+  getIndex(id: number) {
+    let count = 0;
+    for (let event of this.eventData) {
+      if (event.ID != id) {
         count++;
       }
-      if(event.ID==id){
+      if (event.ID == id) {
         break;
       }
     }
     return count;
   }
 
-  addCard(){
-    this.count+=1
-    const newCard= new EventCardComponent(this.dataService, this.departmentService, this.userService, this.speakerService);
+  addCard() {
+    this.count += 1
+    const newCard = new EventCardComponent(this.dataService, this.departmentService, this.userService, this.speakerService);
     this.events.push(newCard)
-   }
+  }
 
   ngOnInit(): void {
     this.addCard();
@@ -179,45 +185,45 @@ export class CreateEventComponent implements OnInit {
     //console.log(this.userService.getUserData());
   }
 
-  getHttpOptions(){
+  getHttpOptions() {
 
-    const trimmedHeader=this.userService.getAuthHeader().split(':');
+    const trimmedHeader = this.userService.getAuthHeader().split(':');
     const httpOptions = {
 
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         Authorization: trimmedHeader[1]
       })
     };
     return httpOptions;
   }
 
-  saveEvents(){
+  saveEvents() {
     this.printInputs();
 
-    const eventParams: RequestParams=new RequestParams();
-    eventParams.EndPoint="event";
-    eventParams.requestType= 4 ;
-    eventParams.AuthToken=this.getHttpOptions();
+    const eventParams: RequestParams = new RequestParams();
+    eventParams.EndPoint = "event";
+    eventParams.requestType = 4;
+    eventParams.AuthToken = this.getHttpOptions();
 
-    for(let data of this.processEventData()){
+    for (let data of this.processEventData()) {
 
-      eventParams.body=data;
+      eventParams.body = data;
       this.dataService.httprequest(eventParams)
-        .subscribe(async (data: string) =>{
+        .subscribe(async (data: string) => {
           await console.log(data);
           await alert("Event/s created successfully");
+          await this.clearEventData();
+        }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er)
         });
     }
-
-    this.clearEventData();
-    this.addCard();
-
   }
 
   clearEventData(){
     this.events=[];
     this.eventData=[];
+    this.addCard();
   }
 
   printInputs(): void{

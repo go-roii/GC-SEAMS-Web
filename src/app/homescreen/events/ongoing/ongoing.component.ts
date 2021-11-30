@@ -13,6 +13,7 @@ import {DataService} from "../../../services/data.service";
 })
 export class OngoingComponent implements OnInit {
 
+  searchText: string='';
   ongoingEvents: EventsToAdd[]=[];
 
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;

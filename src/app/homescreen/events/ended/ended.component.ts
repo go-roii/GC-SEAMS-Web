@@ -14,6 +14,8 @@ import {RequestParams} from "../../../models/RequestParams";
 
 export class EndedComponent implements OnInit {
 
+  searchText: string='';
+
   endedEvents: EventsToAdd[]=[];
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
   @HostBinding('className') componentClass: string = this.isSidenavExpanded ? 'row g-3' : 'row g-4';

@@ -1,6 +1,6 @@
 <div class="input-group mt-0">
-  <input type="text" class="form-control" placeholder="Search ended events..." aria-label="Search speaker">
+  <input type="text" class="form-control" placeholder="Search past events..." [(ngModel)]="searchText" aria-label="Search speaker">
   <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
 </div>
 
-<events-event-card *ngFor="let event of endedEvents" [item]="event" class="ended col-xl-3 col-lg-4 col-md-6 col-sm-12"></events-event-card>
+<events-event-card *ngFor="let event of endedEvents | filter:searchText" [item]="event" class="ended col-xl-3 col-lg-4 col-md-6 col-sm-12"></events-event-card>

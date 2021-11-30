@@ -1,9 +1,9 @@
 <div class="input-group mt-0">
-  <input type="text" class="form-control" placeholder="Search ongoing events..." aria-label="Search speaker">
+  <input type="text" class="form-control" placeholder="Search ongoing events..." [(ngModel)]="searchText" aria-label="Search speaker">
   <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
 </div>
 
-<events-event-card *ngFor="let event of ongoingEvents" [item]="event" class="ongoing col-xl-3 col-lg-4 col-md-6 col-sm-12"></events-event-card>
+<events-event-card *ngFor="let event of ongoingEvents | filter:searchText" [item]="event" class="ongoing col-xl-3 col-lg-4 col-md-6 col-sm-12"></events-event-card>
 
 <div class="ongoing col-xl-3 col-lg-4 col-md-6 col-sm-12">
   <div class="card">
@@ -11,7 +11,7 @@
     <div class="card-body">
       <h6 class="card-title">Intro to Programming</h6>
       <p class="card-subtitle mb-2 text-muted">April 23, 2001</p>
-      <p class="card-text">Computer programming is the process of designing and writing computer programs. 
+      <p class="card-text">Computer programming is the process of designing and writing computer programs.
         As a skill set, it includes a wide variety of different tasks and techniques,
         but our tutorials are not intended to teach you everything.
         Instead, they are meant to provide basic, practical skills to help you understand and write computer code
