@@ -12,6 +12,7 @@ export class EventsEventCardComponent implements OnInit {
   @Input() item!: EventsToAdd;
   eventDate!: Date;
   eventEndDate!: Date;
+  eventUUID!: string;
 
   currentDate = new Date;
   eventDurationTime!: number;
@@ -24,6 +25,7 @@ export class EventsEventCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.eventUUID=this.item.event_uuid;
 
     const zonedEndDateTimeArr=this.item.event_end_date.split('[')
     const zonedEndDateTimeString=zonedEndDateTimeArr[0].toString();
@@ -38,7 +40,7 @@ export class EventsEventCardComponent implements OnInit {
     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
 
-    if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100) 
+    if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100)
       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
     else if(Math.trunc(this.eventCurrentTime * 100) <= 0)
       this.currentProgress = 0
@@ -54,9 +56,9 @@ export class EventsEventCardComponent implements OnInit {
     //     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
     //     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
 
-    //     if(Math.trunc(this.eventCurrentTime * 100) < 100) 
+    //     if(Math.trunc(this.eventCurrentTime * 100) < 100)
     //       this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
-    //     else 
+    //     else
     //       this.currentProgress = 100
 
     //     console.log(this.currentProgress)

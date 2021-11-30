@@ -11,6 +11,7 @@ import { PendingComponent } from './pending/pending.component';
 export class EventsComponent implements OnInit {
 
   currentTab: string = 'ongoing';
+  name:string='Mark Jason D. Margallo'
 
   constructor() { }
 
@@ -25,5 +26,4 @@ export class EventsComponent implements OnInit {
     else if(event instanceof EndedComponent)
       this.currentTab = 'ended';
   }
-
 }
