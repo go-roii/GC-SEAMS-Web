@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-event-details',
@@ -9,6 +10,22 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class EventDetailsComponent implements OnInit {
+
+  eventForm: FormGroup=new FormGroup({
+    eventName:new FormControl('',[Validators.required,]),
+    eventDetails:new FormControl('',Validators.required,),
+    eventDate:new FormControl('',[Validators.required,]),
+    eventStartTime:new FormControl('',[Validators.required,]),
+    eventEndTime:new FormControl('',[Validators.required,]),
+    eventSpeakers:new FormControl('',[Validators.required,]),
+    eventRegistrationForm:new FormControl('',[Validators.required])
+  });
+
+  speakerForm: FormGroup = new FormGroup({
+    speakerName:new FormControl('',[Validators.required,]),
+    speakerEmail:new FormControl('',[Validators.required,Validators.email]),
+    speakerDescription:new FormControl('',[Validators.required,]),
+  })
 
   constructor() { }
 

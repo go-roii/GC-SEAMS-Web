@@ -7,7 +7,7 @@ import { OngoingComponent } from './ongoing/ongoing.component';
 import { PendingComponent } from './pending/pending.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventDetailsComponent } from './event-details/event-details.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 
@@ -23,8 +23,9 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
   ],
   imports: [
     CommonModule,
-    EventsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    EventsRoutingModule,
     Ng2SearchPipeModule
   ]
 })
