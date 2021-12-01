@@ -27,6 +27,11 @@ const routes: Routes = [
     component: QRCodeComponent,
     canLoad: [AuthGuard]
   },
+  {
+    path: 'certificate',
+    loadChildren: () => import('./certificate/certificate.module').then(m => m.CertificateModule),
+    canLoad: [AuthGuard]
+  },
 ];
 
 @NgModule({
