@@ -11,6 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EventDetailsComponent implements OnInit {
 
+  minDate: string =  new Date().toISOString().split('T')[0];
+  qrCodeLink: string = '';
+  qrCodeID: string = '';
+
   eventForm: FormGroup=new FormGroup({
     eventName:new FormControl('',[Validators.required,]),
     eventDetails:new FormControl('',Validators.required,),
@@ -30,6 +34,10 @@ export class EventDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  generateQRCodeLink() {
+    this.qrCodeLink = location.origin + '/qr-code' + this.qrCodeID
   }
 
 }

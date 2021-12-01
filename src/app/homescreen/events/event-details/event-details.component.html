@@ -47,23 +47,25 @@
         <div class="row gx-3">
           <div class="col-md-4 mb-3">
             <label for="date" class="form-label">Date</label>
-            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate" required>
+            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate"
+              [min]="minDate"
+              required>
           </div>
           
           <div class="col-md-8">
-            <label for="time" class="form-label">Time</label>
+            <label for="from-time" class="form-label">Time</label>
 
             <div class="row gx-2">         
               <div class="col-sm-6 mb-3">
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text" id="basic-addon3">From</span>
+                  <label class="input-group-text" for="from-time" id="label-from-time">From</label>
                   <input id="from-time" class="form-control" type="time" formControlName="eventStartTime" required>
                 </div>
               </div>
 
               <div class="col-sm-6 mb-3">
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text" id="basic-addon3">To</span>
+                  <label class="input-group-text" for="to-time" id="label-to-time">To</label>
                   <input id="to-time" class="form-control" type="time" formControlName="eventEndTime" required>
                 </div>
               </div>
@@ -77,17 +79,13 @@
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">Invite Departments</label>
+          <label for="invite-departments" class="form-label">Invite Departments</label>
           <div class="input-group input-group-sm">
-            <input id="" class="form-control" type="text" readonly required>
+            <input id="invite-departments" class="form-control" type="text" readonly required>
             <button class="btn btn-primary" style="border-radius: 0 4px 4px 0;" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class="bi bi-plus"></i>
             </button>
             <ul class="dropdown-menu">
-              <!-- <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
-                <label>{{department.department_code}}</label>
-                <input class="form-check-input ms-4 me-1" type="checkbox" value="" aria-label="..." (change)="onNativeChange($event, department)">
-              </li> -->
               <label style="display: block; cursor: pointer;">
                 <li class="dropdown-item d-flex justify-content-between align-items-center">
                   BSCS
@@ -99,9 +97,9 @@
         </div>
 
         <div class="mb-3">
-          <label for="speakers" class="form-label">Invite Speakers</label>
+          <label for="invite-speakers" class="form-label">Invite Speakers</label>
           <div class="input-group input-group-sm">
-            <input id="speakers" class="form-control" type="text" formControlName="eventSpeakers" readonly required>
+            <input id="invite-speakers" class="form-control" type="text" formControlName="eventSpeakers" readonly required>
             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#speaker-modal" aria-expanded="false">
                   <i class="bi bi-person-plus-fill"></i>
             </button>
@@ -115,8 +113,25 @@
 
         <div>
           <label for="qr-code-link" class="form-label">QR Code Link</label>
-          <input id="qr-code-link" class="form-control form-control-sm" type="text" value="" readonly>
-        </div>
+          <div class="input-group input-group-sm">
+            <input id="qr-code-link" class="form-control form-control-sm" type="text" [value]="qrCodeLink" readonly>
+
+            <button class="btn btn-primary" type="button" (click)="generateQRCodeLink()">
+              Generate
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-end p-2">
+              <h6 class="dropdown-header text-center">Expiration</h6>
+              <div class="input-group input-group-sm">
+                <input id="qr-code-expiration" class="form-control form-control-sm" type="number" min="5" max="30" value="10">
+                <label class="input-group-text" for="qr-code-expiration" id="label-qr-code-expiration">min</label>
+              </div>
+            </div>
+          </div>
+        </div>  
       </form>
     </div>
 
@@ -157,9 +172,9 @@
   </div>
 </div>
 
-<!--MODAL-->
+<!--SPEAKER MODAL-->
 <div class="modal fade" id="speaker-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Add Speakers</h6>
@@ -241,3 +256,25 @@
     </div>
   </div>
 </div>
+
+<!--QR CODE MODAL-->
+<!-- <div class="modal fade" id="qr-code-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="staticBackdropLabel">Generate QR Code</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form autocomplete="off">
+          
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -14,38 +14,38 @@
 
   <form [formGroup]='eventForm' autocomplete="off">
     <div class="mb-3">
-      <label for="event-name" class="form-label">Event Name</label>
-      <input id="event-name" class="form-control form-control-sm" [(ngModel)]='event.eventName' type="text" formControlName="eventName" required>
+      <label [attr.for]="'event-name'+event.ID" class="form-label">Event Name</label>
+      <input [attr.id]="'event-name'+event.ID" class="form-control form-control-sm" [(ngModel)]='event.eventName' type="text" formControlName="eventName" required>
     </div>
 
     <div class="mb-3">
-      <label for="event-details" class="form-label">Event Details</label>
-      <textarea id="event-details" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
+      <label [attr.for]="'event-details'+event.ID" class="form-label">Event Details</label>
+      <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
     </div>
 
     <div class="row gx-3">
       <div class="col-md-4 mb-3">
-        <label for="date" class="form-label">Date</label>
-        <input id="date" class="form-control form-control-sm" type="date"
+        <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
+        <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date"
           [min]="minDate"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
 
       <div class="col-md-8">
-        <label for="time" class="form-label">Time</label>
+        <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
 
         <div class="row gx-2 ">
           <div class="col-sm-6 mb-3">
             <div class="input-group input-group-sm">
-              <span class="input-group-text" id="basic-addon3">From</span>
-              <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+              <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
+              <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
             </div>
           </div>
 
           <div class="col-sm-6 mb-3">
             <div class="input-group input-group-sm">
-              <span class="input-group-text" id="basic-addon3">To</span>
-              <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+              <label class="input-group-text" [attr.for]="'to-time'+event.ID" [attr.id]="'label-to-time'+event.ID">To</label>
+              <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
           </div>
         </div>
@@ -53,14 +53,14 @@
     </div>
 
     <div class="mb-3">
-      <label for="seminar-hours" class="form-label">Seminar Hours</label>
-      <input id="seminar-hours" class="form-control form-control-sm" type="number" required>
+      <label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
+      <input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number" required>
     </div>
 
     <div class="mb-3">
-      <label for="" class="form-label">Invite Departments</label>
+      <label [attr.for]="'invite-department'+event.ID" class="form-label">Invite Departments</label>
       <div class="input-group input-group-sm">
-        <input id="" class="form-control" type="text" [value]="chosenDepartmentsList" readonly required>
+        <input [attr.id]="'invite-department'+event.ID" class="form-control" type="text" [value]="chosenDepartmentsList" readonly required>
         <button class="btn btn-primary" type="button" style="border-radius: 0 4px 4px 0;" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
           <i class="bi bi-plus"></i>
         </button>
@@ -80,9 +80,9 @@
     </div>
 
     <div class="mb-3">
-      <label for="speakers" class="form-label">Invite Speakers</label>
+      <label [attr.for]="'invite-speakers'+event.ID" class="form-label">Invite Speakers</label>
       <div class="input-group input-group-sm">
-        <input id="speakers" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
+        <input [attr.id]="'invite-speakers'+event.ID" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
         <button class="btn btn-primary" type="button" data-bs-toggle="modal"[attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">
           <i class="bi bi-person-plus-fill"></i>
         </button>
@@ -90,15 +90,15 @@
     </div>
 
     <div>
-      <label for="registration-form" class="form-label">Registration Form</label>
-      <input id="registration-form" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventRegistrationForm' formControlName="eventRegistrationForm" required>
+      <label [attr.for]="'registration-form'+event.ID" class="form-label">Registration Form</label>
+      <input [attr.id]="'registration-form'+event.ID" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventRegistrationForm' formControlName="eventRegistrationForm" required>
     </div>
   </form>
 </div>
 
 <!--MODAL-->
 <div class="modal fade" [attr.id]="'speaker-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Add Speakers</h6>

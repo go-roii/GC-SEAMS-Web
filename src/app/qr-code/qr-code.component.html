@@ -9,8 +9,9 @@
     <p class="mb-4" style="font-size: 18px;">Please use the GC-SEAMS mobile app to scan this QR code for your attendace</p>
 
     <div id="qr-code-background">
-      <qr-code value={{myAngularxQrCode}} size="300" errorCorrectionLevel="H"></qr-code>
-<!--      <img id="qr-code-img" src="../../assets/qr_code.png" alt="QR Code for attendance" width=250 height=250>-->
+      <div style="background: white; border-radius: 6px; padding: 7px 7px 0;">
+        <qr-code value={{myAngularxQrCode}} size="300" errorCorrectionLevel="H"></qr-code>
+      </div>
       <h6 class="py-4" style="display: block; color: rgba(255, 255, 255, 0.87)">BSCS Programming</h6>
     </div>
   </div>
