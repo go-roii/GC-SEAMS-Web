@@ -23,7 +23,7 @@ import {SpeakersService} from "../../../services/speakers.service";
 
 export class EventCardComponent implements OnInit, OnDestroy{
 
-  @HostBinding('className') componentClass = '';
+  @HostBinding('className') componentClass = 'col-lg-6';
   minDate: string =  new Date().toISOString().split('T')[0]
 
   //emitters to be used on parent component(CreateEventComponent)
@@ -219,8 +219,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
   ngOnInit(): void {
-    this.componentClass = 'col-lg-6 col-md-12';
-
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
     this.addNewEvent();

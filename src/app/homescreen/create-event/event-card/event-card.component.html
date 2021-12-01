@@ -23,20 +23,31 @@
       <textarea id="event-details" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
     </div>
 
-    <div class="row">
-      <div class="col-md-4 col-sm-12 mb-3">
+    <div class="row gx-3">
+      <div class="col-md-4 mb-3">
         <label for="date" class="form-label">Date</label>
         <input id="date" class="form-control form-control-sm" type="date"
           [min]="minDate"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
-      <div class="col-md-8 col-sm-12 mb-3">
+
+      <div class="col-md-8">
         <label for="time" class="form-label">Time</label>
-        <div class="input-group input-group-sm">
-          <span class="input-group-text" id="basic-addon3">From</span>
-          <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
-          <span class="input-group-text" id="basic-addon3">To</span>
-          <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+
+        <div class="row gx-2">
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text" id="basic-addon3">From</span>
+              <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text" id="basic-addon3">To</span>
+              <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,11 +58,11 @@
     </div>
 
     <div class="mb-3">
-      <label for="" class="form-label">Invitation</label>
+      <label for="" class="form-label">Invite Departments</label>
       <div class="input-group input-group-sm">
         <input id="" class="form-control" type="text" [value]="chosenDepartmentsList" readonly required>
-        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-          Invite Department
+        <button class="btn btn-primary" type="button" style="border-radius: 0 4px 4px 0;" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+          <i class="bi bi-plus"></i>
         </button>
         <ul class="dropdown-menu">
           <!-- <li *ngFor="let department of departments" class="dropdown-item d-flex justify-content-between align-items-center">
@@ -69,10 +80,12 @@
     </div>
 
     <div class="mb-3">
-      <label for="speakers" class="form-label">Speakers</label>
+      <label for="speakers" class="form-label">Invite Speakers</label>
       <div class="input-group input-group-sm">
         <input id="speakers" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
-        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="modal"[attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">Add Speakers</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal"[attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">
+          <i class="bi bi-person-plus-fill"></i>
+        </button>
       </div>
     </div>
 
