@@ -34,16 +34,16 @@
       <div class="col-md-8">
         <label for="time" class="form-label">Time</label>
 
-        <div class="row gx-2">
-          <div class="col-sm-6">
-            <div class="input-group input-group-sm mb-3">
+        <div class="row gx-2 ">
+          <div class="col-sm-6 mb-3">
+            <div class="input-group input-group-sm">
               <span class="input-group-text" id="basic-addon3">From</span>
               <input id="from-time" class="form-control" type="time" [(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
             </div>
           </div>
 
-          <div class="col-sm-6">
-            <div class="input-group input-group-sm mb-3">
+          <div class="col-sm-6 mb-3">
+            <div class="input-group input-group-sm">
               <span class="input-group-text" id="basic-addon3">To</span>
               <input id="to-time" class="form-control" type="time" [(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
