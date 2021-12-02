@@ -23,7 +23,7 @@
       <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
     </div>
 
-    <div class="row gx-3">
+    <div class="row gx-4">
       <div class="col-md-4 mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
         <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date"
@@ -54,7 +54,9 @@
 
     <div class="mb-3">
       <label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
-      <input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number" required>
+      <input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number"
+        oninput="this.value = this.value >= 0 ? this.value : null"
+        required>
     </div>
 
     <div class="mb-3">

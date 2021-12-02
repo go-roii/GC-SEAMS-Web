@@ -53,6 +53,11 @@ h6 {
   font-size: 20px;
 }
 
+::selection {
+  color: white;
+  background: var(--primary-color);
+}
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {  
    opacity: 1;

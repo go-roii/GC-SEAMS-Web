@@ -25,7 +25,8 @@ export class OngoingComponent implements OnInit {
   ) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
-      this.isSidenavExpanded ? this.componentClass = 'row g-3' : this.componentClass = 'row g-4';
+      // this.isSidenavExpanded ? this.componentClass = 'row g-3' : this.componentClass = 'row g-4';
+      this.componentClass = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
     });
   }
 
