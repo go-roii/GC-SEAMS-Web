@@ -63,31 +63,31 @@ input[type=number]::-webkit-outer-spin-button {
    opacity: 1;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
-}
+// /* width */
+// ::-webkit-scrollbar {
+//   width: 14px;
+//   height: 14px;
+// }
 
-/* Track */
-::-webkit-scrollbar-track {
-  // background: #f1f1f1;
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   // background: #f1f1f1;
+// }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 9999px;
-  border: solid 3px transparent;
-  background-clip: content-box;
-}
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: #888;
+//   border-radius: 9999px;
+//   border: solid 3px transparent;
+//   background-clip: content-box;
+// }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color);
-  border: solid 3px transparent;
-  background-clip: content-box;
-}
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: var(--primary-color);
+//   border: solid 3px transparent;
+//   background-clip: content-box;
+// }
 
 i.bi {
   vertical-align: -.125em;
