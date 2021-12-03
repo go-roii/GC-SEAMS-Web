@@ -27,10 +27,10 @@
 
 <div class="cards-list-container row g-4">
 	<app-event-card
-	*ngFor="let event of events"
-	(eventData)="addEventData($event)"
-  (eventDataToDelete)="deleteCard($event)"
-  (eventDataToDelete)="deleteEvent($event)">
+    *ngFor="let event of events"
+    (eventData)="addEventData($event)"
+    (eventDataToDelete)="deleteCard($event)"
+    (eventDataToDelete)="deleteEvent($event)">
 	</app-event-card>
 	<div class="d-flex col-lg-6" (click)='addCard()'>
 		<div class="event-container new-event-container" style="position: relative;">

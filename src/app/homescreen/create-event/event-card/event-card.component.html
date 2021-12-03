@@ -1,4 +1,4 @@
-<div class="event-container">
+<div class="event-container overflow-hidden">
   <div class="card-text-header mb-4">
     <h5>Event {{event.ID}}</h5>
 
@@ -34,7 +34,7 @@
       <div class="col-md-8">
         <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
 
-        <div class="row gx-2 ">
+        <div class="row gx-2">
           <div class="col-sm-6 mb-3">
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
