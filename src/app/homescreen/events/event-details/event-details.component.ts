@@ -40,7 +40,6 @@ export class EventDetailsComponent implements OnInit {
   }
 
 	onNativeChange(e: any) {
-		console.log(e.target.checked)
 		this.enableEndQRCodeLink = e.target.checked
   }
 
