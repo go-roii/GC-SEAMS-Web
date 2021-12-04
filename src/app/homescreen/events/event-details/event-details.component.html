@@ -59,14 +59,20 @@
               <div class="col-sm-6 mb-3">
                 <div class="input-group input-group-sm">
                   <label class="input-group-text" for="from-time" id="label-from-time">From</label>
-                  <input id="from-time" class="form-control" type="time" formControlName="eventStartTime" required>
+                  <input id="from-time" class="form-control" type="time" formControlName="eventStartTime" min="08:00" max="20:00"
+									oninput='hour = parseInt(this.value.split(":")[0]);
+									this.value = hour >= 8 && hour <= 20 ? this.value : null'
+									required>
                 </div>
               </div>
 
               <div class="col-sm-6 mb-3">
                 <div class="input-group input-group-sm">
                   <label class="input-group-text" for="to-time" id="label-to-time">To</label>
-                  <input id="to-time" class="form-control" type="time" formControlName="eventEndTime" required>
+                  <input id="to-time" class="form-control" type="time" formControlName="eventEndTime" min="08:00" max="20:00"
+										oninput='hour = parseInt(this.value.split(":")[0]);
+										this.value = hour >= 8 && hour <= 20 ? this.value : null'
+										required>
                 </div>
               </div>
             </div>
