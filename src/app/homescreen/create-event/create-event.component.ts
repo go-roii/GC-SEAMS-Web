@@ -62,6 +62,7 @@ export class CreateEventComponent implements OnInit {
         event_description: event.eventDetails,
         event_start_date: event.eventDate + 'T' + event.eventStartTime + ':00',
         event_end_date: event.eventDate + 'T' + event.eventEndTime + ':00',
+        seminar_hours: event.eventSeminarHours,
         timezone_id: 'Asia/Manila',
         registration_link: event.eventRegistrationForm,
         departments: event.departments,

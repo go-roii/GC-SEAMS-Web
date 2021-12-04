@@ -6,7 +6,6 @@ import { interval, Subscription } from 'rxjs';
 import {DataService} from "./data.service";
 import {RequestParams} from "../models/RequestParams";
 import {HttpHeaders} from "@angular/common/http";
-import {Token} from "@angular/compiler";
 import {SpeakersService} from "./speakers.service";
 import {DepartmentService} from "./department.service";
 
@@ -25,7 +24,6 @@ export class UserService{
               private departmentService: DepartmentService
   ) {
   }
-
 
   private TimerIsStarted(){
     this.timerIsStarted=true;

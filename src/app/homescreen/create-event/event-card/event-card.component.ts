@@ -45,6 +45,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     eventDate:new FormControl('',[Validators.required,]),
     eventStartTime:new FormControl('',[Validators.required,]),
     eventEndTime:new FormControl('',[Validators.required,]),
+    eventSeminarHours:new FormControl(''),
     eventSpeakers:new FormControl('',[Validators.required,]),
     eventRegistrationForm:new FormControl('',[Validators.required])
   });
