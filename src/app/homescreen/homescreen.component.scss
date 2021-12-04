@@ -91,7 +91,6 @@ $sidenav-expanded-width: 248px;
 }
 
 .main-content {
-  // width: calc(100vw - $sidenav-width);
   background-color: white;
   color: black;
   padding: 0;
@@ -304,9 +303,10 @@ $sidenav-expanded-width: 248px;
   }
 
   .sidenav {
+		background-color: white;
     width: 100%;
     min-height: 64px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
     padding: auto 0 !important;
     transition: none;
     
