@@ -11,6 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EventDetailsComponent implements OnInit {
 
+	enableEndQRCodeLink: boolean = true;
+
   minDate: string =  new Date().toISOString().split('T')[0];
   beginQRCodeLink: string = '';
   endQRCodeLink: string = '';
@@ -35,6 +37,11 @@ export class EventDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+	onNativeChange(e: any) {
+		console.log(e.target.checked)
+		this.enableEndQRCodeLink = e.target.checked
   }
 
   generateBeginQRCodeLink() {
