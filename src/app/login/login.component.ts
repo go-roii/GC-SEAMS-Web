@@ -6,14 +6,9 @@ import { RequestParams } from '../models/RequestParams';
 import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
 import {UserProfile} from "../models/UserProfile";
-import {RefreshTokens} from "../models/RefreshTokens";
-import {AuthHeader} from "../models/AuthHeader";
-import {Departments} from "../models/Departments";
-import {Speaker} from "../models/Speaker";
-import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {DepartmentService} from "../services/department.service";
 import {SpeakersService} from "../services/speakers.service";
-import {throwError} from "rxjs";
+
 
 @Component({
   selector: 'app-login',

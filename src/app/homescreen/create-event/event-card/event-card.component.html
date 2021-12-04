@@ -55,7 +55,7 @@
     <div class="mb-3">
       <label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
       <input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number"
-        oninput="this.value = this.value >= 0 ? this.value : null"
+        oninput="this.value = this.value >= 0 ? this.value : null" formControlName="eventSeminarHours" [(ngModel)]='event.eventSeminarHours'
         required>
     </div>
 
