@@ -27,7 +27,6 @@
       <div class="col-md-4 mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
         <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date"
-          
 					oninput='console.log(this.value)'
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
