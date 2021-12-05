@@ -39,6 +39,33 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+	typingTimer: any;
+
+	restrictEventDate(e: any) {
+		clearTimeout(this.typingTimer);
+
+		let currentDate = new Date().toISOString().split('T')[0]
+		
+		if(e.target.value) {
+			this.typingTimer = setTimeout(() => {
+				e.target.value = e.target.value < currentDate ? null : e.target.value
+			}, 1000);
+		}
+	}
+
+	restrictEventTime(e: any) {
+		clearTimeout(this.typingTimer);
+
+		let hour = parseInt(e.target.value.split(":")[0]);
+
+		// school hours 8am - 8pm ?
+		if(e.target.value) {
+			this.typingTimer = setTimeout(() => {
+				e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
+			}, 1000);
+		}
+	}
+
 	onNativeChange(e: any) {
 		this.enableEndQRCodeLink = e.target.checked
   }

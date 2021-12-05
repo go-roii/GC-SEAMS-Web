@@ -53,8 +53,8 @@
         <div class="row gx-4">
           <div class="col-md-4 mb-3">
             <label for="date" class="form-label">Date</label>
-            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate"
-              [min]="minDate"
+            <input id="date" class="form-control form-control-sm" type="date" formControlName="eventDate" [min]="minDate"
+							(keyup)="restrictEventDate($event)"
               required>
           </div>
           
@@ -66,8 +66,7 @@
                 <div class="input-group input-group-sm">
                   <label class="input-group-text" for="from-time" id="label-from-time">From</label>
                   <input id="from-time" class="form-control" type="time" formControlName="eventStartTime" min="08:00" max="20:00"
-									oninput='hour = parseInt(this.value.split(":")[0]);
-									this.value = hour >= 8 && hour <= 20 ? this.value : null'
+									(keyup)="restrictEventTime($event)"
 									required>
                 </div>
               </div>
@@ -76,8 +75,7 @@
                 <div class="input-group input-group-sm">
                   <label class="input-group-text" for="to-time" id="label-to-time">To</label>
                   <input id="to-time" class="form-control" type="time" formControlName="eventEndTime" min="08:00" max="20:00"
-										oninput='hour = parseInt(this.value.split(":")[0]);
-										this.value = hour >= 8 && hour <= 20 ? this.value : null'
+										(keyup)="restrictEventTime($event)"
 										required>
                 </div>
               </div>

@@ -29,10 +29,11 @@
     <div class="row gx-4">
       <div class="col-md-4 mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
-        <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date"
-					oninput='console.log(this.value)'
+        <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date" [attr.min]="minDate"
+					(keyup)="restrictEventDate($event)"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
+
 
       <div class="col-md-8">
         <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
@@ -42,8 +43,7 @@
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
-								oninput='hour = parseInt(this.value.split(":")[0]);
-								this.value = hour >= 8 && hour <= 20 ? this.value : null'
+								(keyup)="restrictEventTime($event)"
 								[(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
             </div>
           </div>
@@ -52,8 +52,7 @@
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'to-time'+event.ID" [attr.id]="'label-to-time'+event.ID">To</label>
               <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" type="time" min="08:00" max="20:00"
-								oninput='hour = parseInt(this.value.split(":")[0]);
-								this.value = hour >= 8 && hour <= 20 ? this.value : null'
+								(keyup)="restrictEventTime($event)"
 								[(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
           </div>
