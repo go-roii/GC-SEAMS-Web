@@ -24,7 +24,9 @@ import {SpeakersService} from "../../../services/speakers.service";
 export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = 'col-lg-6';
-  minDate: string =  new Date().toISOString().split('T')[0]
+  minDate: string =  new Date().toISOString().split('T')[0];
+	startTime: Date = new Date();
+	endTime: Date = new Date;
 
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
@@ -78,6 +80,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
 				e.target.value = e.target.value < currentDate ? null : e.target.value
 			}, 1000);
 		}
+
+		console.log(this.event.eventDate)
+		console.log('formatted date ' + this.event.eventDate.toISOString().split('T')[0])
 	}
 
 	restrictEventTime(e: any) {
@@ -91,6 +96,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
 				e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
 			}, 1000);
 		}
+		
+		this.startTime = new Date(this.event.eventDate + 'T' + this.event.eventStartTime + ':00');
+		this.endTime = new Date(this.event.eventDate + 'T' + this.event.eventEndTime + ':00');
 	}
 
   addSpeaker(value: Speaker){

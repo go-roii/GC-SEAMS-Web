@@ -3,7 +3,7 @@
     <h5>Event {{event.ID}}</h5>
 
     <div class="card-header-buttons">
-			<button type="button" class="btn btn-sm">
+			<button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
         <i class="far fa-image"></i>
       </button>
       <button type="button" class="btn btn-sm">
@@ -30,7 +30,7 @@
       <div class="col-md-4 mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
         <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date" [attr.min]="minDate"
-					(keyup)="restrictEventDate($event)"
+					(change)="restrictEventDate($event)"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
 
@@ -43,7 +43,7 @@
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
-								(keyup)="restrictEventTime($event)"
+								(change)="restrictEventTime($event)"
 								[(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
             </div>
           </div>
@@ -52,7 +52,7 @@
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'to-time'+event.ID" [attr.id]="'label-to-time'+event.ID">To</label>
               <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" type="time" min="08:00" max="20:00"
-								(keyup)="restrictEventTime($event)"
+								(change)="restrictEventTime($event)"
 								[(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
             </div>
           </div>
@@ -93,7 +93,7 @@
       <label [attr.for]="'invite-speakers'+event.ID" class="form-label">Invite Speakers</label>
       <div class="input-group input-group-sm">
         <input [attr.id]="'invite-speakers'+event.ID" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
-        <button class="btn btn-primary" type="button" data-bs-toggle="modal"[attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal" [attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">
           <i class="bi bi-person-plus-fill"></i>
         </button>
       </div>
@@ -106,7 +106,45 @@
   </form>
 </div>
 
-<!--MODAL-->
+<!-- preview event modal  -->
+<div class="modal fade" [attr.id]="'preview-event-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="staticBackdropLabel">Event Preview</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<div class="card">
+
+					<div class="change-poster">
+						<div class="btn-change-poster text-center unselectable">
+							Change event poster
+						</div>
+						<img class="event-poster" src="../../../../assets/earth cake 2.png">
+					</div>
+			
+					<div class="card-body">
+						<h6 class="card-title">{{event.eventName}}</h6>
+						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
+						<p class="card-text">{{event.eventDetails}}</p>
+						<p class="event-time">
+							{{startTime | date:'h:mm a'}} - {{endTime | date:'h:mm a'}} &nbsp;●&nbsp; {{event.eventSeminarHours}} hr</p>
+					</div>
+					<div class="progress event-progress-bar">
+						<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+				</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- speaker modal -->
 <div class="modal fade" [attr.id]="'speaker-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
