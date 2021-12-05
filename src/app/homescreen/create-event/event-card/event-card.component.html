@@ -9,7 +9,7 @@
       <button type="button" class="btn btn-sm">
         <i class="far fa-clone"></i>
       </button>
-      <button type="button" class="btn btn-sm" (click)='deleteEvent()'>
+      <button type="button" class="btn btn-sm" [disabled]="event.ID == 1" (click)='deleteEvent()'>
         <i class="bi bi-trash"></i>
       </button>
     </div>
