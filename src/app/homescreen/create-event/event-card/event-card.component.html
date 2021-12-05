@@ -60,11 +60,21 @@
       </div>
     </div>
 
-    <div class="mb-3">
-      <label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
-      <input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number"
-        oninput="this.value = this.value >= 0 ? this.value : null" formControlName="eventSeminarHours" [(ngModel)]='event.eventSeminarHours'
-        required>
+    <div class="row gx-4">
+			<div class="col-md-4 mb-3">
+				<label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
+				<input [attr.id]="'seminar-hours'+event.ID" class="form-control form-control-sm" type="number"
+					oninput="this.value = this.value >= 0 ? this.value : null" formControlName="eventSeminarHours"
+					[(ngModel)]='event.eventSeminarHours' required>
+			</div>
+			<div class="col-md-8 mb-3">
+				<label [attr.for]="'qr-code'+event.ID" class="form-label">QR Code Extent</label>
+				<select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm">
+					<option value="" selected disabled hidden>Select QR Code Extent</option>
+					<option>Beginning only</option>
+					<option>Beginning and End</option>
+				</select>
+			</div>
     </div>
 
     <div class="mb-3">

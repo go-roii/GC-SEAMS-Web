@@ -127,9 +127,6 @@
           <label for="qr-code-link" class="form-label">QR Code Link</label>
 
 					<div class="input-group input-group-sm dropup mb-2">
-						<div class="input-group-text">
-							<input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" disabled checked>
-						</div>
 						<label class="input-group-text" for="begin-qr-code-link" id="label-begin-qr-code-link">Beginning</label>
 						<input id="begin-qr-code-link" class="form-control form-control-sm" type="text" [value]="beginQRCodeLink" readonly>
 
@@ -154,10 +151,6 @@
 
 					<div>
 						<div class="input-group input-group-sm dropup">
-							<div class="input-group-text">
-								<input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for end QR code"
-									(change)="onNativeChange($event)" checked>
-							</div>
 							<label class="input-group-text" for="end-qr-code-link" id="label-begin-qr-code-link">End</label>
 							<input id="end-qr-code-link" class="form-control form-control-sm" type="text" [value]="endQRCodeLink"
 								[disabled]="!enableEndQRCodeLink" readonly>

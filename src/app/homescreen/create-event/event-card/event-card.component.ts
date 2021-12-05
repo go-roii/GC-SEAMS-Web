@@ -261,12 +261,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log("speakers: "+this.speakers);
     this.event.departments=this.chosenDepartments;
     this.event.eventSpeakers=this.chosenSpeaker;
-
-		// this.eventForm.patchValue({
-		// 	eventDate: '2021-12-15'
-		// })
   }
 
+	// initialize date and time
 	ngAfterViewInit() {
 		let currentDate = new Date();
 		let startTime = '';
@@ -287,6 +284,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
 				eventDate: currentDate.toISOString().split('T')[0],
 				eventStartTime: startTime,
 				eventEndTime: endTime,
+				// eventSeminarHours: 1
 			})
 		});
 
