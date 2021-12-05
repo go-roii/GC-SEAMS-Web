@@ -269,12 +269,24 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
 	ngAfterViewInit() {
 		let currentDate = new Date();
+		let startTime = '';
+		let endTime = '';
+
+		if(currentDate.getHours() >= 20) {
+			currentDate = new Date(currentDate.getTime() + 86400000);
+			startTime = '16:00';
+			endTime = '17:00';
+		}
+		else {
+			startTime = currentDate.getHours() + ":00";
+			endTime = currentDate.getHours() + 1 + ":00";
+		}
 
 		Promise.resolve().then(() => {
 			this.eventForm.patchValue({
 				eventDate: currentDate.toISOString().split('T')[0],
-				eventStartTime: currentDate.getHours() + ":" + '00',
-				eventEndTime: currentDate.getHours() + ":" + '30'
+				eventStartTime: startTime,
+				eventEndTime: endTime,
 			})
 		});
 
