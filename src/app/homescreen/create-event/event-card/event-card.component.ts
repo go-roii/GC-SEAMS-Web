@@ -80,9 +80,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
 				e.target.value = e.target.value < currentDate ? null : e.target.value
 			}, 1000);
 		}
-
-		console.log(this.event.eventDate)
-		console.log('formatted date ' + this.event.eventDate.toISOString().split('T')[0])
 	}
 
 	restrictEventTime(e: any) {
@@ -264,7 +261,26 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log("speakers: "+this.speakers);
     this.event.departments=this.chosenDepartments;
     this.event.eventSpeakers=this.chosenSpeaker;
+
+		// this.eventForm.patchValue({
+		// 	eventDate: '2021-12-15'
+		// })
   }
+
+	ngAfterViewInit() {
+		let currentDate = new Date();
+
+		Promise.resolve().then(() => {
+			this.eventForm.patchValue({
+				eventDate: currentDate.toISOString().split('T')[0],
+				eventStartTime: currentDate.getHours() + ":" + '00',
+				eventEndTime: currentDate.getHours() + ":" + '30'
+			})
+		});
+
+		console.log(this.eventForm.get('eventDate')?.value)
+		console.log(this.eventDate)
+	}
 
   public updateSpeakers(){
     const speakerParams= new RequestParams();
