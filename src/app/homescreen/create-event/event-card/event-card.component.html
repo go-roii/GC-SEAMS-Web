@@ -1,4 +1,4 @@
-<div class="event-container overflow-hidden">
+<div class="event-container">
   <div class="card-text-header mb-4">
     <h5>Event {{event.ID}}</h5>
 
@@ -35,11 +35,11 @@
       </div>
 
 
-      <div class="col-md-8">
+      <div class="col-md-8 mb-3">
         <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
 
-        <div class="row gx-2">
-          <div class="col-sm-6 mb-3">
+        <div class="row g-2">
+          <div class="col-sm-6">
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <div class="col-sm-6 mb-3">
+          <div class="col-sm-6">
             <div class="input-group input-group-sm">
               <label class="input-group-text" [attr.for]="'to-time'+event.ID" [attr.id]="'label-to-time'+event.ID">To</label>
               <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" type="time" min="08:00" max="20:00"
