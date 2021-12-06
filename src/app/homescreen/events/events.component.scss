@@ -10,6 +10,14 @@
 }
 
 .tabs {
+	overflow: auto;
+	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
 	& .nav {
 		display: flex;
 		gap: 24px;
@@ -40,4 +48,10 @@
   .active + .active-tab-indicator {
     display: block;
   }
+}
+
+@media (max-width: 575.98px) { 
+	.tabs .nav {
+		width: max-content;
+	}
 }
