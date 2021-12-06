@@ -134,12 +134,17 @@
 						<p class="upload-event-poster-text text-center">Change event poster</p>
 						<input id="upload-event-poster" class="btn-change-poster" type="file">
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">
+						<!-- <div class="event-poster"></div> -->
 					</div>
 			
 					<div class="card-body">
-						<h6 class="card-title">{{event.eventName}}</h6>
+						<h6 class="card-title">{{event.eventName.length == 0 ? 'Lorem Ipsum' : event.eventName}}</h6>
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
-						<p class="card-text">{{event.eventDetails}}</p>
+						<p class="card-text">
+							{{event.eventDetails.length == 0
+								? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+								: event.eventDetails}}</p>
 						<p class="event-time">
 							{{startTime | date:'h:mm a'}} - {{endTime | date:'h:mm a'}} &nbsp;●&nbsp; {{event.eventSeminarHours}} hr</p>
 					</div>
@@ -147,10 +152,6 @@
 						<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 				</div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

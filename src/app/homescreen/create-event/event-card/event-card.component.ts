@@ -261,8 +261,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log("speakers: "+this.speakers);
     this.event.departments=this.chosenDepartments;
     this.event.eventSpeakers=this.chosenSpeaker;
-
-		console.log(false || false)
   }
 
 	// initialize date and time
