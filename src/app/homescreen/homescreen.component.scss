@@ -77,7 +77,7 @@ $sidenav-expanded-width: 248px;
 	}
 
 	&:hover:not(.active) {
-		background-color: rgba(0, 0, 0, 0.08);
+		background-color: rgb(var(--primary-color-rgb), 0.08);
 	}
 }
 
@@ -188,7 +188,7 @@ $sidenav-expanded-width: 248px;
 
   &:focus-within {
     border-color: var(--primary-color);
-    box-shadow: 0 0 6px 0 rgba(110, 60, 188, 0.36);
+    box-shadow: 0 0 6px 0 rgba(var(--primary-color-rgb), 0.36);
   }
 }
 

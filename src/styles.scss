@@ -10,7 +10,7 @@
   --yellow-orange: #FFC107;
   --yellow-orange-darker: #FFA000;
 
-  // --primary-color-rgb: rgb(103, 58, 183);
+  --primary-color-rgb: 110, 60, 188;
 }
 
 $navbar-height: 64px;
@@ -117,7 +117,7 @@ i.bi {
 // BUTTONS
 
 .btn-check:focus+.btn, .btn:focus {
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 50%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
 }
 
 .btn-primary {
@@ -143,13 +143,13 @@ i.bi {
 .btn-primary.active:focus,
 .btn-primary:active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 50%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
 }
 
 .btn-check:focus+.btn-primary, .btn-primary:focus {
   background-color: var(--primary-color-darker);
   border-color: var(--primary-color-darker);
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 50%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -158,7 +158,7 @@ i.bi {
 }
 
 .btn-close:focus {
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 50%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
 }
 
 // MENU ITEM
@@ -176,14 +176,14 @@ i.bi {
 
 .form-check-input:focus {
   border-color: #B39DDB;
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 25%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
 // TEXTBOX/TEXTFIELD
 
 .form-control:focus {
   border-color: #B39DDB;
-  box-shadow: 0 0 0 0.25rem rgb(110 60 188 / 25%);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
 
