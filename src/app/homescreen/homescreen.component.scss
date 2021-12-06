@@ -149,7 +149,7 @@ $sidenav-expanded-width: 248px;
 
 
 .text-header {
-  // height: 62px;
+  height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -193,15 +193,24 @@ $sidenav-expanded-width: 248px;
 }
 
 .card-text-header {
+	flex-wrap: wrap;
   position: sticky;
   left: 0;
-  height: 35px;
+  // height: 35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.card-text {
+	display: flex;
+}
+
 .card-header-buttons {
+	// display: flex;
+	// flex-grow: 1;
+	// justify-content: flex-end;
+
   & i.far {
     margin: 4px 0 5px;
   }
@@ -278,7 +287,7 @@ $sidenav-expanded-width: 248px;
   }
 }
 
-// phone
+// phone(landscape)
 @media (max-width: 767.98px) { 
   .homescreen-container {
     flex-direction: column-reverse;
@@ -330,7 +339,7 @@ $sidenav-expanded-width: 248px;
   }
 
   .text-header {
-    // height: unset;
+    height: unset;
     padding: 4px 10px 20px !important;
   }
 

@@ -1,6 +1,8 @@
 <div class="event-container">
   <div class="card-text-header mb-4">
-    <h5>Event {{event.ID}}</h5>
+		<div class="card-text">
+			<h5>Event {{event.ID}}</h5>
+		</div>
 
     <div class="card-header-buttons">
 			<button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">

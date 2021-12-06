@@ -1,31 +1,12 @@
 .event-container { 
   & .list-group-flush {
-    margin-right: -36px;
+    margin: 0 -36px -36px 0;
   }
 }
 
-.status-pill {
-  // display: inline-block;
-  float: right;
-  font-size: 12px;
-  border-radius: 100px;
-  padding: 3px 10px;
-
-  &.sp-present {
-    background-color: var(--green);
-    color: white;
-  }
-
-  &.sp-absent {
-    background-color: var(--red);
-    color: white;
-  }
-
-  &.sp-not-registered {
-    background-color: var(--yellow-orange);
-    color: black;
-  }
-}
+// #status-filter-tab {
+// 	flex-grow: 1;
+// }
 
 .status-filter {
   display: inline-block;
@@ -52,6 +33,29 @@
   &.sf-not-registered {
     border-color: var(--yellow-orange);
     color: var(--yellow-orange-darker);
+  }
+}
+
+.status-pill {
+  // display: inline-block;
+  float: right;
+  font-size: 12px;
+  border-radius: 100px;
+  padding: 3px 10px;
+
+  &.sp-present {
+    background-color: var(--green);
+    color: white;
+  }
+
+  &.sp-absent {
+    background-color: var(--red);
+    color: white;
+  }
+
+  &.sp-not-registered {
+    background-color: var(--yellow-orange);
+    color: black;
   }
 }
 
@@ -164,3 +168,28 @@
 .progress-bar {
 	background-color: var(--primary-color);
 }
+
+
+
+
+
+// phone(landscape)
+@media (max-width: 767.98px) { 
+	.event-container { 
+		& .list-group-flush {
+			height: unset !important;
+			margin: 0 -18px -20px 0;
+		}
+	}
+
+	#attendance-column {
+		height: unset !important;
+	}
+}
+
+// // phone
+// @media (max-width: 575.98px) {
+// 	#status-filter-tab {
+// 			// flex-wrap: wrap;
+// 	}
+// }
