@@ -45,6 +45,9 @@
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
 								(change)="restrictEventTime($event)"
 								[(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+								<!-- <div *ngIf="eventStartTime?.errors?.['required']">
+									Name is required.
+								</div> -->
             </div>
           </div>
 
@@ -127,10 +130,9 @@
       <div class="modal-body">
 				<div class="card">
 
-					<div class="change-poster">
-						<div class="btn-change-poster text-center unselectable">
-							Change event poster
-						</div>
+					<div class="change-poster" onclick="document.getElementById('upload-event-poster').click();">
+						<p class="upload-event-poster-text">Change event poster</p>
+						<input id="upload-event-poster" class="btn-change-poster unselectable" type="file">
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">
 					</div>
 			

@@ -1,3 +1,60 @@
+.event-container { 
+  & .list-group-flush {
+    margin-right: -36px;
+  }
+}
+
+.status-pill {
+  // display: inline-block;
+  float: right;
+  font-size: 12px;
+  border-radius: 100px;
+  padding: 3px 10px;
+
+  &.sp-present {
+    background-color: var(--green);
+    color: white;
+  }
+
+  &.sp-absent {
+    background-color: var(--red);
+    color: white;
+  }
+
+  &.sp-not-registered {
+    background-color: var(--yellow-orange);
+    color: black;
+  }
+}
+
+.status-filter {
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid;
+  border-radius: 100px;
+  padding: 2px 10px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+		margin-right: 6px;
+	}
+
+  &.sf-present {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  &.sf-absent {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  &.sf-not-registered {
+    border-color: var(--yellow-orange);
+    color: var(--yellow-orange-darker);
+  }
+}
+
 .card {
 	position: relative;
 	height: 400px;
@@ -72,20 +129,26 @@
 		background-color: rgba(0, 0, 0, 0.5);
 	}
 
-	&:hover .btn-change-poster {
+	&:hover .upload-event-poster-text {
 		opacity: 1;
 	}
 }
 
-.btn-change-poster {
+.upload-event-poster-text {
 	color: white;
-	z-index: 101;
+	// z-index: 101;
 	opacity: 0;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	transition: opacity 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+}
+
+
+
+.btn-change-poster {
+	display: none;
 }
 
 .event-poster {
