@@ -9,7 +9,10 @@ import {DataService} from "../../../services/data.service";
 @Component({
   selector: 'app-ongoing',
   templateUrl: './ongoing.component.html',
-  styleUrls: ['./ongoing.component.scss']
+  styleUrls: [
+		'../events.component.scss',
+		'./ongoing.component.scss'
+	]
 })
 export class OngoingComponent implements OnInit {
 
@@ -17,7 +20,6 @@ export class OngoingComponent implements OnInit {
   ongoingEvents: EventsToAdd[]=[];
 
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
-  @HostBinding('className') componentClass: string = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
 
   constructor(private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
@@ -25,8 +27,6 @@ export class OngoingComponent implements OnInit {
   ) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
-      // this.isSidenavExpanded ? this.componentClass = 'row g-3' : this.componentClass = 'row g-4';
-      this.componentClass = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
     });
   }
 

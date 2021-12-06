@@ -1,7 +1,7 @@
 :host {
 	&.ongoing .card {
 		background-color: var(--background);
-		border: 1px solid rgba(0, 0, 0, .08);
+		border: 1px solid rgba(0, 0, 0, .12);
 	}
 
 	&.pending .card {
@@ -14,7 +14,7 @@
 
 	&.ended .card {
 		background-color: var(--background);
-		border: 1px solid rgba(0, 0, 0, .08);
+		border: 1px solid rgba(0, 0, 0, .12);
 
 		& .event-time {
 			color: var(--primary-color);

@@ -9,7 +9,10 @@ import {RequestParams} from "../../../models/RequestParams";
 @Component({
   selector: 'app-pending',
   templateUrl: './pending.component.html',
-  styleUrls: ['./pending.component.scss']
+  styleUrls: [
+		'../events.component.scss',
+		'./pending.component.scss'
+	]
 })
 
 export class PendingComponent implements OnInit {
@@ -18,7 +21,6 @@ export class PendingComponent implements OnInit {
 
   pendingEvents: EventsToAdd[]=[];
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
-  @HostBinding('className') componentClass: string = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
 
   constructor(private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
@@ -26,7 +28,6 @@ export class PendingComponent implements OnInit {
 
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
-      this.componentClass = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
     });
   }
 

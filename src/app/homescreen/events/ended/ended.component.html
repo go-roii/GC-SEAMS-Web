@@ -1,6 +1,9 @@
-<div class="input-group mt-0">
+<div class="input-group event-search-bar" [ngClass]="isSidenavExpanded ? 'mb-3' : 'mb-4'">
   <input type="text" class="form-control" placeholder="Search past events..." [(ngModel)]="searchText" aria-label="Search speaker">
   <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
 </div>
 
-<events-event-card *ngFor="let event of endedEvents | filter:searchText" [item]="event" class="ended col-xl-3 col-lg-4 col-md-6 col-sm-12"></events-event-card>
+<div [ngClass]="isSidenavExpanded ? 'row g-3' : 'row g-4'">
+	<events-event-card  class="ended col-xl-3 col-lg-4 col-md-6 col-sm-12"
+		*ngFor="let event of endedEvents | filter:searchText" [item]="event"></events-event-card>
+</div>

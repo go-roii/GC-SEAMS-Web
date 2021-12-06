@@ -9,7 +9,10 @@ import {RequestParams} from "../../../models/RequestParams";
 @Component({
   selector: 'app-ended',
   templateUrl: './ended.component.html',
-  styleUrls: ['./ended.component.scss']
+  styleUrls: [
+		'../events.component.scss',
+		'./ended.component.scss'
+	]
 })
 
 export class EndedComponent implements OnInit {
@@ -18,14 +21,12 @@ export class EndedComponent implements OnInit {
 
   endedEvents: EventsToAdd[]=[];
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
-  @HostBinding('className') componentClass: string = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
 
   constructor(private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
               private dataService: DataService) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
-      this.componentClass = this.isSidenavExpanded ? 'row g-3' : 'row g-4';
     });
   }
 
