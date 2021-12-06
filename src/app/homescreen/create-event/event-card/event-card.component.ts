@@ -261,6 +261,8 @@ export class EventCardComponent implements OnInit, OnDestroy{
     console.log("speakers: "+this.speakers);
     this.event.departments=this.chosenDepartments;
     this.event.eventSpeakers=this.chosenSpeaker;
+
+		console.log(false || false)
   }
 
 	// initialize date and time
@@ -269,8 +271,9 @@ export class EventCardComponent implements OnInit, OnDestroy{
 		let startTime = '';
 		let endTime = '';
 
+		currentDate = new Date(currentDate.getTime() + 86400000);
+
 		if(currentDate.getHours() >= 20) {
-			currentDate = new Date(currentDate.getTime() + 86400000);
 			startTime = '16:00';
 			endTime = '17:00';
 		}

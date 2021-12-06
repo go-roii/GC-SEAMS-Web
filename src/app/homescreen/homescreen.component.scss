@@ -291,7 +291,7 @@ $sidenav-expanded-width: 248px;
 
   .navbar {
     min-height: 56px;
-    padding: 0 12px;
+    padding: 0 12px !important;
   }
 
   #user-info {
@@ -329,12 +329,12 @@ $sidenav-expanded-width: 248px;
   }
 
   .content {
-    padding: 24px 30px !important;
+    padding: 24px 12px !important;
   }
 
   .text-header {
-    height: 42px;
-    padding-bottom: 0 !important;
+    height: unset;
+    padding: 0 0 16px 10px !important;
   }
 
   .text-header h4 {
@@ -343,13 +343,13 @@ $sidenav-expanded-width: 248px;
   }
 
   .event-container {
-    border: none;
-    border-radius: 0;
-    padding: 24px 8px;
-    margin: 0 -8px;
+    // border: none;
+    // border-radius: 0;
+    padding: 20px 18px;
+    // margin: 0 -8px;
 
-    &:focus-within {
-      box-shadow: unset;
-    }
+    // &:focus-within {
+    //   box-shadow: unset;
+    // }
   }
 }
