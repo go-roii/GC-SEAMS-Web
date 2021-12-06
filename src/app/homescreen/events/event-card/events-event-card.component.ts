@@ -14,6 +14,7 @@ export class EventsEventCardComponent implements OnInit {
   eventEndDate!: Date;
   eventUUID!: string;
 
+	eventPosterColor!: string;
   currentDate = new Date;
   eventDurationTime!: number;
   eventCurrentTime!: number;
@@ -35,15 +36,25 @@ export class EventsEventCardComponent implements OnInit {
 
     this.eventEndDate=new Date(zonedEndDateTimeString);
 
-    this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000
-    this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime
+		//event poster
+		if(this.item.seminar_hours <= 10)
+			this.eventPosterColor = '#28A745';
+		else if(this.item.seminar_hours <= 50)
+			this.eventPosterColor = '#FFC107';
+		else
+			this.eventPosterColor = '#6E3CBC';
+
+
+		// progress bar
+    this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000;
+    this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime;
 
     if(Math.trunc(this.eventCurrentTime * 100) > 0 && Math.trunc(this.eventCurrentTime * 100) < 100)
-      this.currentProgress = Math.trunc(this.eventCurrentTime * 100)
+      this.currentProgress = Math.trunc(this.eventCurrentTime * 100);
     else if(Math.trunc(this.eventCurrentTime * 100) <= 0)
-      this.currentProgress = 0
+      this.currentProgress = 0;
     else
-      this.currentProgress = 100
+      this.currentProgress = 100;
 
     // if(this.currentProgress > 0 && this.currentProgress != 100)
     //   setInterval(() => {
@@ -60,7 +71,7 @@ export class EventsEventCardComponent implements OnInit {
     //     console.log(this.currentProgress)
     //   }, 60000);
 
-    console.log('event duration: ' + this.eventDurationTime + 'min')
-    console.log('event progress: ' + this.currentProgress + '%')
+    console.log('event duration: ' + this.eventDurationTime + 'min');
+    console.log('event progress: ' + this.currentProgress + '%');
   }
 }

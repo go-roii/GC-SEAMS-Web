@@ -1,4 +1,12 @@
 <div class="card">
+
+	<div class="change-poster unselectable" onclick="document.getElementById('upload-event-poster').click();">
+		<p class="upload-event-poster-text text-center">Change event poster</p>
+		<input id="upload-event-poster" class="btn-change-poster" type="file">
+		<!-- <img class="event-poster" src="../../../../assets/earth cake 2.png"> -->
+		<div class="event-poster" [style.background]="eventPosterColor"></div>
+	</div>
+
 	<div class="card-body">
 		<h6 class="card-title">{{item.event_title}}</h6>
 		<p class="card-subtitle mb-2 text-muted">{{eventDate|date}}</p>
