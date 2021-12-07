@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   ]
 })
 export class EventDetailsComponent implements OnInit {
+
+	@ViewChild("eventDetailsColumn") eventDetailsColumn?: ElementRef;
+	attendanceColumnHeight!: number;
 
 	enableEndQRCodeLink: boolean = true;
 
@@ -38,6 +41,10 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+	ngAfterViewInit() {
+		this.attendanceColumnHeight = this.eventDetailsColumn?.nativeElement.clientHeight - 137;
+}
 
 	typingTimer: any;
 
