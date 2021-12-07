@@ -208,7 +208,9 @@ $sidenav-expanded-width: 248px;
 }
 
 .card-text {
+	height: 33px;
 	display: flex;
+	align-items: center;
 }
 
 .card-header-buttons {
