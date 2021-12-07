@@ -344,7 +344,7 @@ $sidenav-expanded-width: 248px;
   }
 
   .text-header h4 {
-    font-size: 24px;
+    font-size: 24px !important;
     font-weight: 500;
   }
 
@@ -367,5 +367,9 @@ $sidenav-expanded-width: 248px;
 
 	.new-event-container {
 		padding: 22px 18px !important;
+	}
+
+	.card-text h5 {
+		font-size: 20px;
 	}
 }

@@ -43,7 +43,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
 	ngAfterViewInit() {
-		this.attendanceColumnHeight = this.eventDetailsColumn?.nativeElement.clientHeight - 137;
+		this.attendanceColumnHeight = this.eventDetailsColumn?.nativeElement.clientHeight;
 }
 
 	typingTimer: any;

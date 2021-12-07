@@ -26,11 +26,13 @@
   </div> 
 </div>
 
-<div id="event-details-column" class="event-container overflow-hidden">
+<div class="event-container overflow-hidden">
   <div class="row g-5">
-    <div class="col-lg-6" #eventDetailsColumn>
+    <div id="event-details-column" class="col-lg-6" #eventDetailsColumn>
       <div class="card-text-header mb-4">
-        <h5>Event Name</h5>
+				<div class="card-text">
+					<h5>Event Name</h5>
+				</div>
 
 				<div class="card-header-buttons">
 					<button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#ed-preview-event-modal" aria-expanded="false">
@@ -181,7 +183,7 @@
       </form>
     </div>
 
-    <div id="attendance-column" class="col-lg-6">
+    <div id="attendance-column" class="col-lg-6" [style.height]="attendanceColumnHeight+'px'">
       <div class="card-text-header">
 				<div class="card-text mb-1">
 					<h5>Attendees - 10</h5>
@@ -194,29 +196,28 @@
 				</div>
       </div>
 
-				<ul class="list-group list-group-flush mt-3" style="overflow-y: auto;">
-					<!-- [style.height]="attendanceColumnHeight+'px'" -->
-					<li class="list-group-item">An item <span class="status-pill sp-present">Present</span></li>
-					<li class="list-group-item">A second item <span class="status-pill sp-absent">Absent</span></li>
-					<li class="list-group-item">A third item <span class="status-pill sp-not-registered">Not Registered</span></li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-					<li class="list-group-item">An item</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-					<li class="list-group-item">An item</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-					<li class="list-group-item">An item</li>
-					<li class="list-group-item">A second item</li>
-					<li class="list-group-item">A third item</li>
-					<li class="list-group-item">A fourth item</li>
-					<li class="list-group-item">And a fifth one</li>
-				</ul>
+			<ul class="list-group list-group-flush mt-3">
+				<li class="list-group-item">An item <span class="status-pill sp-present">Present</span></li>
+				<li class="list-group-item">A second item <span class="status-pill sp-absent">Absent</span></li>
+				<li class="list-group-item">A third item <span class="status-pill sp-not-registered">Not Registered</span></li>
+				<li class="list-group-item">A fourth item</li>
+				<li class="list-group-item">And a fifth one</li>
+				<li class="list-group-item">An item</li>
+				<li class="list-group-item">A second item</li>
+				<li class="list-group-item">A third item</li>
+				<li class="list-group-item">A fourth item</li>
+				<li class="list-group-item">And a fifth one</li>
+				<li class="list-group-item">An item</li>
+				<li class="list-group-item">A second item</li>
+				<li class="list-group-item">A third item</li>
+				<li class="list-group-item">A fourth item</li>
+				<li class="list-group-item">And a fifth one</li>
+				<li class="list-group-item">An item</li>
+				<li class="list-group-item">A second item</li>
+				<li class="list-group-item">A third item</li>
+				<li class="list-group-item">A fourth item</li>
+				<li class="list-group-item">And a fifth one</li>
+			</ul>
     </div>
   </div>
 </div>
