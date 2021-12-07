@@ -10,6 +10,7 @@
 }
 
 .tabs {
+	background-color: white;
 	overflow: auto;
 	-ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;
@@ -56,7 +57,15 @@
 }
 
 @media (max-width: 575.98px) { 
-	.tabs .nav {
-		margin: 0 auto;
+	.tabs {
+		// position: sticky;
+		// top: 0;
+		// z-index: 1000;
+		// margin: 0 -12px 0;
+		// padding: 0 12px;
+	
+		& .nav {
+			margin: 0 auto;
+		}
 	}
 }

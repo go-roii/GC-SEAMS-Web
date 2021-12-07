@@ -1,4 +1,4 @@
-<div class="text-header d-flex">
+<div class="text-header">
   <h4>Create Event</h4>
 
 	<div class="header-buttons">
@@ -20,7 +20,9 @@
         </ng-container>
       </select> -->
 
-      <button id="create-button" class="btn btn-primary" (click)='saveEvents()'>Create</button>
+      <button id="create-button" class="btn btn-primary" (click)='saveEvents()'>
+				<i class="bi bi-plus"></i> Create
+			</button>
     </form>
 	</div>
 </div>
@@ -34,7 +36,9 @@
 	</app-event-card>
 	<div class="d-flex col-lg-6" (click)='addCard()'>
 		<div class="event-container new-event-container" style="position: relative;">
-			<h5>Event {{count+1}}</h5>
+			<div class="card-text">
+				<h5>Event {{count+1}}</h5>
+			</div>
 			<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 64px;">
 				<i class="bi bi-plus-square-fill"></i>
 			</div>
