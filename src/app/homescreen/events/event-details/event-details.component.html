@@ -270,7 +270,7 @@
       <div class="modal-body">
 
         <!--form group for add speaker functionality-->
-        <form autocomplete="off">
+        <form [formGroup]='speakerForm' autocomplete="off">
           <div class="mb-2">
             <input type="text" class="form-control form-control-sm"  formControlName="speakerName"  placeholder="Full name" aria-label="full name" required>
           </div>
