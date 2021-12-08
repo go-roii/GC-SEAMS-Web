@@ -1,10 +1,10 @@
-<div class="event-container">
-  <div class="card-text-header mb-4">
-		<div class="card-text">
+<div class="gs-card">
+  <div class="gs-card-header mb-4">
+		<div class="gs-card-text">
 			<h5>Event {{event.ID}}</h5>
 		</div>
 
-    <div class="card-header-buttons">
+    <div class="gs-card-buttons">
 			<button type="button" class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
         <i class="far fa-image"></i>
       </button>
@@ -20,12 +20,14 @@
   <form [formGroup]='eventForm' autocomplete="off">
     <div class="mb-3">
       <label [attr.for]="'event-name'+event.ID" class="form-label">Event Name</label>
-      <input [attr.id]="'event-name'+event.ID" class="form-control form-control-sm" [(ngModel)]='event.eventName' type="text" formControlName="eventName" required>
+      <input [attr.id]="'event-name'+event.ID" class="form-control form-control-sm" type="text"
+        [(ngModel)]='event.eventName'  formControlName="eventName" required>
     </div>
 
     <div class="mb-3">
       <label [attr.for]="'event-details'+event.ID" class="form-label">Event Details</label>
-      <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" [(ngModel)]='event.eventDetails' formControlName="eventDetails" rows="3" required></textarea>
+      <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" rows="3"
+        [(ngModel)]='event.eventDetails' formControlName="eventDetails" required></textarea>
     </div>
 
     <div class="row gx-4">

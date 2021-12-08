@@ -32,6 +32,8 @@ export class EventDetailsComponent implements OnInit {
 	enableEndQRCodeLink: boolean = true;
 
   minDate: string =  new Date().toISOString().split('T')[0];
+  startTime: Date = new Date();
+	endTime: Date = new Date;
   beginQRCodeLink: string = '';
   endQRCodeLink: string = '';
   qrCodeID: string = '';
@@ -286,6 +288,9 @@ export class EventDetailsComponent implements OnInit {
 				e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
 			}, 1000);
 		}
+
+    this.startTime = new Date(this.event.eventDate + 'T' + this.event.eventStartTime + ':00');
+		this.endTime = new Date(this.event.eventDate + 'T' + this.event.eventEndTime + ':00');
 	}
 
 	// onNativeChange(e: any) {

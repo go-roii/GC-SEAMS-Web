@@ -1,4 +1,4 @@
-.event-container { 
+.gs-card { 
   & .list-group-flush {
 		// height: 745px;
 		// height: 100%;
@@ -185,7 +185,7 @@
 
 // phone(landscape)
 @media (max-width: 767.98px) { 
-	.event-container { 
+	.gs-card { 
 		& .list-group-flush {
 			height: unset !important;
 			margin: 0 -18px -20px 0;
