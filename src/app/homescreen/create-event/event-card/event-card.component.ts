@@ -23,7 +23,7 @@ import {SpeakersService} from "../../../services/speakers.service";
 
 export class EventCardComponent implements OnInit, OnDestroy{
 
-  @HostBinding('className') componentClass = 'col-lg-6';
+  @HostBinding('className') componentClass = 'col-xl-6';
   minDate: string =  new Date().toISOString().split('T')[0];
 	startTime: Date = new Date();
 	endTime: Date = new Date;

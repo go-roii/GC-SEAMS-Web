@@ -154,12 +154,12 @@ $sidenav-expanded-width: 248px;
 
 
 .text-header {
-  height: 62px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0 32px;
-  transition: padding 235ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
+  margin-bottom: 32px;
+  transition: margin 235ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
 .text-header h4 {
@@ -261,7 +261,7 @@ $sidenav-expanded-width: 248px;
 
 :host-context(.main-content-compact) {
   .text-header {
-    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
 
   .text-header h4 {
@@ -274,39 +274,37 @@ $sidenav-expanded-width: 248px;
 
 
 // tablet
-// @media (max-width: 991.98px) {  
-// 	.navbar {
-//     padding-left: 36px;
-//     padding-right: calc(36px + 12px); 
-//   }
+@media (max-width: 1199.98px) {  
+	.navbar {
+    padding-left: 36px;
+    padding-right: calc(36px + 12px); 
+  }
 	
-//   .content {
-//     padding: 36px !important;
-//   }
+  .content {
+    padding: 36px;
+  }
 
-// 	:host-context(.main-content-compact) {
-// 		.text-header {
-// 			padding-bottom: 20px !important;
-// 		}
-// 	}
+  .text-header {
+    margin-bottom: 24px;
+  }
 
-//   .main-content-compact {
-// 		& .navbar {
-// 			padding-left: 24px;
-// 			padding-right: calc(24px + 12px)
-// 		}
+  .main-content-compact {
+		& .navbar {
+			padding-left: 24px;
+			padding-right: calc(24px + 12px)
+		}
 
-//     & .content {
-//     	padding: 24px !important;
-//     }
+    & .content {
+    	padding: 24px;
+    }
+  }
 
-// 		:host-context(.main-content-compact) {
-// 			.text-header {
-// 				padding-bottom: 16px !important;
-// 			}
-// 		}
-//   }
-// }
+  :host-context(.main-content-compact) {
+		.text-header {
+			margin-bottom: 20px;
+		}
+	}
+}
 
 // phone(landscape)
 @media (max-width: 767.98px) { 
@@ -362,7 +360,7 @@ $sidenav-expanded-width: 248px;
   .text-header {
     height: 31px;
     padding: 0 10px !important;
-		margin: 8px 0 20px;
+		margin: 8px 0 20px !important;
   }
 
   .text-header h4 {
@@ -387,14 +385,7 @@ $sidenav-expanded-width: 248px;
 	}
 
   .gs-card {
-    // border: none;
-    // border-radius: 0;
     padding: 20px 18px;
-    // margin: 0 -8px;
-
-    // &:focus-within {
-    //   box-shadow: unset;
-    // }
   }
 
 	.new-event-container {
