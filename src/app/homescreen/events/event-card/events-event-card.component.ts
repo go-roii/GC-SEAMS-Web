@@ -22,7 +22,6 @@ export class EventsEventCardComponent implements OnInit {
 
   constructor() {}
 
-
   ngOnInit(): void {
     this.eventUUID=this.item.event_uuid;
 
