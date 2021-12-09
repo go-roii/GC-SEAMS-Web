@@ -258,6 +258,12 @@ input[type=number]::-webkit-outer-spin-button {
 	border-color: var(--primary-color);
 }
 
+.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+  background-color: #5c636a;
+  border-color: #565e64;
+  box-shadow: 0 0 0 0.25rem rgb(130 138 145 / 50%);
+}
+
 // MENU ITEM
 
 .dropdown-item.active, .dropdown-item:active {
