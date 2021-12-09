@@ -23,7 +23,7 @@ import {EventsToAdd} from "../../../models/EventsToAdd";
 })
 export class EventDetailsComponent implements OnInit {
 
-	@ViewChild("eventDetailsColumn") eventDetailsColumn?: ElementRef;
+	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;
 	attendanceColumnHeight!: number;
 
   private activeEventUUID!: Subscription;
@@ -301,9 +301,15 @@ export class EventDetailsComponent implements OnInit {
     console.log(this.chosenDepartments)
   }
 
+  ngDoCheck() {
+    setTimeout(() => {
+      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
+    }, 0);
+  }
+
 	ngAfterViewInit() {
-		setTimeout(() => {
-			this.attendanceColumnHeight = this.eventDetailsColumn?.nativeElement.clientHeight;
+    setTimeout(() => {
+      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
     }, 0);
 	}
 
