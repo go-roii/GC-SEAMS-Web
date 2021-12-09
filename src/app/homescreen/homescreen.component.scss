@@ -313,6 +313,7 @@ $sidenav-expanded-width: 248px;
   }
 
   .main-content {
+    height: calc(100% - 64px);
     width: 100vw !important;
     transition: none;
   }
@@ -329,9 +330,9 @@ $sidenav-expanded-width: 248px;
   .sidenav {
 		background-color: white;
     width: 100%;
-    min-height: 64px;
+    height: 64px;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
-    padding: auto 0 !important;
+    // padding: auto 0 !important;
     transition: none;
     
     & .nav {
@@ -353,7 +354,8 @@ $sidenav-expanded-width: 248px;
   }
 
   .content {
-		height: calc(100vh - 120px);
+		// height: calc(100vh - 120px);
+    height: calc(100% - 56px);
     padding: 12px !important;
   }
 
