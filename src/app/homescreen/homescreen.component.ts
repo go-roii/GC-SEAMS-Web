@@ -14,6 +14,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
+import { BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-homescreen',
@@ -34,6 +35,7 @@ export class HomescreenComponent implements OnInit {
 	constructor(private router : Router,
               private userService: UserService,
               private sidedenavExpandService: SidenavExpandService,
+              public breakpointObserver: BreakpointObserver,
               private departmentService: DepartmentService,
               private speakersService: SpeakersService,
               private dataService: DataService
@@ -48,6 +50,14 @@ export class HomescreenComponent implements OnInit {
   }
 
 	ngOnInit(): void {
+    this.breakpointObserver
+    .observe(['(max-width: 1199.98px)'])
+    .subscribe((state: BreakpointState) => {
+      if (state.matches) 
+        this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = false);
+      else 
+        this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = true);
+    });
 
     //department service will be loaded if not yet
     if(!this.departmentService.isLoaded){

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomescreenRoutingModule } from './homescreen-routing.module';
 import { HomescreenComponent } from './homescreen.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomescreenRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    LayoutModule
   ],
 })
 export class HomescreenModule { }

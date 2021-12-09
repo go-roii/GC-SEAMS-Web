@@ -8,11 +8,12 @@ $sidenav-expanded-width: 248px;
 }
 
 .sidenav {
-	width: $sidenav-width;
+	// width: $sidenav-width;
   min-width: $sidenav-width;
+  max-width: $sidenav-width;
 	background-color: var(--background);
-	padding: 4px 12px 12px;
-	transition: width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
+	padding: 4px 12px;
+	transition: // width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
               min-width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
 							padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 	z-index: 0;
@@ -55,8 +56,9 @@ $sidenav-expanded-width: 248px;
 }
   
 .sidenav-expanded {
-	width: $sidenav-expanded-width;
+	// width: $sidenav-expanded-width;
   min-width: $sidenav-expanded-width;
+  max-width: $sidenav-expanded-width;
 	padding: 4px 16px 8px;
 
 	& .nav-item p {
@@ -330,6 +332,7 @@ $sidenav-expanded-width: 248px;
   .sidenav {
 		background-color: white;
     width: 100%;
+    max-width: unset;
     height: 64px;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     // padding: auto 0 !important;

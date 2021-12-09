@@ -14,15 +14,16 @@ export class SidenavExpandService {
   constructor() {
     this.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
+      this.sidenavWidthChange.next(this.sidenavWidth = this.isSidenavExpanded ? 248 : 72);
     });
 
-    this.sidenavWidthChange.subscribe((value) => {
-      this.sidenavWidth = value;
-    });
+    // this.sidenavWidthChange.subscribe((value) => {
+    //   this.sidenavWidth = value;
+    // });
   }
 
   toggleSidebarExpand() {
     this.sidenavExpandChange.next(!this.isSidenavExpanded);
-    this.sidenavWidthChange.next(this.isSidenavExpanded ? this.sidenavWidth = 248 : this.sidenavWidth = 72);
+    // this.sidenavWidthChange.next(this.sidenavWidth = this.isSidenavExpanded ? 248 : 72);
   }
 }
