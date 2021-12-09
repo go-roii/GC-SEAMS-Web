@@ -62,6 +62,11 @@ export class DataService {
       case 5:
         result = this.http.get(this.baseURL+requestParams.EndPoint, requestParams.AuthToken)
         break
+
+      //put data with authentication header
+      case 6:
+        result = this.http.put(this.baseURL+requestParams.EndPoint, requestParams.Body, requestParams.AuthToken)
+        break;
       default:
       break;
     }

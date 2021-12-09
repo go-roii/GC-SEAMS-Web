@@ -5,7 +5,7 @@ import {Departments} from "../../../models/Departments";
 import {Speaker} from "../../../models/Speaker";
 import {DepartmentService} from "../../../services/department.service";
 import {RequestParams} from "../../../models/RequestParams";
-import {HttpHeaders} from "@angular/common/http";
+import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 import {DataService} from "../../../services/data.service";
 import {SpeakersService} from "../../../services/speakers.service";
@@ -80,12 +80,56 @@ export class EventDetailsComponent implements OnInit {
   set eventSeminarHours(value: number){this.eventForm.controls['eventSeminarHours'].setValue(value)}
   set eventRegistrationForm(value: string){this.eventForm.controls['eventRegistrationForm'].setValue(value)}
 
+  get eventName(){ return this.eventForm.controls['eventName'].value}
+  get eventDetails(){return this.eventForm.controls['eventDetails'].value}
+  get eventDate(){return this.eventForm.controls['eventDate'].value}
+  get eventStartTime(){return this.eventForm.controls['eventStartTime'].value}
+  get eventEndTime(){return this.eventForm.controls['eventEndTime'].value}
+  get eventSpeakers(){return this.eventForm.controls['eventName'].value}
+  get eventSeminarHours(){return this.eventForm.controls['eventSeminarHours'].value}
+  get eventRegistrationForm(){return this.eventForm.controls['eventRegistrationForm'].value}
+
+
 
   speakerForm: FormGroup = new FormGroup({
     speakerName:new FormControl('',[Validators.required,]),
     speakerEmail:new FormControl('',[Validators.required,Validators.email]),
     speakerDescription:new FormControl('',[Validators.required,]),
   })
+
+  editActiveEvent(uuid: string){
+
+    const data: EventsToAdd = {
+      event_id: 0,
+      event_uuid: '',
+      event_title: this.eventName,
+      event_description: this.eventDetails,
+      event_start_date: this.eventDate + 'T' + this.eventStartTime,
+      event_end_date: this.eventDate + 'T' + this.eventEndTime,
+      seminar_hours: this.eventSeminarHours,
+      timezone_id: 'Asia/Manila',
+      registration_link: this.eventRegistrationForm,
+      departments: this.chosenDepartments,
+      speakers: this.chosenSpeaker
+    }
+
+    console.log(data)
+
+    const eventParams: RequestParams = new RequestParams();
+    eventParams.EndPoint = "event/"+uuid;
+    eventParams.requestType = 6;
+    eventParams.body=data;
+    eventParams.AuthToken = this.getHttpOptions();
+
+    this.dataService.httprequest(eventParams)
+      .subscribe(async (data: string) => {
+        await console.log(data);
+        await this.getEventDetails(this.uuid);
+        await alert("Event/s updated successfully");
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er)
+      });
+  }
 
   get speakerName() { return this.speakerForm.get('speakerName'); }
   get speakerEmail() { return this.speakerForm.get('speakerEmail'); }

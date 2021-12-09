@@ -22,7 +22,7 @@
   </form> -->
 
     <button id="save-button" class="btn btn-danger">Delete</button> <!-- add dialog for delete reconfirmation -->
-    <button id="save-button" class="btn btn-primary">Save</button>
+    <button id="save-button" class="btn btn-primary" (click)="editActiveEvent(uuid)">Save</button>
   </div>
 </div>
 
@@ -242,7 +242,7 @@
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">
 						<!-- <div class="event-poster"></div> -->
 					</div>
-			
+
 					<div class="card-body">
 						<h6 class="card-title">{{event.eventName.length == 0 ? 'Lorem Ipsum' : event.eventName}}</h6>
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
