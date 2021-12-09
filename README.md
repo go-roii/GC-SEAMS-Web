@@ -1,3 +1,3 @@
 # GC-SEAMS Web
  
-GC-SEAMS Web Application UI using Angular and Bootstrap
+GC-SEAMS Web Application using Angular and Bootstrap
