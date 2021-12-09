@@ -15,7 +15,7 @@
   <table class="table table-hover table-click dashboard-table">
     <thead>
         <tr>
-          <th scope="col">ID</th>
+          <th scope="col">#</th>
           <th scope="col">Event Name</th>
           <th scope="col">Date</th>
           <th scope="col">Time</th>
@@ -26,25 +26,15 @@
         </tr>
     </thead>
     <tbody>
-      <tr (click)="open_analytics_page()">
-        <th scope="row">1</th>
-        <td>BSCS Programming</td>
-        <td>October 1, 2021</td>
-        <td>3:00 PM - 6:00 PM</td>
+      <tr *ngFor="let event of eventsSummary"  (click)="open_analytics_page()">
+        <th scope="row">{{event.event_id}}</th>
+        <td>{{event.event_title}}</td>
+        <td>{{getEventDate(event) | date}}</td>
+        <td>{{getEventStartTime(event) | date:'h:mm a'}} - {{getEventEndTime(event) | date:'h:mm a'}}</td>
         <td>8</td>
         <td>1</td>
-        <td>12</td>
-        <td>9</td>
-      </tr>
-      <tr (click)="open_analytics_page()">
-        <th scope="row">2</th>
-        <td>Nævis we love you</td>
-        <td>October 5, 2021</td>
-        <td>6:00 PM - 12:00 AM</td>
-        <td>3</td>
-        <td>7</td>
-        <td>8</td>
-        <td>10</td>
+        <td>{{event.event_analytics?.views? event.event_analytics.views : 0}}</td>
+        <td>{{event.event_analytics?.registrations? event.event_analytics.registrations : 0}}</td>
       </tr>
     </tbody>
   </table>
