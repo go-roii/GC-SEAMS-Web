@@ -14,5 +14,5 @@ export interface EventSummary{
   registration_link: string;
   departments: Departments[];
   speakers: Speaker[];
-  event_analytics: Analytics;
+  event_analytics: Analytics[];
 }

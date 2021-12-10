@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+
   getHttpOptions(){
     const trimmedHeader=this.userService.getAuthHeader().split(':');
     const httpOptions = {
@@ -56,12 +57,10 @@ export class DashboardComponent implements OnInit {
 
     this.dataService.httprequest(endedEventsParams)
       .subscribe(async (data: EventSummary[]) =>{
-        await this.setEndedEvents(data)
-        await this.linkAnalyticsData();
-        await console.log(this.eventsSummary);
+        await this.setEventSummary(data)
+        //await console.log(this.eventsSummary);
       });
   }
-
 
   //link analytics data to event summary
   linkAnalyticsData(){
@@ -73,21 +72,38 @@ export class DashboardComponent implements OnInit {
       analyticsParams.authToken=this.getHttpOptions();
 
       this.dataService.httprequest(analyticsParams)
-        .subscribe(async (data: Analytics) =>{
-          await this.addAnalytics(event,data);
+        .subscribe(async (data: Analytics[]) =>{
+          //await this.addAnalytics(event,data);
           event.event_analytics=data;
-          await console.log(event);
+          //console.log(data)
         });
     }
   }
 
-  //push analytics data to event analytics property
-  addAnalytics(event: EventSummary, analytics: Analytics){
-    event.event_analytics=analytics;
+  //add all the views in the analytics
+  sumViewAnalytics(data :Analytics[]){
+    let sum:number = 0;
+    for(let view of data){
+      sum += view.views;
+    }
+    return sum;
   }
 
-  setEndedEvents(data: EventSummary[]){
+  //add all the views in the analytics
+  sumRegistrantsAnalytics(data :Analytics[]){
+    let sum:number = 0;
+    for(let registrants of data){
+      sum += registrants.registrations;
+    }
+    return sum;
+  }
+
+  setEventSummary(data: EventSummary[]){
     this.eventsSummary=data;
+    this.linkAnalyticsData();
+    console.log('events summary:---------------------------------------------------------');
+    console.log(this.eventsSummary)
+    console.log('events summary:---------------------------------------------------------');
   }
 
   getEventDate(data: EventsToAdd){

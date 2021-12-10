@@ -31,10 +31,10 @@
         <td>{{event.event_title}}</td>
         <td>{{getEventDate(event) | date}}</td>
         <td>{{getEventStartTime(event) | date:'h:mm a'}} - {{getEventEndTime(event) | date:'h:mm a'}}</td>
-        <td>8</td>
-        <td>1</td>
-        <td>{{event.event_analytics?.views? event.event_analytics.views : 0}}</td>
-        <td>{{event.event_analytics?.registrations? event.event_analytics.registrations : 0}}</td>
+        <td>0</td>
+        <td>0</td>
+        <td>{{event.event_analytics? sumViewAnalytics(event.event_analytics) : 0}}</td>
+        <td>{{event.event_analytics? sumRegistrantsAnalytics(event.event_analytics) : 0}}</td>
       </tr>
     </tbody>
   </table>
