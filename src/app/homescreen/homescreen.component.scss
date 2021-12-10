@@ -190,12 +190,12 @@ $sidenav-expanded-width: 248px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 12px;
   padding: 36px;
-  transition: box-shadow ease-out 100ms, box-shadow ease-out 100ms;
+  transition: box-shadow ease-out 100ms;
   overflow: auto hidden;
 
   &:focus-within {
     border-color: var(--primary-color);
-    box-shadow: 0 0 6px 0 rgba(var(--primary-color-rgb), 0.36);
+    box-shadow: 0 0 3px 3px rgba(var(--primary-color-rgb), 0.24);
   }
 }
 
@@ -207,18 +207,19 @@ $sidenav-expanded-width: 248px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px 36px;
 }
 
 .gs-card-text {
-	height: 33px;
+	min-height: 33px;
 	display: flex;
 	align-items: center;
 }
 
 .gs-card-buttons {
-	// display: flex;
-	// flex-grow: 1;
-	// justify-content: flex-end;
+	display: flex;
+  gap: 6px;
+	// margin-left: auto;
 
   & i.far {
     margin: 4px 0 5px;
@@ -233,9 +234,9 @@ $sidenav-expanded-width: 248px;
     font-size: .875rem;
   }
 
-  & > *:not(:last-child) {
-    margin-right: 6px;
-  }
+  // & > *:not(:last-child) {
+  //   margin-right: 6px;
+  // }
 }
 
 .profile-pic {
@@ -257,7 +258,7 @@ $sidenav-expanded-width: 248px;
   }
   
   & .content {
-    padding: 24px 32px;
+    padding: 32px;
   }
 }
 
@@ -275,7 +276,7 @@ $sidenav-expanded-width: 248px;
 
 
 
-// tablet
+// desktop
 @media (max-width: 1199.98px) {  
 	.navbar {
     padding-left: 36px;
@@ -390,7 +391,7 @@ $sidenav-expanded-width: 248px;
 	}
 
   .gs-card {
-    padding: 20px 18px;
+    padding: 20px;
   }
 
 	.new-event-container {

@@ -104,8 +104,8 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 10; /* number of lines to show */
-		line-clamp: 10;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
 		-webkit-box-orient: vertical;
 	}
 
@@ -131,4 +131,11 @@
 
 .progress-bar {
   background-color: var(--primary-color);
+}
+
+@media (max-width: 767.98px) {
+  .card .card-text {
+		-webkit-line-clamp: 3; /* number of lines to show */
+		line-clamp: 3;
+	}
 }

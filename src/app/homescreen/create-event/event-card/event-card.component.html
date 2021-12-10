@@ -74,6 +74,7 @@
 					oninput="this.value = this.value >= 0 ? this.value : null" formControlName="eventSeminarHours"
 					[(ngModel)]='event.eventSeminarHours' required>
 			</div>
+
 			<div class="col-md-8 mb-3">
 				<label [attr.for]="'qr-code'+event.ID" class="form-label">QR Code Extent</label>
 				<select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm">
@@ -84,8 +85,10 @@
 			</div>
     </div>
 
+    <hr>
+
     <div class="mb-3">
-      <label [attr.for]="'invite-department'+event.ID" class="form-label">Invite Departments</label>
+      <label [attr.for]="'invite-department'+event.ID" class="form-label mt-3">Invite Departments</label>
       <div class="input-group input-group-sm">
         <input [attr.id]="'invite-department'+event.ID" class="form-control" type="text" [value]="chosenDepartmentsList" readonly required>
         <button class="btn btn-primary" type="button" style="border-radius: 0 0.375rem 0.375rem 0;" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -162,7 +165,8 @@
 </div>
 
 <!-- speaker modal -->
-<div class="modal fade" [attr.id]="'speaker-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'speaker-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -171,48 +175,16 @@
       </div>
 
       <div class="modal-body">
-        <!--form group for add speaker functionality-->
-        <form [formGroup]='speakerForm' autocomplete="off">
-          <div class="mb-2">
-            <input type="text" class="form-control form-control-sm"  formControlName="speakerName"  placeholder="Full name" aria-label="full name" required>
-            <div *ngIf="speakerName?.errors?.required && speakerName?.touched" class="text-danger text-helper mt-1">
-              Full name is required
-            </div>
-          </div>
-
-          <div class="mb-2">
-            <input type="email" class="form-control form-control-sm"  formControlName="speakerEmail" placeholder="Email address" aria-label="email address" required>
-            <span *ngIf="speakerEmail?.invalid && (speakerEmail?.dirty || speakerEmail?.touched)" class="validation-error">
-              <div *ngIf="speakerEmail?.errors?.required" class="text-danger text-helper mt-1">
-                Email is required
-              </div>
-              <div *ngIf="speakerEmail?.errors?.email" class="text-danger text-helper mt-1">
-                Invalid Email
-              </div>
-            </span>
-          </div>
-
-          <div class="mb-2">
-            <input type="text" class="form-control form-control-sm" formControlName="speakerDescription"  placeholder="Description" aria-label="description" required>
-            <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
-              Description is required
-            </div>
-          </div>
-
-          <div class="d-grid mb-2">
-            <button class="btn btn-sm btn-primary" type="button" [disabled]="speakerForm.invalid" (click)="addNewSpeaker()">Save Speaker</button>
-          </div>
-        </form>
-
-        <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" placeholder="Search speaker..." [(ngModel)]="searchText" aria-label="Search speaker">
+        <div class="input-group input-group-sm mb-4">
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
+          <input type="text" class="form-control" placeholder="Search speaker..."
+            [(ngModel)]="searchText" aria-label="Search speaker">
         </div>
 
-        <div class="mb-3">
+        <div class="mb-2" [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
           <p class="mb-2">Chosen Speakers: {{this.chosenSpeaker.length}}</p>
 
-          <ul class="list-group" [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
+          <ul class="list-group">
             <ng-container *ngFor="let speaker of chosenSpeaker">
               <li class="list-group-item">
                 <div class="d-flex align-items-center">
@@ -230,10 +202,10 @@
           </ul>
         </div>
 
-        <div>
+        <div [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
           <p class="mb-2">Available Speakers: {{speakers.length - chosenSpeaker.length}}</p>
 
-          <ul class="list-group" [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
+          <ul class="list-group">
             <ng-container *ngFor="let speaker of speakers | filter:searchText">
               <li class="list-group-item" *ngIf="!speaker.speaker_chosen">
                 <div  class="d-flex align-items-center">
@@ -250,11 +222,64 @@
             </ng-container>
           </ul>
         </div>
+
+        <div class="collapse mt-3" [attr.id]="'add-speaker-collapse'+event.ID">
+          <div class="card card-body" style="height: unset; border-radius: 0.25rem;">
+            <!--form group for add speaker functionality-->
+            <form [formGroup]='speakerForm' autocomplete="off">
+              <div class="mb-2">
+                <input type="text" class="form-control form-control-sm" placeholder="Full name" aria-label="full name"
+                formControlName="speakerName" required>
+                <div *ngIf="speakerName?.errors?.required && speakerName?.touched" class="text-danger text-helper mt-1">
+                  Full name is required
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <input type="email" class="form-control form-control-sm" placeholder="Email address"
+                  aria-label="email address"
+                  formControlName="speakerEmail" required>
+                <span *ngIf="speakerEmail?.invalid && (speakerEmail?.dirty || speakerEmail?.touched)" class="validation-error">
+                  <div *ngIf="speakerEmail?.errors?.required" class="text-danger text-helper mt-1">
+                    Email is required
+                  </div>
+                  <div *ngIf="speakerEmail?.errors?.email" class="text-danger text-helper mt-1">
+                    Invalid Email
+                  </div>
+                </span>
+              </div>
+
+              <div class="mb-2">
+                <input type="text" class="form-control form-control-sm" placeholder="Description" 
+                  aria-label="description" 
+                  formControlName="speakerDescription" required>
+                <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
+                  Description is required
+                </div>
+              </div>
+
+              <div class="d-grid mb-2">
+                <button class="btn btn-sm btn-primary" type="button" [disabled]="speakerForm.invalid"
+                  (click)="addNewSpeaker()">Save Speaker
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
 
       <div class="modal-footer">
+        <button class="btn btn-sm btn-outline-primary me-auto" type="button"
+          data-bs-toggle="collapse" [attr.data-bs-target]="'#add-speaker-collapse'+event.ID"
+          aria-expanded="false" aria-controls="collapseExample">
+          Create New Speaker
+        </button>
+
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" (click)="saveSpeaker()">Save</button>
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"
+          (click)="saveSpeaker()">Save
+        </button>
       </div>
     </div>
   </div>
