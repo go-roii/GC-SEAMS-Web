@@ -6,13 +6,13 @@
 
     <div class="gs-card-buttons">
 			<button type="button" class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
-        <i class="far fa-image"></i>
+        <i class="far fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Preview Event"></i>
       </button>
       <button type="button" class="btn">
-        <i class="far fa-clone"></i>
+        <i class="far fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Event"></i>
       </button>
       <button type="button" class="btn" [disabled]="event.ID == 1" (click)='deleteEvent()'>
-        <i class="far fa-trash-alt"></i>
+        <i class="far fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Event"></i>
       </button>
     </div>
   </div>
@@ -137,7 +137,7 @@
       <div class="modal-body">
 				<div class="card">
 
-					<div class="change-poster unselectable" onclick="document.getElementById('upload-event-poster').click();">
+					<div class="change-poster user-select-none" onclick="document.getElementById('upload-event-poster').click();">
 						<p class="upload-event-poster-text text-center">Change event poster</p>
 						<input id="upload-event-poster" class="btn-change-poster" type="file">
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">
