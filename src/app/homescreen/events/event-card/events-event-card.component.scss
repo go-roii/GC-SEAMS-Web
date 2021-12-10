@@ -5,22 +5,26 @@
 	}
 
 	&.pending .card {
-		& .event-time {
-			color: #FF6F00;
-			background-color: #FFF8E1;
-			box-shadow: inset 0 0 0 1px #FFA000;
-		}
+		.extra-details-pills {
+      .badge {
+        color: #FF6F00;
+        background-color: #FFF8E1;
+        box-shadow: inset 0 0 0 1px #FFA000;
+      }
+    }
 	}
 
 	&.ended .card {
 		background-color: var(--background);
 		border: 1px solid rgba(0, 0, 0, .12);
 
-		& .event-time {
-			color: var(--primary-color);
-			background-color: transparent;
-			box-shadow: inset 0 0 0 1px var(--primary-color);
-		}
+		.extra-details-pills {
+      .badge {
+        color: var(--primary-color);
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px var(--primary-color);
+      }
+    }
 	}
 }
 
@@ -75,13 +79,13 @@
 	border-radius: 8px;
 	overflow: hidden;
 
-	& .card-body {
+	.card-body {
 		padding: 18px;
 		overflow: hidden;
 		white-space: normal;
 	}
 
-  & .card-title {
+  .card-title {
     font-size: 18px;
     margin-bottom: 0.4rem;
 
@@ -93,11 +97,11 @@
 		-webkit-box-orient: vertical;
   }
 
-  & .card-subtitle {
+  .card-subtitle {
     font-size: 14px;
   }
 
-	& .card-text {
+	.card-text {
 		width: 100%;
     font-size: 14px;
 
@@ -109,19 +113,25 @@
 		-webkit-box-orient: vertical;
 	}
 
-	& .card-link {
+	.card-link {
 		margin-top: auto;
 	}
+}
 
-	& .event-time {
-		position: absolute;
-		bottom: 4px;
-		color: white;
-		background-color: var(--primary-color);
-		font-size: 12px;
-		border-radius: 12px;
-		padding: 3px 8px;
-	}
+.extra-details-pills {
+  position: absolute;
+	bottom: 20px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+
+  .badge {
+    font-weight: 400;
+    color: white;
+    background-color: var(--primary-color);
+  }
 }
 
 .event-progress-bar {

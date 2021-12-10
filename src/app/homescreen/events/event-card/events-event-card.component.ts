@@ -9,7 +9,7 @@ import {Time} from "@angular/common";
 })
 export class EventsEventCardComponent implements OnInit {
 
-  @Input() isEditable=true;
+  @Input() isEditable!: boolean;
   @Input() item!: EventsToAdd;
   eventDate!: Date;
   eventEndDate!: Date;

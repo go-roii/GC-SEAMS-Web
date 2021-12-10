@@ -7,6 +7,7 @@ import { HomescreenComponent } from './homescreen.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     redirectTo: 'events/ongoing',
   },
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: 'events',
+        pathMatch: 'full',
         redirectTo: 'events/ongoing',
       },
       {
@@ -30,7 +32,7 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       },
       {
-        path: '/events/:uuid/:isEditable',
+        path: 'events/:uuid/:isEditable',
         component: EventDetailsComponent
       },
       {

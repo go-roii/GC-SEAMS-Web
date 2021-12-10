@@ -28,7 +28,7 @@ export class EventDetailsComponent implements OnInit {
 
   private activeEventUUID!: Subscription;
   private editingPermission!: Subscription;
-  isEditable: boolean = true;
+  isEditable!: boolean;
   uuid!: string;
 
 	enableEndQRCodeLink: boolean = true;
@@ -144,8 +144,6 @@ export class EventDetailsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-
     this.activeEventUUID = this.route.params.subscribe(params => {
       this.uuid = params['uuid'];
     });
@@ -159,7 +157,6 @@ export class EventDetailsComponent implements OnInit {
 
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
-
   }
 
   getEventDetails(uuid: string){

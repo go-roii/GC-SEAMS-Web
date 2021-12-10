@@ -1,5 +1,4 @@
 <div class="card">
-
 	<div class="change-poster user-select-none" onclick="document.getElementById('upload-event-poster').click();">
 		<p class="upload-event-poster-text text-center">Change event poster</p>
 		<input id="upload-event-poster" class="btn-change-poster" type="file">
@@ -11,7 +10,10 @@
 		<h6 class="card-title">{{item.event_title}}</h6>
 		<p class="card-subtitle mb-2 text-muted">{{eventDate|date}}</p>
 		<p class="card-text">{{item.event_description}}</p>
-		<p class="event-time">{{eventDate |  date:'h:mm a'}} - {{eventEndDate |  date:'h:mm a'}} &nbsp;●&nbsp; {{item.seminar_hours}} hr</p>
+    <div class="extra-details-pills">
+      <span class="badge rounded-pill">{{eventDate |  date:'h:mm a'}} - {{eventEndDate |  date:'h:mm a'}}</span>
+      <span class="badge rounded-pill">{{item.seminar_hours}} seminar hr</span>
+    </div>
 
     <a [routerLink]="['/homescreen/events', eventUUID, isEditable]" class="stretched-link" style="color: transparent;"></a>
 	</div>
