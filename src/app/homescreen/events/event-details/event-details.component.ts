@@ -27,6 +27,8 @@ export class EventDetailsComponent implements OnInit {
 	attendanceColumnHeight!: number;
 
   private activeEventUUID!: Subscription;
+  private editingPermission!: Subscription;
+  isEditable: boolean = true;
   uuid!: string;
 
 	enableEndQRCodeLink: boolean = true;
@@ -142,10 +144,16 @@ export class EventDetailsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
     this.activeEventUUID = this.route.params.subscribe(params => {
       this.uuid = params['uuid'];
     });
     console.log(this.uuid);
+
+    this.editingPermission = this.route.params.subscribe(params => {
+      this.isEditable = params['isEditable'];
+    });
 
     this.getEventDetails(this.uuid);
 

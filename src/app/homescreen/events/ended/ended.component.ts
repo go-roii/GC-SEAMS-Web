@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
 import { SidenavExpandService } from 'src/app/services/sidenav-expand.service';
 import {EventsToAdd} from "../../../models/EventsToAdd";
 import {UserService} from "../../../services/user.service";

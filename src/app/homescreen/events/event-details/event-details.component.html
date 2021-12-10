@@ -21,8 +21,8 @@
   </select>
   </form> -->
 
-    <button id="delete-button" class="btn btn-danger">Delete</button> <!-- add dialog for delete reconfirmation -->
-    <button id="save-button" class="btn btn-primary" (click)="editActiveEvent(uuid)">
+    <button id="delete-button" class="btn btn-danger" [disabled]="!isEditable" >Delete</button> <!-- add dialog for delete reconfirmation -->
+    <button id="save-button" class="btn btn-primary" [disabled]="!isEditable" (click)="editActiveEvent(uuid)">
       Save
       <!-- &nbsp;
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -201,7 +201,7 @@
               </div>
             </div>
           </div>
-        
+
         </form>
       </div>
     </div>
@@ -370,7 +370,7 @@
 
               <div class="mb-2">
                 <input type="text" class="form-control form-control-sm" placeholder="Description"
-                  aria-label="description" 
+                  aria-label="description"
                   formControlName="speakerDescription" required>
                 <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
                   Description is required
