@@ -42,7 +42,7 @@
 
           <div class="gs-card-buttons">
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
-              <i class="far fa-image"></i>
+              <i class="far fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Event Poster/Preview Event"></i>
             </button>
           </div>
         </div>
@@ -213,17 +213,17 @@
             <h5>Attendees - 10</h5>
           </div>
 
-          <div id="status-filter-tab" class="unselectable">
-            <div class="status-filter sf-present">Present - 1</div>
-            <div class="status-filter sf-absent">Absent - 1</div>
-            <div class="status-filter sf-not-registered">Not Registered - 1</div>
+          <div id="status-filter-tab" class="user-select-none">
+            <span class="badge rounded-pill status-filter sf-present">Present - 1</span>
+            <span class="badge rounded-pill status-filter sf-absent">Absent - 1</span>
+            <span class="badge rounded-pill status-filter sf-not-registered">Not Registered - 1</span>
           </div>
         </div>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item <span class="status-pill sp-present">Present</span></li>
-          <li class="list-group-item">A second item <span class="status-pill sp-absent">Absent</span></li>
-          <li class="list-group-item">A third item <span class="status-pill sp-not-registered">Not Registered</span></li>
+          <li class="list-group-item">An item <span class="badge rounded-pill status-pill sp-present">Present</span></li>
+          <li class="list-group-item">A second item <span class="badge rounded-pill status-pill sp-absent">Absent</span></li>
+          <li class="list-group-item">A third item <span class="badge rounded-pill status-pill sp-not-registered">Not Registered</span></li>
           <li class="list-group-item">A fourth item</li>
           <li class="list-group-item">And a fifth one</li>
           <li class="list-group-item">An item</li>
@@ -258,7 +258,7 @@
       <div class="modal-body">
 				<div class="card">
 
-					<div class="change-poster unselectable" onclick="document.getElementById('upload-event-poster').click();">
+					<div class="change-poster user-select-none" onclick="document.getElementById('upload-event-poster').click();">
 						<p class="upload-event-poster-text text-center">Change event poster</p>
 						<input id="upload-event-poster" class="btn-change-poster" type="file">
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">

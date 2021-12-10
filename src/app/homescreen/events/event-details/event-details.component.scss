@@ -26,21 +26,15 @@
   margin-bottom: -36px;
 }
 
-// #status-filter-tab {
-// 	flex-grow: 1;
-// }
+#status-filter-tab {
+	display: flex;
+  gap: 6px;
+}
 
 .status-filter {
-  display: inline-block;
-  font-size: 12px;
+  font-weight: 400;
   border: 1px solid;
-  border-radius: 100px;
-  padding: 2px 10px;
   cursor: pointer;
-
-  &:not(:last-child) {
-		margin-right: 6px;
-	}
 
   &.sf-present {
     border-color: var(--green);
@@ -59,24 +53,24 @@
 }
 
 .status-pill {
-  // display: inline-block;
   float: right;
-  font-size: 12px;
-  border-radius: 100px;
-  padding: 3px 10px;
+  font-weight: 400;
+  border: 1px solid;
+  color: white;
 
   &.sp-present {
     background-color: var(--green);
-    color: white;
+    border-color: var(--green);
   }
 
   &.sp-absent {
     background-color: var(--red);
-    color: white;
+    border-color: var(--red);
   }
 
   &.sp-not-registered {
     background-color: var(--yellow-orange);
+    border-color: var(--yellow-orange);
     color: black;
   }
 }
