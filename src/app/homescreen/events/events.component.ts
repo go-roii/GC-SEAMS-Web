@@ -22,8 +22,8 @@ export class EventsComponent implements OnInit {
     if(event instanceof OngoingComponent)
       this.currentTab = 'ongoing'
     else if(event instanceof PendingComponent)
-      this.currentTab = 'pending'
+      this.currentTab = 'upcoming'
     else if(event instanceof EndedComponent)
-      this.currentTab = 'ended';
+      this.currentTab = 'past';
   }
 }

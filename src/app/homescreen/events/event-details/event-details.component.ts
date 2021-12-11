@@ -149,10 +149,6 @@ export class EventDetailsComponent implements OnInit {
     });
     console.log(this.uuid);
 
-    this.editingPermission = this.route.params.subscribe(params => {
-      this.isEditable = params['isEditable'];
-    });
-
     this.getEventDetails(this.uuid);
 
     this.speakers=this.speakersService.getSpeakers();
@@ -223,7 +219,7 @@ export class EventDetailsComponent implements OnInit {
     return year+'-'+month+'-'+day
   }
 
-  getEventStartTime(data: EventsToAdd){
+  getEventStartTime(data: EventsToAdd) {
     const zonedStartDateTimeArr=data.event_start_date.split('[');
     const zonedStartDateTimeString=zonedStartDateTimeArr[0].toString();
 
@@ -233,6 +229,9 @@ export class EventDetailsComponent implements OnInit {
     const date: Date = new Date(zonedStartDateTimeString);
     const hour= date.getHours();
     const minutes= date.getMinutes();
+
+    // make event editable if the event is not ongoing
+    this.isEditable = new Date < date;
 
     return hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})+':'+minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})+':00';
   }

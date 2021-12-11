@@ -32,7 +32,7 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       },
       {
-        path: 'events/:uuid/:isEditable',
+        path: 'events/:uuid',
         component: EventDetailsComponent
       },
       {

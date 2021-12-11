@@ -15,11 +15,11 @@ const routes: Routes = [
       component: OngoingComponent
     },
     {
-      path: 'pending',
+      path: 'upcoming',
       component: PendingComponent
     },
     {
-      path: 'ended',
+      path: 'past',
       component: EndedComponent
     }
   ]
