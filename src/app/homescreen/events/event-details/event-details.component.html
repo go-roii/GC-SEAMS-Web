@@ -57,7 +57,12 @@
             </div>
 
             <div class="col-md-8">
-              <label for="from-time" class="form-label">Time</label>
+              <label for="from-time" class="form-label">
+                Time&nbsp;
+                <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+                  [attr.title]="'Within school hours - 8:00 AM to 8:00 PM'"
+                  data-bs-toggle="tooltip" data-bs-placement="right"></i>
+              </label>
 
               <div class="row g-2 mb-3">
                 <div class="col-sm-6">
@@ -109,7 +114,12 @@
 
           <!-- qr code links -->
           <div class="row">
-            <label for="qr-code-link" class="form-label">QR Code Link</label>
+            <label for="qr-code-link" class="form-label">
+              QR Code Link&nbsp;
+              <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+                title="You can generate qr code when the event is ongoing"
+                data-bs-toggle="tooltip" data-bs-placement="right"></i>
+            </label>
 
             <div class="input-group input-group-sm dropup mb-2">
               <label class="input-group-text" for="begin-qr-code-link" id="label-begin-qr-code-link">Beginning</label>
@@ -117,7 +127,7 @@
 
               <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split dropup"
                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                [disabled]="!isEditable">
+                [disabled]="isEditable">
                 <span class="visually-hidden">Toggle Dropdown</span>
               </button>
 
@@ -144,7 +154,7 @@
 
               <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                [disabled]="!enableEndQRCodeLink || !isEditable">
+                [disabled]="!enableEndQRCodeLink || isEditable">
                 <span class="visually-hidden">Toggle Dropdown</span>
               </button>
 

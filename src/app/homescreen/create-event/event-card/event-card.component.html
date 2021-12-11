@@ -42,7 +42,12 @@
       </div>
 
       <div class="col-md-8 mb-3">
-        <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
+        <label [attr.for]="'from-time'+event.ID" class="form-label">
+          Time&nbsp;
+          <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+            [attr.title]="'Within school hours - 8:00 AM to 8:00 PM'"
+            data-bs-toggle="tooltip" data-bs-placement="right"></i>
+        </label>
 
         <div class="row g-2">
           <div class="col-sm-6">
