@@ -5,9 +5,10 @@
     <button id="delete-button" class="btn btn-danger" [disabled]="!isEditable">Delete</button> <!-- add dialog for delete reconfirmation -->
     <button id="save-button" class="btn btn-primary" [disabled]="!isEditable" (click)="editActiveEvent(uuid)">
       Save
-      <!-- &nbsp;
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      <span class="visually-hidden">Loading...</span> -->
+      <span [style.display]="isEventUpdating ? 'inline-block' : 'none'">&nbsp;
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="visually-hidden">Loading...</span>
+      </span>
     </button>
   </div>
 </div>

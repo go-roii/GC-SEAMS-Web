@@ -25,12 +25,13 @@ import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 })
 export class CreateEventComponent implements OnInit {
 
+  isEventCreating: boolean = false;
+
   count = 0;
   events: EventCardComponent[] = [];
   eventData: Events[] = [];
   courses: Courses[] = [];
   departments: Departments[] = [];
-
 
   byCourse!: boolean;
   sortBy: string = '';
@@ -210,6 +211,8 @@ export class CreateEventComponent implements OnInit {
   }
 
   saveEvents() {
+    this.isEventCreating = true;
+
     this.printInputs();
 
     const eventParams: RequestParams = new RequestParams();
@@ -223,10 +226,13 @@ export class CreateEventComponent implements OnInit {
       this.dataService.httprequest(eventParams)
         .subscribe(async (data: string) => {
           await console.log(data);
-          await alert("Event/s created successfully");
           await this.clearEventData();
+
+          this.isEventCreating = false;
+          alert("Event/s created successfully");
         }, (er: HttpErrorResponse) => {
-        this.dataService.handleError(er)
+          this.dataService.handleError(er)
+          this.isEventCreating = false;
         });
     }
   }

@@ -21,7 +21,10 @@ import {EventsToAdd} from "../../../models/EventsToAdd";
     './event-details.component.scss'
   ]
 })
+
 export class EventDetailsComponent implements OnInit {
+
+  isEventUpdating: boolean = false;
 
 	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;
 	attendanceColumnHeight!: number;
@@ -102,6 +105,8 @@ export class EventDetailsComponent implements OnInit {
 
   editActiveEvent(uuid: string){
 
+    this.isEventUpdating = true;
+
     let strict: boolean;
 
     //check if the selected option is strict or not
@@ -142,9 +147,12 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: string) => {
         await console.log(data);
         await this.getEventDetails(this.uuid);
-        await alert("Event/s updated successfully");
+
+        this.isEventUpdating = false;
+        alert("Event/s updated successfully");
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er)
+        this.isEventUpdating = false;
       });
   }
 
