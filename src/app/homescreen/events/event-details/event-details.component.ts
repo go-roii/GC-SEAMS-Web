@@ -1,3 +1,4 @@
+import {Location} from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {Events} from "../../../models/Events";
@@ -150,6 +151,8 @@ export class EventDetailsComponent implements OnInit {
 
         this.isEventUpdating = false;
         alert("Event/s updated successfully");
+
+        this.location.back();
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er)
         this.isEventUpdating = false;
@@ -160,7 +163,8 @@ export class EventDetailsComponent implements OnInit {
   get speakerEmail() { return this.speakerForm.get('speakerEmail'); }
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
-  constructor(private departmentService: DepartmentService,
+  constructor(private location: Location,
+              private departmentService: DepartmentService,
               private userService: UserService,
               private dataService: DataService,
               private speakersService: SpeakersService,

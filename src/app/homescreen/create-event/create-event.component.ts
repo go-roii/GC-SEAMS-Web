@@ -230,6 +230,8 @@ export class CreateEventComponent implements OnInit {
 
           this.isEventCreating = false;
           alert("Event/s created successfully");
+
+          this.router.navigateByUrl('/homescreen/events');
         }, (er: HttpErrorResponse) => {
           this.dataService.handleError(er)
           this.isEventCreating = false;
