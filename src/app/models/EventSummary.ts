@@ -1,6 +1,7 @@
 import {Departments} from "./Departments";
 import {Speaker} from "./Speaker";
-import {Analytics} from "./Analytics";
+import {ViewsAnalyticsCount} from "./ViewsAnalyticsCount";
+import {RegistrationAnalyticsCount} from "./RegistrationAnalyticsCount";
 
 export interface EventSummary{
   event_id: number;
@@ -15,5 +16,6 @@ export interface EventSummary{
   registration_link: string;
   departments: Departments[];
   speakers: Speaker[];
-  event_analytics: Analytics[];
+  registration_count: RegistrationAnalyticsCount[];
+  view_count: ViewsAnalyticsCount[];
 }

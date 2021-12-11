@@ -7,7 +7,7 @@
     <h2 class="accordion-header gs-card-text" id="overall-analytics-heading">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#overall-analytics"
         aria-expanded="true" aria-controls="collapseOne">
-          <h5>Overall Analytics</h5>
+          <h5>Overall ViewsAnalyticsCount</h5>
       </button>
     </h2>
     <div id="overall-analytics" class="accordion-collapse collapse show"
@@ -22,7 +22,7 @@
 <!-- <div class="gs-card mb-4">
   <div class="gs-card-header mb-4">
 		<div class="gs-card-text">
-			<h5>Overall Analytics</h5>
+			<h5>Overall ViewsAnalyticsCount</h5>
 		</div>
   </div>
   <app-grouped-vertical-bar-chart></app-grouped-vertical-bar-chart>
@@ -37,7 +37,7 @@
           <th scope="col">Date</th>
           <th scope="col">Time</th>
           <th scope="col">Invited</th>
-          <th scope="col">Absent</th>
+          <th scope="col">Attended</th>
           <th scope="col">Views</th>
           <th scope="col">Registrants</th>
         </tr>
@@ -50,8 +50,8 @@
         <td>{{getEventStartTime(event) | date:'h:mm a'}} - {{getEventEndTime(event) | date:'h:mm a'}}</td>
         <td>0</td>
         <td>0</td>
-        <td>{{event.event_analytics? sumViewAnalytics(event.event_analytics) : 0}}</td>
-        <td>{{event.event_analytics? sumRegistrantsAnalytics(event.event_analytics) : 0}}</td>
+        <td>{{event.view_count? sumViewAnalytics(event.view_count) : 0}}</td>
+        <td>{{event.registration_count? sumRegistrantsAnalytics(event.registration_count) : 0}}</td>
       </tr>
     </tbody>
   </table>

@@ -122,6 +122,7 @@ export class UserService{
     this.dataService.getNewAccessToken(refreshParams.EndPoint, refreshParams.body)
       // resp is of type `HttpResponse<RefreshTokens>`
       .subscribe(resp => {
+
         // display its headers
         const keys = resp.headers.keys();
 
@@ -132,7 +133,7 @@ export class UserService{
         this.updateAuthHeader(this.headers[0])
         //this.setAuthHeader(this.headers[0]);
         const trimmedHeader=this.getAuthHeader().split(':');
-        console.log("new access-token: "+trimmedHeader[1])
+        console.log("new access-token: "+trimmedHeader[1]);
 
       },
         er => {

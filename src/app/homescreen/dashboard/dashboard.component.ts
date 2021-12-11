@@ -5,8 +5,9 @@ import {RequestParams} from "../../models/RequestParams";
 import {EventsToAdd} from "../../models/EventsToAdd";
 import {UserService} from "../../services/user.service";
 import {DataService} from "../../services/data.service";
-import {Analytics} from "../../models/Analytics";
+import {ViewsAnalyticsCount} from "../../models/ViewsAnalyticsCount";
 import {EventSummary} from "../../models/EventSummary";
+import {RegistrationAnalyticsCount} from "../../models/RegistrationAnalyticsCount";
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ import {EventSummary} from "../../models/EventSummary";
 })
 export class DashboardComponent implements OnInit {
   public eventsSummary!: EventSummary[];
-  public eventsAnalytics!: Analytics[];
+  public eventsAnalytics!: ViewsAnalyticsCount[];
   count: number = 1;
 
   constructor(private router : Router,
@@ -67,21 +68,33 @@ export class DashboardComponent implements OnInit {
     for(let event of this.eventsSummary){
       event.event_id=this.count++;
       const analyticsParams=new RequestParams();
-      analyticsParams.EndPoint='analytics/department/'+event.event_id;
+      analyticsParams.EndPoint='/views/department/'+event.event_uuid;
       analyticsParams.requestType=5;
       analyticsParams.authToken=this.getHttpOptions();
 
       this.dataService.httprequest(analyticsParams)
-        .subscribe(async (data: Analytics[]) =>{
+        .subscribe(async (data: ViewsAnalyticsCount[]) =>{
           //await this.addAnalytics(event,data);
-          event.event_analytics=data;
+          event.view_count=data;
+          //console.log(data)
+        });
+
+      const registrationsParams=new RequestParams();
+      registrationsParams.EndPoint='registrations/department/'+event.event_uuid;
+      registrationsParams.requestType=5;
+      registrationsParams.authToken=this.getHttpOptions();
+
+      this.dataService.httprequest(registrationsParams)
+        .subscribe(async (data: RegistrationAnalyticsCount[]) =>{
+          //await this.addAnalytics(event,data);
+          event.registration_count=data;
           //console.log(data)
         });
     }
   }
 
   //add all the views in the analytics
-  sumViewAnalytics(data :Analytics[]){
+  sumViewAnalytics(data :ViewsAnalyticsCount[]){
     let sum:number = 0;
     for(let view of data){
       sum += view.views;
@@ -90,7 +103,7 @@ export class DashboardComponent implements OnInit {
   }
 
   //add all the views in the analytics
-  sumRegistrantsAnalytics(data :Analytics[]){
+  sumRegistrantsAnalytics(data :RegistrationAnalyticsCount[]){
     let sum:number = 0;
     for(let registrants of data){
       sum += registrants.registrations;
