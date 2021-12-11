@@ -87,8 +87,7 @@
             data-bs-toggle="tooltip" data-bs-placement="right"></i>
         </label>
         <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm"
-          formControlName="eventIsStrict"
-          [(ngModel)]='event.eventIsStrict'>
+          formControlName="eventIsStrict"[(ngModel)]="event.eventIsStrict">
 					<option value="" selected disabled hidden>Select QR Code Extent</option>
 					<option>Beginning only</option>
 					<option selected>Beginning and End</option>

@@ -31,7 +31,7 @@ export class EventDetailsComponent implements OnInit {
 	attendanceColumnHeight!: number;
 
   private activeEventUUID!: Subscription;
-  isEditable!: boolean;
+  isEditable: boolean = false;
   uuid!: string;
 
 	enableEndQRCodeLink: boolean = true;
@@ -231,6 +231,12 @@ export class EventDetailsComponent implements OnInit {
     this.populateSpeakersField();
 
     this.setFieldValues(data)
+
+    // disable qr code extent select field
+    if(this.isEditable)
+      this.eventForm.controls.eventIsStrict.enable()
+    else 
+      this.eventForm.controls.eventIsStrict.disable()
   }
 
   getEventDate(data: EventsToAdd){

@@ -99,7 +99,7 @@
                   title="If attendance is strict, select 'Beginning and End'&#10;to only allow attendees who are present to the whole event"
                   data-bs-toggle="tooltip" data-bs-placement="right"></i>
               </label>
-              <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm" [disabled]="!isEditable" formControlName="eventIsStrict">
+              <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm" formControlName="eventIsStrict">
                 <option value="" selected disabled hidden>Select QR Code Extent</option>
                 <option>Beginning only</option>
                 <option>Beginning and End</option>
@@ -115,7 +115,9 @@
               <label class="input-group-text" for="begin-qr-code-link" id="label-begin-qr-code-link">Beginning</label>
               <input id="begin-qr-code-link" class="form-control form-control-sm" type="text" [value]="beginQRCodeLink" readonly>
 
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split dropup" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split dropup"
+                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                [disabled]="!isEditable">
                 <span class="visually-hidden">Toggle Dropdown</span>
               </button>
 
@@ -142,7 +144,7 @@
 
               <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
-                [disabled]="!enableEndQRCodeLink">
+                [disabled]="!enableEndQRCodeLink || !isEditable">
                 <span class="visually-hidden">Toggle Dropdown</span>
               </button>
 
@@ -169,7 +171,9 @@
             <label for="invite-departments" class="form-label mt-3">Invite Departments</label>
             <div class="input-group input-group-sm">
               <input id="invite-departments" class="form-control" type="text"  [value]="chosenDepartmentsList" readonly required>
-              <button class="btn btn-primary" style="border-radius: 0 0.375rem 0.375rem 0;" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <button class="btn btn-primary" style="border-radius: 0 0.375rem 0.375rem 0;" type="button"
+                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                [disabled]="!isEditable">
                 <i class="bi bi-plus"></i>
               </button>
               <ul class="dropdown-menu">
@@ -188,7 +192,9 @@
             <label [attr.for]="'invite-speakers'+event.ID" class="form-label">Invite Speakers</label>
             <div class="input-group input-group-sm">
               <input [attr.id]="'invite-speakers'+event.ID" class="form-control" type="text" [value]="chosenSpeakersList" formControlName="eventSpeakers" readonly required>
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" [attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false">
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#speaker-modal'+event.ID" aria-expanded="false"
+                [disabled]="!isEditable">
                 <i class="bi bi-person-plus-fill"></i>
               </button>
             </div>
