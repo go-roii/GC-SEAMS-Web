@@ -70,6 +70,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   }
 
 	typingTimer: any;
+  typingDuration: number = 500;
 
 	restrictEventDate(e: any) {
 		clearTimeout(this.typingTimer);
@@ -78,8 +79,15 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
 		if(e.target.value) {
 			this.typingTimer = setTimeout(() => {
-				e.target.value = e.target.value < currentDate ? null : e.target.value
-			}, 1000);
+				if(e.target.value < currentDate) {
+          e.target.value = null
+          e.target.classList.add("is-invalid")
+        }
+        else {
+          e.target.value = e.target.value
+          e.target.classList.remove("is-invalid")
+        }
+			}, this.typingDuration);
 		}
 	}
 
@@ -91,8 +99,15 @@ export class EventCardComponent implements OnInit, OnDestroy{
 		// school hours 8am - 8pm ?
 		if(e.target.value) {
 			this.typingTimer = setTimeout(() => {
-				e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
-			}, 1000);
+        if(hour >= 8 && hour <= 20) {
+          e.target.value = e.target.value
+          e.target.classList.remove("is-invalid")
+        }
+        else {
+          e.target.value = null
+          e.target.classList.add("is-invalid")
+        }
+			}, this.typingDuration);
 		}
 
 		this.startTime = new Date(this.event.eventDate + 'T' + this.event.eventStartTime + ':00');

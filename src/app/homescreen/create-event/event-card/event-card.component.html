@@ -22,7 +22,7 @@
     <div class="mb-3">
       <label [attr.for]="'event-name'+event.ID" class="form-label">Event Name</label>
       <input [attr.id]="'event-name'+event.ID" class="form-control form-control-sm" type="text"
-        [(ngModel)]='event.eventName'  formControlName="eventName" required>
+        [(ngModel)]='event.eventName' formControlName="eventName" required>
     </div>
 
     <!-- event details -->
@@ -34,11 +34,14 @@
 
     <!-- date and time -->
     <div class="row gx-4">
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 position-relative mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
         <input [attr.id]="'date'+event.ID" class="form-control form-control-sm" type="date" [attr.min]="minDate"
 					(change)="restrictEventDate($event)"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
+          <div class="invalid-tooltip">
+            Please input a proper date
+          </div>
       </div>
 
       <div class="col-md-8 mb-3">
@@ -56,6 +59,9 @@
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
 								(change)="restrictEventTime($event)"
 								[(ngModel)]='event.eventStartTime' formControlName="eventStartTime" required>
+                <div class="invalid-tooltip">
+                  Only within school hours (8:00 AM - 8:00 PM)
+                </div>
 								<!-- <div *ngIf="eventStartTime?.errors?.['required']">
 									Name is required.
 								</div> -->
@@ -68,6 +74,9 @@
               <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" type="time" min="08:00" max="20:00"
 								(change)="restrictEventTime($event)"
 								[(ngModel)]='event.eventEndTime' formControlName="eventEndTime" required>
+              <div class="invalid-tooltip">
+                Only within school hours (8:00 AM - 8:00 PM)
+              </div>
             </div>
           </div>
         </div>
