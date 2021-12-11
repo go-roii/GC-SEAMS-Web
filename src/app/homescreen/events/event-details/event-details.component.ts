@@ -168,6 +168,8 @@ export class EventDetailsComponent implements OnInit {
 
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
+
+    console.log(this.event.eventIsStrict)
   }
 
   getEventDetails(uuid: string){

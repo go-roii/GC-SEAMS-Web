@@ -17,6 +17,7 @@
     </div>
   </div>
 
+  <!-- event name -->
   <form [formGroup]='eventForm' autocomplete="off">
     <div class="mb-3">
       <label [attr.for]="'event-name'+event.ID" class="form-label">Event Name</label>
@@ -24,12 +25,14 @@
         [(ngModel)]='event.eventName'  formControlName="eventName" required>
     </div>
 
+    <!-- event details -->
     <div class="mb-3">
       <label [attr.for]="'event-details'+event.ID" class="form-label">Event Details</label>
       <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" rows="3"
         [(ngModel)]='event.eventDetails' formControlName="eventDetails" required></textarea>
     </div>
 
+    <!-- date and time -->
     <div class="row gx-4">
       <div class="col-md-4 mb-3">
         <label [attr.for]="'date'+event.ID" class="form-label">Date</label>
@@ -37,7 +40,6 @@
 					(change)="restrictEventDate($event)"
           [(ngModel)]='event.eventDate' formControlName="eventDate" required>
       </div>
-
 
       <div class="col-md-8 mb-3">
         <label [attr.for]="'from-time'+event.ID" class="form-label">Time</label>
@@ -67,6 +69,7 @@
       </div>
     </div>
 
+    <!-- seminar hours -->
     <div class="row gx-4">
 			<div class="col-md-4 mb-3">
 				<label [attr.for]="'seminar-hours'+event.ID" class="form-label">Seminar Hours</label>
@@ -75,20 +78,27 @@
 					[(ngModel)]='event.eventSeminarHours' required>
 			</div>
 
+      <!-- qr code extent -->
 			<div class="col-md-8 mb-3">
-				<label [attr.for]="'qr-code'+event.ID" class="form-label">QR Code Extent</label>
-				<select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm"
-                formControlName="eventIsStrict"
-                [(ngModel)]='event.eventIsStrict'>
+				<label [attr.for]="'qr-code'+event.ID" class="form-label">
+          QR Code Extent&nbsp;
+          <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+            title="If attendance is strict, select 'Beginning and End'&#10;to only allow attendees who are present to the whole event"
+            data-bs-toggle="tooltip" data-bs-placement="right"></i>
+        </label>
+        <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm"
+          formControlName="eventIsStrict"
+          [(ngModel)]='event.eventIsStrict'>
 					<option value="" selected disabled hidden>Select QR Code Extent</option>
 					<option>Beginning only</option>
-					<option>Beginning and End</option>
+					<option selected>Beginning and End</option>
 				</select>
 			</div>
     </div>
 
     <hr>
 
+    <!-- invite departments -->
     <div class="mb-3">
       <label [attr.for]="'invite-department'+event.ID" class="form-label mt-3">Invite Departments</label>
       <div class="input-group input-group-sm">
@@ -111,6 +121,7 @@
       </div>
     </div>
 
+    <!-- invite speakers -->
     <div class="mb-3">
       <label [attr.for]="'invite-speakers'+event.ID" class="form-label">Invite Speakers</label>
       <div class="input-group input-group-sm">
@@ -121,6 +132,7 @@
       </div>
     </div>
 
+    <!-- registration form -->
     <div>
       <label [attr.for]="'registration-form'+event.ID" class="form-label">Registration Form</label>
       <input [attr.id]="'registration-form'+event.ID" class="form-control form-control-sm" type="text" [(ngModel)]='event.eventRegistrationForm' formControlName="eventRegistrationForm" required>
