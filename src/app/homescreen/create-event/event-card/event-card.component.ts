@@ -24,7 +24,8 @@ import {SpeakersService} from "../../../services/speakers.service";
 export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = 'col-xl-6';
-  minDate: string =  new Date().toISOString().split('T')[0];
+  // minDate: string =  new Date().toISOString().split('T')[0];
+  minDate: string = new Date(new Date().getTime() + 86400000).toISOString().split('T')[0];
 	startTime: Date = new Date();
 	endTime: Date = new Date;
 
@@ -288,7 +289,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
 
 		currentDate = new Date(currentDate.getTime() + 86400000);
 
-		if(currentDate.getHours() >= 20) {
+		if(currentDate.getHours() >= 20 || currentDate.getHours() <= 8) {
 			startTime = '16:00';
 			endTime = '17:00';
 		}

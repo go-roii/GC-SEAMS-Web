@@ -54,7 +54,7 @@
 
         <div class="row g-2">
           <div class="col-sm-6">
-            <div class="input-group input-group-sm">
+            <div class="input-group input-group-sm has-validation">
               <label class="input-group-text" [attr.for]="'from-time'+event.ID" [attr.id]="'label-from-time'+event.ID">From</label>
               <input [attr.id]="'from-time'+event.ID" class="form-control" type="time" min="08:00" max="20:00"
 								(change)="restrictEventTime($event)"
@@ -69,7 +69,7 @@
           </div>
 
           <div class="col-sm-6">
-            <div class="input-group input-group-sm">
+            <div class="input-group input-group-sm has-validation">
               <label class="input-group-text" [attr.for]="'to-time'+event.ID" [attr.id]="'label-to-time'+event.ID">To</label>
               <input [attr.id]="'to-time'+event.ID" class="form-control" type="time" type="time" min="08:00" max="20:00"
 								(change)="restrictEventTime($event)"
