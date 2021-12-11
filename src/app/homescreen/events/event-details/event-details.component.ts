@@ -69,6 +69,7 @@ export class EventDetailsComponent implements OnInit {
     eventEndTime:new FormControl('',[Validators.required,]),
     eventSpeakers:new FormControl('',[Validators.required,]),
     eventSeminarHours:new FormControl('',[Validators.required,]),
+    eventIsStrict: new FormControl(''),
     eventRegistrationForm:new FormControl('',[Validators.required])
   });
 
@@ -88,6 +89,7 @@ export class EventDetailsComponent implements OnInit {
   get eventEndTime(){return this.eventForm.controls['eventEndTime'].value}
   get eventSpeakers(){return this.eventForm.controls['eventName'].value}
   get eventSeminarHours(){return this.eventForm.controls['eventSeminarHours'].value}
+  get eventIsStrict(){return this.eventForm.controls['eventIsStrict'].value}
   get eventRegistrationForm(){return this.eventForm.controls['eventRegistrationForm'].value}
 
 
@@ -100,6 +102,15 @@ export class EventDetailsComponent implements OnInit {
 
   editActiveEvent(uuid: string){
 
+    let strict: boolean;
+
+    //check if the selected option is strict or not
+    if(this.eventIsStrict=='Beginning only'){
+      strict=false;
+    }else{
+      strict=true;
+    }
+
     const data: EventsToAdd = {
       event_id: 0,
       event_uuid: '',
@@ -108,7 +119,7 @@ export class EventDetailsComponent implements OnInit {
       event_start_date: this.eventDate + 'T' + this.eventStartTime,
       event_end_date: this.eventDate + 'T' + this.eventEndTime,
       seminar_hours: this.eventSeminarHours,
-      is_attendance_strict: true,
+      is_attendance_strict: strict,
       timezone_id: 'Asia/Manila',
       registration_link: this.eventRegistrationForm,
       departments: this.chosenDepartments,

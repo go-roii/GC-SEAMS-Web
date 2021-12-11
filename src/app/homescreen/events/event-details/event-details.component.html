@@ -87,7 +87,7 @@
 
             <div class="col-md-8 mb-3">
               <label [attr.for]="'qr-code'+event.ID" class="form-label">QR Code Extent</label>
-              <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm" [disabled]="!isEditable">
+              <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm" [disabled]="!isEditable" formControlName="eventIsStrict">
                 <option value="" selected disabled hidden>Select QR Code Extent</option>
                 <option>Beginning only</option>
                 <option>Beginning and End</option>
