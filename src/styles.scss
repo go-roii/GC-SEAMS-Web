@@ -232,6 +232,13 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: var(--primary-color);
 }
 
+.btn-check:focus+.btn-danger, .btn-danger:focus {
+  // color: #fff;
+  // background-color: #bb2d3b;
+  // border-color: #b02a37;
+  box-shadow: 0 0 0 0.25rem rgb(225 83 97 / 50%);
+}
+
 .btn-close:focus {
   box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
 }

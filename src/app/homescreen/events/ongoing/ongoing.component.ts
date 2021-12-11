@@ -52,6 +52,10 @@ export class OngoingComponent implements OnInit {
       .subscribe(async (data: EventsToAdd[]) =>{
         await this.setOngoingEvents(data);
         await console.log(this.ongoingEvents)
+
+        //sort event from latest to oldest
+        this.ongoingEvents.sort((a, b) => 
+          new Date(a.event_start_date.split("[")[0]).valueOf() - new Date(b.event_start_date.split("[")[0]).valueOf());
       });
   }
 

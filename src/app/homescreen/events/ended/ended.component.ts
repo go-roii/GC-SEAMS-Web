@@ -52,6 +52,10 @@ export class EndedComponent implements OnInit {
       .subscribe(async (data: EventsToAdd[]) =>{
         await this.setEndedEvents(data);
         await console.log(this.endedEvents)
+
+        //sort event from latest to oldest
+        this.endedEvents.sort((a, b) => 
+          new Date(a.event_start_date.split("[")[0]).valueOf() - new Date(b.event_start_date.split("[")[0]).valueOf());
       });
   }
 
