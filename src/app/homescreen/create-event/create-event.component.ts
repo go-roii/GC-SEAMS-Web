@@ -55,6 +55,15 @@ export class CreateEventComponent implements OnInit {
 
     for (let event of this.eventData) {
 
+      let strict: boolean;
+
+      //check if the selected option is strict or not
+      if(event.eventIsStrict=='Beginning only'){
+        strict=false;
+      }else{
+        strict=true;
+      }
+
       const data: EventsToAdd = {
         event_id: 0,
         event_uuid: '',
@@ -63,6 +72,7 @@ export class CreateEventComponent implements OnInit {
         event_start_date: event.eventDate + 'T' + event.eventStartTime + ':00',
         event_end_date: event.eventDate + 'T' + event.eventEndTime + ':00',
         seminar_hours: event.eventSeminarHours,
+        is_attendance_strict: strict,
         timezone_id: 'Asia/Manila',
         registration_link: event.eventRegistrationForm,
         departments: event.departments,

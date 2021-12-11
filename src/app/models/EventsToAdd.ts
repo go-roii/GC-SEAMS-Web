@@ -9,6 +9,7 @@ export interface EventsToAdd{
   event_start_date: string;
   event_end_date: string;
   seminar_hours: number;
+  is_attendance_strict: boolean;
   timezone_id: string;
   registration_link: string;
   departments: Departments[];

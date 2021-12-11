@@ -77,7 +77,9 @@
 
 			<div class="col-md-8 mb-3">
 				<label [attr.for]="'qr-code'+event.ID" class="form-label">QR Code Extent</label>
-				<select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm">
+				<select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm"
+                formControlName="eventIsStrict"
+                [(ngModel)]='event.eventIsStrict'>
 					<option value="" selected disabled hidden>Select QR Code Extent</option>
 					<option>Beginning only</option>
 					<option>Beginning and End</option>
@@ -143,7 +145,7 @@
 						<img class="event-poster" src="../../../../assets/earth cake 2.png">
 						<!-- <div class="event-poster"></div> -->
 					</div>
-			
+
 					<div class="card-body">
 						<h6 class="card-title">{{event.eventName.length == 0 ? 'Lorem Ipsum' : event.eventName}}</h6>
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
@@ -250,8 +252,8 @@
               </div>
 
               <div class="mb-2">
-                <input type="text" class="form-control form-control-sm" placeholder="Description" 
-                  aria-label="description" 
+                <input type="text" class="form-control form-control-sm" placeholder="Description"
+                  aria-label="description"
                   formControlName="speakerDescription" required>
                 <div *ngIf="speakerDescription?.errors?.required && speakerDescription?.touched" class="text-danger text-helper mt-1">
                   Description is required

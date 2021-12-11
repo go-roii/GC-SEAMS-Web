@@ -27,7 +27,6 @@ export class EventDetailsComponent implements OnInit {
 	attendanceColumnHeight!: number;
 
   private activeEventUUID!: Subscription;
-  private editingPermission!: Subscription;
   isEditable!: boolean;
   uuid!: string;
 
@@ -109,11 +108,16 @@ export class EventDetailsComponent implements OnInit {
       event_start_date: this.eventDate + 'T' + this.eventStartTime,
       event_end_date: this.eventDate + 'T' + this.eventEndTime,
       seminar_hours: this.eventSeminarHours,
+      is_attendance_strict: true,
       timezone_id: 'Asia/Manila',
       registration_link: this.eventRegistrationForm,
       departments: this.chosenDepartments,
       speakers: this.chosenSpeaker
     }
+
+    console.log("data.department----------------------------");
+    console.log(data.departments);
+    console.log("data.department----------------------------");
 
     console.log(data)
 

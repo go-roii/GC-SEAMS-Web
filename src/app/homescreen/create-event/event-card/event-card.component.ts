@@ -48,6 +48,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     eventStartTime:new FormControl('',[Validators.required,]),
     eventEndTime:new FormControl('',[Validators.required,]),
     eventSeminarHours:new FormControl(''),
+    eventIsStrict: new FormControl(''),
     eventSpeakers:new FormControl('',[Validators.required,]),
     eventRegistrationForm:new FormControl('',[Validators.required])
   });
@@ -56,7 +57,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     speakerName:new FormControl('',[Validators.required,]),
     speakerEmail:new FormControl('',[Validators.required,Validators.email]),
     speakerDescription:new FormControl('',[Validators.required,]),
-  })
+  });
 
   chosenDepartmentsList: string = '';
   chosenSpeakersList: string = '';
@@ -74,7 +75,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
 		clearTimeout(this.typingTimer);
 
 		let currentDate = new Date().toISOString().split('T')[0]
-		
+
 		if(e.target.value) {
 			this.typingTimer = setTimeout(() => {
 				e.target.value = e.target.value < currentDate ? null : e.target.value
@@ -93,7 +94,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
 				e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
 			}, 1000);
 		}
-		
+
 		this.startTime = new Date(this.event.eventDate + 'T' + this.event.eventStartTime + ':00');
 		this.endTime = new Date(this.event.eventDate + 'T' + this.event.eventEndTime + ':00');
 	}
@@ -245,6 +246,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get eventDate() { return this.eventForm.get('eventDate'); }
   get eventStartTime() { return this.eventForm.get('eventStartTime'); }
   get eventEndTime() { return this.eventForm.get('eventEndTime'); }
+  get eventEventIsStrict() { return this.eventForm.get('eventIsStrict'); }
   get eventSpeakers() { return this.eventForm.get('eventSpeakers'); }
   get eventRegistrationForm() { return this.eventForm.get('eventRegistrationForm'); }
 

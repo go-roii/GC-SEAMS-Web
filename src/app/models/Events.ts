@@ -10,6 +10,7 @@ export class Events{
   eventStartTime!: Time;
   eventEndTime!: Time;
   eventSeminarHours: number;
+  eventIsStrict!: string;
   eventRegistrationForm: string;
   eventSpeakers: Array<Speaker>;
   departments: Array<Departments>
@@ -23,6 +24,7 @@ export class Events{
     this.eventStartTime;
     this.eventEndTime;
     this.eventSeminarHours=0;
+    this.eventIsStrict='';
     this.eventSpeakers=[];
     this.departments=[];
     this.eventRegistrationForm='';
