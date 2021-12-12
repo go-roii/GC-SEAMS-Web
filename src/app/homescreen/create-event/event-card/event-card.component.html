@@ -47,7 +47,7 @@
       <div class="col-md-8 mb-3">
         <label [attr.for]="'from-time'+event.ID" class="form-label">
           Time&nbsp;
-          <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+          <i class="bi bi-question-circle-fill qm-tooltip"
             [attr.title]="'Within school hours - 8:00 AM to 8:00 PM'"
             data-bs-toggle="tooltip" data-bs-placement="right"></i>
         </label>
@@ -96,7 +96,7 @@
 			<div class="col-md-8 mb-3">
 				<label [attr.for]="'qr-code'+event.ID" class="form-label">
           QR Code Extent&nbsp;
-          <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+          <i class="bi bi-question-circle-fill qm-tooltip"
             title="If attendance is strict, select 'Beginning and End'&#10;to only allow attendees who are present to the whole event"
             data-bs-toggle="tooltip" data-bs-placement="right"></i>
         </label>
@@ -250,8 +250,8 @@
           </ul>
         </div>
 
-        <div class="collapse mt-3" [attr.id]="'add-speaker-collapse'+event.ID">
-          <div class="card card-body" style="height: unset; border-radius: 0.25rem;">
+        <div class="collapse" [attr.id]="'add-speaker-collapse'+event.ID">
+          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">

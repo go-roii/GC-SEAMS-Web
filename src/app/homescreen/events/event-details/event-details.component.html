@@ -3,7 +3,7 @@
 
    <div class="header-buttons">
     <button id="delete-button" class="btn btn-danger" [disabled]="!isEditable">Delete</button> <!-- add dialog for delete reconfirmation -->
-    <button id="save-button" class="btn btn-primary" [disabled]="!isEditable" (click)="editActiveEvent(uuid)">
+    <button id="save-button" class="btn btn-primary" [disabled]="!isEditable || !eventForm.dirty" (click)="editActiveEvent(uuid)">
       Save
       <span [style.display]="isEventUpdating ? 'inline-block' : 'none'">&nbsp;
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -23,11 +23,11 @@
           </div>
 
           <div class="gs-card-buttons">
-            <button type="button" class="btn btn-sm" disabled>
-              <i class="fas fa-share-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert details"></i>
-            </button>
-            <button type="button" class="btn btn-sm" disabled>
-              <i class="fas fa-history" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert details"></i>
+            <!-- <button type="button" class="btn btn-sm" disabled>
+              <i class="fas fa-share-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Share event"></i>
+            </button> -->
+            <button type="button" class="btn btn-sm" (click)="eventForm.reset(initialEventForm)" [disabled]="!eventForm.dirty">
+              <i class="fas fa-history" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert event details"></i>
             </button>
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
               <i class="far fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Event Poster/Preview Event"></i>
@@ -68,7 +68,7 @@
             <div class="col-md-8">
               <label for="from-time" class="form-label">
                 Time&nbsp;
-                <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+                <i class="bi bi-question-circle-fill qm-tooltip"
                   [attr.title]="'Within school hours - 8:00 AM to 8:00 PM'"
                   data-bs-toggle="tooltip" data-bs-placement="right"></i>
               </label>
@@ -115,7 +115,7 @@
             <div class="col-md-8 mb-3">
               <label [attr.for]="'qr-code'+event.ID" class="form-label">
                 QR Code Extent&nbsp;
-                <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
+                <i class="bi bi-question-circle-fill qm-tooltip"
                   title="If attendance is strict, select 'Beginning and End'&#10;to only allow attendees who are present to the whole event"
                   data-bs-toggle="tooltip" data-bs-placement="right"></i>
               </label>
@@ -131,8 +131,8 @@
           <div class="row">
             <label for="qr-code-link" class="form-label">
               QR Code Link&nbsp;
-              <i class="bi bi-question-circle-fill" style="opacity: 0.6;"
-                title="You can generate qr code when the event is ongoing"
+              <i class="bi bi-question-circle-fill qm-tooltip"
+                title="You can generate qr code when the event is ongoing."
                 data-bs-toggle="tooltip" data-bs-placement="right"></i>
             </label>
 
@@ -373,8 +373,8 @@
           </ul>
         </div>
 
-        <div id="add-speaker-collapse" class="collapse mt-3">
-          <div class="card card-body" style="height: unset; border-radius: 0.25rem;">
+        <div id="add-speaker-collapse" class="collapse">
+          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">
