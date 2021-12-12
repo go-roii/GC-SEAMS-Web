@@ -415,12 +415,12 @@ export class EventDetailsComponent implements OnInit {
 	// 	this.enableEndQRCodeLink = e.target.checked
   // }
 
-  generateBeginQRCodeLink() {
+  generateBeginQRCodeLink(uuid: string) {
 
     let qrDetails: QRCodeDetails;
 
     const qrLinkParams=new RequestParams();
-    qrLinkParams.EndPoint='event/attendance/'+this.uuid;
+    qrLinkParams.EndPoint='event/attendance/'+uuid;
     qrLinkParams.requestType=5;
     qrLinkParams.authToken=this.getHttpOptions();
 
@@ -428,20 +428,20 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
+        this.beginQRCodeLink = location.origin + '/qr-code'+'/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });
 
-    // @ts-ignore
-    this.beginQRCodeLink = location.origin + '/qr-code' + qrDetails.event_uuid+'/'+qrDetails.validity+'/'+qrDetails.attendance_part
+
   }
 
-  generateEndQRCodeLink() {
+  generateEndQRCodeLink(uuid: string) {
 
     let qrDetails: QRCodeDetails;
 
     const qrLinkParams=new RequestParams();
-    qrLinkParams.EndPoint='event/attendance/'+this.uuid;
+    qrLinkParams.EndPoint='event/attendance/'+uuid;
     qrLinkParams.requestType=5;
     qrLinkParams.authToken=this.getHttpOptions();
 
@@ -449,12 +449,10 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
+        this.endQRCodeLink = location.origin + '/qr-code' +'/'+ qrDetails.event_uuid+'/'+qrDetails.attendance_code
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });
-
-    // @ts-ignore
-    this.endQRCodeLink = location.origin + '/qr-code' + qrDetails.event_uuid+'/'+qrDetails.validity+'/'+qrDetails.attendance_part
 
   }
 
@@ -574,7 +572,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(qrParams)
       .subscribe(async (data: string) => {
         await console.log(data);
-        await this.generateBeginQRCodeLink()
+        await this.generateBeginQRCodeLink(uuid)
         await alert("Beginning QR code generated");
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
@@ -597,7 +595,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(qrParams)
       .subscribe(async (data: string) => {
         await console.log(data);
-        await this.generateEndQRCodeLink()
+        await this.generateEndQRCodeLink(uuid)
         await alert("Beginning QR code generated");
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
