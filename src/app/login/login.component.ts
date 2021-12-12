@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-
     this.isUserLoggingIn = true;
 
     const credentials: Credentials = {
