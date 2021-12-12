@@ -1,5 +1,4 @@
 export interface QRCodeDetails{
   event_uuid: string,
-  validity: string,
-  attendance_part: string
+  attendance_code: string
 }

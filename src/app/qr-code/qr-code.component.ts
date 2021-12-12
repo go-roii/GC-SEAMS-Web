@@ -15,8 +15,7 @@ export class QRCodeComponent implements OnInit {
   private activeEventUUID!: Subscription;
   qrCodeDetails!: QRCodeDetails
   event_uuid!: string;
-  validity!: string;
-  attendance_part!: string;
+  attendance_code!: string;
 
   constructor (private route: ActivatedRoute) {
   }
@@ -25,16 +24,14 @@ export class QRCodeComponent implements OnInit {
 
     this.activeEventUUID = this.route.params.subscribe(params => {
 
-        this.attendance_part = params['part'];
+        this.attendance_code = params['attendance_code'];
         this.event_uuid = params['uuid'];
-        this.validity = params['validity'];
 
     });
 
     this.qrCodeDetails = {
-      attendance_part: this.attendance_part,
       event_uuid: this.event_uuid,
-      validity: this.validity
+      attendance_code: this.attendance_code
     }
 
     this.qrString=JSON.stringify(this.qrCodeDetails)
