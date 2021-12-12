@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {multi} from './data';
 import {Color, LegendPosition, ScaleType} from "@swimlane/ngx-charts";
 
@@ -11,6 +11,7 @@ import {Color, LegendPosition, ScaleType} from "@swimlane/ngx-charts";
 })
 export class GroupedVerticalBarChartComponent{
 
+  @Input() summarizedData!: any[];
   multi!: any[];
   view: any = [1150, 350];
 

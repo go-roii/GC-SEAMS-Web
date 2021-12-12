@@ -8,6 +8,8 @@ import {DataService} from "../../services/data.service";
 import {ViewsAnalyticsCount} from "../../models/ViewsAnalyticsCount";
 import {EventSummary} from "../../models/EventSummary";
 import {RegistrationAnalyticsCount} from "../../models/RegistrationAnalyticsCount";
+import {OverallAnalytics} from "../../models/OverallAnalytics";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +22,7 @@ import {RegistrationAnalyticsCount} from "../../models/RegistrationAnalyticsCoun
 export class DashboardComponent implements OnInit {
   public eventsSummary!: EventSummary[];
   public eventsAnalytics!: ViewsAnalyticsCount[];
+  public overallAnalytics: OverallAnalytics[] = [];
   count: number = 1;
 
   constructor(private router : Router,
@@ -28,6 +31,24 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchEndedEvents();
+
+    console.log('mock data: --------------------------------------')
+    this.mockProcessData();
+    console.log('mock data: --------------------------------------')
+  }
+
+  async processEventAnalytics(){
+    console.log('Processed event')
+
+    let arr: ViewsAnalyticsCount[]=[]
+
+    for(let event of this.eventsSummary){
+
+      arr = event.view_count;
+      console.log(event.view_count);
+
+    }
+
   }
 
   open_analytics_page() {
@@ -36,7 +57,6 @@ export class DashboardComponent implements OnInit {
     // { skipLocationChange: true }
     )
   }
-
 
   getHttpOptions(){
     const trimmedHeader=this.userService.getAuthHeader().split(':');
@@ -59,12 +79,16 @@ export class DashboardComponent implements OnInit {
     this.dataService.httprequest(endedEventsParams)
       .subscribe(async (data: EventSummary[]) =>{
         await this.setEventSummary(data)
-        //await console.log(this.eventsSummary);
+        await this.processEventAnalytics();
       });
+
+    console.log("fetch events")
   }
 
   //link analytics data to event summary
-  linkAnalyticsData(){
+  async linkAnalyticsData(){
+
+
     for(let event of this.eventsSummary){
       event.event_id=this.count++;
       const analyticsParams=new RequestParams();
@@ -74,7 +98,6 @@ export class DashboardComponent implements OnInit {
 
       this.dataService.httprequest(analyticsParams)
         .subscribe(async (data: ViewsAnalyticsCount[]) =>{
-          //await this.addAnalytics(event,data);
           event.view_count=data;
           //console.log(data)
         });
@@ -93,7 +116,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  //add all the views in the analytics
+  mockProcessData(){
+  }
+
+  //add all the views in the analytics per event
   sumViewAnalytics(data :ViewsAnalyticsCount[]){
     let sum:number = 0;
     for(let view of data){
@@ -102,7 +128,16 @@ export class DashboardComponent implements OnInit {
     return sum;
   }
 
-  //add all the views in the analytics
+  processViews(data :ViewsAnalyticsCount[]){
+    let sum:number = 0;
+    for(let view of data){
+      sum += view.views;
+      console.log(view.views)
+    }
+
+  }
+
+  //add all the views in the analytics per event
   sumRegistrantsAnalytics(data :RegistrationAnalyticsCount[]){
     let sum:number = 0;
     for(let registrants of data){
@@ -113,8 +148,23 @@ export class DashboardComponent implements OnInit {
 
   setEventSummary(data: EventSummary[]){
     this.eventsSummary=data;
-    this.linkAnalyticsData();
-    console.log('events summary:---------------------------------------------------------');
+    //this.linkAnalyticsData();
+
+    console.log("Angular 10 Promises");
+    this.linkAnalyticsData()
+      .then((data) => {
+        try{
+          //this.processEventAnalytics();
+        }catch (e) {
+          console.log(e);
+        }
+
+      })
+      .catch((error) => {
+        console.log("Promise rejected with " + JSON.stringify(error));
+      });
+
+    console.log('events summary from setEventSummary()');
     console.log(this.eventsSummary)
     console.log('events summary:---------------------------------------------------------');
   }
