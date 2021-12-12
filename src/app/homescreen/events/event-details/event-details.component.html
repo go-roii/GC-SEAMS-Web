@@ -289,8 +289,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-				<div class="card">
-
+				<div class="event-card card">
 					<div class="change-poster user-select-none" [ngClass]="{'no-hover' : !isEditable}" onclick="document.getElementById('upload-event-poster').click();">
 						<p class="upload-event-poster-text text-center">Change event poster</p>
 						<input id="upload-event-poster" class="btn-change-poster" type="file">
@@ -303,11 +302,14 @@
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
 						<p class="card-text">
 							{{event.eventDetails.length == 0
-								? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-								: event.eventDetails}}</p>
-						<p class="event-time">
-							{{startTime | date:'h:mm a'}} - {{endTime | date:'h:mm a'}} &nbsp;●&nbsp; {{event.eventSeminarHours}} hr</p>
+              ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+              : event.eventDetails}}
+            </p>
+            <div class="extra-details-pills">
+              <span class="badge rounded-pill">{{startTime | date:'h:mm a'}} - {{endTime | date:'h:mm a'}}</span>
+              <span class="badge rounded-pill">{{event.eventSeminarHours}} seminar hr</span>
+            </div>
 					</div>
 					<div class="progress event-progress-bar">
 						<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
