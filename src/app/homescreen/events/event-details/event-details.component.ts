@@ -384,8 +384,6 @@ export class EventDetailsComponent implements OnInit {
         }
 			}, this.typingDuration);
 		}
-
-    console.log(this.eventForm.dirty)
 	}
 
 	restrictEventTime(e: any) {

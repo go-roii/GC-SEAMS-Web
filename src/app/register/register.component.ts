@@ -16,6 +16,8 @@ import {LoginComponent} from "../login/login.component";
 
 export class RegisterComponent implements OnInit {
 
+  isUserRegistering: boolean = false;
+
   confirmationIsValid!: boolean;
   courses: Courses[]=[];
   departments: Departments[]=[];
@@ -76,6 +78,7 @@ export class RegisterComponent implements OnInit {
   get passwordConfirmation() { return this.profileForm.get('passwordConfirmation'); }
 
   register(): void {
+    this.isUserRegistering = true;
 
     const newUser: UserProfile={
       email_address : this.profileForm.controls['email'].value,
@@ -99,9 +102,14 @@ export class RegisterComponent implements OnInit {
         const data = await res.payload
         //await this.user.setUserData(data)
         //await this.user.setLoginState()
+
+        this.isUserRegistering = false;
+        // alert('You are now registered');
+        // profileForm.reset()
       });
     }else{
       alert('Passwords does not match');
+      this.isUserRegistering = false;
     }
   }
 }

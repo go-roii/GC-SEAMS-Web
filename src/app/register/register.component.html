@@ -87,7 +87,13 @@
 					</span>
 				</div>
 				<div class="d-grid">
-					<button id="submit_button" type="submit" class="btn btn-lg btn-primary" [disabled]="profileForm.invalid" (click)='register()'>Register</button>
+					<button id="submit_button" type="submit" class="btn btn-lg btn-primary" [disabled]="profileForm.invalid || isUserRegistering" (click)='register()'>
+            Register
+            <span [style.display]="isUserRegistering ? 'inline-block' : 'none'">&nbsp;
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="visually-hidden">Loading...</span>
+            </span>
+          </button>
 				</div>
 			</form>
 		</main>
