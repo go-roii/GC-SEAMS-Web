@@ -373,10 +373,6 @@ $sidenav-expanded-width: 248px;
     padding: 0 22px !important;
   }
 
-  #user-info {
-    display: none;
-  }
-
   .sidenav {
 		background-color: white;
     width: 100%;
@@ -386,7 +382,7 @@ $sidenav-expanded-width: 248px;
     // padding: auto 0 !important;
     transition: none;
     
-    & .nav {
+    .nav {
       flex-direction: row;
       justify-content: space-around;
     }
@@ -399,7 +395,7 @@ $sidenav-expanded-width: 248px;
   .sidenav-btn {
     transition: none;
 
-    & p {
+    p {
       display: none;
     }
   }
@@ -422,13 +418,13 @@ $sidenav-expanded-width: 248px;
   }
 
 	.header-buttons {
-		& .btn {
+		.btn {
 			font-size: .875rem;
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.375rem;
 		}
 
-		& .form-select {
+		.form-select {
 			padding-top: 0.25rem;
 			padding-bottom: 0.25rem;
 			padding-left: 0.5rem;
@@ -448,4 +444,11 @@ $sidenav-expanded-width: 248px;
 	.gs-card-text h5 {
 		font-size: 20px;
 	}
+}
+
+// phone portrait {
+@media (max-width: 575.98px) {
+  #user-info {
+    display: none;
+  }
 }
