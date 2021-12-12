@@ -3,7 +3,7 @@
 
 	<div class="header-buttons">
     <form [formGroup]="invitationForm">
-      <button id="create-button" class="btn btn-primary" [disabled]="isEventCreating" (click)='saveEvents()'>
+      <button id="create-button" class="btn btn-primary" [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
 				<i class="bi bi-plus">&nbsp;</i>
         Create
         <span [style.display]="isEventCreating ? 'inline-block' : 'none'">&nbsp;

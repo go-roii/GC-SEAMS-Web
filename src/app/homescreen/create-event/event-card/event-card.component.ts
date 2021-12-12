@@ -67,7 +67,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
               private departmentService: DepartmentService,
               private userService: UserService,
               private speakersService: SpeakersService) {
-		console.log(Date.parse(this.minDate));
   }
 
 	typingTimer: any;

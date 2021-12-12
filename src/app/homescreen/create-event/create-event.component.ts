@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, NgZone, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Courses } from 'src/app/models/Courses';
@@ -25,6 +25,9 @@ import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 })
 export class CreateEventComponent implements OnInit {
 
+  @ViewChildren (EventCardComponent) eventCardComponents!: QueryList<EventCardComponent>;
+  
+  isEventFormDirty: boolean = false;
   isEventCreating: boolean = false;
 
   count = 0;
@@ -195,6 +198,15 @@ export class CreateEventComponent implements OnInit {
     //this.getCourses();
     //this.getDepartments();
     //console.log(this.userService.getUserData());
+  }
+
+  ngAfterViewChecked() {
+    this.checkEventFormDirty();
+  }
+
+  checkEventFormDirty() {
+    for(let eventCard of this.eventCardComponents.toArray())
+      this.isEventFormDirty = eventCard.eventForm.dirty;
   }
 
   getHttpOptions() {
