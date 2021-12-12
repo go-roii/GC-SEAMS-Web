@@ -430,7 +430,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
-        this.beginQRCodeLink = location.origin + '/qr-code'+'/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code
+        this.beginQRCodeLink = location.origin + '/qr-code'+'/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });
@@ -451,7 +451,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
-        this.endQRCodeLink = location.origin + '/qr-code' +'/'+ qrDetails.event_uuid+'/'+qrDetails.attendance_code
+        this.endQRCodeLink = location.origin + '/qr-code' +'/'+ qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });

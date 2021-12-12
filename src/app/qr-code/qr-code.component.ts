@@ -16,6 +16,7 @@ export class QRCodeComponent implements OnInit {
   qrCodeDetails!: QRCodeDetails
   event_uuid!: string;
   attendance_code!: string;
+  event_title!: string;
 
   constructor (private route: ActivatedRoute) {
   }
@@ -26,6 +27,7 @@ export class QRCodeComponent implements OnInit {
 
         this.attendance_code = params['attendance_code'];
         this.event_uuid = params['uuid'];
+        this.event_title = params['event_title'];
 
     });
 

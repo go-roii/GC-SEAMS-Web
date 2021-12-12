@@ -12,12 +12,12 @@
       <div style="background: white; border-radius: 6px; padding: 7px 7px 0;">
         <qr-code value={{qrString}} size="300" errorCorrectionLevel="H"></qr-code>
       </div>
-      <h6 class="py-4" style="display: block; color: rgba(255, 255, 255, 0.87)">BSCS Programming</h6>
+      <h6 class="py-4" style="display: block; color: rgba(255, 255, 255, 0.87)">{{event_title}}</h6>
     </div>
   </div>
 
   <div class="container text-center">
     <p class="mb-1" style="font-size: 18px;">If you cannot scan the QR code, type in the code below in the app instead.</p>
-    <h5 id="alt-code" style="color: var(--primary-color); font-weight: bold">ABC-DEF-GHI</h5>
+    <h5 id="alt-code" style="color: var(--primary-color); font-weight: bold">{{qrCodeDetails.attendance_code}}</h5>
   </div>
 </div>

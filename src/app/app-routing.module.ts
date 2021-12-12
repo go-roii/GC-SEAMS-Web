@@ -23,7 +23,7 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'qr-code/:uuid/:attendance_code',
+    path: 'qr-code/:uuid/:attendance_code/:event_title',
     component: QRCodeComponent,
   },
   {
