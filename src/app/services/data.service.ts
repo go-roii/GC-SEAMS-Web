@@ -82,6 +82,8 @@ export class DataService {
       alert('Password is incorrect')
     }else if(error.status === 400){
       alert('Something went wrong with the server')
+    }else if(error.status === 503){
+      alert('Something went wrong with the server')
     }
     else {
       // The backend returned an unsuccessful response code.

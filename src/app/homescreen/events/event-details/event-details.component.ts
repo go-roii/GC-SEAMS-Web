@@ -14,6 +14,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {EventsToAdd} from "../../../models/EventsToAdd";
 import { UpdatedEventService } from 'src/app/services/updated-event.service';
+import {QRCodeDetails} from "../../../models/QRCodeDetails";
 
 @Component({
   selector: 'app-event-details',
@@ -159,7 +160,7 @@ export class EventDetailsComponent implements OnInit {
         this.isEventUpdating = false;
       });
 
-      
+
     this.updatedEvent.updatedEventUUID = uuid;
   }
 
@@ -199,7 +200,9 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: EventsToAdd) =>{
         await this.setActiveEvent(data);
         await console.log(data)
-      });
+      }, (er: HttpErrorResponse) => {
+      this.dataService.handleError(er);
+    });;
   }
 
   setActiveEvent(data: EventsToAdd){
@@ -240,7 +243,7 @@ export class EventDetailsComponent implements OnInit {
     // disable qr code extent select field
     if(this.isEditable)
       this.eventForm.controls.eventIsStrict.enable()
-    else 
+    else
       this.eventForm.controls.eventIsStrict.disable()
   }
 
@@ -388,7 +391,7 @@ export class EventDetailsComponent implements OnInit {
 		if(e.target.value) {
 			this.typingTimer = setTimeout(() => {
 				// e.target.value = hour >= 8 && hour <= 20 ? e.target.value : null
-        
+
         if(hour >= 8 && hour <= 20) {
           e.target.value = e.target.value
           e.target.classList.remove("is-invalid")
@@ -409,11 +412,46 @@ export class EventDetailsComponent implements OnInit {
   // }
 
   generateBeginQRCodeLink() {
-    this.beginQRCodeLink = location.origin + '/qr-code' + this.qrCodeID
+
+    let qrDetails: QRCodeDetails;
+
+    const qrLinkParams=new RequestParams();
+    qrLinkParams.EndPoint='event/attendance/'+this.uuid;
+    qrLinkParams.requestType=5;
+    qrLinkParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(qrLinkParams)
+      .subscribe(async (data: QRCodeDetails) =>{
+        qrDetails = data;
+        await console.log(data)
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+
+    // @ts-ignore
+    this.beginQRCodeLink = location.origin + '/qr-code' + qrDetails.event_uuid+'/'+qrDetails.validity+'/'+qrDetails.attendance_part
   }
 
   generateEndQRCodeLink() {
-    this.endQRCodeLink = location.origin + '/qr-code' + this.qrCodeID
+
+    let qrDetails: QRCodeDetails;
+
+    const qrLinkParams=new RequestParams();
+    qrLinkParams.EndPoint='event/attendance/'+this.uuid;
+    qrLinkParams.requestType=5;
+    qrLinkParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(qrLinkParams)
+      .subscribe(async (data: QRCodeDetails) =>{
+        qrDetails = data;
+        await console.log(data)
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+
+    // @ts-ignore
+    this.endQRCodeLink = location.origin + '/qr-code' + qrDetails.event_uuid+'/'+qrDetails.validity+'/'+qrDetails.attendance_part
+
   }
 
   addSpeaker(value: Speaker){
@@ -516,5 +554,52 @@ export class EventDetailsComponent implements OnInit {
       }
     }
   }
+
+  generateBeginQRCode(uuid: string){
+
+    const body = {
+      event_uuid: uuid
+    }
+
+    const qrParams=new RequestParams();
+    qrParams.EndPoint='event/attendance/beginning';
+    qrParams.requestType=4;
+    qrParams.body=body;
+    qrParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(qrParams)
+      .subscribe(async (data: string) => {
+        await console.log(data);
+        await this.generateBeginQRCodeLink()
+        await alert("Beginning QR code generated");
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+
+  }
+
+  generateEndQRCode(uuid: string){
+
+    const body = {
+      event_uuid: uuid
+    }
+
+    const qrParams=new RequestParams();
+    qrParams.EndPoint='event/attendance/end';
+    qrParams.requestType=4;
+    qrParams.body=body;
+    qrParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(qrParams)
+      .subscribe(async (data: string) => {
+        await console.log(data);
+        await this.generateEndQRCodeLink()
+        await alert("Beginning QR code generated");
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+
+  }
+
 
 }
