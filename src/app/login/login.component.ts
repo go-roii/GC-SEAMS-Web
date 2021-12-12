@@ -16,6 +16,9 @@ import {SpeakersService} from "../services/speakers.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  isUserLoggingIn: boolean = false;
+
   private headers!: string[];
 
   constructor(private userService: UserService,
@@ -43,6 +46,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+
+    this.isUserLoggingIn = true;
 
     const credentials: Credentials = {
       email_address: this.credentialsForm.controls['email'].value,
@@ -89,9 +94,12 @@ export class LoginComponent implements OnInit {
           this.userService.start();
           this.userService.setLoginState();
 
+          this.isUserLoggingIn = false;
         },
         er => {
           this.dataService.handleError(er)
+          this.isUserLoggingIn = false;
+          // e.target.classList.add("is-invalid")
         });
   }
 }

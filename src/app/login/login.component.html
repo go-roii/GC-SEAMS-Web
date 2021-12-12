@@ -37,7 +37,16 @@
         </div>
 
 				<div class="d-grid gap-3">
-					<button type="submit" class="btn btn-lg btn-primary" [disabled]="credentialsForm.invalid" (click)='login()'>Login</button>
+					<button type="submit" class="btn btn-lg btn-primary" [disabled]="credentialsForm.invalid || isUserLoggingIn" (click)='login()'>
+            Log in
+            <span [style.display]="isUserLoggingIn ? 'inline-block' : 'none'">&nbsp;
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="visually-hidden">Loading...</span>
+            </span>
+          </button>
+
+          <hr>
+
 					<button type="button" class="btn btn-lg btn-outline-primary" [routerLink]="['/register']">Register</button>
 				</div>
 			</form>
