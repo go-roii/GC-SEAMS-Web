@@ -5,6 +5,7 @@ import {UserService} from "../../../services/user.service";
 import {DataService} from "../../../services/data.service";
 import {HttpHeaders} from "@angular/common/http";
 import {RequestParams} from "../../../models/RequestParams";
+import { UpdatedEventService } from 'src/app/services/updated-event.service';
 
 @Component({
   selector: 'app-pending',
@@ -16,23 +17,21 @@ import {RequestParams} from "../../../models/RequestParams";
 })
 
 export class PendingComponent implements OnInit {
-
+  
+  updatedEventUUID: string = this.updatedEvent.updatedEventUUID;
   searchText: string='';
 
   pendingEvents: EventsToAdd[]=[];
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
 
-  constructor(private sidedenavExpandService: SidenavExpandService,
+  constructor(private updatedEvent: UpdatedEventService,
+              private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
               private dataService: DataService) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
     });
-    
-    console.log(window.location.href)
   }
-
-
 
   getHttpOptions(){
     const trimmedHeader=this.userService.getAuthHeader().split(':');

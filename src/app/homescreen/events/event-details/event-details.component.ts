@@ -13,6 +13,7 @@ import {SpeakersService} from "../../../services/speakers.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {EventsToAdd} from "../../../models/EventsToAdd";
+import { UpdatedEventService } from 'src/app/services/updated-event.service';
 
 @Component({
   selector: 'app-event-details',
@@ -157,13 +158,17 @@ export class EventDetailsComponent implements OnInit {
         this.dataService.handleError(er)
         this.isEventUpdating = false;
       });
+
+      
+    this.updatedEvent.updatedEventUUID = uuid;
   }
 
   get speakerName() { return this.speakerForm.get('speakerName'); }
   get speakerEmail() { return this.speakerForm.get('speakerEmail'); }
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
-  constructor(private location: Location,
+  constructor(private updatedEvent: UpdatedEventService,
+              private location: Location,
               private departmentService: DepartmentService,
               private userService: UserService,
               private dataService: DataService,

@@ -26,6 +26,10 @@
       }
     }
 	}
+
+  &.event-updated .card {
+    border: 1px solid var(--primary-color);
+  }
 }
 
 .change-poster {
