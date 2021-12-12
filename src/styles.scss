@@ -313,7 +313,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-
+.no-hover {
+  pointer-events: none;
+}
 
 .navbar {
   background-color: white;

@@ -277,7 +277,7 @@ export class EventDetailsComponent implements OnInit {
     const hour= date.getHours();
     const minutes= date.getMinutes();
 
-    // make event editable if the event is not ongoing
+    // make event editable if the event is upcoming
     this.isEditable = new Date < date;
 
     return hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})+':'+minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})+':00';

@@ -9,6 +9,8 @@ import {Time} from "@angular/common";
 })
 export class EventsEventCardComponent implements OnInit {
 
+  isEditable: boolean = false;
+
   @Input() item!: EventsToAdd;
   eventDate!: Date;
   eventEndDate!: Date;
@@ -42,6 +44,9 @@ export class EventsEventCardComponent implements OnInit {
 			this.eventPosterColor = '#FFC107';
 		else
 			this.eventPosterColor = '#6E3CBC';
+
+    // make event editable if the event is upcoming
+      this.isEditable = new Date < this.eventDate;
 
 
 		// progress bar
