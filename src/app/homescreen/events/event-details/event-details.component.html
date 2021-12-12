@@ -3,7 +3,7 @@
 
    <div class="header-buttons">
     <button id="delete-button" class="btn btn-danger" [disabled]="!isEditable">Delete</button> <!-- add dialog for delete reconfirmation -->
-    <button id="save-button" class="btn btn-primary" [disabled]="!isEditable" (click)="editActiveEvent(uuid)">
+    <button id="save-button" class="btn btn-primary" [disabled]="!isEditable || !eventForm.dirty" (click)="editActiveEvent(uuid)">
       Save
       <span [style.display]="isEventUpdating ? 'inline-block' : 'none'">&nbsp;
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -26,7 +26,7 @@
             <!-- <button type="button" class="btn btn-sm" disabled>
               <i class="fas fa-share-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Share event"></i>
             </button> -->
-            <button type="button" class="btn btn-sm" disabled>
+            <button type="button" class="btn btn-sm" (click)="eventForm.reset(initialEventForm)" [disabled]="!eventForm.dirty">
               <i class="fas fa-history" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert event details"></i>
             </button>
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
@@ -373,8 +373,8 @@
           </ul>
         </div>
 
-        <div id="add-speaker-collapse" class="collapse mt-3">
-          <div class="card card-body" style="height: unset; border-radius: 0.25rem;">
+        <div id="add-speaker-collapse" class="collapse">
+          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">

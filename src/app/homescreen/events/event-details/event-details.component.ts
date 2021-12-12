@@ -57,6 +57,8 @@ export class EventDetailsComponent implements OnInit {
   chosenDepartmentsList: string = '';
   chosenSpeakersList: string = '';
 
+  initialEventForm: any;
+
   setFieldValues(event: EventsToAdd){
     this.eventName=event.event_title;
     this.eventDetails=event.event_description;
@@ -200,6 +202,8 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: EventsToAdd) =>{
         await this.setActiveEvent(data);
         await console.log(data)
+
+        this.initialEventForm = this.eventForm.value
       }, (er: HttpErrorResponse) => {
       this.dataService.handleError(er);
     });;
@@ -380,6 +384,8 @@ export class EventDetailsComponent implements OnInit {
         }
 			}, this.typingDuration);
 		}
+
+    console.log(this.eventForm.dirty)
 	}
 
 	restrictEventTime(e: any) {

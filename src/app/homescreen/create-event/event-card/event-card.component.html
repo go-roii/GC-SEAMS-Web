@@ -250,8 +250,8 @@
           </ul>
         </div>
 
-        <div class="collapse mt-3" [attr.id]="'add-speaker-collapse'+event.ID">
-          <div class="card card-body" style="height: unset; border-radius: 0.25rem;">
+        <div class="collapse" [attr.id]="'add-speaker-collapse'+event.ID">
+          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">
