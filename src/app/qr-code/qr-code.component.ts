@@ -39,6 +39,7 @@ export class QRCodeComponent implements OnInit {
     this.qrString=JSON.stringify(this.qrCodeDetails)
 
     console.log(this.qrCodeDetails);
+    console.log(JSON.parse(this.qrString))
 
   }
 

@@ -8,9 +8,9 @@
 			<button type="button" class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
         <i class="far fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Event Poster/Preview Event"></i>
       </button>
-      <button type="button" class="btn">
-        <i class="far fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Event"></i>
-      </button>
+<!--      <button type="button" class="btn">-->
+<!--        <i class="far fa-clone" data-bs-toggle="tooltip" data-bs-placement="top" title="Duplicate Event"></i>-->
+<!--      </button>-->
       <button type="button" class="btn" [disabled]="event.ID == 1" (click)='deleteEvent()'>
         <i class="far fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Event"></i>
       </button>

@@ -53,9 +53,9 @@ export class HomescreenComponent implements OnInit {
     this.breakpointObserver
     .observe(['(max-width: 1199.98px)'])
     .subscribe((state: BreakpointState) => {
-      if (state.matches) 
+      if (state.matches)
         this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = false);
-      else 
+      else
         this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = true);
     });
 
@@ -72,6 +72,7 @@ export class HomescreenComponent implements OnInit {
 
     //refresh timer will be started if not yet
     if(!this.userService.getTimerIsStarted()){
+      this.userService.getRefreshToken();
       this.userService.start();
     }
 

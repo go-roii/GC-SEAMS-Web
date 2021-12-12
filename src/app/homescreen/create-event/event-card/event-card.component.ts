@@ -10,6 +10,7 @@ import {Speaker} from "../../../models/Speaker";
 import {UserService} from "../../../services/user.service";
 import {HttpHeaders} from "@angular/common/http";
 import {SpeakersService} from "../../../services/speakers.service";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-event-card',
@@ -32,6 +33,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
   //emitters to be used on parent component(CreateEventComponent)
   @Output() eventData = new EventEmitter<Events>();
   @Output() eventDataToDelete = new EventEmitter<Events>();
+  formIsValid!: boolean;
 
   searchText: string='';
 
@@ -67,6 +69,20 @@ export class EventCardComponent implements OnInit, OnDestroy{
               private departmentService: DepartmentService,
               private userService: UserService,
               private speakersService: SpeakersService) {
+  }
+
+  onChanges(): void {
+
+    // @ts-ignore
+    this.eventForm.get('name').valueChanges.subscribe(val => {
+      this.formIsValid = this.eventForm.valid;
+      console.log(this.formIsValid);
+    });
+
+    // this.eventForm.statusChanges
+    //   .pipe(
+    //     filter(() => this.eventForm.valid))
+    //   .subscribe(() => this.onFormValid());
   }
 
 	typingTimer: any;
@@ -273,6 +289,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
     this.addNewEvent();
+    this.onChanges();
 
     console.log("departments: "+this.departments);
     console.log("speakers: "+this.speakers);

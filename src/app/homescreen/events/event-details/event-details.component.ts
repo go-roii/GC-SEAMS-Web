@@ -15,6 +15,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EventsToAdd} from "../../../models/EventsToAdd";
 import { UpdatedEventService } from 'src/app/services/updated-event.service';
 import {QRCodeDetails} from "../../../models/QRCodeDetails";
+import {Student} from "../../../models/Student";
 
 @Component({
   selector: 'app-event-details',
@@ -35,6 +36,11 @@ export class EventDetailsComponent implements OnInit {
   private activeEventUUID!: Subscription;
   isEditable: boolean = false;
   uuid!: string;
+  registeredStudents!: Student[];
+  attendedStudents!: Student[];
+  presentCount: number=0;
+  registeredCount: number=0;
+  absentCount: number=0;
 
 	enableEndQRCodeLink: boolean = true;
 
@@ -190,6 +196,9 @@ export class EventDetailsComponent implements OnInit {
     this.departments=this.departmentService.getDepartments();
 
     console.log(this.event.eventIsStrict)
+
+    this.getRegisteredStudents(this.uuid);
+    this.getAttendedStudents(this.uuid)
   }
 
   getEventDetails(uuid: string){
@@ -206,7 +215,65 @@ export class EventDetailsComponent implements OnInit {
         this.initialEventForm = this.eventForm.value
       }, (er: HttpErrorResponse) => {
       this.dataService.handleError(er);
-    });;
+    });
+  }
+
+  getRegisteredStudents(uuid: string){
+    const registeredStudentParams=new RequestParams();
+    registeredStudentParams.EndPoint='event/registered/'+uuid;
+    registeredStudentParams.requestType=5;
+    registeredStudentParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(registeredStudentParams)
+      .subscribe(async (data: Student[]) =>{
+        await this.setRegisteredStudents(data);
+        await console.log(data)
+
+        this.initialEventForm = this.eventForm.value
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+  }
+
+  setRegisteredStudents(data: Student[]){
+    this.registeredStudents =  data;
+  }
+
+  processStudentsData(){
+    for(let registrant of this.registeredStudents){
+      this.registeredCount+=1;
+      for(let attendee of this.attendedStudents){
+        if(registrant.id == attendee.id){
+          registrant.is_present;
+          this.presentCount+=1;
+          break;
+        }
+      }
+    }
+    this.absentCount=this.registeredCount-this.presentCount;
+  }
+
+  getAttendedStudents(uuid: string){
+
+    const attendedStudentParams=new RequestParams();
+    attendedStudentParams.EndPoint='event/attended/'+uuid;
+    attendedStudentParams.requestType=5;
+    attendedStudentParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(attendedStudentParams)
+      .subscribe(async (data: Student[]) =>{
+        await this.setAttendedStudents(data);
+        await console.log(data)
+
+        this.initialEventForm = this.eventForm.value
+      }, (er: HttpErrorResponse) => {
+        this.dataService.handleError(er);
+      });
+  }
+
+  setAttendedStudents(data: Student[]){
+    this.attendedStudents =  data;
+    this.processStudentsData();
   }
 
   setActiveEvent(data: EventsToAdd){
