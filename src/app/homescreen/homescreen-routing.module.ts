@@ -36,7 +36,7 @@ const routes: Routes = [
         component: EventDetailsComponent
       },
       {
-        path: 'dashboard/analytics',
+        path: 'dashboard/analytics/:uuid',
         component: AnalyticsComponent
       },
       {

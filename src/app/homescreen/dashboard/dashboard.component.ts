@@ -51,9 +51,9 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  open_analytics_page() {
+  open_analytics_page(uuid: string) {
     console.log('test')
-    this.router.navigate(['homescreen/dashboard/analytics'],
+    this.router.navigate(['homescreen/dashboard/analytics', uuid],
     // { skipLocationChange: true }
     )
   }
