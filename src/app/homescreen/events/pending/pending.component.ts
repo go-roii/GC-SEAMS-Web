@@ -25,11 +25,14 @@ export class PendingComponent implements OnInit {
   constructor(private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
               private dataService: DataService) {
-
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
     });
+    
+    console.log(window.location.href)
   }
+
+
 
   getHttpOptions(){
     const trimmedHeader=this.userService.getAuthHeader().split(':');

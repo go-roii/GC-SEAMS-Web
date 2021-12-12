@@ -23,6 +23,12 @@
           </div>
 
           <div class="gs-card-buttons">
+            <button type="button" class="btn btn-sm" disabled>
+              <i class="fas fa-share-alt" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert details"></i>
+            </button>
+            <button type="button" class="btn btn-sm" disabled>
+              <i class="fas fa-history" data-bs-toggle="tooltip" data-bs-placement="top" title="Revert details"></i>
+            </button>
             <button type="button" class="btn btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#preview-event-modal'+event.ID" aria-expanded="false">
               <i class="far fa-image" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Event Poster/Preview Event"></i>
             </button>
@@ -55,7 +61,7 @@
                 [readonly]="!isEditable" (change)="restrictEventDate($event)"
                 [(ngModel)]='event.eventDate' required>
               <div class="invalid-tooltip">
-                Please input a proper date
+                Please input a present or future date.
               </div>
             </div>
 
