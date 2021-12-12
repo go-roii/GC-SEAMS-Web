@@ -1,10 +1,15 @@
 :host {
-	&.ongoing .card {
+	&.ongoing .event-card {
 		background-color: var(--background);
 		border: 1px solid rgba(0, 0, 0, .12);
+
+    .card-subtitle {
+      color: var(--primary-color) !important;
+      font-weight: 500;
+    }
 	}
 
-	&.pending .card {
+	&.pending .event-card {
 		.extra-details-pills {
       .badge {
         color: #FF6F00;
@@ -12,9 +17,13 @@
         box-shadow: inset 0 0 0 1px #FFA000;
       }
     }
+
+    .card-subtitle {
+      color: #FF6F00 !important;
+    }
 	}
 
-	&.ended .card {
+	&.ended .event-card {
 		background-color: var(--background);
 		border: 1px solid rgba(0, 0, 0, .12);
 
@@ -27,7 +36,7 @@
     }
 	}
 
-  &.event-updated .card {
+  &.event-updated .event-card {
     border: 1px solid var(--primary-color);
   }
 }
@@ -77,7 +86,7 @@
 	object-fit: cover;
 }
 
-.card {
+.event-card {
 	position: relative;
 	height: 400px;
 	border-radius: 8px;

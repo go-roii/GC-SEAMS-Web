@@ -1,4 +1,4 @@
-<div class="card">
+<div class="event-card card">
 	<div class="change-poster user-select-none" [ngClass]="{'no-hover' : !isEditable}" onclick="document.getElementById('upload-event-poster').click();">
 		<p class="upload-event-poster-text text-center">Change event poster</p>
 		<input id="upload-event-poster" class="btn-change-poster" type="file">
@@ -8,7 +8,7 @@
 
 	<div class="card-body">
 		<h6 class="card-title">{{item.event_title}}</h6>
-		<p class="card-subtitle mb-2 text-muted">{{eventDate|date}}</p>
+		<p class="card-subtitle mb-2 text-body">{{eventDate|date}}</p>
 		<p class="card-text">{{item.event_description}}</p>
     <div class="extra-details-pills">
       <span class="badge rounded-pill">{{eventDate |  date:'h:mm a'}} - {{eventEndDate |  date:'h:mm a'}}</span>
