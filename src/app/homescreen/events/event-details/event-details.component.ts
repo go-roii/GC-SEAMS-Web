@@ -94,6 +94,7 @@ export class EventDetailsComponent implements OnInit {
   set eventEndTime(value: string){this.eventForm.controls['eventEndTime'].setValue(value)}
   set eventSpeakers(value: string){this.eventForm.controls['eventName'].setValue(value)}
   set eventSeminarHours(value: number){this.eventForm.controls['eventSeminarHours'].setValue(value)}
+  set eventIsStrict(value: string){this.eventForm.controls['eventIsStrict'].setValue(value)}
   set eventRegistrationForm(value: string){this.eventForm.controls['eventRegistrationForm'].setValue(value)}
 
   get eventName(){ return this.eventForm.controls['eventName'].value}
@@ -207,6 +208,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(eventDetailsParams)
       .subscribe(async (data: EventsToAdd) =>{
         await this.setActiveEvent(data);
+        await this.setAttendanceStrictness(data);
         await this.getRegisteredStudents(uuid)
                   .then(() => {this.getAttendedStudents(uuid)});
         await this.regenerateQRCodeLink(uuid)
@@ -215,6 +217,12 @@ export class EventDetailsComponent implements OnInit {
       }, (er: HttpErrorResponse) => {
       this.dataService.handleError(er);
     });
+  }
+
+  setAttendanceStrictness(data: EventsToAdd){
+    if(data.is_attendance_strict){
+      this.eventIsStrict='Beginning only';
+    }
   }
 
   async getRegisteredStudents(uuid: string){

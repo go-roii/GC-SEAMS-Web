@@ -256,7 +256,7 @@
 
         <ul class="list-group list-group-flush">
           <ng-container *ngFor="let registrant of registeredStudents">
-            <li class="list-group-item">{{registrant.name}} - {{registrant.course_code}}
+            <li class="list-group-item">{{registrant.name}}. - {{registrant.course_code}}
               <span *ngIf="registrant.is_present" class="badge rounded-pill status-pill sp-present">Present</span>
               <span *ngIf="!registrant.is_present" class="badge rounded-pill status-pill sp-absent">Absent</span>
             </li>
