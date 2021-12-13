@@ -198,7 +198,7 @@ export class EventDetailsComponent implements OnInit {
     console.log(this.event.eventIsStrict)
 
     this.getRegisteredStudents(this.uuid);
-    this.getAttendedStudents(this.uuid)
+    this.getAttendedStudents(this.uuid);
   }
 
   getEventDetails(uuid: string){
@@ -245,7 +245,7 @@ export class EventDetailsComponent implements OnInit {
       this.registeredCount+=1;
       for(let attendee of this.attendedStudents){
         if(registrant.id == attendee.id){
-          registrant.is_present;
+          registrant.is_present=true;
           this.presentCount+=1;
           break;
         }
@@ -253,6 +253,7 @@ export class EventDetailsComponent implements OnInit {
     }
     this.absentCount=this.registeredCount-this.presentCount;
     console.log("Data Processing completed");
+    console.log(this.registeredStudents)
   }
 
   getAttendedStudents(uuid: string){

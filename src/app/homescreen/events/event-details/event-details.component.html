@@ -243,7 +243,7 @@
       <div id="attendance-content" [style.height]="attendanceColumnHeight+'px'">
         <div class="gs-card-header mb-4">
           <div class="gs-card-text">
-            <h5>Attendees - 10</h5>
+            <h5>Attendance</h5>
           </div>
 
           <div id="status-filter-tab" class="user-select-none">
@@ -251,10 +251,11 @@
             <span class="badge rounded-pill status-filter sf-absent">Absent - {{absentCount}}</span>
             <span class="badge rounded-pill status-filter sf-not-registered">Registered - {{registeredCount}}</span>
           </div>
+
         </div>
 
         <ul class="list-group list-group-flush" *ngFor="let registrant of registeredStudents">
-          <li class="list-group-item">{{registrant.name}} - {{registrant.course_name}}
+          <li class="list-group-item">{{registrant.name}} - {{registrant.course_code}}
             <span *ngIf="registrant.is_present" class="badge rounded-pill status-pill sp-present">Present</span>
             <span *ngIf="!registrant.is_present" class="badge rounded-pill status-pill sp-absent">Absent</span>
           </li>
