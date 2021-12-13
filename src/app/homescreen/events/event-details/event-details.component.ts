@@ -314,6 +314,11 @@ export class EventDetailsComponent implements OnInit {
 
     this.setFieldValues(data)
 
+    // set date and time to event preview
+    this.eventDate = data.event_start_date.split("T")[0];
+    this.startTime = new Date(data.event_start_date.split("[")[0]);
+    this.endTime = new Date(data.event_end_date.split("[")[0]);
+
     // disable qr code extent select field
     if(this.isEditable)
       this.eventForm.controls.eventIsStrict.enable()
