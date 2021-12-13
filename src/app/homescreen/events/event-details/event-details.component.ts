@@ -195,10 +195,7 @@ export class EventDetailsComponent implements OnInit {
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
 
-    console.log(this.event.eventIsStrict)
-
-    this.getRegisteredStudents(this.uuid);
-    this.getAttendedStudents(this.uuid);
+    console.log(this.event.eventIsStrict);
   }
 
   getEventDetails(uuid: string){
@@ -210,7 +207,9 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(eventDetailsParams)
       .subscribe(async (data: EventsToAdd) =>{
         await this.setActiveEvent(data);
-        await console.log(data)
+        await this.getRegisteredStudents(uuid)
+                  .then(() => {this.getAttendedStudents(uuid)});
+        await this.regenerateQRCodeLink(uuid)
 
         this.initialEventForm = this.eventForm.value
       }, (er: HttpErrorResponse) => {
@@ -218,7 +217,7 @@ export class EventDetailsComponent implements OnInit {
     });
   }
 
-  getRegisteredStudents(uuid: string){
+  async getRegisteredStudents(uuid: string){
     const registeredStudentParams=new RequestParams();
     registeredStudentParams.EndPoint='event/registered/'+uuid;
     registeredStudentParams.requestType=5;
@@ -266,6 +265,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(attendedStudentParams)
       .subscribe(async (data: Student[]) =>{
         await this.setAttendedStudents(data);
+        await this.processStudentsData();
         await console.log('Attended: ----------')
         await console.log(data)
 
@@ -277,7 +277,6 @@ export class EventDetailsComponent implements OnInit {
 
   setAttendedStudents(data: Student[]){
     this.attendedStudents =  data;
-    this.processStudentsData();
   }
 
   setActiveEvent(data: EventsToAdd){
@@ -503,8 +502,6 @@ export class EventDetailsComponent implements OnInit {
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });
-
-
   }
 
   generateEndQRCodeLink(uuid: string) {
@@ -525,6 +522,43 @@ export class EventDetailsComponent implements OnInit {
         this.dataService.handleError(er);
       });
 
+  }
+
+  regenerateQRCodeLink(uuid: string){
+
+    let qrDetails: QRCodeDetails;
+
+    try{
+      const beginningQrLinkParams=new RequestParams();
+      beginningQrLinkParams.EndPoint='event/attendance/'+uuid;
+      beginningQrLinkParams.requestType=5;
+      beginningQrLinkParams.authToken=this.getHttpOptions();
+
+      try{
+        this.dataService.httprequest(beginningQrLinkParams)
+          .subscribe(async (data: QRCodeDetails) =>{
+            qrDetails = data;
+            await console.log(data)
+            this.beginQRCodeLink = location.origin + '/qr-code'+'/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
+          });
+      }catch (e) {
+
+      }
+
+      const qrLinkParams=new RequestParams();
+      qrLinkParams.EndPoint='event/attendance/'+uuid;
+      qrLinkParams.requestType=5;
+      qrLinkParams.authToken=this.getHttpOptions();
+
+      try{
+        this.dataService.httprequest(qrLinkParams)
+          .subscribe(async (data: QRCodeDetails) =>{
+            qrDetails = data;
+            await console.log(data)
+            this.endQRCodeLink = location.origin + '/qr-code' +'/'+ qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
+          });
+      }catch (e){}
+    }catch (e) {}
   }
 
   addSpeaker(value: Speaker){
