@@ -73,6 +73,7 @@ export class EventDetailsComponent implements OnInit {
     this.eventEndTime=this.getEventEndTime(event);
     this.eventSeminarHours=event.seminar_hours;
     this.eventRegistrationForm=event.registration_link
+    // this.eventIsStrict=event.is_attendance_strict
   }
 
   eventForm: FormGroup=new FormGroup({
@@ -122,11 +123,12 @@ export class EventDetailsComponent implements OnInit {
     let strict: boolean;
 
     //check if the selected option is strict or not
-    if(this.eventIsStrict=='Beginning only'){
-      strict=false;
-    }else{
+    if(this.eventIsStrict=='strict')
       strict=true;
-    }
+    else
+      strict=false;
+
+    console.log(this.eventIsStrict)
 
     const data: EventsToAdd = {
       event_id: 0,
@@ -213,6 +215,8 @@ export class EventDetailsComponent implements OnInit {
                   .then(() => {this.getAttendedStudents(uuid)});
         await this.regenerateQRCodeLink(uuid)
 
+        console.log(data.is_attendance_strict)
+
         this.initialEventForm = this.eventForm.value
       }, (er: HttpErrorResponse) => {
       this.dataService.handleError(er);
@@ -220,9 +224,10 @@ export class EventDetailsComponent implements OnInit {
   }
 
   setAttendanceStrictness(data: EventsToAdd){
-    if(data.is_attendance_strict){
-      this.eventIsStrict='Beginning only';
-    }
+    if(data.is_attendance_strict)
+      this.eventIsStrict='strict';
+    else
+      this.eventIsStrict='notStrict';
   }
 
   async getRegisteredStudents(uuid: string){

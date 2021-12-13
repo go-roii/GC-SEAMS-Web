@@ -121,8 +121,8 @@
               </label>
               <select [attr.id]="'qr-code'+event.ID" class="form-select form-select-sm" formControlName="eventIsStrict">
                 <option value="" selected disabled hidden>Select QR Code Extent</option>
-                <option>Beginning only</option>
-                <option>Beginning and End</option>
+                <option value="notStrict">Beginning only</option>
+                <option value="strict">Beginning and End</option>
               </select>
             </div>
           </div>
@@ -163,7 +163,7 @@
             </div>
 
             <!-- hide when attendance is not strict -->
-            <div class="input-group input-group-sm dropup mb-3" [style.hidden]="">
+            <div class="input-group input-group-sm dropup mb-3" [style.display]="eventIsStrict === 'strict' ? 'flex' : 'none'">
               <label class="input-group-text" for="end-qr-code-link" id="label-begin-qr-code-link">End</label>
               <input id="end-qr-code-link" class="form-control form-control-sm" type="text" [value]="endQRCodeLink"
                 [disabled]="!enableEndQRCodeLink" readonly>
