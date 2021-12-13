@@ -227,6 +227,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(registeredStudentParams)
       .subscribe(async (data: Student[]) =>{
         await this.setRegisteredStudents(data);
+        await console.log('registered: ----------')
         await console.log(data)
 
         this.initialEventForm = this.eventForm.value
@@ -251,6 +252,7 @@ export class EventDetailsComponent implements OnInit {
       }
     }
     this.absentCount=this.registeredCount-this.presentCount;
+    console.log("Data Processing completed");
   }
 
   getAttendedStudents(uuid: string){
@@ -263,6 +265,7 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.httprequest(attendedStudentParams)
       .subscribe(async (data: Student[]) =>{
         await this.setAttendedStudents(data);
+        await console.log('Attended: ----------')
         await console.log(data)
 
         this.initialEventForm = this.eventForm.value

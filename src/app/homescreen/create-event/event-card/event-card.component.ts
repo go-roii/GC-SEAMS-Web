@@ -289,7 +289,7 @@ export class EventCardComponent implements OnInit, OnDestroy{
     this.speakers=this.speakersService.getSpeakers();
     this.departments=this.departmentService.getDepartments();
     this.addNewEvent();
-    this.onChanges();
+    //this.onChanges();
 
     console.log("departments: "+this.departments);
     console.log("speakers: "+this.speakers);

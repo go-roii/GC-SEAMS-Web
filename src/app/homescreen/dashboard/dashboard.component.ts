@@ -38,16 +38,16 @@ export class DashboardComponent implements OnInit {
   }
 
   async processEventAnalytics(){
-    console.log('Processed event')
-
-    let arr: ViewsAnalyticsCount[]=[]
-
-    for(let event of this.eventsSummary){
-
-      arr = event.view_count;
-      console.log(event.view_count);
-
-    }
+    // console.log('Processed event')
+    //
+    // let arr: ViewsAnalyticsCount[]=[]
+    //
+    // for(let event of this.eventsSummary){
+    //
+    //   arr = event.view_count;
+    //   console.log(event.view_count);
+    //
+    // }
 
   }
 
@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
     this.dataService.httprequest(endedEventsParams)
       .subscribe(async (data: EventSummary[]) =>{
         await this.setEventSummary(data)
-        await this.processEventAnalytics();
+        //await this.processEventAnalytics();
       });
 
     console.log("fetch events")
@@ -88,29 +88,16 @@ export class DashboardComponent implements OnInit {
   //link analytics data to event summary
   async linkAnalyticsData(){
 
-
     for(let event of this.eventsSummary){
       event.event_id=this.count++;
       const analyticsParams=new RequestParams();
-      analyticsParams.EndPoint='/views/department/'+event.event_uuid;
+      analyticsParams.EndPoint='analytics/'+event.event_uuid;
       analyticsParams.requestType=5;
       analyticsParams.authToken=this.getHttpOptions();
 
       this.dataService.httprequest(analyticsParams)
-        .subscribe(async (data: ViewsAnalyticsCount[]) =>{
-          event.view_count=data;
-          //console.log(data)
-        });
-
-      const registrationsParams=new RequestParams();
-      registrationsParams.EndPoint='registrations/department/'+event.event_uuid;
-      registrationsParams.requestType=5;
-      registrationsParams.authToken=this.getHttpOptions();
-
-      this.dataService.httprequest(registrationsParams)
-        .subscribe(async (data: RegistrationAnalyticsCount[]) =>{
-          //await this.addAnalytics(event,data);
-          event.registration_count=data;
+        .subscribe(async (data: OverallAnalytics) =>{
+          event.overallAnalytics=data;
           //console.log(data)
         });
     }
@@ -120,12 +107,8 @@ export class DashboardComponent implements OnInit {
   }
 
   //add all the views in the analytics per event
-  sumViewAnalytics(data :ViewsAnalyticsCount[]){
-    let sum:number = 0;
-    for(let view of data){
-      sum += view.views;
-    }
-    return sum;
+  getViewsCount(data:OverallAnalytics){
+    return data.views
   }
 
   processViews(data :ViewsAnalyticsCount[]){
