@@ -2,10 +2,17 @@
   <h4>Create Event</h4>
 
 	<div class="header-buttons">
+    <!-- <button id="create-button" class="btn btn-outline-primary px-2" (click)='deleteCard2()'>
+      <i class="bi bi-dash"></i>
+    </button> -->
+    <button id="create-button" class="btn btn-outline-primary px-2" (click)='addCard()'>
+      <i class="bi bi-plus"></i>
+    </button>
+
     <form [formGroup]="invitationForm">
-      <button id="create-button" class="btn btn-primary" [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
-				<i class="bi bi-plus">&nbsp;</i>
-        Create
+      <button id="create-button" class="btn btn-primary position-relative" [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
+        Create&nbsp;
+        <span class="badge bg-light text-dark">{{count}}</span>
         <span [style.display]="isEventCreating ? 'inline-block' : 'none'">&nbsp;
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           <span class="visually-hidden">Loading...</span>
