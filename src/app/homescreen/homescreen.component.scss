@@ -13,7 +13,7 @@ $sidenav-expanded-width: 248px;
   max-width: $sidenav-width;
 	background-color: var(--background);
 	padding: 4px 12px;
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid var(--bs-gray-300);
 	transition: // width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
               min-width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
 							padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
@@ -42,7 +42,7 @@ $sidenav-expanded-width: 248px;
 	}
   
 	& .nav-item p {
-		color: rgba(0, 0, 0, 0.48);
+		color: var(--bs-gray-600);
     visibility: hidden;
 	  position: absolute;
 	  left: 56px;
@@ -72,7 +72,7 @@ $sidenav-expanded-width: 248px;
 }
   
 .sidenav-btn {
-	color: rgba(0, 0, 0, 0.48);
+	color: var(--bs-gray-600);
 	width: 100%;
 	height: 48px;
 	border-radius: 12px;
@@ -115,8 +115,9 @@ $sidenav-expanded-width: 248px;
 }
 
 .navbar {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.03);
+	// border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--bs-gray-300);
+	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.03);
   padding-left: 72px;
   padding-right: calc(72px + 12px); 
   transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
@@ -189,7 +190,7 @@ $sidenav-expanded-width: 248px;
 .gs-card { 
   height: min-content;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.16);
+  border: 1px solid var(--bs-gray-300);
   border-radius: 12px;
   padding: 36px;
   transition: box-shadow ease-out 100ms;
@@ -306,7 +307,7 @@ $sidenav-expanded-width: 248px;
   }
   
   & .content {
-    padding: 32px;
+    padding: 28px 32px;
   }
 }
 
@@ -332,7 +333,7 @@ $sidenav-expanded-width: 248px;
   }
 	
   .content {
-    padding: 36px;
+    padding: 30px 36px;
   }
 
   .text-header {
@@ -346,7 +347,7 @@ $sidenav-expanded-width: 248px;
 		}
 
     & .content {
-    	padding: 24px;
+    	padding: 18px 24px;
     }
   }
 

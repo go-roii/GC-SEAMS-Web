@@ -5,12 +5,12 @@
 .new-event-container {
   height: 757px;
   flex: 1;
-  color: rgba(0, 0, 0, 0.3);
-  border: 2px dashed rgba(0, 0, 0, 0.3);
+  color: var(--bs-gray-500);
+  border: 2px dashed var(--bs-gray-500);
   cursor: pointer;
   padding: 35px;
   
   &:hover {
-    background-color: #f0f0f0;
+    background-color: var(--bs-gray-100);
   }
 }

@@ -11,8 +11,11 @@
 
     <form [formGroup]="invitationForm">
       <button id="create-button" class="btn btn-primary position-relative" [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
-        Create&nbsp;
-        <span class="badge bg-light text-dark">{{count}}</span>
+        <span class="position-absolute top-0 start-100 translate-middle badge bg-light text-dark">
+          {{count}}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+        Create
         <span [style.display]="isEventCreating ? 'inline-block' : 'none'">&nbsp;
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           <span class="visually-hidden">Loading...</span>
@@ -29,6 +32,7 @@
     (eventDataToDelete)="deleteCard($event)"
     (eventDataToDelete)="deleteEvent($event)">
 	</app-event-card>
+  
 	<div class="d-flex col-xl-6" (click)='addCard()'>
 		<div class="gs-card new-event-container position-relative">
 			<div class="gs-card-text">

@@ -82,6 +82,10 @@ h6 {
   font-size: 20px;
 }
 
+hr {
+  background-color: var(--bs-gray-700);
+}
+
 ::selection {
   color: white;
   background: var(--primary-color);
