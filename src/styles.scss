@@ -1,17 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --background: #F9F7FC;
-	// --foreground: #1a0e2d;
+  // purple
+  // --background: #F9F7FC;
+	// // --foreground: #1a0e2d;
   
-	--primary-color: #6E3CBC;
-  --primary-color-darker: #572FAD;
+	// --primary-color: #6E3CBC;
+  // --primary-color-darker: #572FAD;
+  // --red: #DC3545;
+  // --green: #28A745;
+  // --yellow-orange: #FFC107;
+  // --yellow-orange-darker: #FFA000;
+
+  // --primary-color-rgb: 110, 60, 188;
+
+
+
+  // green
+
+  --background: #EFF5F3;
+	// --foreground: #1a0e2d;
+
+  --primary-color-900: #20503C;
+  --primary-color-800: #2A6C56;
+  --primary-color-700: #307C63;
+  --primary-color-600: #368C72;
+  --primary-color-500: #3B997E;
+  --primary-color-400: #49A990;
+  --primary-color-300: #63B9A2;
+  --primary-color-200: #8CCDBC;
+  --primary-color-100: #B8E0D6;
+  
+	// --primary-color: #259F6C;
+  --primary-color: var(--primary-color-600);
+  --primary-color-darker: var(--primary-color-800);
   --red: #DC3545;
   --green: #28A745;
   --yellow-orange: #FFC107;
   --yellow-orange-darker: #FFA000;
 
-  --primary-color-rgb: 110, 60, 188;
+  --primary-color-rgb: 54, 140, 114;
 }
 
 $navbar-height: 64px;
@@ -284,19 +312,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .form-check-input:focus {
-  border-color: #B39DDB;
+  border-color: var(--primary-color-700);
   box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
 // TEXTBOX/TEXTFIELD
 
 .form-control:focus {
-  border-color: #B39DDB;
+  border-color: var(--primary-color-300);
   box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
 .form-select:focus {
-	border-color: #B39DDB;
+	border-color: var(--primary-color-300);
   box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
@@ -308,7 +336,7 @@ input[type=number]::-webkit-outer-spin-button {
 // ACCORDION 
 
 .accordion-button:focus {
-  border-color: #B39DDB;
+  border-color: var(--primary-color-300);
   box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
 }
 
@@ -337,5 +365,5 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .qm-tooltip {
-  opacity: 0.48;
+  opacity: 0.36;
 }
