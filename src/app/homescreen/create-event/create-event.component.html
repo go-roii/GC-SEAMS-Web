@@ -5,15 +5,16 @@
     <!-- <button id="create-button" class="btn btn-outline-primary px-2" (click)='deleteCard2()'>
       <i class="bi bi-dash"></i>
     </button> -->
-    <button id="create-button" class="btn btn-outline-primary px-2" (click)='addCard()'>
-      <i class="bi bi-plus"></i>
+    <button id="create-button" class="btn btn-outline-primary rounded-pill" (click)='addCard()'>
+      <i class="bi bi-plus-lg"></i>
     </button>
 
     <form [formGroup]="invitationForm">
-      <button id="create-button" class="btn btn-primary position-relative" [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
-        <span class="position-absolute top-0 start-100 translate-middle badge bg-light text-dark">
+      <button id="create-button" class="btn btn-primary rounded-pill position-relative"
+        [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark border border-light">
           {{count}}
-          <span class="visually-hidden">unread messages</span>
+          <span class="visually-hidden">number of events</span>
         </span>
         Create
         <span [style.display]="isEventCreating ? 'inline-block' : 'none'">&nbsp;
