@@ -247,8 +247,8 @@
           </div>
 
           <div id="status-filter-tab" class="user-select-none">
-            <span class="badge rounded-pill status-filter sf-present">Present - {{presentCount}}</span>
-            <span class="badge rounded-pill status-filter sf-absent">Absent - {{absentCount}}</span>
+            <span class="badge rounded-pill status-filter sf-present">Present - {{attendanceInfoIsHidden? 0 : presentCount}}</span>
+            <span class="badge rounded-pill status-filter sf-absent">Absent - {{attendanceInfoIsHidden? 0 :absentCount}}</span>
             <span class="badge rounded-pill status-filter sf-not-registered">Registered - {{registeredCount}}</span>
           </div>
 
@@ -257,8 +257,8 @@
         <ul class="list-group list-group-flush">
           <ng-container *ngFor="let registrant of registeredStudents">
             <li class="list-group-item">{{registrant.name}}. - {{registrant.course_code}}
-              <span *ngIf="registrant.is_present" class="badge rounded-pill status-pill sp-present">Present</span>
-              <span *ngIf="!registrant.is_present" class="badge rounded-pill status-pill sp-absent">Absent</span>
+              <span *ngIf="registrant.is_present && !attendanceInfoIsHidden" class="badge rounded-pill status-pill sp-present">Present</span>
+              <span *ngIf="!registrant.is_present && !attendanceInfoIsHidden" class="badge rounded-pill status-pill sp-absent">Absent</span>
             </li>
           </ng-container>
         </ul>

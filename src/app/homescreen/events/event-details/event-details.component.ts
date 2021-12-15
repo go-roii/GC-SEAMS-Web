@@ -32,6 +32,7 @@ export class EventDetailsComponent implements OnInit {
 
 	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;
 	attendanceColumnHeight!: number;
+  attendanceInfoIsHidden: boolean = false;
 
   private activeEventUUID!: Subscription;
   isEditable: boolean = false;
@@ -211,6 +212,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: EventsToAdd) =>{
         await this.setActiveEvent(data);
         await this.setAttendanceStrictness(data);
+        await this.hideAttendanceInfo(data)
         await this.getRegisteredStudents(uuid)
                   .then(() => {this.getAttendedStudents(uuid)});
         await this.regenerateQRCodeLink(uuid)
@@ -221,6 +223,18 @@ export class EventDetailsComponent implements OnInit {
       }, (er: HttpErrorResponse) => {
       this.dataService.handleError(er);
     });
+  }
+
+  hideAttendanceInfo(data: EventsToAdd){
+    const zonedStartDateTimeArr=data.event_start_date.split('[');
+    const zonedStartDateTimeString=zonedStartDateTimeArr[0].toString();
+
+    const eventDate= new Date(zonedStartDateTimeString);
+    const today = new Date()
+
+    if(eventDate > today){
+      this.attendanceInfoIsHidden = true;
+    }
   }
 
   setAttendanceStrictness(data: EventsToAdd){
