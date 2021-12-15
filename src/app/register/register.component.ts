@@ -8,6 +8,9 @@ import { DataService } from '../services/data.service';
 import {catchError} from "rxjs/operators";
 import {LoginComponent} from "../login/login.component";
 
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,8 +25,18 @@ export class RegisterComponent implements OnInit {
   courses: Courses[]=[];
   departments: Departments[]=[];
 
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      popup: 'gs-dialog',
+      confirmButton: 'btn btn-primary rounded-pill',
+      cancelButton: 'btn btn-danger rounded-pill'
+    },
+    buttonsStyling: false
+  })
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private router: Router,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getDepartments();
@@ -106,6 +119,14 @@ export class RegisterComponent implements OnInit {
         this.isUserRegistering = false;
         // alert('You are now registered');
         // profileForm.reset()
+
+        this.swalWithBootstrapButtons.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'You are now registered.'
+        })
+
+        this.router.navigateByUrl('/');
       });
     }else{
       alert('Passwords does not match');
