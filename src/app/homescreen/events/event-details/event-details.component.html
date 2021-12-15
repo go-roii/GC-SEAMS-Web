@@ -322,7 +322,7 @@
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
 
-        <div [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
+        <!-- <div [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
           <p class="mb-2">Chosen Speakers: {{this.chosenSpeaker.length}}</p>
 
           <ul class="list-group">
@@ -362,6 +362,36 @@
                     <button class="btn btn-sm btn-outline-primary rounded-pill" type="button"
                       (click)="addSpeaker(speaker)">
                       Add
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div> -->
+
+        <div>
+          <p class="mb-2">Available Speakers: {{speakers.length}}</p>
+
+          <ul class="list-group">
+            <ng-container *ngFor="let speaker of speakers | filter:searchText">
+              <li class="list-group-item">
+                <div  class="d-flex align-items-center">
+                  <div class="profile-pic"></div>
+                  <div class="mx-3">
+                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
+                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
+                  </div>
+                  <div style="margin-left: auto;">
+                    <button class="btn btn-sm btn-outline-primary rounded-pill" type="button"
+                      *ngIf="!speaker.speaker_chosen"
+                      (click)="addSpeaker(speaker)">
+                      Add
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger rounded-pill" type="button"
+                      *ngIf="speaker.speaker_chosen"
+                      (click)="removeSpeakerFromChosen(speaker)">
+                      Remove
                     </button>
                   </div>
                 </div>
@@ -422,8 +452,15 @@
         </button>
 
         <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary rounded-pill btn-sm" data-bs-dismiss="modal"
-          (click)="saveSpeaker()">Save</button>
+        <button type="button" class="btn btn-primary rounded-pill btn-sm position-relative" data-bs-dismiss="modal"
+          (click)="saveSpeaker()">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark border border-primary"
+            [style.display]="chosenSpeaker.length > 0 ? 'block' : 'none'">
+            {{chosenSpeaker.length}}
+            <span class="visually-hidden">number of speakers</span>
+          </span>
+          Save
+        </button>
       </div>
     </div>
   </div>

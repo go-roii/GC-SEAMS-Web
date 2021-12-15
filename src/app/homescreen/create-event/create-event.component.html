@@ -12,7 +12,7 @@
     <form [formGroup]="invitationForm">
       <button id="create-button" class="btn btn-primary rounded-pill position-relative"
         [disabled]="isEventCreating || !isEventFormDirty" (click)='saveEvents()'>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark border border-light">
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark border border-primary">
           {{count}}
           <span class="visually-hidden">number of events</span>
         </span>

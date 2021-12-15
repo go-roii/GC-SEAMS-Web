@@ -42,8 +42,8 @@ export class CreateEventComponent implements OnInit {
 
   // @HostBinding('className') componentClass: string;
 
-  constructor(private newEvents: NewEventsService,
-              private router: Router,
+  constructor(private router: Router,
+              private newEventsService: NewEventsService,
               private dataService: DataService,
               private userService: UserService,
               private departmentService: DepartmentService,
@@ -244,7 +244,7 @@ export class CreateEventComponent implements OnInit {
           this.isEventCreating = false;
 
           // count how many new events are created
-          this.newEvents.newEventsCount = this.count;
+          this.newEventsService.newEventsCount = this.count;
           this.router.navigateByUrl('/homescreen/events/upcoming');
 
           alert("Event/s created successfully");
