@@ -47,6 +47,10 @@
       }
     }
 	}
+  
+  &.event-new .event-card {
+    border: 1px solid var(--primary-color);
+  }
 
   &.event-updated .event-card {
     border: 1px solid var(--primary-color);

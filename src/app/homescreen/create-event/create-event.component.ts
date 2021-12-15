@@ -15,6 +15,7 @@ import {SpeakersService} from "../../services/speakers.service";
 import {EventsToAdd} from "../../models/EventsToAdd";
 import {Speaker} from "../../models/Speaker";
 import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import { NewEventsService } from 'src/app/services/new-events.service';
 
 @Component({
   selector: 'app-create-event',
@@ -41,12 +42,23 @@ export class CreateEventComponent implements OnInit {
 
   // @HostBinding('className') componentClass: string;
 
-  constructor(private router: Router,
+  constructor(private newEvents: NewEventsService,
+              private router: Router,
               private dataService: DataService,
               private userService: UserService,
               private departmentService: DepartmentService,
               private speakerService: SpeakersService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
+    this.addCard();
+    //this.getCourses();
+    //this.getDepartments();
+    //console.log(this.userService.getUserData());
+  }
+
+  ngAfterViewChecked() {
+    this.checkEventFormDirty();
   }
 
   //process the Event Data to follow the request object format
@@ -193,17 +205,6 @@ export class CreateEventComponent implements OnInit {
     this.events.push(newCard)
   }
 
-  ngOnInit(): void {
-    this.addCard();
-    //this.getCourses();
-    //this.getDepartments();
-    //console.log(this.userService.getUserData());
-  }
-
-  ngAfterViewChecked() {
-    this.checkEventFormDirty();
-  }
-
   checkEventFormDirty() {
     for(let eventCard of this.eventCardComponents.toArray())
       this.isEventFormDirty = eventCard.eventForm.dirty;
@@ -241,9 +242,12 @@ export class CreateEventComponent implements OnInit {
           await this.clearEventData();
 
           this.isEventCreating = false;
-          alert("Event/s created successfully");
 
-          this.router.navigateByUrl('/homescreen/events');
+          // count how many new events are created
+          this.newEvents.newEventsCount = this.count;
+          this.router.navigateByUrl('/homescreen/events/upcoming');
+
+          alert("Event/s created successfully");
         }, (er: HttpErrorResponse) => {
           this.dataService.handleError(er)
           this.isEventCreating = false;

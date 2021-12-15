@@ -6,6 +6,8 @@ import {DataService} from "../../../services/data.service";
 import {HttpHeaders} from "@angular/common/http";
 import {RequestParams} from "../../../models/RequestParams";
 import { UpdatedEventService } from 'src/app/services/updated-event.service';
+import { NewEventsService } from 'src/app/services/new-events.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending',
@@ -18,19 +20,48 @@ import { UpdatedEventService } from 'src/app/services/updated-event.service';
 
 export class PendingComponent implements OnInit {
   
-  updatedEventUUID: string = this.updatedEvent.updatedEventUUID;
-  searchText: string='';
+  newEventsCount = this.newEventsService.newEventsCount;
+  newEvents: string[] = [];
+  updatedEventUUID: string = this.updatedEventService.updatedEventUUID;
 
-  pendingEvents: EventsToAdd[]=[];
   isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
 
-  constructor(private updatedEvent: UpdatedEventService,
+  searchText: string='';
+  pendingEvents: EventsToAdd[]=[];
+
+  constructor(private router: Router,
+              private newEventsService: NewEventsService,
+              private updatedEventService: UpdatedEventService,
               private sidedenavExpandService: SidenavExpandService,
               private userService: UserService,
               private dataService: DataService) {
     this.sidedenavExpandService.sidenavExpandChange.subscribe((value) => {
       this.isSidenavExpanded = value;
     });
+
+    console.log(this.newEventsCount)
+  }
+
+  ngOnInit(): void {
+    this.fetchPendingEvents();
+  }
+
+  // add event as newly created to array
+  addEventsAsNew() {
+    for(let i = this.pendingEvents.length;
+      i > this.pendingEvents.length - this.newEventsCount; i--) {
+      this.newEvents.push(this.pendingEvents[i-1].event_uuid)
+      console.log(this.newEvents[1])
+    }
+  }
+
+  // highlight newly created event/s
+  markEventAsNew(eventUUID: string): boolean {
+    for(let i = 0; i < this.newEvents.length; i++)
+      if(eventUUID === this.newEvents[i])
+        return true
+
+    return false
   }
 
   getHttpOptions(){
@@ -56,9 +87,8 @@ export class PendingComponent implements OnInit {
         await this.setPendingEvents(data);
         await console.log(this.pendingEvents)
 
-        //sort event from latest to oldest
-        this.pendingEvents.sort((a, b) => 
-          new Date(a.event_start_date.split("[")[0]).valueOf() - new Date(b.event_start_date.split("[")[0]).valueOf());
+        this.addEventsAsNew();
+        this.sortPendingEvents();
       });
   }
 
@@ -66,9 +96,10 @@ export class PendingComponent implements OnInit {
     this.pendingEvents=data;
   }
 
-  ngOnInit(): void {
-    this.fetchPendingEvents();
+  // chronologically
+  sortPendingEvents() {
+    this.pendingEvents.sort((a, b) => 
+      new Date(a.event_start_date.split("[")[0]).valueOf() - new Date(b.event_start_date.split("[")[0]).valueOf());
   }
-
 
 }
