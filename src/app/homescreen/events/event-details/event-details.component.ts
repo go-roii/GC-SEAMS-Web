@@ -17,6 +17,8 @@ import { UpdatedEventService } from 'src/app/services/updated-event.service';
 import {QRCodeDetails} from "../../../models/QRCodeDetails";
 import {Student} from "../../../models/Student";
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
@@ -65,6 +67,15 @@ export class EventDetailsComponent implements OnInit {
   chosenSpeakersList: string = '';
 
   initialEventForm: any;
+
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      popup: 'gs-dialog',
+      confirmButton: 'btn btn-success rounded-pill',
+      cancelButton: 'btn btn-danger rounded-pill'
+    },
+    buttonsStyling: false
+  })
 
   setFieldValues(event: EventsToAdd){
     this.eventName=event.event_title;
@@ -164,11 +175,18 @@ export class EventDetailsComponent implements OnInit {
         await this.getEventDetails(this.uuid);
 
         this.isEventUpdating = false;
-        alert("Event/s updated successfully");
 
         this.location.back();
       }, (er: HttpErrorResponse) => {
-        this.dataService.handleError(er)
+        // this.dataService.handleError(er)
+
+        this.swalWithBootstrapButtons.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Something went wrong with the server.',
+          confirmButtonText: 'Try again'
+        })
+
         this.isEventUpdating = false;
       });
 
