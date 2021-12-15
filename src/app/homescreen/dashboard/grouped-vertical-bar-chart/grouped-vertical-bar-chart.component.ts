@@ -46,7 +46,7 @@ export class GroupedVerticalBarChartComponent{
   };
 
   constructor() {
-    Object.assign(this, { multi })
+    Object.assign(this, this.summarizedData)
   }
 
   onSelect(data: any): void {

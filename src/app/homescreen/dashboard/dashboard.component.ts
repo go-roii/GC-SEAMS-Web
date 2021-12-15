@@ -72,7 +72,7 @@ export class DashboardComponent implements OnInit {
 
   fetchEndedEvents(){
     const endedEventsParams=new RequestParams();
-    endedEventsParams.EndPoint='events/past'
+    endedEventsParams.EndPoint='events/upcoming'
     endedEventsParams.requestType=5;
     endedEventsParams.authToken=this.getHttpOptions();
 
