@@ -28,7 +28,7 @@
     <!-- event details -->
     <div class="mb-3">
       <label [attr.for]="'event-details'+event.ID" class="form-label">Event Details</label>
-      <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" rows="3"
+      <textarea [attr.id]="'event-details'+event.ID" class="form-control form-control-sm" type="text" style="resize: none;" rows="4"
         [(ngModel)]='event.eventDetails' formControlName="eventDetails" required></textarea>
     </div>
 
