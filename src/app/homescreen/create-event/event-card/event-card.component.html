@@ -155,7 +155,7 @@
 
 <!-- preview event modal  -->
 <div class="modal fade" [attr.id]="'preview-event-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+  <div class="preview-event-modal modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Event Preview</h6>
@@ -163,11 +163,11 @@
       </div>
       <div class="modal-body">
 				<div class="event-card card">
-					<div class="change-poster user-select-none" onclick="document.getElementById('upload-event-poster').click();">
+					<div class="change-poster user-select-none no-hover" onclick="document.getElementById('upload-event-poster').click();">
 						<p class="upload-event-poster-text text-center">Change event poster</p>
 						<input id="upload-event-poster" class="btn-change-poster" type="file">
-						<img class="event-poster" src="../../../../assets/earth cake 2.png">
-						<!-- <div class="event-poster"></div> -->
+						<!-- <img class="event-poster" src="../../../../assets/earth cake 2.png"> -->
+						<div class="event-poster" [style.background]="eventPosterColor"></div>
 					</div>
 
 					<div class="card-body">

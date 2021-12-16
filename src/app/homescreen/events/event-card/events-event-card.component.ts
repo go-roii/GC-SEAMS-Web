@@ -48,7 +48,6 @@ export class EventsEventCardComponent implements OnInit {
     // make event editable if the event is upcoming
       this.isEditable = new Date < this.eventDate;
 
-
 		// progress bar
     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000;
     this.eventCurrentTime = Math.round((this.currentDate.getTime() - this.eventDate.getTime()) / 60000) / this.eventDurationTime;

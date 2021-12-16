@@ -28,6 +28,8 @@ import {Student} from "../../../models/Student";
 
 export class EventDetailsComponent implements OnInit {
 
+  eventPosterColor!: string;
+
   isEventUpdating: boolean = false;
 
 	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;
@@ -179,13 +181,14 @@ export class EventDetailsComponent implements OnInit {
   get speakerEmail() { return this.speakerForm.get('speakerEmail'); }
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
-  constructor(private updatedEvent: UpdatedEventService,
-              private location: Location,
-              private departmentService: DepartmentService,
-              private userService: UserService,
-              private dataService: DataService,
-              private speakersService: SpeakersService,
-              private route: ActivatedRoute) { }
+  constructor(
+    private updatedEvent: UpdatedEventService,
+    private location: Location,
+    private departmentService: DepartmentService,
+    private userService: UserService,
+    private dataService: DataService,
+    private speakersService: SpeakersService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activeEventUUID = this.route.params.subscribe(params => {
@@ -199,6 +202,28 @@ export class EventDetailsComponent implements OnInit {
     this.departments=this.departmentService.getDepartments();
 
     console.log(this.event.eventIsStrict);
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
+    }, 0);
+
+    this.eventForm.controls['eventSeminarHours'].valueChanges.subscribe(val => {
+      //event poster
+      if(val <= 10)
+        this.eventPosterColor = '#FEC84D';
+      else if(val <= 50)
+        this.eventPosterColor = '#00B1B0';
+      else
+        this.eventPosterColor = '#FF8370';
+    })
+	}
+
+  ngDoCheck() {
+    setTimeout(() => {
+      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
+    }, 0);
   }
 
   getEventDetails(uuid: string){
@@ -452,18 +477,6 @@ export class EventDetailsComponent implements OnInit {
   printChosenDepartment(){
     console.log(this.chosenDepartments)
   }
-
-  ngDoCheck() {
-    setTimeout(() => {
-      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
-    }, 0);
-  }
-
-	ngAfterViewInit() {
-    setTimeout(() => {
-      this.attendanceColumnHeight = this.eventContentColumn?.nativeElement.clientHeight + 36;
-    }, 0);
-	}
 
 	typingTimer: any;
   typingDuration: number = 500;
