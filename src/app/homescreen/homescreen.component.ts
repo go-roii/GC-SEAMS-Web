@@ -97,6 +97,7 @@ export class HomescreenComponent implements OnInit {
     console.log("access token: "+this.userService.getAuthHeader())
     console.log(this.userService.getLoginState());
     console.log(this.userService.getActiveUser())
+    this.fetchProfile();
 	}
 
 	// routerChangeMethod(url: string) {

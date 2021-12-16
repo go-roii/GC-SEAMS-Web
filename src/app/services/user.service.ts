@@ -137,8 +137,7 @@ export class UserService{
 
       },
         er => {
-          this.dataService.handleError(er);
-          this.logOut();
+          this.refreshAccessToken();
         });
   }
 
