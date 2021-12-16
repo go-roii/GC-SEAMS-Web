@@ -5,4 +5,8 @@ export interface UserProfile{
   middle_name:string;
   last_name:string;
   course_id: number;
+  department_code: string;
+  department_name: string;
+  course_code: string;
+  department_id: number;
 }

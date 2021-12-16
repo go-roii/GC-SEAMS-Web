@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 import { BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
+import {UserProfile} from "../models/UserProfile";
 
 @Component({
   selector: 'app-homescreen',
@@ -28,6 +29,7 @@ export class HomescreenComponent implements OnInit {
   sidenavWidth: number = this.sidedenavExpandService.sidenavWidth;
   fullName!: string;
   email!: string;
+
 
 	// currentPage: string = this.router.url;
 	currentPage: string = '';
@@ -50,6 +52,9 @@ export class HomescreenComponent implements OnInit {
   }
 
 	ngOnInit(): void {
+
+    this.fetchProfile();
+
     this.breakpointObserver
     .observe(['(max-width: 1199.98px)'])
     .subscribe((state: BreakpointState) => {
@@ -75,6 +80,7 @@ export class HomescreenComponent implements OnInit {
       this.userService.getRefreshToken();
       this.userService.start();
     }
+
 
     const firstName: string = this.userService.getActiveUser().first_name;
     const lastName: string = this.userService.getActiveUser().last_name;
@@ -156,6 +162,16 @@ export class HomescreenComponent implements OnInit {
 
     this.dataService.httprequest(speakerParams)
       .subscribe((data: Speaker[]) => this.speakersService.setSpeakers(data));
+  }
+
+  fetchProfile(){
+    const speakerParams= new RequestParams();
+    speakerParams.EndPoint="profile";
+    speakerParams.RequestType=5;
+    speakerParams.AuthToken=this.getHttpOptions();
+
+    this.dataService.httprequest(speakerParams)
+      .subscribe((data: UserProfile) => this.userService.setActiveUser(data));
   }
 
 }
