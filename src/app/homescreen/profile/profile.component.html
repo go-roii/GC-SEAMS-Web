@@ -31,12 +31,10 @@
       <div class="input-group">
         <select id="department"  class="form-select" formControlName="department" (change)="departmentSelectionChanged()" required>
           <option value="" selected disabled hidden>select department</option>
-          <option selected>College of Computer Studies</option>
           <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_name}}</option>
         </select>
         <select id="course" class="form-select" formControlName="course" required>
           <option selected disabled hidden>select course</option>
-          <option selected>CCS</option>
           <option *ngFor="let course of courses" value={{course.course_id}}>{{course.course_code}}</option>
         </select>
       </div>
@@ -57,7 +55,7 @@
 
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input id="password" type="text" class="form-control" formControlName="password" required>
+      <input id="password" type="password" class="form-control" formControlName="password" required>
 <!--      <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">-->
 <!--						&lt;!&ndash; you can change the border color of the field cuguro kung pwede para di masira ang ui :)&ndash;&gt;-->
 <!--						<div *ngIf="password?.errors?.minLength" class="text-danger text-helper mt-1">-->
@@ -71,7 +69,7 @@
 
     <div class="mb-4">
       <label for="password_confirmation" class="form-label">Confirm Password</label>
-      <input id="password_confirmation" type="text" class="form-control" formControlName="passwordConfirmation" required>
+      <input id="password_confirmation" type="password" class="form-control" formControlName="passwordConfirmation" required>
 <!--        <span *ngIf="passwordConfirmation?.invalid && (passwordConfirmation?.dirty || passwordConfirmation?.touched)" class="validation-error">-->
 <!--						&lt;!&ndash; you can change the border color of the field cguro kung pwede para di masira ang ui :)&ndash;&gt;-->
 <!--						<span *ngIf="passwordConfirmation?.errors?.required" class="text-danger text-helper mt-1">-->

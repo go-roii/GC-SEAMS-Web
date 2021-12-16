@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserProfile} from "../../models/UserProfile";
 import {catchError} from "rxjs/operators";
 import {UserService} from "../../services/user.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
@@ -57,8 +58,6 @@ export class ProfileComponent implements OnInit {
     this.middleName=profile.middle_name;
     this.lastName=profile.last_name;
     this.email=profile.email_address;
-    this.password=profile.password;
-    this.passwordConfirmation=profile.password;
 
     const department: Departments ={
       department_chosen: false,
@@ -166,11 +165,11 @@ export class ProfileComponent implements OnInit {
 
     if(newUser.password==this.profileForm.controls['passwordConfirmation'].value){
       const registrationParams= new RequestParams();
-      registrationParams.EndPoint="register";
+      registrationParams.EndPoint="profile/update";
       registrationParams.Body=newUser;
-      registrationParams.RequestType=2;
+      registrationParams.RequestType=6;
+      registrationParams.authToken = this.getHttpOptions();
 
-      console.log(registrationParams.Body)
 
       this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
         catchError(this.dataService.handleError)
@@ -185,7 +184,7 @@ export class ProfileComponent implements OnInit {
         this.swalWithBootstrapButtons.fire({
           icon: 'success',
           title: 'Success!',
-          text: 'You are now registered.'
+          text: 'Profile was updated.'
         })
 
         this.router.navigateByUrl('/');
@@ -194,6 +193,19 @@ export class ProfileComponent implements OnInit {
       alert('Passwords does not match');
       this.isUserRegistering = false;
     }
+  }
+
+  //get the headers to be used in the request
+  getHttpOptions(){
+    const trimmedHeader=this.userService.getAuthHeader().split(':');
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: trimmedHeader[1]
+      })
+    };
+    return httpOptions;
   }
 
 }
