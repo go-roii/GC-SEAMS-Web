@@ -1,5 +1,5 @@
 <div class="profile-container container-sm py-3 mx-auto">
-  <form>
+  <form [formGroup]="profileForm">
     <div class="mb-3 d-flex flex-column align-items-center">
       <div class="profile-pic mb-3"></div>
       <p>Change profile picture</p>
@@ -8,42 +8,83 @@
     <div class="mb-3">
       <label for="firstname" class="form-label">Student Details</label>
       <div class="input-group">
-        <input id="firstname" type="text" class="form-control"  placeholder="First name" value="Roy">
-        <input id="middlename" type="text" class="form-control" placeholder="Middle name" value="Flores">
-        <input id="lastname" type="text" class="form-control" placeholder="Last name" value="Gopez">
+        <input id="firstname" type="text" class="form-control" formControlName="firstName"  placeholder="First name" value="Roy">
+        <input id="middlename" type="text" class="form-control" formControlName="middleName" placeholder="Middle name" value="Flores">
+        <input id="lastname" type="text" class="form-control" formControlName="lastName" placeholder="Last name" value="Gopez">
+      </div>
+      <div>
+<!--        &lt;!&ndash; validator for firstName & lastName &ndash;&gt;-->
+<!--        <span *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched) " class="validation-error">-->
+<!--							<div *ngIf="firstName?.errors?.required" class="text-danger text-helper mt-1">-->
+<!--								First name is required.-->
+<!--							</div>-->
+<!--						</span>-->
+<!--        <span *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="validation-error">-->
+<!--							<div *ngIf="lastName?.errors?.required" class="text-danger text-helper mt-1">-->
+<!--								Last name is required.-->
+<!--							</div>-->
+<!--						</span>-->
       </div>
     </div>
 
     <div class="mb-3">
       <div class="input-group">
-        <select id="department" class="form-select" required value="ccs">
-          <option value="" selected disabled hidden>Department</option>
-          <option value="ccs" selected disabled hidden>CCS</option>
+        <select id="department"  class="form-select" formControlName="department" (change)="departmentSelectionChanged()" required>
+          <option value="" selected disabled hidden>select department</option>
+          <option *ngFor="let department of departments" value={{department.department_id}}>{{department.department_name}}</option>
         </select>
-        <select id="course" class="form-select" requred value="bscs">
-          <option value="" selected disabled hidden>Course</option>
-          <option value="bscs" selected disabled hidden>BSCS</option>
+        <select id="course" class="form-select" formControlName="course" required>
+          <option selected disabled hidden>select course</option>
+          <option *ngFor="let course of courses" value={{course.course_id}}>{{course.course_code}}</option>
         </select>
       </div>
     </div>
 
     <div class="mb-3">
-      <label for="email" class="form-label" required>GC Domain Email</label>
-      <input id="email" type="email" class="form-control" value="gcseams@gordoncollege.edu.ph" readonly>
+      <label for="email" class="form-label">GC Domain Email</label>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="studentID@gordoncollege.edu.ph" required>
+<!--      <span *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="validation-error">-->
+<!--						<div *ngIf="email?.errors?.required" class="text-danger text-helper mt-1">-->
+<!--							Email is required-->
+<!--						</div>-->
+<!--						<div *ngIf="email?.errors?.email" class="text-danger text-helper mt-1">-->
+<!--							Invalid Email-->
+<!--						</div>-->
+<!--					</span>-->
     </div>
 
     <div class="mb-3">
-      <label for="password" class="form-label" required>Password</label>
-      <input id="password" type="password" class="form-control" value="123456789">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" type="password" class="form-control" formControlName="password" required>
+<!--      <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="validation-error">-->
+<!--						&lt;!&ndash; you can change the border color of the field cuguro kung pwede para di masira ang ui :)&ndash;&gt;-->
+<!--						<div *ngIf="password?.errors?.minLength" class="text-danger text-helper mt-1">-->
+<!--							Password must contain at least 8 characters-->
+<!--						</div>-->
+<!--						<div *ngIf="password?.errors?.required" class="text-danger text-helper mt-1">-->
+<!--							Password is required-->
+<!--						</div>-->
+<!--					</span>-->
     </div>
 
-    <div class="mb-5">
-      <label for="password_confirmation" class="form-label" required>Confirm Password</label>
-      <input id="password_confirmation" type="password" class="form-control" value="123456789">
+    <div class="mb-4">
+      <label for="password_confirmation" class="form-label">Confirm Password</label>
+      <input id="password_confirmation" type="password" class="form-control" formControlName="passwordConfirmation" required>
+<!--        <span *ngIf="passwordConfirmation?.invalid && (passwordConfirmation?.dirty || passwordConfirmation?.touched)" class="validation-error">-->
+<!--						&lt;!&ndash; you can change the border color of the field cguro kung pwede para di masira ang ui :)&ndash;&gt;-->
+<!--						<span *ngIf="passwordConfirmation?.errors?.required" class="text-danger text-helper mt-1">-->
+<!--							Password confirmation is required-->
+<!--						</span>-->
+<!--					</span>-->
     </div>
-
-    <div class="d-grid gap-3">
-      <button type="submit" class="btn btn-lg btn-primary rounded-pill" type="submit">Save Changes</button>
+    <div class="d-grid">
+      <button id="submit_button" type="submit" class="btn btn-lg btn-primary rounded-pill" [disabled]="profileForm.invalid || isUserRegistering" (click)='register()'>
+        Register
+        <span [style.display]="isUserRegistering ? 'inline-block' : 'none'">&nbsp;
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="visually-hidden">Loading...</span>
+            </span>
+      </button>
     </div>
   </form>
 </div>

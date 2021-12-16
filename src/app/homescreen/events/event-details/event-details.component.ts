@@ -29,7 +29,6 @@ import {Student} from "../../../models/Student";
 export class EventDetailsComponent implements OnInit {
 
   eventPosterColor!: string;
-
   isEventUpdating: boolean = false;
 
 	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;

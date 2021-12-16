@@ -99,6 +99,10 @@ export class RegisterComponent implements OnInit {
       middle_name : this.profileForm.controls['middleName'].value,
       last_name : this.profileForm.controls['lastName'].value,
       course_id : this.profileForm.controls['course'].value,
+      course_code: '',
+      department_code: '',
+      department_name: '',
+      department_id: 0
     }
 
     if(newUser.password==this.profileForm.controls['passwordConfirmation'].value){
