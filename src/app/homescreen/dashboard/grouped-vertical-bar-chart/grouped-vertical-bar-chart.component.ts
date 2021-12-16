@@ -12,6 +12,7 @@ import {Color, LegendPosition, ScaleType} from "@swimlane/ngx-charts";
 export class GroupedVerticalBarChartComponent{
 
   @Input() summarizedData!: any[];
+  @Input() x_axisLabel!: string;
   multi!: any[];
   view: any = [1150, 350];
 
@@ -21,11 +22,11 @@ export class GroupedVerticalBarChartComponent{
   //gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Departments';
+  xAxisLabel: string = this.x_axisLabel;
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Number of Students';
   legendTitle: string = 'Legend';
-  legendPosition= LegendPosition.Below
+  legendPosition= LegendPosition.Below;
 
   colorScheme: Color = {
     name: 'vivid',

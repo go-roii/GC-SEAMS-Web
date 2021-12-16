@@ -1,5 +1,5 @@
 <div class="text-header">
-	<h4>Individual Event Analytics</h4>
+	<h4>{{activeEvent?.event_title? activeEvent?.event_title: 'Event name' }}</h4>
 
   <div class="header-buttons">
     <form>
@@ -11,18 +11,55 @@
   </div>
 </div>
 
-<div class="gs-card">
-  <div class="gs-card-header mb-4">
-		<div class="gs-card-text">
-    	<h5>{{activeEvent?.event_title? activeEvent?.event_title: 'Event name' }}</h5>
-		</div>
-  </div>
+<!--<div class="gs-card">-->
+<!--  <div class="gs-card-header mb-4">-->
+<!--		<div class="gs-card-text">-->
+<!--    	<h5></h5>-->
+<!--		</div>-->
+<!--  </div>-->
 
-  <div>
-    <app-grouped-vertical-bar-chart [summarizedData]="multi"></app-grouped-vertical-bar-chart>
+<!--  <div>-->
+<!--    -->
+<!--  </div>-->
+
+
+
+<!--&lt;!&ndash;  <div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-pie-chart-grid></app-pie-chart-grid>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="accordion gs-accordion mb-4" id="overall-analytics-accordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header gs-card-text" id="overall-analytics-heading">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#overall-analytics"
+              aria-expanded="true" aria-controls="collapseOne">
+        <h5>Comparison per Department</h5>
+      </button>
+    </h2>
+    <div id="overall-analytics" class="accordion-collapse collapse show"
+         aria-labelledby="overall-analytics-heading" data-bs-parent="#overall-analytics-accordion">
+      <div class="accordion-body">
+        <app-grouped-vertical-bar-chart [summarizedData]="multi" [x_axisLabel]="departments"></app-grouped-vertical-bar-chart>
+      </div>
+    </div>
   </div>
-  <div>
-    <app-pie-chart-grid></app-pie-chart-grid>
+</div>
+
+<div class="accordion gs-accordion mb-4" id="department-analytics-accordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header gs-card-text" id="department-analytics-heading">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#department-analytics"
+              aria-expanded="true" aria-controls="collapseOne">
+        <h5>Comparison per Course</h5>
+      </button>
+    </h2>
+    <div id="department-analytics" class="accordion-collapse collapse show"
+         aria-labelledby="overall-analytics-heading" data-bs-parent="#overall-analytics-accordion">
+      <div class="accordion-body">
+        <app-grouped-vertical-bar-chart [summarizedData]="multi2" [x_axisLabel]="programs"></app-grouped-vertical-bar-chart>
+      </div>
+    </div>
   </div>
 </div>
 

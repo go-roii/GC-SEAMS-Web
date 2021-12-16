@@ -7,6 +7,7 @@ import {HttpHeaders} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 import {DataService} from "../../../services/data.service";
 import {AnalyticsByDepartment} from "../../../models/AnalyticsByDepartment";
+import {AnalyticsByCourse} from "../../../models/AnalyticsByCourse";
 
 @Component({
   selector: 'app-analytics',
@@ -22,11 +23,17 @@ export class AnalyticsComponent implements OnInit {
   uuid!: string;
   activeEvent!: EventsToAdd
   departmentAnalytics!: AnalyticsByDepartment[];
+  coursesAnalytics!: AnalyticsByCourse[];
   multi: any[] = [];
+  multi2: any[] = [];
+  byDepartmentBreakdown: any[] = [];
+  departments: string = 'Departments';
+  programs: string = 'Programs';
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
-              private dataService: DataService) { }
+              private dataService: DataService,
+              ) { }
 
   ngOnInit(): void {
     this.activeEventUUID = this.route.params.subscribe(params => {
@@ -49,8 +56,12 @@ export class AnalyticsComponent implements OnInit {
       .subscribe(async (data: EventsToAdd) =>{
         this.activeEvent=data;
         await this.getEventAnalyticsByDepartment(uuid);
+        await this.getEventAnalyticsByCourse(uuid)
         await console.log(data)
       });
+
+    this.departments = 'Departments';
+    this.programs = 'Programs';
   }
 
   getEventAnalyticsByDepartment(uuid: string){
@@ -103,6 +114,59 @@ export class AnalyticsComponent implements OnInit {
 
     console.log('multi value:')
     console.log(this.multi)
+
+  }
+
+  getEventAnalyticsByCourse(uuid: string){
+    const eventDetailsParams=new RequestParams();
+    eventDetailsParams.EndPoint='analytics/course/'+uuid;
+    eventDetailsParams.requestType=5;
+    eventDetailsParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(eventDetailsParams)
+      .subscribe(async (data: AnalyticsByCourse[]) =>{
+        await this.setCoursesAnalytics(data);
+        await this.setAnalyticsByCourseData(data);
+        await console.log(data);
+      });
+  }
+
+  setCoursesAnalytics(data: AnalyticsByCourse[]){
+    this.coursesAnalytics = data;
+  }
+
+  setAnalyticsByCourseData(data: AnalyticsByCourse[]){
+
+    for(let course of data){
+      const deptData = {
+        "name": course.course_code,
+        "series": [
+          {
+            "name": "Invited",
+            "value": course.invited
+          },
+          {
+            "name": "Viewed",
+            "value": course.views
+          },
+          {
+            "name": "Registered",
+            "value": course.registered
+          },
+          {
+            "name": "Attended",
+            "value": course.attendees
+          }
+        ]
+      }
+
+      this.multi2.push(deptData)
+    }
+
+    this.multi2 = [...this.multi2]
+
+    console.log('multi value:')
+    console.log(this.multi2)
 
   }
 

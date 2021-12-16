@@ -77,19 +77,16 @@ export class DataService {
   public handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
       // A client-side or network error occurred. Handle it accordingly.
-      alert('User not found.')
+      alert('User not found.');
     }else if(error.status === 401){
-      alert('Password is incorrect')
+      alert('Password is incorrect');
     }else if(error.status === 400){
-      alert('Something went wrong with the server')
+      alert('Something went wrong with the server');
     }else if(error.status === 503){
-      alert('Something went wrong with the server')
+      alert('Something went wrong with the server');
     }
     else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
+      alert('Cannot connect to the server.');
     }
     // Return an observable with a user-facing error message.
     return throwError(
