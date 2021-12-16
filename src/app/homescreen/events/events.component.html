@@ -3,19 +3,19 @@
 		<li class="nav-item">
 			<a [routerLink]="['ongoing']"
 			[ngClass]="{'active': currentTab === 'ongoing'}"
-			class="nav-link active">Ongoing Events</a>
+			class="nav-link active">{{tabNames[0]}}</a>
       <div class="active-tab-indicator"></div>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['upcoming']"
 			[ngClass]="{'active': currentTab === 'upcoming'}"
-			class="nav-link">Upcoming Events</a>
+			class="nav-link">{{tabNames[1]}}</a>
       <div class="active-tab-indicator"></div>
 		</li>
 		<li class="nav-item">
 			<a [routerLink]="['past']"
 			[ngClass]="{'active': currentTab === 'past'}"
-			class="nav-link">Past Events</a>
+			class="nav-link">{{tabNames[2]}}</a>
       <div class="active-tab-indicator"></div>
 		</li>
 	</ul>
@@ -23,11 +23,4 @@
 
 <div class="events-container">
 	<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
-	<!-- <div class="row gy-4">
-    	<events-event-card></events-event-card>
-		<events-event-card></events-event-card>
-		<events-event-card></events-event-card>
-		<events-event-card></events-event-card>
-		<events-event-card></events-event-card>
-  	</div> -->
 </div>

@@ -118,7 +118,11 @@ swalWithBootstrapButtons = Swal.mixin({
       })
     }
     else {
-      alert('Cannot connect to the server.');
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Cannot connect to the server. Please try again later.',
+      })
     }
     // Return an observable with a user-facing error message.
     return throwError(

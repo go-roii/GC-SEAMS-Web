@@ -50,14 +50,13 @@ export class HomescreenComponent implements OnInit {
   }
 
 	ngOnInit(): void {
-    this.breakpointObserver
-    .observe(['(max-width: 1199.98px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches)
-        this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = false);
-      else
-        this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = true);
-    });
+    this.breakpointObserver.observe(['(max-width: 1199.98px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches)
+          this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = false);
+        else
+          this.sidedenavExpandService.sidenavExpandChange.next(this.isSidenavExpanded = true);
+      });
 
     //department service will be loaded if not yet
     if(!this.departmentService.isLoaded){

@@ -233,6 +233,9 @@ export class CreateEventComponent implements OnInit {
     eventParams.requestType = 4;
     eventParams.AuthToken = this.getHttpOptions();
 
+    // count how many new events are created
+    this.newEventsService.newEventsCount = this.count;
+
     for (let data of this.processEventData()) {
 
       eventParams.body = data;
@@ -243,8 +246,6 @@ export class CreateEventComponent implements OnInit {
 
           this.isEventCreating = false;
 
-          // count how many new events are created
-          this.newEventsService.newEventsCount = this.count;
           this.router.navigateByUrl('/homescreen/events/upcoming');
         }, (async(er: HttpErrorResponse) => {
           this.dataService.handleError(er)

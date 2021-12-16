@@ -1,3 +1,4 @@
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { EndedComponent } from './ended/ended.component';
 import { OngoingComponent } from './ongoing/ongoing.component';
@@ -10,12 +11,20 @@ import { PendingComponent } from './pending/pending.component';
 })
 export class EventsComponent implements OnInit {
 
+  tabNames: string[] = [];
   currentTab: string = 'ongoing';
-  name:string='Mark Jason D. Margallo'
+  name: string ='Mark Jason D. Margallo';
 
-  constructor() { }
+  constructor(public breakpointObserver: BreakpointObserver,) { }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe(['(max-width: 575.98px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) 
+          this.tabNames = ['Ongoing', 'Upcoming', 'Past']
+        else 
+          this.tabNames = ['Ongoing Events', 'Upcoming Events', 'Past Events']
+      });
   }
 
   public onRouterOutletActivate(event : any) {

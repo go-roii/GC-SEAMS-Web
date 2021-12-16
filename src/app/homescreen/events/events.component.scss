@@ -20,22 +20,22 @@
 		display: none;
 	}
 
-	& .nav {
+	.nav {
 		gap: 28px;
 		width: max-content;
 	}
 
-	& .nav-item a {
+	.nav-item a {
 		color: rgba(var(--foreground-rgb), 0.48);
 		background-color: transparent;
 		padding: 4px 6px 12px;
 	}
 
-	& .nav-item a.active {
+	.nav-item a.active {
 		color: var(--primary-color);
 	}
 
-  & .active-tab-indicator {
+  .active-tab-indicator {
     display: none;
     height: 4px;
     background-color: var(--primary-color);
@@ -70,4 +70,20 @@
       white-space: nowrap;
     }
 	}
+}
+
+
+
+
+
+@media (max-width: 575.98px) {
+  .tabs {
+    .nav {
+      gap: 24px;
+    }
+
+    .nav-item a {
+      padding: 4px 4px 10px;
+    }
+  }
 }

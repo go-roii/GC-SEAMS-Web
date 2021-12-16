@@ -117,7 +117,7 @@ $sidenav-expanded-width: 248px;
 .navbar {
 	// border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid var(--bs-gray-300);
-	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.03);
+	box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.03);
   padding-left: 72px;
   padding-right: calc(72px + 12px); 
   transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
@@ -199,7 +199,7 @@ $sidenav-expanded-width: 248px;
 
   &:focus-within {
     border-color: var(--primary-color);
-    box-shadow: 0 0 3px 3px rgba(var(--primary-color-rgb), 0.24);
+    box-shadow: 0 0 6px 3px rgba(var(--primary-color-rgb), 0.24);
   }
 }
 
@@ -413,7 +413,7 @@ $sidenav-expanded-width: 248px;
   }
 
   .text-header {
-    height: 31px;
+    min-height: 31px;
     padding: 0 10px !important;
 		margin: 8px 0 20px !important;
   }

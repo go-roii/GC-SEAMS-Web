@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
 
       console.log(registrationParams.Body)
 
-      this.dataService.httprequest(registrationParams).subscribe( async (res: any)=>{
+      this.dataService.httprequest(registrationParams).subscribe(async (res: any) => {
         catchError(this.dataService.handleError)
         const data = await res.payload
         //await this.user.setUserData(data)
@@ -123,9 +123,11 @@ export class RegisterComponent implements OnInit {
           icon: 'success',
           title: 'Success!',
           text: 'You are now registered.'
-        })
-
-        this.router.navigateByUrl('/');
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigateByUrl('/');
+          }
+        });
       });
     }else{
       alert('Passwords does not match');
