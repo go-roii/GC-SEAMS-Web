@@ -6,10 +6,9 @@ import { RequestParams } from '../models/RequestParams';
 import { UserProfile } from '../models/UserProfile';
 import { DataService } from '../services/data.service';
 import {catchError} from "rxjs/operators";
-import {LoginComponent} from "../login/login.component";
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',

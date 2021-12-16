@@ -17,8 +17,6 @@ import {Speaker} from "../../models/Speaker";
 import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import { NewEventsService } from 'src/app/services/new-events.service';
 
-import Swal from 'sweetalert2'
-
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -43,15 +41,6 @@ export class CreateEventComponent implements OnInit {
   sortBy: string = '';
 
   // @HostBinding('className') componentClass: string;
-
-  swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      popup: 'gs-dialog',
-      confirmButton: 'btn btn-primary rounded-pill',
-      cancelButton: 'btn btn-danger rounded-pill'
-    },
-    buttonsStyling: false
-  })
 
   constructor(private router: Router,
               private newEventsService: NewEventsService,
@@ -258,15 +247,7 @@ export class CreateEventComponent implements OnInit {
           this.newEventsService.newEventsCount = this.count;
           this.router.navigateByUrl('/homescreen/events/upcoming');
         }, (async(er: HttpErrorResponse) => {
-          // this.dataService.handleError(er)
-
-          this.swalWithBootstrapButtons.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Something went wrong with the server.',
-            confirmButtonText: 'Try again'
-          })
-
+          this.dataService.handleError(er)
           this.isEventCreating = false;
         }));
     }

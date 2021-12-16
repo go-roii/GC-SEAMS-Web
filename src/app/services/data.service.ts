@@ -6,11 +6,23 @@ import {Observable, throwError} from 'rxjs';
 import {RefreshTokens} from "../models/RefreshTokens";
 import {UserService} from "./user.service";
 import {retry} from "rxjs/operators";
+
+import Swal from 'sweetalert2'
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
+
+swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      popup: 'gs-dialog',
+      confirmButton: 'btn btn-primary rounded-pill',
+      cancelButton: 'btn btn-danger rounded-pill'
+    },
+    buttonsStyling: false
+  })
 
   constructor(private http: HttpClient) {}
   public baseURL = "https://seams-backend.herokuapp.com/api/v1/"
@@ -77,13 +89,33 @@ export class DataService {
   public handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
       // A client-side or network error occurred. Handle it accordingly.
-      alert('User not found.')
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'User not found.',
+        confirmButtonText: 'Try again'
+      })
     }else if(error.status === 401){
-      alert('Password is incorrect')
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Password is incorrect.',
+        confirmButtonText: 'Try again'
+      })
     }else if(error.status === 400){
-      alert('Something went wrong with the server')
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong with the server.',
+        confirmButtonText: 'Try again'
+      })
     }else if(error.status === 503){
-      alert('Something went wrong with the server')
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong with the server.',
+        confirmButtonText: 'Try again'
+      })
     }
     else {
       // The backend returned an unsuccessful response code.
