@@ -39,15 +39,14 @@ export class EventsEventCardComponent implements OnInit {
 
 		//event poster
 		if(this.item.seminar_hours <= 10)
-			this.eventPosterColor = '#28A745';
+			this.eventPosterColor = '#FEC84D';
 		else if(this.item.seminar_hours <= 50)
-			this.eventPosterColor = '#FFC107';
+			this.eventPosterColor = '#00B1B0';
 		else
-			this.eventPosterColor = '#6E3CBC';
+			this.eventPosterColor = '#FF8370';
 
     // make event editable if the event is upcoming
       this.isEditable = new Date < this.eventDate;
-
 
 		// progress bar
     this.eventDurationTime = (this.eventEndDate.getTime() - this.eventDate.getTime()) / 60000;

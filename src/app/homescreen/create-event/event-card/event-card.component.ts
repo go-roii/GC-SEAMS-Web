@@ -25,6 +25,9 @@ import {filter} from "rxjs/operators";
 export class EventCardComponent implements OnInit, OnDestroy{
 
   @HostBinding('className') componentClass = 'col-xl-6';
+
+  eventPosterColor!: string;
+
   // minDate: string =  new Date().toISOString().split('T')[0];
   minDate: string = new Date(new Date().getTime() + 86400000).toISOString().split('T')[0];
 	startTime: Date = new Date();
@@ -65,10 +68,62 @@ export class EventCardComponent implements OnInit, OnDestroy{
   chosenDepartmentsList: string = '';
   chosenSpeakersList: string = '';
 
-  constructor(private dataService: DataService,
-              private departmentService: DepartmentService,
-              private userService: UserService,
-              private speakersService: SpeakersService) {
+  constructor(
+    private dataService: DataService,
+    private departmentService: DepartmentService,
+    private userService: UserService,
+    private speakersService: SpeakersService) { }
+
+  ngOnInit(): void {
+    this.speakers=this.speakersService.getSpeakers();
+    this.departments=this.departmentService.getDepartments();
+    this.addNewEvent();
+    //this.onChanges();
+
+    console.log("departments: "+this.departments);
+    console.log("speakers: "+this.speakers);
+    this.event.departments=this.chosenDepartments;
+    this.event.eventSpeakers=this.chosenSpeaker;
+  }
+
+  // initialize date and time
+  ngAfterViewInit() {
+    let currentDate = new Date();
+    let startTime = '';
+    let endTime = '';
+
+    currentDate = new Date(currentDate.getTime() + 86400000);
+
+    if(currentDate.getHours() >= 20 || currentDate.getHours() <= 8) {
+      startTime = '16:00';
+      endTime = '17:00';
+    }
+    else {
+      startTime = currentDate.getHours() + ":00";
+      endTime = currentDate.getHours() + 1 + ":00";
+    }
+
+    Promise.resolve().then(() => {
+      this.eventForm.patchValue({
+        eventDate: currentDate.toISOString().split('T')[0],
+        eventStartTime: startTime,
+        eventEndTime: endTime,
+        // eventSeminarHours: 1
+      })
+    });
+
+    this.eventForm.controls['eventSeminarHours'].valueChanges.subscribe(val => {
+      //event poster
+      if(val <= 10)
+        this.eventPosterColor = '#FEC84D';
+      else if(val <= 50)
+        this.eventPosterColor = '#00B1B0';
+      else
+        this.eventPosterColor = '#FF8370';
+    })
+
+    console.log(this.eventForm.get('eventDate')?.value)
+    console.log(this.eventDate)
   }
 
   onChanges(): void {
@@ -284,48 +339,6 @@ export class EventCardComponent implements OnInit, OnDestroy{
   get speakerName() { return this.speakerForm.get('speakerName'); }
   get speakerEmail() { return this.speakerForm.get('speakerEmail'); }
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
-
-  ngOnInit(): void {
-    this.speakers=this.speakersService.getSpeakers();
-    this.departments=this.departmentService.getDepartments();
-    this.addNewEvent();
-    //this.onChanges();
-
-    console.log("departments: "+this.departments);
-    console.log("speakers: "+this.speakers);
-    this.event.departments=this.chosenDepartments;
-    this.event.eventSpeakers=this.chosenSpeaker;
-  }
-
-	// initialize date and time
-	ngAfterViewInit() {
-		let currentDate = new Date();
-		let startTime = '';
-		let endTime = '';
-
-		currentDate = new Date(currentDate.getTime() + 86400000);
-
-		if(currentDate.getHours() >= 20 || currentDate.getHours() <= 8) {
-			startTime = '16:00';
-			endTime = '17:00';
-		}
-		else {
-			startTime = currentDate.getHours() + ":00";
-			endTime = currentDate.getHours() + 1 + ":00";
-		}
-
-		Promise.resolve().then(() => {
-			this.eventForm.patchValue({
-				eventDate: currentDate.toISOString().split('T')[0],
-				eventStartTime: startTime,
-				eventEndTime: endTime,
-				// eventSeminarHours: 1
-			})
-		});
-
-		console.log(this.eventForm.get('eventDate')?.value)
-		console.log(this.eventDate)
-	}
 
   public updateSpeakers(){
     const speakerParams= new RequestParams();

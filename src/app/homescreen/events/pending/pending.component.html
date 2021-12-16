@@ -5,7 +5,7 @@
 </div>
 
 <div [ngClass]="isSidenavExpanded ? 'row g-3' : 'row g-4'">
-    <events-event-card class="pending col-xl-3 col-lg-4 col-sm-6"
+    <events-event-card class="pending col-sm-6 col-lg-4 col-xl-3"
       *ngFor="let event of pendingEvents | filter:searchText" [item]="event"
       [ngClass]="{
         'event-updated': event.event_uuid === updatedEventUUID,
