@@ -42,7 +42,7 @@ $sidenav-expanded-width: 248px;
 	}
   
 	& .nav-item p {
-		color: var(--bs-gray-600);
+		color: rgba(var(--foreground-rgb), 0.6);
     visibility: hidden;
 	  position: absolute;
 	  left: 56px;
@@ -72,7 +72,7 @@ $sidenav-expanded-width: 248px;
 }
   
 .sidenav-btn {
-	color: var(--bs-gray-600);
+	color: rgba(var(--foreground-rgb), 0.6);
 	width: 100%;
 	height: 48px;
 	border-radius: 12px;
@@ -91,7 +91,7 @@ $sidenav-expanded-width: 248px;
 
 #sidenav-menu-btn {
 	width: 48px;
-	color: black;
+	color: var(--foreground);
 
 	&:active {
 		background-color: rgba(0, 0, 0, 0.16);
@@ -100,7 +100,7 @@ $sidenav-expanded-width: 248px;
 
 .main-content {
   background-color: white;
-  color: black;
+  // color: black;
   padding: 0;
   z-index: 1;
   transition: width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
