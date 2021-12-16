@@ -186,8 +186,6 @@ export class ProfileComponent implements OnInit {
           title: 'Success!',
           text: 'Profile was updated.'
         })
-
-        this.router.navigateByUrl('/');
       });
     }else{
       alert('Passwords does not match');

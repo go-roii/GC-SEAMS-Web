@@ -51,15 +51,24 @@
               {{this.email}}
             </p>
 					</div>
-					<div class="btn-group">
+					<!-- <div class="btn-group">
 						<button id="profile-button" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" [routerLink]="['/homescreen/profile']">Profile</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" (click)="logout()">Logout</a></li>
 						</ul>
+					</div> -->
+
+          <div class="btn-group">
+						<button id="menu-button" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" [routerLink]="['/homescreen/profile']">Profile</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+						</ul>
 					</div>
-				</div>
+        </div>
 			</div>
 		</nav>
 
