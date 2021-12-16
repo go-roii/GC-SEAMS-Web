@@ -9,6 +9,7 @@ import {ViewsAnalyticsCount} from "../../models/ViewsAnalyticsCount";
 import {EventSummary} from "../../models/EventSummary";
 import {RegistrationAnalyticsCount} from "../../models/RegistrationAnalyticsCount";
 import {OverallAnalytics} from "../../models/OverallAnalytics";
+import {AnalyticsByDepartment} from "../../models/AnalyticsByDepartment";
 
 
 @Component({
@@ -23,6 +24,8 @@ export class DashboardComponent implements OnInit {
   public eventsSummary!: EventSummary[];
   public eventsAnalytics!: ViewsAnalyticsCount[];
   public overallAnalytics: OverallAnalytics[] = [];
+  departmentAnalytics!: AnalyticsByDepartment[];
+  multi: any[] = [];
   count: number = 1;
 
   constructor(private router : Router,
@@ -72,14 +75,14 @@ export class DashboardComponent implements OnInit {
 
   fetchEndedEvents(){
     const endedEventsParams=new RequestParams();
-    endedEventsParams.EndPoint='events/past'
+    endedEventsParams.EndPoint='events/upcoming'
     endedEventsParams.requestType=5;
     endedEventsParams.authToken=this.getHttpOptions();
 
     this.dataService.httprequest(endedEventsParams)
       .subscribe(async (data: EventSummary[]) =>{
         await this.setEventSummary(data)
-        //await this.processEventAnalytics();
+        await this.processDepartmentAnalyticsData(data);
       });
 
     console.log("fetch events")
@@ -178,6 +181,64 @@ export class DashboardComponent implements OnInit {
     const zonedEndDateTimeString=zonedEndDateTimeArr[0].toString();
 
     return new Date(zonedEndDateTimeString);
+  }
+
+  processDepartmentAnalyticsData(data: EventSummary[]){
+    for(let dept of data){
+      this.getEventAnalyticsByDepartment(dept.event_uuid);
+    }
+  }
+
+  getEventAnalyticsByDepartment(uuid: string){
+    const eventDetailsParams=new RequestParams();
+    eventDetailsParams.EndPoint='analytics/department/'+uuid;
+    eventDetailsParams.requestType=5;
+    eventDetailsParams.authToken=this.getHttpOptions();
+
+    this.dataService.httprequest(eventDetailsParams)
+      .subscribe(async (data: AnalyticsByDepartment[]) =>{
+        await this.setDepartmentAnalytics(data);
+        await this.setAnalyticsByDepartmentData(data);
+        await console.log(data);
+      });
+  }
+
+  setDepartmentAnalytics(data: AnalyticsByDepartment[]){
+    this.departmentAnalytics = data;
+  }
+
+  setAnalyticsByDepartmentData(data: AnalyticsByDepartment[]){
+
+    for(let department of data){
+      const deptData = {
+        "name": department.department_code,
+        "series": [
+          {
+            "name": "Invited",
+            "value": department.invited
+          },
+          {
+            "name": "Viewed",
+            "value": department.views
+          },
+          {
+            "name": "Registered",
+            "value": department.registered
+          },
+          {
+            "name": "Attended",
+            "value": department.attendees
+          }
+        ]
+      }
+
+      this.multi.push(deptData)
+    }
+
+    this.multi = [...this.multi]
+
+    console.log('multi value:')
+    console.log(this.multi)
   }
 
 }
