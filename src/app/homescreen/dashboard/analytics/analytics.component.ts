@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {RequestParams} from "../../../models/RequestParams";
@@ -8,6 +8,8 @@ import {UserService} from "../../../services/user.service";
 import {DataService} from "../../../services/data.service";
 import {AnalyticsByDepartment} from "../../../models/AnalyticsByDepartment";
 import {AnalyticsByCourse} from "../../../models/AnalyticsByCourse";
+import {DepartmentService} from "../../../services/department.service";
+import {Departments} from "../../../models/Departments";
 
 @Component({
   selector: 'app-analytics',
@@ -15,7 +17,7 @@ import {AnalyticsByCourse} from "../../../models/AnalyticsByCourse";
   styleUrls: [
     '../../homescreen.component.scss',
     './analytics.component.scss'
-  ]
+  ],
 })
 export class AnalyticsComponent implements OnInit {
 
@@ -33,7 +35,7 @@ export class AnalyticsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private userService: UserService,
               private dataService: DataService,
-              ) { }
+              private departmentService: DepartmentService) { }
 
   ngOnInit(): void {
     this.activeEventUUID = this.route.params.subscribe(params => {
@@ -127,6 +129,7 @@ export class AnalyticsComponent implements OnInit {
       .subscribe(async (data: AnalyticsByCourse[]) =>{
         await this.setCoursesAnalytics(data);
         await this.setAnalyticsByCourseData(data);
+        await this.breakDownPerDepartment();
         await console.log(data);
       });
   }
@@ -139,6 +142,7 @@ export class AnalyticsComponent implements OnInit {
 
     for(let course of data){
       const deptData = {
+        "department": course.department_name,
         "name": course.course_code,
         "series": [
           {
@@ -159,15 +163,38 @@ export class AnalyticsComponent implements OnInit {
           }
         ]
       }
-
       this.multi2.push(deptData)
     }
 
     this.multi2 = [...this.multi2]
 
-    console.log('multi value:')
-    console.log(this.multi2)
+    //console.log('multi value:');
+    //console.log(this.multi2)
 
+  }
+
+  breakDownPerDepartment(){
+    const departments: Departments[]= this.departmentService.getDepartments();
+
+    for(let dept of departments){
+      for(let course of this.coursesAnalytics){
+        if(dept.department_code==course.department_code){
+          this.byDepartmentBreakdown.push({department: dept.department_name, value: this.getMultiByDepartment(dept.department_name)});
+          break;
+        }
+      }
+    }
+  }
+
+  getMultiByDepartment(department: string){
+    let arr: any[]=[];
+
+    for(let data of this.multi2){
+      if(data['department']==department){
+        arr.push(data);
+      }
+    }
+    return arr;
   }
 
   //get the headers to be used in the request

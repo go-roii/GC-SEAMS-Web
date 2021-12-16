@@ -57,7 +57,10 @@
     <div id="department-analytics" class="accordion-collapse collapse show"
          aria-labelledby="overall-analytics-heading" data-bs-parent="#overall-analytics-accordion">
       <div class="accordion-body">
-        <app-grouped-vertical-bar-chart [summarizedData]="multi2" [x_axisLabel]="programs"></app-grouped-vertical-bar-chart>
+        <ng-container *ngFor="let data of byDepartmentBreakdown">
+          <h6>{{data?.department}}</h6>
+          <app-grouped-vertical-bar-chart [summarizedData]="data.value" [x_axisLabel]="programs"></app-grouped-vertical-bar-chart>
+        </ng-container>
       </div>
     </div>
   </div>

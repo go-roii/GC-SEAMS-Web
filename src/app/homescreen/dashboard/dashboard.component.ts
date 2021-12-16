@@ -10,6 +10,8 @@ import {EventSummary} from "../../models/EventSummary";
 import {RegistrationAnalyticsCount} from "../../models/RegistrationAnalyticsCount";
 import {OverallAnalytics} from "../../models/OverallAnalytics";
 import {AnalyticsByDepartment} from "../../models/AnalyticsByDepartment";
+import {DepartmentService} from "../../services/department.service";
+import {Departments} from "../../models/Departments";
 
 
 @Component({
@@ -30,7 +32,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private router : Router,
               private userService: UserService,
-              private dataService: DataService) { }
+              private dataService: DataService,
+              private departmentService: DepartmentService) { }
 
   ngOnInit(): void {
     this.fetchEndedEvents();
@@ -198,8 +201,9 @@ export class DashboardComponent implements OnInit {
     this.dataService.httprequest(eventDetailsParams)
       .subscribe(async (data: AnalyticsByDepartment[]) =>{
         await this.setDepartmentAnalytics(data);
-        await this.setAnalyticsByDepartmentData(data);
-        await console.log(data);
+        //await this.setAnalyticsByDepartmentData(data);
+        //await this.combineDepartmentAnalytics();
+        //await console.log(data);
       });
   }
 
@@ -210,6 +214,7 @@ export class DashboardComponent implements OnInit {
   setAnalyticsByDepartmentData(data: AnalyticsByDepartment[]){
 
     for(let department of data){
+
       const deptData = {
         "name": department.department_code,
         "series": [
@@ -232,13 +237,74 @@ export class DashboardComponent implements OnInit {
         ]
       }
 
-      this.multi.push(deptData)
+      this.departmentAnalytics.push(department);
+      this.multi.push(deptData);
     }
 
     this.multi = [...this.multi]
 
     console.log('multi value:')
+    //this.combineDepartmentAnalytics(data)
     console.log(this.multi)
   }
 
+  getDepartment(): Departments[]{
+    return this.departmentService.getDepartments();
+  }
+
+  combineDepartmentAnalytics(){
+
+      let departments: Departments[] = this.getDepartment();
+
+      for(let department of departments){
+        let analyticsData: any;
+        let invited=0;
+        let viewed=0;
+        let registered=0;
+        let attended=0;
+
+        for (let data of this.departmentAnalytics){
+          if(data.department_code===department.department_code){
+            invited+=data.invited;
+            viewed+=data.views;
+            registered+=data.registered;
+            attended+=data.attendees;
+
+            const deptData = {
+              "name": data.department_code,
+              "series": [
+                {
+                  "name": "Invited",
+                  "value": invited
+                },
+                {
+                  "name": "Viewed",
+                  "value": viewed
+                },
+                {
+                  "name": "Registered",
+                  "value": registered
+                },
+                {
+                  "name": "Attended",
+                  "value": attended
+                }
+              ]
+            }
+            analyticsData =  deptData;
+          }
+        }
+
+        if(analyticsData!=null){
+          this.multi.push(analyticsData)
+        }
+      }
+
+    // console.log('Data to process:')
+    // console.log(this.departmentAnalytics);
+    // console.log('Combined data:')
+    // console.log(this.multi)
+
+
+  }
 }
