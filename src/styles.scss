@@ -313,6 +313,14 @@ input[type=number]::-webkit-outer-spin-button {
 	border-color: var(--primary-color);
 }
 
+.btn-check:active+.btn-outline-primary:focus,
+.btn-check:checked+.btn-outline-primary:focus,
+.btn-outline-primary.active:focus,
+.btn-outline-primary.dropdown-toggle.show:focus,
+.btn-outline-primary:active:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.5);
+}
+
 .btn-check:focus+.btn-secondary, .btn-secondary:focus {
   background-color: #5c636a;
   border-color: #565e64;
