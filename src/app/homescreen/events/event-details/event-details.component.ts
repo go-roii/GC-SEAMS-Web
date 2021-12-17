@@ -1,4 +1,4 @@
-import {Location} from '@angular/common';
+import {Location, LocationStrategy} from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {Events} from "../../../models/Events";
@@ -181,6 +181,7 @@ export class EventDetailsComponent implements OnInit {
   get speakerDescription() { return this.speakerForm.get('speakerDescription'); }
 
   constructor(
+    private locationStrategy: LocationStrategy,
     private updatedEvent: UpdatedEventService,
     private location: Location,
     private departmentService: DepartmentService,
@@ -201,6 +202,8 @@ export class EventDetailsComponent implements OnInit {
     this.departments=this.departmentService.getDepartments();
 
     console.log(this.event.eventIsStrict);
+
+    console.log('base href: ' + this.locationStrategy.getBaseHref());
   }
 
   ngAfterViewInit() {
