@@ -542,7 +542,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
-        this.beginQRCodeLink = location.origin+this.locationStrategy.getBaseHref()+'/qr-code'+
+        this.beginQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'/qr-code'+
           '/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
@@ -562,7 +562,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: QRCodeDetails) =>{
         qrDetails = data;
         await console.log(data)
-        this.endQRCodeLink = location.origin+this.locationStrategy.getBaseHref()+'/qr-code'+'/'+ qrDetails.event_uuid+
+        this.endQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'/qr-code'+'/'+qrDetails.event_uuid+
         '/'+qrDetails.attendance_code+'/'+this.event.eventName;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
@@ -585,7 +585,8 @@ export class EventDetailsComponent implements OnInit {
           .subscribe(async (data: QRCodeDetails) =>{
             qrDetails = data;
             await console.log(data)
-            this.beginQRCodeLink = location.origin + '/qr-code'+'/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
+            this.beginQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'/qr-code'+'/'+qrDetails.event_uuid+
+            '/'+qrDetails.attendance_code+'/'+this.event.eventName;
           });
       }catch (e) {
 
@@ -601,7 +602,8 @@ export class EventDetailsComponent implements OnInit {
           .subscribe(async (data: QRCodeDetails) =>{
             qrDetails = data;
             await console.log(data)
-            this.endQRCodeLink = location.origin + '/qr-code' +'/'+ qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
+            this.endQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'/qr-code'+'/'+qrDetails.event_uuid+
+            '/'+qrDetails.attendance_code+'/'+this.event.eventName;
           });
       }catch (e){}
     }catch (e) {}
