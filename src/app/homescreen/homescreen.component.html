@@ -1,5 +1,5 @@
 <div class="homescreen-container">
-	<div class="sidenav user-select-none" [ngClass]="{'sidenav-expanded' : isSidenavExpanded}">
+	<div #sidenav class="sidenav user-select-none" [ngClass]="{'sidenav-expanded' : isSidenavExpanded}">
 		<ul class="nav nav-pills nav-flush text-center">
 			<li id="sidenav-menu-item" class="nav-item">
 				<a id="sidenav-menu-btn" class="sidenav-btn nav-link" (click)='sidenav_status()'
@@ -36,7 +36,7 @@
 
 	<div class="main-content" [ngClass]="{'main-content-compact' : isSidenavExpanded}"
     [style.width]="'calc(100vw - ' + sidenavWidth + 'px)'">
-		<nav class="navbar">
+		<nav #navbar class="navbar">
 			<div class="container-fluid px-0">
 				<a class="navbar-brand" [routerLink]="['/homescreen/events']">GC-SEAMS</a>
 
@@ -51,17 +51,8 @@
               {{this.email}}
             </p>
 					</div>
-					<!-- <div class="btn-group">
+					<div class="btn-group">
 						<button id="profile-button" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" [routerLink]="['/homescreen/profile']">Profile</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" (click)="logout()">Logout</a></li>
-						</ul>
-					</div> -->
-
-          <div class="btn-group">
-						<button id="menu-button" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" [routerLink]="['/homescreen/profile']">Profile</a></li>
 							<li><hr class="dropdown-divider"></li>
@@ -72,7 +63,7 @@
 			</div>
 		</nav>
 
-		<div class="content">
+		<div #content class="content">
 			<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
 		</div>
 	</div>

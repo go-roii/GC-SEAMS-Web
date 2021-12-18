@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidenavExpandService } from '../services/sidenav-expand.service';
 import { UserService } from '../services/user.service';
@@ -25,11 +25,14 @@ import {UserProfile} from "../models/UserProfile";
 
 export class HomescreenComponent implements OnInit {
 
+  @ViewChild("sidenav") sidenav?: ElementRef;
+  @ViewChild("navbar") navbar?: ElementRef;
+  @ViewChild("content") content?: ElementRef;
+
 	isSidenavExpanded: boolean = this.sidedenavExpandService.isSidenavExpanded;
   sidenavWidth: number = this.sidedenavExpandService.sidenavWidth;
-  fullName!: string;
+  fullName!: string ;
   email!: string;
-
 
 	// currentPage: string = this.router.url;
 	currentPage: string = '';
@@ -52,8 +55,6 @@ export class HomescreenComponent implements OnInit {
   }
 
 	ngOnInit(): void {
-    this.fetchProfile();
-
     this.breakpointObserver
     .observe(['(max-width: 1199.98px)'])
     .subscribe((state: BreakpointState) => {
@@ -99,6 +100,14 @@ export class HomescreenComponent implements OnInit {
     console.log(this.userService.getActiveUser())
     this.fetchProfile();
 	}
+
+  ngAfterViewInit() {
+    setTimeout(() => { 
+      this.sidenav?.nativeElement.classList.add('sidenav-transition')
+      this.navbar?.nativeElement.classList.add('navbar-transition') 
+      this.content?.nativeElement.classList.add('content-transition') 
+    }, 0)
+  }
 
 	// routerChangeMethod(url: string) {
 	// 	this.currentPage = url;

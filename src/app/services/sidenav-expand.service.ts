@@ -8,7 +8,7 @@ export class SidenavExpandService {
 
   isSidenavExpanded: boolean = true;
   sidenavExpandChange: Subject<boolean> = new Subject<boolean>();
-  sidenavWidth: number = 240;
+  sidenavWidth!: number;
   sidenavWidthChange: Subject<number> = new Subject<number>();
 
   constructor() {

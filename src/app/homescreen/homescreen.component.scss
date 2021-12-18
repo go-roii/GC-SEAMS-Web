@@ -14,9 +14,6 @@ $sidenav-expanded-width: 248px;
 	background-color: var(--background);
 	padding: 4px 12px;
   border-right: 1px solid var(--bs-gray-300);
-	transition: // width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
-              min-width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
-							padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 	z-index: 0;
 
 	& i.bi {
@@ -54,6 +51,12 @@ $sidenav-expanded-width: 248px;
 	& .nav-item .active p {
 		color: white;
 	}
+}
+
+.sidenav-transition {
+  transition: // width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
+  min-width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91),
+  padding 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
   
 .sidenav-expanded {
@@ -106,11 +109,15 @@ $sidenav-expanded-width: 248px;
   transition: width 300ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
+
 .content {
   overflow-y: scroll;
   // scrollbar-gutter: stable both-edges;
   height: calc(100vh - 64px);
   padding: 42px 72px;
+}
+
+.content-transition {
   transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
@@ -120,8 +127,11 @@ $sidenav-expanded-width: 248px;
 	box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.03);
   padding-left: 72px;
   padding-right: calc(72px + 12px); 
-  transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
   z-index: 99;
+}
+
+.navbar-transition {
+  transition: padding 280ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
 #user-info {
