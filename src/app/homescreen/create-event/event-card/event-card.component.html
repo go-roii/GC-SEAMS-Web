@@ -155,7 +155,7 @@
 
 <!-- preview event modal  -->
 <div class="modal fade" [attr.id]="'preview-event-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="preview-event-modal modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+  <div class="preview-event-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Event Preview</h6>
@@ -173,8 +173,7 @@
 					<div class="card-body">
 						<h6 class="card-title">{{event.eventName.length == 0 ? 'Lorem Ipsum' : event.eventName}}</h6>
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
-						<p class="card-text">
-							{{event.eventDetails.length == 0
+						<p class="card-text">{{event.eventDetails.length == 0
               ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
               : event.eventDetails}}
@@ -210,54 +209,6 @@
             [(ngModel)]="searchText" aria-label="Search speaker">
         </div>
 
-        <!-- <div [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
-          <p class="mb-2">Chosen Speakers: {{this.chosenSpeaker.length}}</p>
-
-          <ul class="list-group">
-            <ng-container *ngFor="let speaker of chosenSpeaker">
-              <li class="list-group-item">
-                <div class="d-flex align-items-center">
-                  <div class="profile-pic"></div>
-                  <div class="mx-3">
-                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-                  </div>
-                  <div style="margin-left: auto;">
-                    <button class="btn btn-sm btn-outline-danger rounded-pill" type="button"
-                      (click)="removeSpeakerFromChosen(speaker)">
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-        </div>
-
-        <div class="mt-3" [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
-          <p class="mb-2">Available Speakers: {{speakers.length - chosenSpeaker.length}}</p>
-
-          <ul class="list-group">
-            <ng-container *ngFor="let speaker of speakers | filter:searchText">
-              <li class="list-group-item" *ngIf="!speaker.speaker_chosen">
-                <div  class="d-flex align-items-center">
-                  <div class="profile-pic"></div>
-                  <div class="mx-3">
-                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-                  </div>
-                  <div style="margin-left: auto;">
-                    <button class="btn btn-sm btn-outline-primary rounded-pill" type="button"
-                      (click)="addSpeaker(speaker)">
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-        </div> -->
-
         <div>
           <p class="mb-2">Available Speakers: {{speakers.length}}</p>
 
@@ -289,7 +240,7 @@
         </div>
 
         <div class="collapse" [attr.id]="'add-speaker-collapse'+event.ID">
-          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
+          <div class="card card-body mt-3">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">

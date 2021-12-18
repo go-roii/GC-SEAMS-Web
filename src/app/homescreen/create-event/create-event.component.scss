@@ -1,9 +1,14 @@
 .gs-card {
   // height: 716px;
+  
+  &:hover:not(.new-event-container) {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px 2px rgba(var(--primary-color-rgb), 0.24);
+  }
 }
 
 .new-event-container {
-  height: 757px;
+  height: 778px;
   flex: 1;
   color: var(--bs-gray-500);
   border: 2px dashed var(--bs-gray-500);

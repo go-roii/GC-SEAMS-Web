@@ -37,7 +37,8 @@
         </div>
 
 				<div class="d-grid gap-2">
-					<button type="submit" class="btn btn-lg btn-primary rounded-pill" [disabled]="credentialsForm.invalid || isUserLoggingIn" (click)='login()'>
+					<button type="submit" class="btn btn-lg btn-primary rounded-pill"
+            [disabled]="credentialsForm.invalid || isUserLoggingIn" (click)='login()'>
             Log in
             <span [style.display]="isUserLoggingIn ? 'inline-block' : 'none'">&nbsp;
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

@@ -155,8 +155,13 @@
                     readonly>
                     <label class="input-group-text" for="begin-qr-code-expiration" id="label-begin-qr-code-expiration">min</label>
                   </div>
-                  <button class="btn btn-sm btn-primary rounded-pill" type="button" (click)="generateBeginQRCode(uuid)">
+                  <button class="btn btn-sm btn-primary rounded-pill" type="button" (click)="generateBeginQRCode(uuid)"
+                    [disabled]="isBeginningQRCodeGenerating">
                     Generate
+                    <span [style.display]="isBeginningQRCodeGenerating ? 'inline-block' : 'none'">&nbsp;
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="visually-hidden">Loading...</span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -183,8 +188,13 @@
                     readonly>
                     <label class="input-group-text" for="end-qr-code-expiration" id="label-end-qr-code-expiration">min</label>
                   </div>
-                  <button class="btn btn-sm btn-primary rounded-pill" type="button" (click)="generateEndQRCode(uuid)">
+                  <button class="btn btn-sm btn-primary rounded-pill" type="button" (click)="generateEndQRCode(uuid)"
+                    [disabled]="isEndQRCodeGenerating">
                     Generate
+                    <span [style.display]="isEndQRCodeGenerating ? 'inline-block' : 'none'">&nbsp;
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="visually-hidden">Loading...</span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -269,13 +279,13 @@
 
 <!-- preview event modal  -->
 <div class="modal fade" [attr.id]="'preview-event-modal'+event.ID" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="preview-event-modal modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
+  <div class="preview-event-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h6 class="modal-title" id="staticBackdropLabel">Event Preview</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body ongoing">
 				<div class="event-card card">
           <!-- [ngClass]="{'no-hover' : !isEditable}" -->
 					<div class="change-poster user-select-none no-hover"
@@ -289,8 +299,7 @@
 					<div class="card-body">
 						<h6 class="card-title">{{event.eventName.length == 0 ? 'Lorem Ipsum' : event.eventName}}</h6>
 						<p class="card-subtitle mb-2 text-muted">{{event.eventDate | date}}</p>
-						<p class="card-text">
-							{{event.eventDetails.length == 0
+						<p class="card-text">{{event.eventDetails.length == 0
               ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
               : event.eventDetails}}
@@ -324,54 +333,6 @@
           <span class="input-group-text" id="inputGroup-sizing-sm"><i class="bi bi-search"></i></span>
         </div>
 
-        <!-- <div [style.display]="this.chosenSpeaker.length >= 1 ? 'block' : 'none'">
-          <p class="mb-2">Chosen Speakers: {{this.chosenSpeaker.length}}</p>
-
-          <ul class="list-group">
-            <ng-container *ngFor="let speaker of chosenSpeaker">
-              <li class="list-group-item">
-                <div class="d-flex align-items-center">
-                  <div class="profile-pic"></div>
-                  <div class="mx-3">
-                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-                  </div>
-                  <div style="margin-left: auto;">
-                    <button class="btn btn-sm btn-outline-danger rounded-pill" type="button"
-                      (click)="removeSpeakerFromChosen(speaker)">
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-        </div>
-
-        <div class="mt-3" [style.display]="chosenSpeaker.length != speakers.length ? 'block' : 'none'">
-          <p class="mb-2">Available Speakers: {{speakers.length - chosenSpeaker.length}}</p>
-
-          <ul class="list-group">
-            <ng-container *ngFor="let speaker of speakers | filter:searchText">
-              <li class="list-group-item" *ngIf="!speaker.speaker_chosen">
-                <div  class="d-flex align-items-center">
-                  <div class="profile-pic"></div>
-                  <div class="mx-3">
-                    <p class="mb-0" style="font-size: 14px;">{{speaker.speaker_name}}</p>
-                    <p class="mb-0" style="font-size: 12px; color: var(--primary-color)">{{speaker.speaker_email}}</p>
-                  </div>
-                  <div style="margin-left: auto;">
-                    <button class="btn btn-sm btn-outline-primary rounded-pill" type="button"
-                      (click)="addSpeaker(speaker)">
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-        </div> -->
-
         <div>
           <p class="mb-2">Available Speakers: {{speakers.length}}</p>
 
@@ -403,7 +364,7 @@
         </div>
 
         <div id="add-speaker-collapse" class="collapse">
-          <div class="card card-body mt-3" style="height: unset; border-radius: 0.25rem;">
+          <div class="card card-body mt-3">
             <!--form group for add speaker functionality-->
             <form [formGroup]='speakerForm' autocomplete="off">
               <div class="mb-2">
@@ -467,25 +428,3 @@
     </div>
   </div>
 </div>
-
-<!--QR CODE MODAL-->
-<!-- <div class="modal fade" id="qr-code-modal" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title" id="staticBackdropLabel">Generate QR Code</h6>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form autocomplete="off">
-
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save</button>
-      </div>
-    </div>
-  </div>
-</div> -->

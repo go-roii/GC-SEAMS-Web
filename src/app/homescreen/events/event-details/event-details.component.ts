@@ -22,6 +22,7 @@ import {Student} from "../../../models/Student";
   templateUrl: './event-details.component.html',
   styleUrls: [
     '../../homescreen.component.scss',
+    '../event-card/events-event-card.component.scss',
     './event-details.component.scss'
   ]
 })
@@ -30,6 +31,8 @@ export class EventDetailsComponent implements OnInit {
 
   eventPosterColor!: string;
   isEventUpdating: boolean = false;
+  isBeginningQRCodeGenerating: boolean = false;
+  isEndQRCodeGenerating: boolean = false;
 
 	@ViewChild("eventContentColumn") eventContentColumn?: ElementRef;
 	attendanceColumnHeight!: number;
@@ -530,6 +533,7 @@ export class EventDetailsComponent implements OnInit {
   // }
 
   generateBeginQRCodeLink(uuid: string) {
+    this.isBeginningQRCodeGenerating = true;
 
     let qrDetails: QRCodeDetails;
 
@@ -544,12 +548,15 @@ export class EventDetailsComponent implements OnInit {
         await console.log(data)
         this.beginQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'qr-code'+
           '/'+qrDetails.event_uuid+'/'+qrDetails.attendance_code+'/'+this.event.eventName;
+        this.isBeginningQRCodeGenerating = false;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
+        this.isBeginningQRCodeGenerating = false;
       });
   }
 
   generateEndQRCodeLink(uuid: string) {
+    this.isEndQRCodeGenerating = true;
 
     let qrDetails: QRCodeDetails;
 
@@ -563,9 +570,11 @@ export class EventDetailsComponent implements OnInit {
         qrDetails = data;
         await console.log(data)
         this.endQRCodeLink = location.origin + this.locationStrategy.getBaseHref()+'qr-code'+'/'+qrDetails.event_uuid+
-        '/'+qrDetails.attendance_code+'/'+this.event.eventName;
+          '/'+qrDetails.attendance_code+'/'+this.event.eventName;
+        this.isEndQRCodeGenerating = false;
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
+        this.isEndQRCodeGenerating = false;
       });
 
   }
@@ -726,7 +735,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: string) => {
         await console.log(data);
         await this.generateBeginQRCodeLink(uuid)
-        await alert("Beginning QR code generated");
+        // await alert("Beginning QR code generated");
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });
@@ -749,7 +758,7 @@ export class EventDetailsComponent implements OnInit {
       .subscribe(async (data: string) => {
         await console.log(data);
         await this.generateEndQRCodeLink(uuid)
-        await alert("Beginning QR code generated");
+        // await alert("Beginning QR code generated");
       }, (er: HttpErrorResponse) => {
         this.dataService.handleError(er);
       });

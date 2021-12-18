@@ -18,6 +18,7 @@ import {filter} from "rxjs/operators";
   styleUrls: [
     '../../homescreen.component.scss',
     '../create-event.component.scss',
+    '../../events/event-card/events-event-card.component.scss',
     './event-card.component.scss'
   ]
 })
