@@ -1,22 +1,11 @@
 .gs-card { 
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px 2px rgba(var(--primary-color-rgb), 0.24);
+
   & .list-group-flush {
-		// height: 745px;
-		// height: 100%;
-    // flex: 1;
 		overflow-y: auto;
     margin-right: -36px;
   }
-}
-
-#event-details-column {
-  
-}
-
-#attendance-column {
-	// height: 0;
-	// display: flex;
-	// flex-direction: column;
-  // overflow: hidden;
 }
 
 #attendance-content {
@@ -98,10 +87,3 @@
     margin-bottom: -20px;
 	}
 }
-
-// // phone
-// @media (max-width: 575.98px) {
-// 	#status-filter-tab {
-// 			// flex-wrap: wrap;
-// 	}
-// }
